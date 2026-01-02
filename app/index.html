@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AWS Serverless Resume</title>
+  </head>
+  <body>
+    <h1>Hello, I’m Rob</h1>
+    <p>This resume is running locally.</p>
+
+    <button onclick="callApi()">Call API</button>
+    <p id="api-response"></p>
+
+    <script>
+      async function callApi() {
+        const response = await fetch("/api/hello");
+        const data = await response.json();
+        document.getElementById("api-response").innerText = data.message;
+      }
+    </script>
+  </body>
+</html>
