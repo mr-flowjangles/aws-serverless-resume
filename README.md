@@ -45,3 +45,14 @@ Prerequisites:
 
 Start everything:
 `make up`
+
+## AWS Mapping (Conceptual)
+
+Local Component        → AWS Equivalent
+---------------------------------------
+Nginx                 → CloudFront / ALB
+FastAPI               → Lambda or ECS
+Docker network        → VPC
+/api/* routing        → CloudFront behaviors
+docker-compose.yml    → Infrastructure as Code
+
