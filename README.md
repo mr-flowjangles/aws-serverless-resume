@@ -26,6 +26,7 @@ FastAPI (api)
 
 ## Project Structure
 
+```
 .
 ├── app/                # Static website (index.html)
 ├── api/                # FastAPI service
@@ -36,6 +37,7 @@ FastAPI (api)
 ├── docker-compose.yml  # Local infrastructure
 ├── Makefile            # Common commands
 └── README.md
+```
 
 ## Running Locally
 
