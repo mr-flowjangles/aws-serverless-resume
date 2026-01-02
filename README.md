@@ -59,3 +59,8 @@ Docker network        → VPC
 /api/* routing        → CloudFront behaviors
 docker-compose.yml    → Infrastructure as Code
 ```
+
+## License
+© 2026 Rob Rose. All rights reserved.
+- This project is provided for personal and educational purposes. If reused or forked, please retain this notice and provide attribution.
+
