@@ -15,14 +15,15 @@ A serverless resume application built on AWS, demonstrating API-driven content, 
 ## Architecture
 
 Browser
-  ↓
+↓
 Nginx (web)
-  - Serves static files
-  - Proxies `/api/*` requests
+
+- Serves static files
+- Proxies `/api/*` requests
   ↓
-FastAPI (api)
-  - Private service
-  - No public port exposure
+  FastAPI (api)
+- Private service
+- No public port exposure
 
 ## Project Structure
 
@@ -42,11 +43,16 @@ FastAPI (api)
 ## Running Locally
 
 Prerequisites:
+
 - Docker
 - Docker Compose
 
 Start everything:
 `make up`
+
+## Swagger
+
+http://localhost:8080/api/docs
 
 ## AWS Mapping (Conceptual)
 
@@ -61,6 +67,7 @@ docker-compose.yml    → Infrastructure as Code
 ```
 
 ## License
-© 2026 Rob Rose. All rights reserved.
-- This project is provided for personal and educational purposes. If reused or forked, please retain this notice and provide attribution.
 
+© 2026 Rob Rose. All rights reserved.
+
+- This project is provided for personal and educational purposes. If reused or forked, please retain this notice and provide attribution.
