@@ -2,6 +2,36 @@
 
 A serverless resume application built on AWS, demonstrating API-driven content, managed cloud services, and infrastructure as code.
 
+### Adding Your Resume Data
+
+**Important:** Your personal resume data should NOT be committed to Git.
+
+1. Copy the example seed file:
+
+```bash
+   cp config/seed-data.example.json config/seed-data.json
+```
+
+2. Edit `config/seed-data.json` with your actual experience, skills, education, and projects
+
+3. The file is gitignored and will not be committed
+
+4. On startup, the application will automatically seed DynamoDB with your data
+
+**Data Structure:**
+
+Each experience item should include:
+
+- `id`: Unique identifier (e.g., "experience-1")
+- `type`: Always "experience"
+- `company`: Company name
+- `title`: Your job title
+- `startDate`: Format as "YYYY-MM"
+- `endDate`: Use "present" for current role or "YYYY-MM"
+- `description`: Overview paragraph
+- `highlights`: Array of bullet points (your accomplishments)
+- `skills`: Array of relevant technologies/skills
+
 ## Project Structure
 
 ```
@@ -95,6 +125,53 @@ make up
 
 ### Local Development
 
+**Start the application:**
+
+```bash
+make up
+```
+
+The DynamoDB table will be created automatically on startup.
+
+**View the site:**
+
+Open [http://localhost:8080](http://localhost:8080)
+
+**View API documentation:**
+
+Open [http://localhost:8080/api/docs](http://localhost:8080/api/docs)
+
+**View logs:**
+
+```bash
+make logs
+```
+
+Press Ctrl+C to exit logs.
+
+**Stop the application:**
+
+```bash
+make down
+```
+
+**Rebuild after code changes:**
+
+```bash
+make build
+make up
+```
+
+**Available commands:**
+
+```bash
+make help    # Show all available commands
+make up      # Start all services
+make down    # Stop all services
+make build   # Rebuild all images
+make logs    # View service logs
+```
+
 ```
 Browser
   ↓
@@ -133,6 +210,59 @@ DynamoDB
 - **Local AWS**: LocalStack (S3, DynamoDB)
 - **Containers**: Docker, Docker Compose
 - **Reverse Proxy**: Nginx
+
+## DynamoDB Commands (Local Development)
+
+### List all tables
+
+```bash
+docker exec -it resume-api-1 aws --endpoint-url=http://localstack:4566 dynamodb list-tables
+```
+
+### Describe table structure
+
+```bash
+docker exec -it resume-api-1 aws --endpoint-url=http://localstack:4566 dynamodb describe-table --table-name ResumeData
+```
+
+### Scan all items in table
+
+```bash
+docker exec -it resume-api-1 aws --endpoint-url=http://localstack:4566 dynamodb scan --table-name ResumeData
+```
+
+### Get specific item by ID
+
+```bash
+docker exec -it resume-api-1 aws --endpoint-url=http://localstack:4566 dynamodb get-item \
+    --table-name ResumeData \
+    --key '{"id":{"S":"experience-1"}}'
+```
+
+### Put an item
+
+```bash
+docker exec -it resume-api-1 aws --endpoint-url=http://localstack:4566 dynamodb put-item \
+    --table-name ResumeData \
+    --item '{"id":{"S":"test-id"},"type":{"S":"experience"},"data":{"S":"test data"}}'
+```
+
+### Query items by type (using GSI)
+
+```bash
+docker exec -it resume-api-1 aws --endpoint-url=http://localstack:4566 dynamodb query \
+    --table-name ResumeData \
+    --index-name TypeIndex \
+    --key-condition-expression "#t = :type" \
+    --expression-attribute-names '{"#t":"type"}' \
+    --expression-attribute-values '{":type":{"S":"experience"}}'
+```
+
+### Delete table
+
+```bash
+docker exec -it resume-api-1 aws --endpoint-url=http://localstack:4566 dynamodb delete-table --table-name ResumeData
+```
 
 ## Future Enhancements
 

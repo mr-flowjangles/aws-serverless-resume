@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# Personal resume data (use seed-data.example.json as template)
+config/seed-data.json
+
 # Python
 __pycache__/
 *.py[cod]
@@ -39,3 +42,4 @@ Thumbs.db
 
 # Logs
 *.log
+*.txt

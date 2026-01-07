@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rob Rose - Cloud Engineer</title>
+    <title>Loading...</title>
     <style>
       * {
         margin: 0;
@@ -738,6 +738,9 @@
         try {
           const response = await fetch(`${API_BASE}/resume/profile`);
           const data = await response.json();
+
+          // Update page title
+          document.title = `${data.name} - ${data.title}`;
 
           // Update header with profile data
           document.getElementById("header-name").textContent = data.name;
