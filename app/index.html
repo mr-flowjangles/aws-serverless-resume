@@ -2,21 +2,762 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>AWS Serverless Resume</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rob Rose - Cloud Engineer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: #f0f4f8;
+        color: #1e293b;
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .header-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .header-text h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .header-text p {
+        color: #94a3b8;
+        font-size: 1rem;
+      }
+
+      .header-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .header-links a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border: 1px solid #38bdf8;
+        border-radius: 4px;
+        transition: all 0.3s;
+      }
+
+      .header-links a:hover {
+        background: #38bdf8;
+      }
+
+      /* Main Layout */
+      .container {
+        display: flex;
+        min-height: calc(100vh - 180px);
+      }
+
+      /* Sidebar Navigation */
+      nav {
+        width: 250px;
+        background: #0f172a;
+        padding: 2rem 0;
+      }
+
+      nav ul {
+        list-style: none;
+      }
+
+      nav li {
+        margin: 0;
+      }
+
+      nav a {
+        display: block;
+        color: #94a3b8;
+        text-decoration: none;
+        padding: 1rem 2rem;
+        transition: all 0.3s;
+        border-left: 3px solid transparent;
+      }
+
+      nav a:hover,
+      nav a.active {
+        background: #1e293b;
+        color: #38bdf8;
+        border-left-color: #0ea5e9;
+      }
+
+      /* Main Content */
+      main {
+        flex: 1;
+        padding: 3rem;
+      }
+
+      .content-section {
+        display: none;
+        animation: fadeIn 0.3s;
+      }
+
+      .content-section.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h2 {
+        color: #0f172a;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 3px solid #0ea5e9;
+        padding-bottom: 0.5rem;
+      }
+
+      .experience-item,
+      .project-item {
+        background: white;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #0ea5e9;
+      }
+
+      .experience-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+
+      .experience-header h3 {
+        color: #0f172a;
+        font-size: 1.3rem;
+      }
+
+      .experience-header .date {
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+
+      .company {
+        color: #0ea5e9;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .description {
+        color: #475569;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .highlights {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .highlights li {
+        padding-left: 1.5rem;
+        margin-bottom: 0.5rem;
+        position: relative;
+        color: #475569;
+        line-height: 1.5;
+      }
+
+      .highlights li:before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        color: #0ea5e9;
+        font-weight: bold;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .skill-category {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-category h3 {
+        color: #0ea5e9;
+        margin-bottom: 1rem;
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .skill-tag {
+        background: #e0f2fe;
+        color: #0369a1;
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+
+      /* Contact Form */
+      .contact-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #0f172a;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        font-family: inherit;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      button[type="submit"] {
+        background: #0ea5e9;
+        color: white;
+        padding: 0.8rem 2rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+      }
+
+      button[type="submit"]:hover {
+        background: #0284c7;
+      }
+
+      /* Architecture Diagrams */
+      .architecture-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .architecture-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .architecture-card h3 {
+        color: #0ea5e9;
+        margin-bottom: 1rem;
+      }
+
+      .architecture-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .architecture-card li {
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+        color: #475569;
+      }
+
+      .architecture-card li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #0ea5e9;
+      }
+
+      /* Footer */
+      footer {
+        background: #0f172a;
+        color: #94a3b8;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      footer a {
+        color: #38bdf8;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .loading {
+        text-align: center;
+        color: #64748b;
+        padding: 2rem;
+      }
+
+      .error {
+        background: #fee;
+        color: #c00;
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello, I’m Rob</h1>
-    <p>This resume is running locally.</p>
+    <header>
+      <div class="header-left">
+        <div class="header-image" id="header-initials">RR</div>
+        <div class="header-text">
+          <h1 id="header-name">Loading...</h1>
+          <p id="header-title">Loading...</p>
+        </div>
+      </div>
+      <div class="header-links">
+        <a href="#" id="pdf-link">Resume (PDF)</a>
+        <a href="https://linkedin.com/in/robrose" target="_blank">LinkedIn</a>
+        <a href="#contact" onclick="showSection('contact')">Contact</a>
+      </div>
+    </header>
 
-    <button onclick="callApi()">Call API</button>
-    <p id="api-response"></p>
+    <div class="container">
+      <nav>
+        <ul>
+          <li>
+            <a href="#about" class="nav-link active" data-section="about"
+              >About Me</a
+            >
+          </li>
+          <li>
+            <a href="#experience" class="nav-link" data-section="experience"
+              >Experience</a
+            >
+          </li>
+          <li>
+            <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+          </li>
+          <li>
+            <a href="#education" class="nav-link" data-section="education"
+              >Education</a
+            >
+          </li>
+          <li>
+            <a href="#projects" class="nav-link" data-section="projects"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a href="#architecture" class="nav-link" data-section="architecture"
+              >Architecture</a
+            >
+          </li>
+          <li>
+            <a href="#contact" class="nav-link" data-section="contact"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <main>
+        <!-- About Section -->
+        <section id="about" class="content-section active">
+          <h2>About Me</h2>
+          <div class="loading">Loading profile...</div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="content-section">
+          <h2>Experience</h2>
+          <div class="loading">Loading experience...</div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="content-section">
+          <h2>Skills</h2>
+          <div class="loading">Loading skills...</div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="content-section">
+          <h2>Education</h2>
+          <div class="loading">Loading education...</div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section">
+          <h2>Projects</h2>
+          <div class="loading">Loading projects...</div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section id="architecture" class="content-section">
+          <h2>Architecture</h2>
+          <p style="color: #475569; margin-bottom: 2rem; line-height: 1.6">
+            This site demonstrates AWS serverless architecture patterns. Below
+            is a comparison between the current portfolio implementation and how
+            I would architect this for enterprise scale.
+          </p>
+          <div class="architecture-container">
+            <div class="architecture-card">
+              <h3>Current Architecture (Portfolio)</h3>
+              <ul>
+                <li>S3 + CloudFront for static hosting</li>
+                <li>API Gateway for REST endpoints</li>
+                <li>Lambda functions for compute</li>
+                <li>DynamoDB for data storage</li>
+                <li>Simple, serverless, cost-effective</li>
+                <li>Perfect for low-traffic sites</li>
+                <li>Pay only for what you use</li>
+              </ul>
+            </div>
+            <div class="architecture-card">
+              <h3>Enterprise Architecture</h3>
+              <ul>
+                <li>Multi-region deployment with Route 53</li>
+                <li>Application Load Balancer + Auto Scaling</li>
+                <li>ECS Fargate or EKS for containers</li>
+                <li>RDS Multi-AZ with read replicas</li>
+                <li>ElastiCache for caching layer</li>
+                <li>WAF for security</li>
+                <li>CloudWatch + X-Ray for observability</li>
+                <li>VPC with proper subnet design</li>
+                <li>CI/CD with CodePipeline</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section">
+          <h2>Contact</h2>
+          <div class="contact-form">
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>
+        Built with AWS (Lambda, API Gateway, DynamoDB, S3, CloudFront) •
+        Deployed via Terraform
+      </p>
+      <p>
+        Frontend design assisted by AI •
+        <a
+          href="https://github.com/mr-flowjangles/aws-serverless-resume"
+          target="_blank"
+          >View source on GitHub</a
+        >
+      </p>
+    </footer>
 
     <script>
-      async function callApi() {
-        const response = await fetch("/api/hello");
-        const data = await response.json();
-        document.getElementById("api-response").innerText = data.message;
+      // Navigation
+      const navLinks = document.querySelectorAll(".nav-link");
+      const sections = document.querySelectorAll(".content-section");
+
+      function showSection(sectionId) {
+        sections.forEach((s) => s.classList.remove("active"));
+        navLinks.forEach((l) => l.classList.remove("active"));
+
+        const section = document.getElementById(sectionId);
+        const link = document.querySelector(`[data-section="${sectionId}"]`);
+
+        if (section) section.classList.add("active");
+        if (link) link.classList.add("active");
+
+        // Load data if not already loaded
+        loadSectionData(sectionId);
       }
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const section = link.dataset.section;
+          showSection(section);
+        });
+      });
+
+      // API calls
+      const API_BASE = "/api";
+
+      async function loadSectionData(section) {
+        const container = document.getElementById(section);
+
+        try {
+          switch (section) {
+            case "about":
+              await loadProfile(container);
+              break;
+            case "experience":
+              await loadExperience(container);
+              break;
+            case "skills":
+              await loadSkills(container);
+              break;
+            case "education":
+              await loadEducation(container);
+              break;
+            case "projects":
+              await loadProjects(container);
+              break;
+          }
+        } catch (error) {
+          container.innerHTML = `<div class="error">Error loading data: ${error.message}</div>`;
+        }
+      }
+
+      async function loadProfile(container) {
+        const response = await fetch(`${API_BASE}/resume/profile`);
+        const data = await response.json();
+
+        container.innerHTML = `
+                <div class="experience-item">
+                    <h3>${data.name}</h3>
+                    <p class="company">${data.title}</p>
+                    <p class="description">${data.summary}</p>
+                    <p><strong>Location:</strong> ${data.location}</p>
+                    <p><strong>Email:</strong> ${data.email}</p>
+                </div>
+            `;
+      }
+
+      async function loadExperience(container) {
+        const response = await fetch(`${API_BASE}/resume?type=experience`);
+        const data = await response.json();
+
+        let html = "";
+        data.items.forEach((exp) => {
+          html += `
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <h3>${exp.title}</h3>
+                                <p class="company">${exp.company}</p>
+                            </div>
+                            <span class="date">${exp.startDate} – ${
+            exp.endDate
+          }</span>
+                        </div>
+                        <p class="description">${exp.description}</p>
+                        <ul class="highlights">
+                            ${exp.highlights
+                              .map((h) => `<li>${h}</li>`)
+                              .join("")}
+                        </ul>
+                    </div>
+                `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      async function loadSkills(container) {
+        const response = await fetch(`${API_BASE}/resume/skills`);
+        const data = await response.json();
+
+        let html = '<div class="skills-grid">';
+        for (const [category, skills] of Object.entries(data.categories)) {
+          html += `
+                    <div class="skill-category">
+                        <h3>${
+                          category.charAt(0).toUpperCase() + category.slice(1)
+                        }</h3>
+                        <div class="skill-tags">
+                            ${skills
+                              .map((s) => `<span class="skill-tag">${s}</span>`)
+                              .join("")}
+                        </div>
+                    </div>
+                `;
+        }
+        html += "</div>";
+
+        container.innerHTML = html;
+      }
+
+      async function loadEducation(container) {
+        const response = await fetch(`${API_BASE}/resume?type=education`);
+        const data = await response.json();
+
+        let html = "";
+        data.items.forEach((edu) => {
+          html += `
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <h3>${edu.degree}</h3>
+                                <p class="company">${edu.school}</p>
+                            </div>
+                            <span class="date">${edu.year}</span>
+                        </div>
+                    </div>
+                `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      async function loadProjects(container) {
+        const response = await fetch(`${API_BASE}/resume?type=project`);
+        const data = await response.json();
+
+        let html = "";
+        data.items.forEach((proj) => {
+          html += `
+                    <div class="project-item">
+                        <h3>${proj.name}</h3>
+                        <p class="description">${proj.description}</p>
+                        <div class="skill-tags">
+                            ${proj.tech
+                              .map((t) => `<span class="skill-tag">${t}</span>`)
+                              .join("")}
+                        </div>
+                        <p style="margin-top: 1rem;">
+                            ${
+                              proj.github
+                                ? `<a href="${proj.github}" target="_blank">GitHub</a>`
+                                : ""
+                            }
+                            ${
+                              proj.liveUrl
+                                ? `<a href="${proj.liveUrl}" target="_blank">Live Demo</a>`
+                                : ""
+                            }
+                        </p>
+                    </div>
+                `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      // Contact form
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            message: document.getElementById("message").value,
+          };
+
+          try {
+            const response = await fetch(`${API_BASE}/contact`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+              alert("Message sent successfully!");
+              e.target.reset();
+            } else {
+              alert("Failed to send message. Please try again.");
+            }
+          } catch (error) {
+            alert("Error sending message: " + error.message);
+          }
+        });
+
+      // Load initial section
+      loadSectionData("about");
+
+      // Load header data
+      async function loadHeaderData() {
+        try {
+          const response = await fetch(`${API_BASE}/resume/profile`);
+          const data = await response.json();
+
+          // Update header with profile data
+          document.getElementById("header-name").textContent = data.name;
+          document.getElementById("header-title").textContent = data.title;
+
+          // Update initials in header image
+          const initials = data.name
+            .split(" ")
+            .map((n) => n[0])
+            .join("");
+          document.getElementById("header-initials").textContent = initials;
+
+          // Update PDF link
+          document.getElementById("pdf-link").href = data.links.resume_pdf;
+        } catch (error) {
+          console.error("Error loading header:", error);
+        }
+      }
+
+      loadHeaderData();
     </script>
   </body>
 </html>

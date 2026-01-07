@@ -27,6 +27,8 @@ services:
       - .env
     depends_on:
       - localstack
+    volumes:
+      - ./config:/app/config
     networks:
       - resume-net
     healthcheck:
