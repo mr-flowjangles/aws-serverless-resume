@@ -41,39 +41,135 @@ FastAPI (api)
 - Docker
 - Docker Compose
 
-### Running Locally
+### Initial Setup
 
-1. **Start all services:**
+1. **Create the Docker image:**
+   ```bash
+   docker build -t aws-serverless-resume -f docker/Dockerfile .
+   ```
+
+2. **Start all services:**
+   ```bash
+   docker compose up --build
+   ```
+   
+   Or use the Makefile:
    ```bash
    make up
    ```
 
-2. **Access the application:**
+3. **Access the application:**
    - Frontend: http://localhost:8080
    - API Documentation (Swagger): http://localhost:8080/api/docs
 
-### Available Commands
+## 🛠️ Development
 
+### Docker Commands
+
+**Using Make (recommended):**
 ```bash
 make up          # Start all services
 make down        # Stop all services
 make build       # Build Docker images
 make logs        # View container logs
+make restart     # Restart all services
 ```
 
-## 🛠️ Development
-
-### Initial Setup
-
-Build the Docker image:
+**Using Docker Compose directly:**
 ```bash
+docker compose up --build           # Build and start
+docker compose down                 # Stop and remove containers
+docker compose logs -f              # Follow logs
+docker compose ps                   # List running containers
+```
+
+**Manual Docker commands:**
+```bash
+# Build image
 docker build -t aws-serverless-resume -f docker/Dockerfile .
+
+# Run container
+docker run -p 8080:80 aws-serverless-resume
 ```
 
-Run with Docker Compose:
-```bash
-docker compose up --build
+### Configuration
+
+**Set up your profile information:**
+
+1. Open `config/general-data.json`
+2. Update the following fields with your information:
+
+```json
+{
+  "profile": {
+    "name": "Your Name",
+    "title": "Your Professional Title",
+    "email": "your.email@example.com",
+    "location": "Your City, State",
+    "photo": "/assets/profile.jpg",
+    "summary": "Your professional summary here.",
+    "links": {
+      "github": "https://github.com/yourusername",
+      "linkedin": "https://linkedin.com/in/yourusername",
+      "resume_pdf": "/assets/resume.pdf"
+    }
+  }
+}
 ```
+
+**Set up your resume data:**
+
+1. Copy the example seed file:
+   ```bash
+   cp config/seed-data.example.json config/seed-data.json
+   ```
+
+2. Edit `config/seed-data.json` with your actual experience, skills, education, and projects
+
+3. The file is gitignored and will not be committed
+
+4. On startup, the application will automatically seed DynamoDB with your data
+
+**Data Structure:**
+
+Each experience item should include:
+- `id`: Unique identifier (e.g., "experience-1")
+- `type`: Always "experience"
+- `company`: Company name
+- `title`: Your job title
+- `startDate`: Format as "YYYY-MM"
+- `endDate`: Use "present" for current role or "YYYY-MM"
+- `description`: Overview paragraph
+- `highlights`: Array of bullet points (your accomplishments)
+- `skills`: Array of relevant technologies/skills
+
+### Configuration Files
+
+**`.env`** - Environment variables
+```env
+# Add your environment variables here
+API_PORT=8000
+WEB_PORT=8080
+```
+
+**`docker-compose.yml`** - Orchestrates the multi-container setup
+- Defines the `web` (Nginx) and `api` (FastAPI) services
+- Sets up networking between containers
+- Configures port mappings and volume mounts
+
+**`nginx/default.conf`** - Nginx reverse proxy configuration
+- Routes static content from `/app`
+- Proxies API requests from `/api/*` to the FastAPI backend
+- Configured to run on port 80 inside the container
+
+**`docker/Dockerfile`** - Container image definition
+- Base image and dependencies
+- Application setup and configuration
+- Entry point definition
+
+**`Makefile`** - Common development commands
+- Abstracts Docker Compose commands for easier use
+- Provides shortcuts for build, up, down, logs, etc.
 
 ## ☁️ AWS Mapping (Conceptual)
 
