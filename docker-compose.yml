@@ -8,6 +8,8 @@ services:
       - .env
     ports:
       - "8080:80"
+    depends_on:
+      - api
     networks:
       - resume-net
     healthcheck:
@@ -23,6 +25,8 @@ services:
     image: resume-api
     env_file:
       - .env
+    depends_on:
+      - localstack
     networks:
       - resume-net
     healthcheck:
@@ -31,11 +35,18 @@ services:
       timeout: 5s
       retries: 3
 
-  dynamodb:
-    image: amazon/dynamodb-local
-    command: "-jar DynamoDBLocal.jar -sharedDb -inMemory"
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=s3,dynamodb # Only the services we need
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
     ports:
-      - "8001:8000"
+      - "4566:4566" # LocalStack gateway
+      - "4510-4559:4510-4559" # External services port range
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       - resume-net
 
