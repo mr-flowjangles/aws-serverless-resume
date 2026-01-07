@@ -143,33 +143,6 @@ Each experience item should include:
 - `highlights`: Array of bullet points (your accomplishments)
 - `skills`: Array of relevant technologies/skills
 
-### Configuration Files
-
-**`.env`** - Environment variables
-```env
-# Add your environment variables here
-API_PORT=8000
-WEB_PORT=8080
-```
-
-**`docker-compose.yml`** - Orchestrates the multi-container setup
-- Defines the `web` (Nginx) and `api` (FastAPI) services
-- Sets up networking between containers
-- Configures port mappings and volume mounts
-
-**`nginx/default.conf`** - Nginx reverse proxy configuration
-- Routes static content from `/app`
-- Proxies API requests from `/api/*` to the FastAPI backend
-- Configured to run on port 80 inside the container
-
-**`docker/Dockerfile`** - Container image definition
-- Base image and dependencies
-- Application setup and configuration
-- Entry point definition
-
-**`Makefile`** - Common development commands
-- Abstracts Docker Compose commands for easier use
-- Provides shortcuts for build, up, down, logs, etc.
 
 ## ☁️ AWS Mapping (Conceptual)
 
