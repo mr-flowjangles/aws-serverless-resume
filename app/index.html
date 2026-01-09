@@ -366,9 +366,9 @@
         </div>
       </div>
       <div class="header-links">
-        <a href="#" id="pdf-link">Resume (PDF)</a>
-        <a href="https://linkedin.com/in/robrose" target="_blank">LinkedIn</a>
-        <a href="#contact" onclick="showSection('contact')">Contact</a>
+        <a href="#" id="pdf-link" target="_blank">Resume (PDF)</a>
+        <a href="#" id="linkedin-link" target="_blank">LinkedIn</a>
+        <a href="#" id="github-link" target="_blank">GitHub</a>
       </div>
     </header>
 
@@ -580,14 +580,24 @@
         const data = await response.json();
 
         container.innerHTML = `
-                <div class="experience-item">
-                    <h3>${data.name}</h3>
-                    <p class="company">${data.title}</p>
-                    <p class="description">${data.summary}</p>
-                    <p><strong>Location:</strong> ${data.location}</p>
-                    <p><strong>Email:</strong> ${data.email}</p>
-                </div>
-            `;
+          <div class="experience-item">
+            <h3>${data.name}</h3>
+            <p class="company">${data.title}</p>
+            <p class="description">${data.summary}</p>
+            <p><strong>Location:</strong> ${data.location}</p>
+            <p><strong>Email:</strong> ${data.email}</p>
+          </div>
+          ${
+            data.professional_summary
+              ? `
+            <div class="experience-item" style="margin-top: 1.5rem;">
+              <h3>Professional Summary</h3>
+              <p class="description">${data.professional_summary}</p>
+            </div>
+          `
+              : ""
+          }
+        `;
       }
 
       async function loadExperience(container) {
@@ -761,7 +771,9 @@
           document.getElementById("header-initials").textContent = initials;
 
           // Update PDF link
-          document.getElementById("pdf-link").href = data.links.resume_pdf;
+          document.getElementById("pdf-link").href = data.resume_pdf;
+          document.getElementById("linkedin-link").href = data.linkedin;
+          document.getElementById("github-link").href = data.github;
         } catch (error) {
           console.error("Error loading header:", error);
         }

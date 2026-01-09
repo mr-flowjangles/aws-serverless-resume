@@ -21,9 +21,21 @@ def load_config():
 
 @router.get("/resume/profile")
 def get_profile():
-    """Get profile from config file"""
-    config = load_config()
-    return config['profile']
+    """Get profile from DynamoDB"""
+    table = _get_dynamodb_table()
+    
+    try:
+        response = table.get_item(Key={'id': 'profile'})
+        if 'Item' in response:
+            item = response['Item']
+            # Remove DynamoDB metadata fields
+            item.pop('id', None)
+            item.pop('type', None)
+            return item
+        else:
+            raise HTTPException(status_code=404, detail="Profile not found")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading profile: {str(e)}")
 
 def _get_dynamodb_table():
     """Helper function to get DynamoDB table connection"""

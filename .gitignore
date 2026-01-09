@@ -5,6 +5,7 @@
 
 # Personal resume data (use seed-data.example.json as template)
 config/seed-data.json
+_scratch/
 
 # Python
 __pycache__/
