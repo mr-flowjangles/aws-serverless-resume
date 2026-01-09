@@ -25,9 +25,8 @@ def get_profile():
     config = load_config()
     return config['profile']
 
-@router.get("/resume")
-def list_resume_items(type: str = None):
-    """List resume items by type (experience, skills, education, projects)"""
+def _get_dynamodb_table():
+    """Helper function to get DynamoDB table connection"""
     dynamodb = boto3.resource(
         'dynamodb',
         endpoint_url=os.getenv('AWS_ENDPOINT_URL'),
@@ -35,28 +34,67 @@ def list_resume_items(type: str = None):
         aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
         aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
     )
+    return dynamodb.Table('ResumeData')
+
+@router.get("/resume/work-experience")
+def get_work_experience():
+    """Get work experience items sorted by date (most recent first)"""
+    table = _get_dynamodb_table()
     
-    table = dynamodb.Table('ResumeData')
-    
-    if type:
-        # Query by type using GSI
-        response = table.query(
-            IndexName='TypeIndex',
-            KeyConditionExpression='#t = :type',
-            ExpressionAttributeNames={'#t': 'type'},
-            ExpressionAttributeValues={':type': type}
-        )
-    else:
-        # Scan all items
-        response = table.scan()
+    response = table.query(
+        IndexName='TypeIndex',
+        KeyConditionExpression='#t = :type',
+        ExpressionAttributeNames={'#t': 'type'},
+        ExpressionAttributeValues={':type': 'work_experience'}
+    )
     
     items = response.get('Items', [])
     
-    # Sort experience by date (most recent first)
-    if type == 'experience':
-        items.sort(key=lambda x: (
-            x.get('endDate') == 'present',  # Present jobs first
-            x.get('startDate', '')
-        ), reverse=True)
+    # Sort: current jobs first, then by start date descending
+    items.sort(key=lambda x: (
+        x.get('is_current', False),  # True sorts after False, so negate in next line
+        x.get('start_date', '')
+    ), reverse=True)
+    
+    return {"items": items}
+
+@router.get("/resume/education")
+def get_education():
+    """Get education items sorted by date (most recent first)"""
+    table = _get_dynamodb_table()
+    
+    response = table.query(
+        IndexName='TypeIndex',
+        KeyConditionExpression='#t = :type',
+        ExpressionAttributeNames={'#t': 'type'},
+        ExpressionAttributeValues={':type': 'education'}
+    )
+    
+    items = response.get('Items', [])
+    
+    # Sort by start date descending
+    items.sort(key=lambda x: x.get('start_date', ''), reverse=True)
+    
+    return {"items": items}
+
+@router.get("/resume/skills")
+def get_skills():
+    """Get skills organized by category"""
+    table = _get_dynamodb_table()
+    
+    response = table.query(
+        IndexName='TypeIndex',
+        KeyConditionExpression='#t = :type',
+        ExpressionAttributeNames={'#t': 'type'},
+        ExpressionAttributeValues={':type': 'skills'}
+    )
+    
+    items = response.get('Items', [])
+    
+    # Sort by sort_order if present, otherwise by category name
+    items.sort(key=lambda x: (
+        x.get('sort_order', 999),
+        x.get('category', '')
+    ))
     
     return {"items": items}
