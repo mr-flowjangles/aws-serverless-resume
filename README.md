@@ -119,29 +119,9 @@ docker run -p 8080:80 aws-serverless-resume
 
 **Set up your resume data:**
 
-1. Copy the example seed file:
-   ```bash
-   cp config/seed-data.example.json config/seed-data.json
-   ```
+See Template: `scripts/resume-data-template.xlsx`
 
-2. Edit `config/seed-data.json` with your actual experience, skills, education, and projects
-
-3. The file is gitignored and will not be committed
-
-4. On startup, the application will automatically seed DynamoDB with your data
-
-**Data Structure:**
-
-Each experience item should include:
-- `id`: Unique identifier (e.g., "experience-1")
-- `type`: Always "experience"
-- `company`: Company name
-- `title`: Your job title
-- `startDate`: Format as "YYYY-MM"
-- `endDate`: Use "present" for current role or "YYYY-MM"
-- `description`: Overview paragraph
-- `highlights`: Array of bullet points (your accomplishments)
-- `skills`: Array of relevant technologies/skills
+To Reload: `exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx`
 
 
 ## ☁️ AWS Mapping (Conceptual)
