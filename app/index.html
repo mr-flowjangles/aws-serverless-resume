@@ -591,25 +591,26 @@
       }
 
       async function loadExperience(container) {
-        const response = await fetch(`${API_BASE}/resume?type=experience`);
+        const response = await fetch(`${API_BASE}/resume/work-experience`);
         const data = await response.json();
 
         let html = "";
         data.items.forEach((exp) => {
+          const endDate = exp.is_current ? "present" : exp.end_date;
           html += `
                     <div class="experience-item">
                         <div class="experience-header">
                             <div>
-                                <h3>${exp.title}</h3>
-                                <p class="company">${exp.company}</p>
+                                <h3>${exp.job_title}</h3>
+                                <p class="company">${exp.company_name}</p>
                             </div>
-                            <span class="date">${exp.startDate} – ${
-            exp.endDate
-          }</span>
+                            <span class="date">${
+                              exp.start_date
+                            } – ${endDate}</span>
                         </div>
                         <p class="description">${exp.description}</p>
                         <ul class="highlights">
-                            ${exp.highlights
+                            ${exp.accomplishments
                               .map((h) => `<li>${h}</li>`)
                               .join("")}
                         </ul>
@@ -625,40 +626,46 @@
         const data = await response.json();
 
         let html = '<div class="skills-grid">';
-        for (const [category, skills] of Object.entries(data.categories)) {
+        data.items.forEach((skillItem) => {
           html += `
                     <div class="skill-category">
-                        <h3>${
-                          category.charAt(0).toUpperCase() + category.slice(1)
-                        }</h3>
+                        <h3>${skillItem.category}</h3>
                         <div class="skill-tags">
-                            ${skills
+                            ${skillItem.skills
                               .map((s) => `<span class="skill-tag">${s}</span>`)
                               .join("")}
                         </div>
                     </div>
                 `;
-        }
+        });
         html += "</div>";
 
         container.innerHTML = html;
       }
 
       async function loadEducation(container) {
-        const response = await fetch(`${API_BASE}/resume?type=education`);
+        const response = await fetch(`${API_BASE}/resume/education`);
         const data = await response.json();
 
         let html = "";
         data.items.forEach((edu) => {
+          // Format date range
+          const dateRange = `${edu.start_date} – ${edu.end_date}`;
+
           html += `
                     <div class="experience-item">
                         <div class="experience-header">
                             <div>
                                 <h3>${edu.degree}</h3>
-                                <p class="company">${edu.school}</p>
+                                <p class="company">${edu.institution}</p>
                             </div>
-                            <span class="date">${edu.year}</span>
+                            <span class="date">${dateRange}</span>
                         </div>
+                        ${
+                          edu.description
+                            ? `<p class="description">${edu.description}</p>`
+                            : ""
+                        }
                     </div>
                 `;
         });
@@ -667,7 +674,7 @@
       }
 
       async function loadProjects(container) {
-        const response = await fetch(`${API_BASE}/resume?type=project`);
+        const response = await fetch(`${API_BASE}/resume/projects`);
         const data = await response.json();
 
         let html = "";

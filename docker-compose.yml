@@ -29,6 +29,7 @@ services:
       - localstack
     volumes:
       - ./config:/app/config
+      - ./scripts:/app/scripts
     networks:
       - resume-net
     healthcheck:

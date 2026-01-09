@@ -1,21 +1,9 @@
 import boto3
 import os
-import json
 import time
+import subprocess
+import sys
 from pathlib import Path
-
-def load_seed_data():
-    """Load seed data from config file"""
-    seed_path = Path("/app/config/seed-data.json")
-    try:
-        with open(seed_path, 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print("Seed data file not found")
-        return None
-    except json.JSONDecodeError:
-        print("Invalid seed data file")
-        return None
 
 def seed_database():
     """Seed DynamoDB with initial data if table is empty"""
@@ -48,16 +36,29 @@ def seed_database():
         print("Database already seeded, skipping...")
         return
     
-    # Load and insert seed data
-    seed_data = load_seed_data()
-    if not seed_data:
+    # Load data from Excel template
+    template_path = Path("/app/scripts/resume-data-template.xlsx")
+    
+    if not template_path.exists():
+        print(f"⚠️  Template file not found at {template_path}")
+        print("  Skipping database seed")
         return
     
-    print("Seeding database...")
+    print(f"📊 Loading resume data from template...")
     
-    # Insert experience items
-    for exp in seed_data.get('experience', []):
-        table.put_item(Item=exp)
-        print(f"  Added: {exp['company']} - {exp['title']}")
-    
-    print("Database seeding complete")
+    # Run load_resume.py script
+    try:
+        result = subprocess.run(
+            [sys.executable, "/app/scripts/load_resume.py", str(template_path)],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        print(result.stdout)
+        print("✅ Database seeding complete")
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Error loading resume data:")
+        print(e.stderr)
+        print("  Database seed failed")
+    except Exception as e:
+        print(f"❌ Unexpected error during seed: {e}")

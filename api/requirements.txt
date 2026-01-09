@@ -2,3 +2,5 @@ fastapi
 uvicorn
 boto3
 pydantic
+pandas
+openpyxl
