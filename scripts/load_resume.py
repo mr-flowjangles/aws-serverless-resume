@@ -101,6 +101,23 @@ def load_skills(df):
     
     return items
 
+def load_profile(df):
+    """Transform profile data from DataFrame to DynamoDB format"""
+    # Profile is stored as key-value pairs in the sheet
+    profile_data = {
+        'id': 'profile',
+        'type': 'profile'
+    }
+    
+    # Read field/value pairs and build profile object
+    for idx, row in df.iterrows():
+        if pd.notna(row['field']) and pd.notna(row['value']):
+            field = str(row['field']).strip()
+            value = str(row['value']).strip()
+            profile_data[field] = value
+    
+    return [profile_data]
+
 def get_dynamodb_table():
     """Get DynamoDB table connection"""
     dynamodb = boto3.resource(
@@ -158,6 +175,7 @@ def main():
     
     # Read Excel file
     try:
+        profile_df = pd.read_excel(excel_file, sheet_name='Profile')
         work_df = pd.read_excel(excel_file, sheet_name='WorkExperience')
         edu_df = pd.read_excel(excel_file, sheet_name='Education')
         skills_df = pd.read_excel(excel_file, sheet_name='Skills')
@@ -167,17 +185,19 @@ def main():
     
     # Transform data
     print("📝 Processing data...\n")
+    profile_items = load_profile(profile_df)
     work_items = load_work_experience(work_df)
     edu_items = load_education(edu_df)
     skills_items = load_skills(skills_df)
     
-    total_items = len(work_items) + len(edu_items) + len(skills_items)
+    total_items = len(profile_items) + len(work_items) + len(edu_items) + len(skills_items)
     
     if total_items == 0:
         print("⚠️  No data found in Excel file")
         sys.exit(1)
     
     print(f"Found:")
+    print(f"  - {len(profile_items)} profile")
     print(f"  - {len(work_items)} work experience entries")
     print(f"  - {len(edu_items)} education entries")
     print(f"  - {len(skills_items)} skill categories")
@@ -201,6 +221,7 @@ def main():
     
     # Write to DynamoDB
     try:
+        write_to_dynamodb(table, profile_items)
         write_to_dynamodb(table, work_items)
         write_to_dynamodb(table, edu_items)
         write_to_dynamodb(table, skills_items)
