@@ -4,3 +4,4 @@ boto3
 pydantic
 pandas
 openpyxl
+email-validator

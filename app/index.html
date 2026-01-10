@@ -359,7 +359,7 @@
   <body>
     <header>
       <div class="header-left">
-        <div class="header-image" id="header-initials">RR</div>
+        <img src="/assets/profile.png" alt="Profile" class="header-image" id="header-photo">
         <div class="header-text">
           <h1 id="header-name">Loading...</h1>
           <p id="header-title">Loading...</p>
@@ -393,10 +393,10 @@
               >Education</a
             >
           </li>
-          <li>
+          <!-- <li>
             <a href="#projects" class="nav-link" data-section="projects"
               >Projects</a
-            >
+            > -->
           </li>
           <li>
             <a href="#architecture" class="nav-link" data-section="architecture"
@@ -764,11 +764,7 @@
           document.getElementById("header-title").textContent = data.title;
 
           // Update initials in header image
-          const initials = data.name
-            .split(" ")
-            .map((n) => n[0])
-            .join("");
-          document.getElementById("header-initials").textContent = initials;
+          document.getElementById("header-photo").src = data.photo;
 
           // Update PDF link
           document.getElementById("pdf-link").href = data.resume_pdf;

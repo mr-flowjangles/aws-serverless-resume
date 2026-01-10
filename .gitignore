@@ -4,8 +4,8 @@
 .env.*.local
 
 # Personal resume data (use seed-data.example.json as template)
-config/seed-data.json
 _scratch/
+scripts/~$resume-data-template.xlsx
 
 # Python
 __pycache__/
@@ -44,3 +44,4 @@ Thumbs.db
 # Logs
 *.log
 *.txt
+

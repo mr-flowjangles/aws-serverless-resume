@@ -4,6 +4,7 @@ from chat import router as chat_router
 from health import router as health_router
 from resume import router as resume_router
 from seed import seed_database
+from contact import router as contact_router
 
 @asynccontextmanager
 async def lifespan(app):
@@ -26,6 +27,7 @@ app = FastAPI(
 app.include_router(chat_router)
 app.include_router(health_router)
 app.include_router(resume_router)
+app.include_router(contact_router)
 
 @app.get("/hello")
 def hello():
