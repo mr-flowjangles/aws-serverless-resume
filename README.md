@@ -55,6 +55,34 @@ DynamoDB (LocalStack)
 - Docker
 - Docker Compose
 
+### Development Requirements
+
+**For Contributors:**
+
+If you plan to contribute code, you'll need to install pre-commit hooks:
+
+1. **Install pre-commit:**
+
+   ```bash
+   brew install pre-commit
+   ```
+
+   Or for other systems, see: https://pre-commit.com/#install
+
+2. **Set up the hooks:**
+
+   ```bash
+   pre-commit install
+   ```
+
+**What this does:**
+
+- Automatically runs all tests before each commit
+- If tests fail, the commit is blocked
+- Ensures broken code never gets committed
+
+You only need to do this once per repository clone.
+
 ### Initial Setup
 
 1. **Start all services:**
@@ -124,6 +152,45 @@ When you run `make up` or `docker compose up`, the API container automatically:
 This means you always start with your latest template data.
 
 ## Development
+
+### Contact Form Configuration
+
+The contact form uses Google reCAPTCHA v2 for spam protection. To enable it:
+
+1. **Get reCAPTCHA keys:**
+   - Visit https://www.google.com/recaptcha/admin
+   - Register your site (use `localhost` for local development)
+   - Get your Site Key and Secret Key
+
+2. **Configure environment variables:**
+
+   Create or update your `.env` file:
+
+   ```bash
+   # reCAPTCHA Configuration
+   MY_RECAPTCHA_SECRET_KEY=your_secret_key_here
+   ```
+
+3. **Add Site Key to frontend:**
+
+   Update your HTML contact form with your reCAPTCHA Site Key:
+
+   ```html
+   <div class="g-recaptcha" data-sitekey="your_site_key_here"></div>
+   ```
+
+4. **Restart services:**
+
+   ```bash
+   make down && make up
+   ```
+
+**Rate Limiting:**
+
+The contact form includes automatic rate limiting:
+- Maximum 6 submissions per hour per IP address
+- Users exceeding this limit are blocked for 2 hours
+- Rate limit data is stored in DynamoDB
 
 ### Docker Commands
 
