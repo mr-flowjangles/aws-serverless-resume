@@ -30,6 +30,8 @@ services:
     volumes:
       - ./config:/app/config
       - ./scripts:/app/scripts
+    environment:
+      - RECAPTCHA_SECRET_KEY=6LdFbkgsAAAAAOFuScPVxr0crT860iQSGlJXCcGa
     networks:
       - resume-net
     healthcheck:
