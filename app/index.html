@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loading...</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
       * {
         margin: 0;
@@ -497,6 +498,7 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="message" required></textarea>
               </div>
+              <div class="g-recaptcha" data-sitekey="6LdFbkgsAAAAAIGnih96mwniw6bnH-unwaFTkYgR"></div>
               <button type="submit">Send Message</button>
             </form>
           </div>
@@ -723,10 +725,17 @@
         .addEventListener("submit", async (e) => {
           e.preventDefault();
 
+          const recaptchaResponse = grecaptcha.getResponse();
+          if (!recaptchaResponse) {
+            alert("Please complete the reCAPTCHA");
+            return;
+          }
+
           const formData = {
             name: document.getElementById("name").value,
             email: document.getElementById("email").value,
             message: document.getElementById("message").value,
+            recaptcha_token: recaptchaResponse,
           };
 
           try {
