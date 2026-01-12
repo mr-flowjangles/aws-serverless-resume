@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from chat import router as chat_router
+##from chat import router as chat_router # TEMP DISABLE CHAT Future Feature
 from health import router as health_router
 from resume import router as resume_router
 from seed import seed_database
@@ -24,12 +24,7 @@ app = FastAPI(
 )
 
 # Include routers for different API sections
-app.include_router(chat_router)
+## app.include_router(chat_router) # TEMP DISABLE CHAT Future Feature
 app.include_router(health_router)
 app.include_router(resume_router)
 app.include_router(contact_router)
-
-@app.get("/hello")
-def hello():
-    """Simple hello endpoint for testing"""
-    return {"message": "hello from fastAPI, sup dog"}

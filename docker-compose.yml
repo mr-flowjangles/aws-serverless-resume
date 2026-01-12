@@ -28,14 +28,15 @@ services:
     depends_on:
       - localstack
     volumes:
+      - ./api:/app
       - ./config:/app/config
       - ./scripts:/app/scripts
     environment:
-      - RECAPTCHA_SECRET_KEY=6LdFbkgsAAAAAOFuScPVxr0crT860iQSGlJXCcGa
+      - RECAPTCHA_SECRET_KEY=${MY_RECAPTCHA_SECRET_KEY}
     networks:
       - resume-net
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8000/hello"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:8000/health"]
       interval: 30s
       timeout: 5s
       retries: 3

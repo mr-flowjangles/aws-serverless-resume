@@ -5,3 +5,7 @@ pydantic
 pandas
 openpyxl
 email-validator
+httpx
+pytest
+pytest-asyncio
+pre-commit
