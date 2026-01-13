@@ -1,13 +1,32 @@
+"""
+Test education handler directly (tests both FastAPI and Lambda).
+"""
 import pytest
-from fastapi.testclient import TestClient
-from main import app
+from shared.handlers import education
 
-client = TestClient(app)
 
 def test_get_education():
-    print("\nTesting education endpoint returns items")
-    response = client.get("/resume/education")
-    assert response.status_code == 200
-    data = response.json()
-    assert "items" in data
-    assert isinstance(data["items"], list)
+    """Test get_education returns expected structure."""
+    print("\nTesting education handler")
+    
+    items = education.get_education()
+    
+    assert isinstance(items, list)
+    assert len(items) > 0
+    
+    # Check first item structure
+    item = items[0]
+    assert "institution" in item
+    assert "degree" in item
+    assert "start_date" in item
+    assert "end_date" in item
+
+
+def test_education_sorted_by_date():
+    """Test that education items are sorted by date (most recent first)."""
+    items = education.get_education()
+    
+    if len(items) > 1:
+        # Check that dates are in descending order
+        dates = [i.get("start_date", "") for i in items]
+        assert dates == sorted(dates, reverse=True)

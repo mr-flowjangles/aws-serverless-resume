@@ -6,6 +6,7 @@
 # Personal resume data (use seed-data.example.json as template)
 _scratch/
 scripts/~$resume-data-template.xlsx
+aws-serverless-resume.zip
 
 # Python
 __pycache__/
@@ -43,5 +44,5 @@ Thumbs.db
 
 # Logs
 *.log
-*.txt
+api-logs.txt
 
