@@ -1,3 +1,12 @@
+"""
+FastAPI application for AWS Serverless Resume.
+
+Serves resume data from DynamoDB with endpoints for profile, work experience,
+education, skills, and contact form. Auto-seeds database from Excel on startup.
+
+This module manages the routers that are exposed as endpoints under /api.
+"""
+
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 ##from chat import router as chat_router # TEMP DISABLE CHAT Future Feature

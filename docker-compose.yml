@@ -45,7 +45,8 @@ services:
     image: localstack/localstack:latest
     environment:
       - SERVICES=s3,dynamodb # Only the services we need
-      - DEBUG=1
+      - DEBUG=0
+      - LS_LOG=warn
       - DATA_DIR=/tmp/localstack/data
       - DOCKER_HOST=unix:///var/run/docker.sock
     ports:

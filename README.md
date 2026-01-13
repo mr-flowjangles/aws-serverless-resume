@@ -2,6 +2,34 @@
 
 A serverless resume application built on AWS, demonstrating API-driven content, managed cloud services, and infrastructure as code.
 
+## Project Goals
+
+This project serves as a hands-on demonstration of modern AWS cloud architecture and serverless development practices. As an Engineering Manager with extensive AWS experience, I built this to showcase:
+
+### Technical Objectives
+
+- **API-Driven Architecture**: Dynamic content delivery through FastAPI backend with DynamoDB storage
+- **Infrastructure as Code**: Reproducible, version-controlled infrastructure using Docker locally and Terraform for AWS deployment
+- **Serverless Patterns**: Demonstrating AWS Lambda, API Gateway, DynamoDB, S3, and CloudFront integration
+- **Development Best Practices**: Comprehensive testing with pytest, pre-commit hooks, and CI/CD pipeline implementation
+- **Content Management**: Excel-based CMS with automated database seeding for non-technical content updates
+
+### Professional Development
+
+- Deepen hands-on experience with AWS serverless architecture beyond day-to-day management responsibilities
+- Create a reusable template that others can fork and customize for their own resume sites
+- Demonstrate backend and cloud expertise (frontend design assisted by AI, focusing on architectural patterns)
+- Build a production-ready reference implementation following AWS best practices
+
+### Learning Outcomes
+
+- LocalStack for local AWS service simulation and rapid development iteration
+- Docker multi-container orchestration with Nginx reverse proxy
+- Rate limiting and security patterns (Google reCAPTCHA v2, application-level throttling)
+- Separation of concerns between presentation layer and infrastructure
+
+This is both a functional portfolio site and a learning artifact that showcases enterprise-scale cloud solutions in a cost-effective, developer-friendly package.
+
 ## Architecture
 
 ```
@@ -158,6 +186,7 @@ This means you always start with your latest template data.
 The contact form uses Google reCAPTCHA v2 for spam protection. To enable it:
 
 1. **Get reCAPTCHA keys:**
+
    - Visit https://www.google.com/recaptcha/admin
    - Register your site (use `localhost` for local development)
    - Get your Site Key and Secret Key
@@ -188,6 +217,7 @@ The contact form uses Google reCAPTCHA v2 for spam protection. To enable it:
 **Rate Limiting:**
 
 The contact form includes automatic rate limiting:
+
 - Maximum 6 submissions per hour per IP address
 - Users exceeding this limit are blocked for 2 hours
 - Rate limit data is stored in DynamoDB
