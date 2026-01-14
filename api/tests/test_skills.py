@@ -2,7 +2,7 @@
 Test skills handler directly (tests both FastAPI and Lambda).
 """
 import pytest
-from shared.handlers import skills
+from handlers import skills
 
 
 def test_get_skills():

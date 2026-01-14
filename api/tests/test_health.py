@@ -2,7 +2,7 @@
 Test health check handler directly (tests both FastAPI and Lambda).
 """
 import pytest
-from shared.handlers import health
+from handlers import health
 
 
 def test_health_check():

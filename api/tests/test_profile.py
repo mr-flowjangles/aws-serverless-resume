@@ -2,7 +2,7 @@
 Test profile handler directly (tests both FastAPI and Lambda).
 """
 import pytest
-from shared.handlers import profile
+from handlers import profile
 
 
 def test_get_profile():

@@ -2,7 +2,7 @@
 Test work experience handler directly (tests both FastAPI and Lambda).
 """
 import pytest
-from shared.handlers import work_experience
+from handlers import work_experience
 
 
 def test_get_work_experience():
