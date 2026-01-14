@@ -2,7 +2,7 @@
 Test education handler directly (tests both FastAPI and Lambda).
 """
 import pytest
-from shared.handlers import education
+from handlers import education
 
 
 def test_get_education():

@@ -2,7 +2,7 @@
 Test contact handler directly (tests both FastAPI and Lambda).
 """
 import pytest
-from shared.handlers import contact
+from handlers import contact
 from unittest.mock import patch
 
 
