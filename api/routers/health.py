@@ -1,9 +1,9 @@
 """
 FastAPI router for health check endpoint.
-Uses shared handler logic from shared.handlers.
+Uses handler logic from handlers.
 """
 from fastapi import APIRouter, HTTPException
-from shared.handlers import health
+from handlers import health
 
 router = APIRouter()
 

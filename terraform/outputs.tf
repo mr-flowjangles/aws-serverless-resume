@@ -37,6 +37,7 @@ output "route53_name_servers" {
   description = "Route 53 name servers"
   value       = data.aws_route53_zone.main.name_servers
 }
+
 output "dynamodb_table_name" {
   description = "Name of the DynamoDB table"
   value       = aws_dynamodb_table.resume_data.name
@@ -57,14 +58,12 @@ output "api_gateway_id" {
   value       = aws_api_gateway_rest_api.resume_api.id
 }
 
-output "lambda_functions" {
-  description = "Lambda function names"
-  value = {
-    profile         = aws_lambda_function.profile.function_name
-    work_experience = aws_lambda_function.work_experience.function_name
-    education       = aws_lambda_function.education.function_name
-    skills          = aws_lambda_function.skills.function_name
-    contact         = aws_lambda_function.contact.function_name
-    health          = aws_lambda_function.health.function_name
-  }
+output "lambda_function_name" {
+  description = "FastAPI Lambda function name"
+  value       = aws_lambda_function.fastapi_app.function_name
+}
+
+output "lambda_function_arn" {
+  description = "FastAPI Lambda function ARN"
+  value       = aws_lambda_function.fastapi_app.arn
 }

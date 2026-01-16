@@ -1,7 +1,7 @@
 """
 Shared profile handler logic.
 """
-from shared.db import get_dynamodb_table
+from handlers.db import get_dynamodb_table
 
 def get_profile():
     """

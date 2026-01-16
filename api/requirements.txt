@@ -9,3 +9,4 @@ httpx
 pytest
 pytest-asyncio
 pre-commit
+mangum

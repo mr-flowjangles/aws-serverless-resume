@@ -1,336 +1,369 @@
 # AWS Serverless Resume
 
-A serverless resume application built on AWS, demonstrating API-driven content, managed cloud services, and infrastructure as code.
+A serverless resume website that runs the **same FastAPI code** locally (Docker) and in production (AWS Lambda). Update your resume via Excel, deploy with Terraform.
 
-## Project Goals
+## Quick Start
 
-This project serves as a hands-on demonstration of modern AWS cloud architecture and serverless development practices. As an Engineering Manager with extensive AWS experience, I built this to showcase:
+### 1. Clone the Repository
 
-### Technical Objectives
-
-- **API-Driven Architecture**: Dynamic content delivery through FastAPI backend with DynamoDB storage
-- **Infrastructure as Code**: Reproducible, version-controlled infrastructure using Docker locally and Terraform for AWS deployment
-- **Serverless Patterns**: Demonstrating AWS Lambda, API Gateway, DynamoDB, S3, and CloudFront integration
-- **Development Best Practices**: Comprehensive testing with pytest, pre-commit hooks, and CI/CD pipeline implementation
-- **Content Management**: Excel-based CMS with automated database seeding for non-technical content updates
-
-### Professional Development
-
-- Deepen hands-on experience with AWS serverless architecture beyond day-to-day management responsibilities
-- Create a reusable template that others can fork and customize for their own resume sites
-- Demonstrate backend and cloud expertise (frontend design assisted by AI, focusing on architectural patterns)
-- Build a production-ready reference implementation following AWS best practices
-
-### Learning Outcomes
-
-- LocalStack for local AWS service simulation and rapid development iteration
-- Docker multi-container orchestration with Nginx reverse proxy
-- Rate limiting and security patterns (Google reCAPTCHA v2, application-level throttling)
-- Separation of concerns between presentation layer and infrastructure
-
-This is both a functional portfolio site and a learning artifact that showcases enterprise-scale cloud solutions in a cost-effective, developer-friendly package.
-
-## Architecture
-
-```
-Browser
-   ↓
-Nginx (web)
-   • Serves static files
-   • Proxies /api/* requests
-   ↓
-FastAPI (api)
-   • Private service
-   • Reads from DynamoDB
-   ↓
-DynamoDB (LocalStack)
-   • Stores resume data
+```bash
+git clone https://github.com/yourusername/aws-serverless-resume.git
+cd aws-serverless-resume
 ```
 
-## Project Structure
+### 2. Add Your Resume Data
+
+Open `scripts/resume-data-template.xlsx` in Excel or Google Sheets and fill in:
+
+- Profile (name, title, contact info, summary)
+- Work Experience
+- Education
+- Skills
+
+Save the file when done.
+
+### 3. Configure reCAPTCHA (for Contact Form)
+
+1. **Get reCAPTCHA keys:** Visit https://www.google.com/recaptcha/admin
+
+   - Register your site (use `localhost` for local development)
+   - Choose reCAPTCHA v2 ("I'm not a robot" checkbox)
+   - Get your **Site Key** and **Secret Key**
+
+2. **Add secret key to `.env` file:**
+
+   - rename `.env.example` to `.env`
+
+   ```bash
+   # Create .env file in project root if it doesn't exist
+   echo "MY_RECAPTCHA_SECRET_KEY=your_secret_key_here" >> .env
+   ```
+
+3. **Add site key to `app/index.html`:**
+   - Open `app/index.html`
+   - Find the contact form section
+   - Replace `data-sitekey="YOUR_SITE_KEY_HERE"` with your actual site key
+
+_Skip this if you just want to see the site (contact form won't work)._
+
+### 4. Available Commands
+
+```bash
+make up       # Start everything (build and run)
+make down     # Stop all services
+make logs     # View container logs
+make restart  # Restart all services
+```
+
+_Don't have `make`? Use `docker compose up --build` instead of `make up`_
+
+### 5. Run It
+
+```bash
+make up
+```
+
+Wait for containers to start (about 30 seconds). Watch for these lines in the logs:
 
 ```
-.
-├── app/                    # Static website
-│   ├── index.html         # Main HTML file
-│   └── assets/            # Static assets (PDFs, images)
-├── api/                    # FastAPI service
-│   ├── main.py            # Application entry point
-│   ├── resume.py          # Resume API endpoints
-│   ├── seed.py            # Auto-seed database on startup
-│   ├── health.py          # Health check endpoints
-│   ├── chat.py            # Chat endpoints
-│   └── Dockerfile         # API container configuration
-├── scripts/                # Utility scripts
-│   ├── resume-data-template.xlsx  # Excel template for resume data
-│   ├── load_resume.py     # Script to load data from Excel
-│   └── init-dynamodb.sh   # DynamoDB table initialization
-├── nginx/                  # Nginx reverse proxy
-│   └── default.conf       # Nginx configuration
-├── docker/                 # Docker configuration
-│   └── Dockerfile         # Web container configuration
-├── docker-compose.yml      # Local infrastructure setup
-├── Makefile               # Common commands
-├── requirements.txt       # Python dependencies
-├── .env                   # Environment variables
-└── README.md
+Database already seeded, skipping...
+Application startup complete.
 ```
 
-## Getting Started
+Then open:
 
-### Prerequisites
+- **Website:** http://localhost:8080
+- **API Docs:** http://localhost:8080/api/docs
+- **Health Check:** http://localhost:8080/api/health
 
-- Docker
-- Docker Compose
+### 6. Verify It's Working
 
-### Development Requirements
+**Test the API directly:**
 
-**For Contributors:**
+```bash
+curl http://localhost:8080/api/health
+# Should return: {"status":"healthy","services":{"dynamodb":"ok"}}
 
-If you plan to contribute code, you'll need to install pre-commit hooks:
+curl http://localhost:8080/api/resume/profile
+# Should return your profile data from the Excel template
+```
 
-1. **Install pre-commit:**
+**In your browser:**
 
-   ```bash
-   brew install pre-commit
-   ```
+- Navigate to http://localhost:8080
+- Your name and profile should appear
+- Click through Work Experience, Education, Skills sections
+- All data should come from your Excel template
 
-   Or for other systems, see: https://pre-commit.com/#install
+Your resume is now live locally!
 
-2. **Set up the hooks:**
+---
 
-   ```bash
-   pre-commit install
-   ```
+## Update Your Resume Data
 
-**What this does:**
-
-- Automatically runs all tests before each commit
-- If tests fail, the commit is blocked
-- Ensures broken code never gets committed
-
-You only need to do this once per repository clone.
-
-### Initial Setup
-
-1. **Start all services:**
-
-   ```bash
-   make up
-   ```
-
-   Or using Docker Compose directly:
-
-   ```bash
-   docker compose up --build
-   ```
-
-2. **Access the application:**
-   - Frontend: http://localhost:8080
-   - API Documentation (Swagger): http://localhost:8080/api/docs
-   - API Health Check: http://localhost:8080/api/hello
-
-The database will automatically seed with data from `scripts/resume-data-template.xlsx` on first startup.
-
-## Managing Your Resume Data
-
-All resume data is managed through an Excel template: `scripts/resume-data-template.xlsx`
-
-The template includes an Instructions sheet with detailed guidance on filling out each section.
-
-### Editing Your Resume
-
-**Option 1: Edit Locally in Excel**
-
-1. Open `scripts/resume-data-template.xlsx` in Microsoft Excel
-2. Update your information following the instructions in the template
-3. Save the file
-4. Reload data (see below)
-
-**Option 2: Edit in Google Sheets**
-
-1. Upload `scripts/resume-data-template.xlsx` to Google Drive
-2. Edit in your browser
-3. Download as Excel (.xlsx)
-4. Save to `scripts/resume-data-template.xlsx`
-5. Reload data (see below)
-
-### Reloading Data
-
-After editing the template, reload your data into DynamoDB:
+After editing `scripts/resume-data-template.xlsx`:
 
 ```bash
 docker exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
 ```
 
-**What this does:**
+Refresh your browser - changes appear immediately (no restart needed).
 
-- Clears all existing data from DynamoDB
-- Loads fresh data from your Excel template
-- No container restart needed - changes appear immediately
+---
 
-### Auto-Seed on Startup
+## Deploy to AWS
 
-When you run `make up` or `docker compose up`, the API container automatically:
+### Prerequisites
 
-1. Checks if DynamoDB is empty
-2. If empty, loads data from `scripts/resume-data-template.xlsx`
-3. Starts serving your resume
+- AWS account with credentials configured
+- Terraform installed
+- Domain registered in Route 53 (or update `terraform/variables.tf`)
 
-This means you always start with your latest template data.
+### Deploy
 
-## Development
+```bash
+cd terraform
+terraform init
+terraform plan
+terraform apply
+```
 
-### Contact Form Configuration
+You'll get your production URLs as output.
 
-The contact form uses Google reCAPTCHA v2 for spam protection. To enable it:
+**Estimated cost:** ~$5-10/month for low-traffic site.
 
-1. **Get reCAPTCHA keys:**
+---
 
-   - Visit https://www.google.com/recaptcha/admin
-   - Register your site (use `localhost` for local development)
-   - Get your Site Key and Secret Key
+## How It Works
 
-2. **Configure environment variables:**
+### Local Development
 
-   Create or update your `.env` file:
+```
+Browser → Nginx → FastAPI (Docker) → LocalStack DynamoDB
+```
 
-   ```bash
-   # reCAPTCHA Configuration
+### Production (AWS)
+
+```
+Browser → CloudFront → API Gateway → Lambda (FastAPI + Mangum) → DynamoDB
+```
+
+**Same Python code runs in both environments.** Mangum adapts FastAPI to work in Lambda.
+
+---
+
+## Project Structure
+
+```
+.
+├── api/                          # FastAPI Backend Application
+│   ├── routers/                  # API Endpoints (HTTP layer)
+│   │   ├── contact.py            # POST /contact - Contact form submission
+│   │   ├── health.py             # GET /health - Health check
+│   │   └── resume.py             # GET /resume/* - Resume data endpoints
+│   ├── handlers/                 # Business Logic (used by routers)
+│   │   ├── db.py                 # DynamoDB connection helper
+│   │   ├── contact.py            # Contact form logic & reCAPTCHA
+│   │   ├── health.py             # Health check & DynamoDB connectivity
+│   │   ├── profile.py            # Profile data retrieval
+│   │   ├── work_experience.py    # Work history (sorted by date)
+│   │   ├── education.py          # Education history (sorted by date)
+│   │   └── skills.py             # Skills by category (sorted)
+│   ├── tests/                    # Pytest Test Suite
+│   │   ├── test_profile.py       # Profile handler tests
+│   │   ├── test_work_experience.py
+│   │   ├── test_education.py
+│   │   ├── test_skills.py
+│   │   ├── test_contact.py       # Contact form tests (async & sync)
+│   │   └── test_health.py        # Health check tests
+│   ├── main.py                   # FastAPI app (entry point)
+│   ├── lambda_handler.py         # Mangum wrapper (FastAPI → Lambda)
+│   ├── models.py                 # Pydantic data models
+│   ├── seed.py                   # Auto-seed database on startup
+│   ├── Dockerfile                # API container image
+│   └── requirements.txt          # Python dependencies
+│
+├── app/                          # Frontend Static Site
+│   ├── index.html                # Main HTML (includes all sections)
+│   └── assets/                   # Static files
+│       ├── profile.jpg           # Profile photo (update with yours)
+│       └── resume.pdf            # Resume PDF (update with yours)
+│
+├── scripts/                      # Data Management
+│   ├── resume-data-template.xlsx # Excel template (edit this!)
+│   ├── load_resume.py            # Load Excel → DynamoDB
+│   └── init-dynamodb.sh          # Initialize DynamoDB table
+│
+├── terraform/                    # AWS Infrastructure (IaC)
+│   ├── main.tf                   # Provider configuration
+│   ├── variables.tf              # Input variables (domain, region, etc.)
+│   ├── outputs.tf                # Output values (URLs, ARNs)
+│   ├── s3.tf                     # S3 bucket for static files
+│   ├── cloudfront.tf             # CloudFront distribution
+│   ├── route53.tf                # DNS records
+│   ├── acm.tf                    # SSL certificate
+│   ├── dynamodb.tf               # DynamoDB table
+│   ├── lambda.tf                 # Lambda function (FastAPI app)
+│   ├── api_gateway.tf            # API Gateway (proxy to Lambda)
+│   └── iam.tf                    # IAM roles & policies
+│
+├── nginx/                        # Nginx Reverse Proxy (local only)
+│   └── default.conf              # Routes /api/* to FastAPI
+│
+├── docker/                       # Docker Configuration
+│   └── Dockerfile                # FastAPI container build
+│
+├── docker-compose.yml            # Local Development Stack
+├── Makefile                      # Common commands (up, down, logs, etc.)
+├── requirements.txt              # Python dependencies
+├── .env                          # Environment variables (add yours)
+├── .gitignore                    # Git ignore rules
+└── README.md                     # This file
+```
+
+### Key Architectural Patterns
+
+**Separation of Concerns:**
+
+- `routers/` = HTTP handling (request validation, responses, error handling)
+- `handlers/` = Business logic (database queries, data transformation)
+- Routers call handlers, handlers don't know about HTTP
+
+**Single Source of Truth:**
+
+- Business logic in `handlers/` is used by BOTH local FastAPI and AWS Lambda
+- No code duplication between environments
+- Same tests verify both local and production behavior
+
+**Infrastructure as Code:**
+
+- All AWS resources defined in Terraform
+- Version controlled, reproducible deployments
+- Local development mirrors production architecture
+
+---
+
+## Configure Contact Form
+
+The contact form requires Google reCAPTCHA v2:
+
+1. **Get keys:** https://www.google.com/recaptcha/admin
+2. **Add secret to `.env`:**
+   ```
    MY_RECAPTCHA_SECRET_KEY=your_secret_key_here
    ```
+3. **Add site key to `app/index.html`** in the contact form section
+4. **Restart:** `make restart`
 
-3. **Add Site Key to frontend:**
-
-   Update your HTML contact form with your reCAPTCHA Site Key:
-
-   ```html
-   <div class="g-recaptcha" data-sitekey="your_site_key_here"></div>
-   ```
-
-4. **Restart services:**
-
-   ```bash
-   make down && make up
-   ```
-
-**Rate Limiting:**
-
-The contact form includes automatic rate limiting:
-
-- Maximum 6 submissions per hour per IP address
-- Users exceeding this limit are blocked for 2 hours
-- Rate limit data is stored in DynamoDB
-
-### Docker Commands
-
-**Using Make (recommended):**
-
-```bash
-make up          # Start all services
-make down        # Stop all services
-make build       # Build Docker images
-make logs        # View container logs
-make restart     # Restart all services
-```
-
-**Using Docker Compose directly:**
-
-```bash
-docker compose up --build           # Build and start
-docker compose down                 # Stop and remove containers
-docker compose logs -f              # Follow logs
-docker compose logs api             # View API logs
-docker compose ps                   # List running containers
-```
-
-### Adding Static Assets
-
-**Resume PDF:**
-
-1. Place your resume PDF in `app/assets/resume.pdf`
-2. Update the Profile sheet in your template with the path: `/assets/resume.pdf`
-3. Rebuild: `make down && make up`
-
-**Profile Photo:**
-
-1. Place your photo in `app/assets/profile.jpg`
-2. Update the Profile sheet with the path: `/assets/profile.jpg`
-3. Rebuild: `make down && make up`
-
-### API Endpoints
-
-**Profile:**
-
-- `GET /api/resume/profile` - Returns profile information
-
-**Work Experience:**
-
-- `GET /api/resume/work-experience` - Returns work history (sorted by date, current first)
-
-**Education:**
-
-- `GET /api/resume/education` - Returns education history (sorted by date, newest first)
-
-**Skills:**
-
-- `GET /api/resume/skills` - Returns skills by category (sorted by sort_order)
-
-## AWS Deployment (Future)
-
-### Local vs AWS Mapping
-
-| Local Component         | AWS Service                      |
-| ----------------------- | -------------------------------- |
-| Nginx                   | CloudFront + S3                  |
-| FastAPI                 | Lambda + API Gateway             |
-| LocalStack DynamoDB     | DynamoDB                         |
-| Docker network          | VPC                              |
-| Excel template + script | Lambda function triggered by S3  |
-| docker-compose.yml      | Terraform / CloudFormation / CDK |
-
-### Production Data Updates
-
-In AWS, updating your resume would work like this:
-
-1. **Edit template** - Update Excel file locally or in Google Sheets
-2. **Upload to S3** - Upload template to designated S3 bucket
-3. **Trigger Lambda** - Lambda function processes Excel file
-4. **Update DynamoDB** - Lambda writes data to DynamoDB
-5. **Live immediately** - Website reflects changes (no deployment needed)
-
-This separates content updates from code deployments.
+---
 
 ## Troubleshooting
 
-**Database is empty after restart:**
+**Port 8080 already in use:**
 
-- Check that `scripts/resume-data-template.xlsx` exists
-- View logs: `docker compose logs api | grep -i seed`
-- Manually reload: `docker exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx`
+```bash
+make down
+# Kill process using port 8080
+make up
+```
 
-**Changes not appearing:**
+**Changes not showing:**
 
-- Hard refresh browser: `Ctrl+Shift+R` (Windows/Linux) or `Cmd+Shift+R` (Mac)
-- Check you reloaded data after editing template
-- Verify API returns updated data: http://localhost:8080/api/resume/profile
+- Hard refresh browser: `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows)
+- Verify you reloaded data after editing Excel template
+- Check API: `curl http://localhost:8080/api/resume/profile`
+
+**Database empty after startup:**
+
+```bash
+make logs | grep seed
+```
+
+Manually reload if needed:
+
+```bash
+docker exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
+```
 
 **Container won't start:**
 
-- Check logs: `docker compose logs`
-- Ensure ports 8080 and 4566 are available
-- Try: `make down && make up`
+```bash
+make down
+make up
+```
+
+---
+
+## Run Tests
+
+```bash
+docker compose exec api pytest tests/ -v
+```
+
+All 13 tests should pass.
+
+---
+
+## Customization
+
+**Add your photo:**
+
+- Place image at `app/assets/profile.jpg`
+- Update path in Excel template Profile sheet
+
+**Add your resume PDF:**
+
+- Place PDF at `app/assets/resume.pdf`
+- Update path in Excel template Profile sheet
+
+**Modify styling:**
+
+- Edit CSS in `app/index.html`
+
+---
+
+## Tech Stack
+
+**Backend:** Python, FastAPI, Mangum  
+**Database:** DynamoDB (LocalStack locally, AWS in production)  
+**Frontend:** HTML, CSS, JavaScript  
+**Local Dev:** Docker, Nginx  
+**AWS:** Lambda, API Gateway, S3, CloudFront, Route 53  
+**Infrastructure:** Terraform
+
+---
+
+## Why This Architecture?
+
+Most resume sites require separate code for local development and production. This project uses **FastAPI + Mangum** to run the same code everywhere:
+
+- Develop locally with full FastAPI features (Swagger docs, hot reload, debugging)
+- Deploy to AWS Lambda without changing application code
+- Business logic in `handlers/` works identically in both environments
+- Only the wrapper changes (`uvicorn` locally, `Mangum` in Lambda)
+
+---
+
+## For Contributors
+
+Install pre-commit hooks to auto-run tests before commits:
+
+```bash
+brew install pre-commit
+pre-commit install
+```
+
+Now tests run automatically, ensuring code quality.
+
+---
 
 ## License
 
 © 2026 Rob Rose. All rights reserved.
 
-This project is provided for personal and educational purposes. If reused or forked, please retain this notice and provide attribution.
-
-## Contributing
-
-This is a personal project, but feedback and suggestions are welcome. Feel free to open an issue for discussion.
+This project is provided for personal and educational use. If you fork or reuse, please provide attribution.
 
 ---
 
-**Tech Stack:** Python • FastAPI • Docker • Nginx • DynamoDB • AWS • Excel
+**Questions?** Open an issue.  
+**Want to use this?** Fork it and customize!

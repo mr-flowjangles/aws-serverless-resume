@@ -1,0 +1,79 @@
+graph TB
+    subgraph "User Layer"
+        User[User Browser]
+    end
+
+    subgraph "Production Environment - AWS"
+        CF[CloudFront CDN]
+        S3[S3 Bucket<br/>Static Assets]
+        APIGW[API Gateway]
+        Lambda[Lambda Function<br/>FastAPI + Mangum]
+        DDB[DynamoDB<br/>Resume Data]
+        
+        CF -->|Static Files| S3
+        CF -->|API Requests| APIGW
+        APIGW -->|Invoke| Lambda
+        Lambda -->|Read/Write| DDB
+    end
+
+    subgraph "Local Development Environment - Docker"
+        Nginx[Nginx<br/>Reverse Proxy<br/>:8080]
+        FastAPI[FastAPI Container<br/>:8000]
+        LocalStack[LocalStack<br/>AWS Services]
+        LocalDDB[Local DynamoDB]
+        
+        Nginx -->|Proxy /api| FastAPI
+        Nginx -->|Serve Static| Nginx
+        FastAPI -->|AWS SDK| LocalStack
+        LocalStack -->|Simulates| LocalDDB
+    end
+
+    subgraph "Data Management"
+        Excel[Excel Template<br/>Instructions<br/>Profile<br/>WorkExperience<br/>Education<br/>Skills]
+        Seed[seed_database.py<br/>Kill & Fill]
+        
+        Excel -->|Load Data| Seed
+        Seed -->|Populate| DDB
+        Seed -->|Populate| LocalDDB
+    end
+
+    subgraph "Security & Validation"
+        reCAPTCHA[Google reCAPTCHA v2]
+        RateLimit[Rate Limiting<br/>6 requests/hour<br/>2 hour block]
+    end
+
+    subgraph "CI/CD Pipeline - Planned"
+        GH[GitHub Repository]
+        Actions[GitHub Actions]
+        TF[Terraform<br/>Infrastructure as Code]
+        
+        GH -->|Trigger| Actions
+        Actions -->|Deploy| TF
+        TF -->|Provision| APIGW
+        TF -->|Provision| Lambda
+        TF -->|Provision| DDB
+        TF -->|Provision| S3
+        TF -->|Provision| CF
+    end
+
+    subgraph "Testing & Quality"
+        PreCommit[Pre-commit Hooks]
+        PyTest[pytest Unit Tests]
+        
+        PreCommit -->|Run| PyTest
+    end
+
+    User -->|HTTPS| CF
+    User -->|Local Dev| Nginx
+    User -->|Submit Contact Form| reCAPTCHA
+    reCAPTCHA -->|Verify| Lambda
+    RateLimit -->|Protect| Lambda
+    
+    style Lambda fill:#FF9900
+    style DDB fill:#4053D6
+    style S3 fill:#569A31
+    style CF fill:#8C4FFF
+    style APIGW fill:#FF4F8B
+    style FastAPI fill:#009688
+    style LocalStack fill:#2E7D32
+    style Excel fill:#217346

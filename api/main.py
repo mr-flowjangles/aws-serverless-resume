@@ -9,11 +9,11 @@ This module manages the routers that are exposed as endpoints under /api.
 
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-##from chat import router as chat_router # TEMP DISABLE CHAT Future Feature
-from health import router as health_router
-from resume import router as resume_router
+from routers.health import router as health_router
+from routers.resume import router as resume_router
+from routers.contact import router as contact_router
 from seed import seed_database
-from contact import router as contact_router
+
 
 @asynccontextmanager
 async def lifespan(app):
@@ -26,6 +26,7 @@ async def lifespan(app):
     yield
     # Shutdown: cleanup code here if needed
 
+
 # Initialize FastAPI app with lifespan and API prefix
 app = FastAPI(
     servers=[{"url": "/api"}],
@@ -33,7 +34,6 @@ app = FastAPI(
 )
 
 # Include routers for different API sections
-## app.include_router(chat_router) # TEMP DISABLE CHAT Future Feature
 app.include_router(health_router)
 app.include_router(resume_router)
 app.include_router(contact_router)

@@ -1,10 +1,10 @@
 """
 FastAPI router for contact endpoint.
-Uses shared handler logic from shared.handlers.
+Uses handler logic from handlers.
 """
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, EmailStr
-from shared.handlers import contact
+from handlers import contact
 
 router = APIRouter()
 
