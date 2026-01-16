@@ -1,9 +1,9 @@
 """
 FastAPI router for resume endpoints.
-Uses shared handler logic from shared.handlers.
+Uses handler logic from handlers.
 """
 from fastapi import APIRouter, HTTPException
-from shared.handlers import profile, work_experience, education, skills
+from handlers import profile, work_experience, education, skills
 
 router = APIRouter()
 

@@ -1,7 +1,7 @@
 """
 Shared health check handler logic.
 """
-from shared.db import get_dynamodb_client
+from handlers.db import get_dynamodb_client
 
 def health_check():
     """

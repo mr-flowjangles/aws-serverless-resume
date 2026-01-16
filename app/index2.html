@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loading...</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script>
-      mermaid.initialize({ 
-        startOnLoad: false,
-        theme: 'default',
-        securityLevel: 'loose',
-      });
-    </script>
     <style>
       * {
         margin: 0;
@@ -453,49 +445,37 @@
 
         <!-- Architecture Section -->
         <section id="architecture" class="content-section">
-          <h2>System Architecture</h2>
+          <h2>Architecture</h2>
           <p style="color: #475569; margin-bottom: 2rem; line-height: 1.6">
-            This serverless resume website leverages AWS services for a scalable, cost-effective solution with unified code deployment across local and production environments.  The diagram below is rendered using Mermaid.js. 
+            This site demonstrates AWS serverless architecture patterns. Below
+            is a comparison between the current portfolio implementation and how
+            I would architect this for enterprise scale.
           </p>
-          
-          <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); overflow-x: auto;">
-            <div id="architecture-diagram">
-              Loading diagram...
-            </div>
-          </div>
-
-          <div style="background: white; padding: 2rem; margin-top: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <h3 style="color: #0ea5e9; margin-bottom: 1rem;">Architecture Highlights</h3>
-            
-            <div style="margin-bottom: 1.5rem;">
-              <h4 style="color: #0f172a; margin-bottom: 0.5rem;">Production Environment</h4>
-              <ul style="color: #475569; line-height: 1.8;">
-                <li><strong>CloudFront CDN:</strong> Global content delivery for static assets and API routing</li>
-                <li><strong>S3:</strong> Static file storage (HTML, CSS, JavaScript, images)</li>
-                <li><strong>API Gateway:</strong> RESTful API endpoint management</li>
-                <li><strong>Lambda:</strong> Serverless compute running FastAPI with Mangum adapter</li>
-                <li><strong>DynamoDB:</strong> NoSQL database for resume data (profile, experience, education, skills)</li>
+          <div class="architecture-container">
+            <div class="architecture-card">
+              <h3>Current Architecture (Portfolio)</h3>
+              <ul>
+                <li>S3 + CloudFront for static hosting</li>
+                <li>API Gateway for REST endpoints</li>
+                <li>Lambda functions for compute</li>
+                <li>DynamoDB for data storage</li>
+                <li>Simple, serverless, cost-effective</li>
+                <li>Perfect for low-traffic sites</li>
+                <li>Pay only for what you use</li>
               </ul>
             </div>
-            
-            <div style="margin-bottom: 1.5rem;">
-              <h4 style="color: #0f172a; margin-bottom: 0.5rem;">Local Development</h4>
-              <ul style="color: #475569; line-height: 1.8;">
-                <li><strong>Docker Compose:</strong> Multi-container orchestration</li>
-                <li><strong>Nginx:</strong> Reverse proxy handling static files and API routing</li>
-                <li><strong>FastAPI:</strong> Same Python code as production</li>
-                <li><strong>LocalStack:</strong> Local AWS service simulation</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 style="color: #0f172a; margin-bottom: 0.5rem;">Key Features</h4>
-              <ul style="color: #475569; line-height: 1.8;">
-                <li><strong>Unified Codebase:</strong> Mangum adapter enables identical FastAPI code in Lambda and Docker</li>
-                <li><strong>Excel-Based CMS:</strong> Non-technical content updates via spreadsheet templates</li>
-                <li><strong>Security:</strong> Google reCAPTCHA v2 and rate limiting on contact forms</li>
-                <li><strong>CI/CD:</strong> GitHub Actions with Terraform for infrastructure as code (planned)</li>
-                <li><strong>Quality Assurance:</strong> Pre-commit hooks with pytest unit tests</li>
+            <div class="architecture-card">
+              <h3>Enterprise Architecture</h3>
+              <ul>
+                <li>Multi-region deployment with Route 53</li>
+                <li>Application Load Balancer + Auto Scaling</li>
+                <li>ECS Fargate or EKS for containers</li>
+                <li>RDS Multi-AZ with read replicas</li>
+                <li>ElastiCache for caching layer</li>
+                <li>WAF for security</li>
+                <li>CloudWatch + X-Ray for observability</li>
+                <li>VPC with proper subnet design</li>
+                <li>CI/CD with CodePipeline</li>
               </ul>
             </div>
           </div>
@@ -590,9 +570,6 @@
               break;
             case "projects":
               await loadProjects(container);
-              break;
-            case "architecture":
-              await loadArchitecture();
               break;
           }
         } catch (error) {
@@ -740,40 +717,6 @@
         });
 
         container.innerHTML = html;
-      }
-
-      async function loadArchitecture() {
-        const diagramContainer = document.getElementById('architecture-diagram');
-        
-        // Check if already loaded
-        if (diagramContainer.dataset.loaded === 'true') {
-          return;
-        }
-        
-        try {
-          // Fetch the mermaid file
-          const response = await fetch('/architecture.mermaid');
-          if (!response.ok) {
-            throw new Error('Failed to load architecture diagram');
-          }
-          
-          const diagramCode = await response.text();
-          
-          // Create a unique ID for this diagram
-          const diagramId = 'mermaid-diagram-' + Date.now();
-          
-          // Render the diagram using mermaid
-          const { svg } = await mermaid.render(diagramId, diagramCode);
-          
-          // Insert the rendered SVG
-          diagramContainer.innerHTML = svg;
-          
-          // Mark as loaded
-          diagramContainer.dataset.loaded = 'true';
-        } catch (error) {
-          console.error('Mermaid rendering error:', error);
-          diagramContainer.innerHTML = `<div style="color: #ef4444; padding: 1rem;">Error loading diagram: ${error.message}</div>`;
-        }
       }
 
       // Contact form
