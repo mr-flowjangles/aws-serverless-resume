@@ -46,3 +46,6 @@ Thumbs.db
 *.log
 api-logs.txt
 
+terraform/builds/
+terraform/terraform.tfvars
+*.tfvars
