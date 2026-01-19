@@ -95,3 +95,22 @@ resource "aws_api_gateway_stage" "prod" {
     Environment = var.environment
   }
 }
+
+# API Gateway Throttling and Logging Settings
+# Protects against spam attacks and excessive costs
+resource "aws_api_gateway_method_settings" "all" {
+  rest_api_id = aws_api_gateway_rest_api.resume_api.id
+  stage_name  = aws_api_gateway_stage.prod.stage_name
+  method_path = "*/*"
+
+  settings {
+    # Rate limiting - prevents spam attacks
+    throttling_burst_limit = 100  # Max 100 requests in a burst
+    throttling_rate_limit  = 50   # Max 50 requests per second steady-state
+    
+    # Logging - basic level for monitoring
+    logging_level      = "INFO"           # Log errors and basic info
+    data_trace_enabled = false            # Don't log request/response bodies (saves money)
+    metrics_enabled    = true             # Enable CloudWatch metrics
+  }
+}
