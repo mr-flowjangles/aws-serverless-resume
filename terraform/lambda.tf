@@ -1,25 +1,13 @@
-# Archive the entire FastAPI application
-data "archive_file" "fastapi_app" {
-  type        = "zip"
-  source_dir  = "${path.module}/../api"
-  output_path = "${path.module}/builds/fastapi-app.zip"
-  
-  excludes = [
-    "__pycache__",
-    "*.pyc",
-    ".pytest_cache",
-    "tests",
-    "Dockerfile",
-  ]
-}
+# Lambda deployment package (built using Docker via build-lambda.sh script)
+# The package includes all Python dependencies compiled for Lambda's runtime
 
 # Single Lambda function running the entire FastAPI app
 resource "aws_lambda_function" "fastapi_app" {
-  filename         = data.archive_file.fastapi_app.output_path
+  filename         = "${path.module}/builds/fastapi-app.zip"
   function_name    = "${var.project_name}-api"
   role             = aws_iam_role.lambda_execution.arn
   handler          = "lambda_handler.handler"
-  source_code_hash = data.archive_file.fastapi_app.output_base64sha256
+  source_code_hash = filebase64sha256("${path.module}/builds/fastapi-app.zip")
   runtime          = "python3.12"
   timeout          = 30
   memory_size      = 512
