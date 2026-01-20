@@ -27,3 +27,8 @@ variable "recaptcha_secret_key" {
   sensitive   = true
   default     = ""
 }
+variable "notification_email" {
+  description = "Email address to receive contact form notifications"
+  type        = string
+  default     = ""
+}

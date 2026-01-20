@@ -612,7 +612,7 @@
             <p class="company">${data.title}</p>
             <p class="description">${data.summary}</p>
             <p><strong>Location:</strong> ${data.location}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
+            ${data.email ? `<p><strong>Email:</strong> ${data.email}</p>` : ''}
           </div>
           ${
             data.professional_summary
