@@ -16,7 +16,6 @@ resource "aws_lambda_function" "fastapi_app" {
     variables = {
       DYNAMODB_TABLE       = aws_dynamodb_table.resume_data.name
       RECAPTCHA_SECRET_KEY = var.recaptcha_secret_key
-      AWS_REGION           = var.aws_region
     }
   }
 
