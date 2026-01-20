@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loading...</title>
+    <link rel="stylesheet" href="/assets/mobile.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
@@ -547,14 +548,20 @@
       const sections = document.querySelectorAll(".content-section");
 
       function showSection(sectionId) {
-        sections.forEach((s) => s.classList.remove("active"));
-        navLinks.forEach((l) => l.classList.remove("active"));
+        // On mobile, show all sections (handled by CSS)
+        // On desktop, show only selected section
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!isMobile) {
+          sections.forEach((s) => s.classList.remove("active"));
+          navLinks.forEach((l) => l.classList.remove("active"));
 
-        const section = document.getElementById(sectionId);
-        const link = document.querySelector(`[data-section="${sectionId}"]`);
+          const section = document.getElementById(sectionId);
+          const link = document.querySelector(`[data-section="${sectionId}"]`);
 
-        if (section) section.classList.add("active");
-        if (link) link.classList.add("active");
+          if (section) section.classList.add("active");
+          if (link) link.classList.add("active");
+        }
 
         // Load data if not already loaded
         loadSectionData(sectionId);
@@ -576,28 +583,38 @@
       async function loadSectionData(section) {
         const container = document.getElementById(section);
 
-        try {
-          switch (section) {
-            case "about":
-              await loadProfile(container);
-              break;
-            case "experience":
-              await loadExperience(container);
-              break;
-            case "skills":
-              await loadSkills(container);
-              break;
-            case "education":
-              await loadEducation(container);
-              break;
-            case "projects":
-              await loadProjects(container);
-              break;
-            case "architecture":
-              await loadArchitecture();
-              break;
-          }
-        } catch (error) {
+      try {
+        const h2 = container.querySelector('h2');
+        const h2Text = h2 ? h2.textContent : '';
+        
+        switch (section) {
+          case "about":
+            await loadProfile(container);
+            break;
+          case "experience":
+            await loadExperience(container);
+            break;
+          case "skills":
+            await loadSkills(container);
+            break;
+          case "education":
+            await loadEducation(container);
+            break;
+          case "projects":
+            await loadProjects(container);
+            break;
+          case "architecture":
+            await loadArchitecture();
+            break;
+        }
+        
+        // Re-add h2 if it existed and was removed
+        if (h2Text && !container.querySelector('h2')) {
+          const newH2 = document.createElement('h2');
+          newH2.textContent = h2Text;
+          container.insertBefore(newH2, container.firstChild);
+        }
+      } catch (error) {
           container.innerHTML = `<div class="error">Error loading data: ${error.message}</div>`;
         }
       }
@@ -816,7 +833,30 @@
         });
 
       // Load initial section
-      loadSectionData("about");
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        // Load all sections for mobile vertical scroll
+        loadSectionData("about");
+        loadSectionData("experience");
+        loadSectionData("skills");
+        loadSectionData("education");
+        loadSectionData("projects");
+        loadSectionData("architecture");
+      } else {
+        // Desktop - load only about section
+        loadSectionData("about");
+      }
+
+      // On mobile, collapse all sections except About Me
+      if (isMobile) {
+        setTimeout(() => {
+          document.querySelectorAll('.content-section').forEach(section => {
+            if (section.id !== 'about') {
+              section.classList.add('collapsed');
+            }
+          });
+        }, 500);
+      }
 
       // Load header data
       async function loadHeaderData() {
@@ -844,6 +884,15 @@
       }
 
       loadHeaderData();
+
+      // Collapsible sections on mobile (using event delegation)
+      if (window.innerWidth <= 768) {
+        document.addEventListener('click', function(e) {
+          if (e.target.tagName === 'H2' && e.target.closest('.content-section')) {
+            e.target.parentElement.classList.toggle('collapsed');
+          }
+        });
+      }
     </script>
   </body>
 </html>

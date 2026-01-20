@@ -1,0 +1,202 @@
+/* Remove default body margins on mobile */
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* ==================== MOBILE RESPONSIVE STYLES ==================== */
+@media (max-width: 768px) {
+  /* Header - Stack vertically */
+  header {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    width: 100vw;
+    margin: 0;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    box-sizing: border-box;
+  }
+
+  .header-left {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .header-image {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .header-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .header-text p {
+    font-size: 0.9rem;
+  }
+
+  .header-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .header-links a {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Hide sidebar navigation on mobile */
+  nav {
+    display: none;
+  }
+
+  /* Main content - full width, remove side padding */
+  .container {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  /* Show ALL sections on mobile (vertical scroll) */
+  .content-section {
+    display: block !important;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  /* Hide projects section on mobile (commented out) */
+  #projects {
+    display: none !important;
+  }
+
+  .content-section:last-child {
+    border-bottom: none;
+  }
+
+  /* Section headers */
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    display: block !important;
+    color: #0f172a;
+    border-bottom: 3px solid #0ea5e9;
+  }
+
+  /* Experience/Project cards */
+  .experience-item,
+  .project-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .experience-header .date {
+    font-size: 0.85rem;
+  }
+
+  .experience-header h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Skills grid - single column on mobile */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skill-category {
+    padding: 1rem;
+  }
+
+  .skill-tags {
+    gap: 0.4rem;
+  }
+
+  .skill-tag {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  /* Contact form */
+  .contact-form {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  /* Architecture section */
+  #architecture-diagram {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  #architecture-diagram svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Footer */
+  footer {
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Collapsible sections - MOVED HERE FROM 480px block */
+  .content-section h2 {
+    cursor: pointer;
+    position: relative;
+    padding-right: 2rem;
+  }
+
+  .content-section h2::after {
+    content: "▼";
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s;
+  }
+
+  .content-section.collapsed h2::after {
+    transform: rotate(-90deg);
+  }
+
+  .content-section.collapsed > *:not(h2) {
+    display: none !important;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  main {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .header-text h1 {
+    font-size: 1.3rem;
+  }
+}
