@@ -22,7 +22,7 @@ rm -f "$OUTPUT_ZIP"
 # Build the container with dependencies
 echo "📦 Installing dependencies in Lambda-compatible environment..."
 cd "$API_DIR"
-docker build -f Dockerfile.lambda -t lambda-builder:latest .
+docker build --platform linux/amd64 -f Dockerfile.lambda -t lambda-builder:latest .
 
 # Create a temporary container and extract the /asset directory
 echo "📤 Extracting build artifacts..."

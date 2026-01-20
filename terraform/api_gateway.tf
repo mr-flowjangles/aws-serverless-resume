@@ -109,7 +109,7 @@ resource "aws_api_gateway_method_settings" "all" {
     throttling_rate_limit  = 50   # Max 50 requests per second steady-state
     
     # Logging - basic level for monitoring
-    logging_level      = "INFO"           # Log errors and basic info
+    logging_level      = "OFF"           # Log errors and basic info
     data_trace_enabled = false            # Don't log request/response bodies (saves money)
     metrics_enabled    = true             # Enable CloudWatch metrics
   }
