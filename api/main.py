@@ -12,7 +12,8 @@ from fastapi import FastAPI
 from routers.health import router as health_router
 from routers.resume import router as resume_router
 from routers.contact import router as contact_router
-from seed import seed_database
+from fastapi.middleware.cors import CORSMiddleware
+#from seed import seed_database
 
 
 @asynccontextmanager
@@ -22,7 +23,7 @@ async def lifespan(app):
     Runs code on startup and shutdown
     """
     # Startup: Seed database if empty
-    seed_database()
+    #seed_database()
     yield
     # Shutdown: cleanup code here if needed
 
@@ -33,7 +34,16 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# CORS configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://robrose.info", "https://www.robrose.info", "http://localhost:8080"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Include routers for different API sections
-app.include_router(health_router)
-app.include_router(resume_router)
-app.include_router(contact_router)
+app.include_router(health_router, prefix="/api")
+app.include_router(resume_router, prefix="/api")
+app.include_router(contact_router, prefix="/api")

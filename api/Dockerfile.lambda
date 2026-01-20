@@ -14,7 +14,7 @@ RUN cd /asset && \
     find . -type f -name "*.pyc" -delete && \
     find . -type d -name ".pytest_cache" -exec rm -rf {} + 2>/dev/null || true && \
     find . -type d -name "tests" -exec rm -rf {} + 2>/dev/null || true && \
-    rm -f Dockerfile Dockerfile.lambda 2>/dev/null || true
+    rm -f Dockerfile Dockerfile.lambda seed.py 2>/dev/null || true
 
 # Set working directory
 WORKDIR /asset

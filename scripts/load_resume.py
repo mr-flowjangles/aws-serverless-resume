@@ -120,13 +120,19 @@ def load_profile(df):
 
 def get_dynamodb_table():
     """Get DynamoDB table connection"""
-    dynamodb = boto3.resource(
-        'dynamodb',
-        endpoint_url=os.getenv('AWS_ENDPOINT_URL', 'http://localhost:4566'),
-        region_name=os.getenv('AWS_REGION', 'us-east-1'),
-        aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID', 'test'),
-        aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY', 'test')
-    )
+    endpoint_url = os.getenv('AWS_ENDPOINT_URL', 'http://localhost:4566')
+    
+    # Use real AWS if endpoint_url is empty
+    if endpoint_url == "":
+        dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+    else:
+        dynamodb = boto3.resource(
+            'dynamodb',
+            endpoint_url=endpoint_url,
+            region_name=os.getenv('AWS_REGION', 'us-east-1'),
+            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID', 'test'),
+            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY', 'test')
+        )
     return dynamodb.Table('ResumeData')
 
 def clear_table(table):
