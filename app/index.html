@@ -701,28 +701,39 @@
         const response = await fetch(`${API_BASE}/resume/education`);
         const data = await response.json();
 
-        let html = "";
-        data.items.forEach((edu) => {
-          // Format date range
-          const dateRange = `${edu.start_date} – ${edu.end_date}`;
+      let html = "";
+      data.items.forEach((edu) => {
+        // Format date range with defensive checks
+        let dateRange = '';
+        const hasStartDate = edu.start_date && edu.start_date !== 'nan';
+        const hasEndDate = edu.end_date && edu.end_date !== 'nan';
 
-          html += `
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div>
-                                <h3>${edu.degree}</h3>
-                                <p class="company">${edu.institution}</p>
-                            </div>
-                            <span class="date">${dateRange}</span>
-                        </div>
-                        ${
-                          edu.description
-                            ? `<p class="description">${edu.description}</p>`
-                            : ""
-                        }
-                    </div>
-                `;
-        });
+        if (hasStartDate && hasEndDate) {
+          dateRange = `${edu.start_date} – ${edu.end_date}`;
+        } else if (hasStartDate) {
+          dateRange = edu.start_date;
+        } else if (hasEndDate) {
+          dateRange = edu.end_date;
+        }
+        // If no valid dates, dateRange stays empty string
+
+        html += `
+                  <div class="experience-item">
+                      <div class="experience-header">
+                          <div>
+                              <h3>${edu.degree}</h3>
+                              <p class="company">${edu.institution}</p>
+                          </div>
+                          ${dateRange ? `<span class="date">${dateRange}</span>` : ''}
+                      </div>
+                      ${
+                        edu.description
+                          ? `<p class="description">${edu.description}</p>`
+                          : ""
+                      }
+                  </div>
+              `;
+      });
 
         container.innerHTML = html;
       }
