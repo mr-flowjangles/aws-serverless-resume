@@ -3,7 +3,8 @@
 
 # Single Lambda function running the entire FastAPI app
 resource "aws_lambda_function" "fastapi_app" {
-  filename         = "${path.module}/builds/fastapi-app.zip"
+  s3_bucket        = "aws-serverless-resume-prod"
+  s3_key           = "lambda/fastapi-app.zip"
   function_name    = "${var.project_name}-api"
   role             = aws_iam_role.lambda_execution.arn
   handler          = "lambda_handler.handler"
@@ -16,7 +17,6 @@ resource "aws_lambda_function" "fastapi_app" {
     variables = {
       DYNAMODB_TABLE       = aws_dynamodb_table.resume_data.name
       RECAPTCHA_SECRET_KEY = var.recaptcha_secret_key
-      AWS_REGION           = var.aws_region
       SES_FROM_EMAIL       = "robmrose@me.com"
       SES_TO_EMAIL         = "robmrose@me.com"
     }
