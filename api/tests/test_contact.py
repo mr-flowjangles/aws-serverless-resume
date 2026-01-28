@@ -1,6 +1,7 @@
 """
 Tests for contact handler.
 """
+import os
 import pytest
 from unittest.mock import patch, MagicMock
 from handlers import contact
@@ -35,6 +36,7 @@ def test_submit_contact_sync():
         assert 'test@example.com' in call_args['ReplyToAddresses']
 
 
+@patch.dict(os.environ, {'RECAPTCHA_SECRET_KEY': 'test_secret'})
 def test_submit_contact_sync_invalid_recaptcha():
     """Test sync contact with invalid reCAPTCHA."""
     with patch.object(contact, '_verify_recaptcha_sync', return_value=False):
@@ -77,6 +79,7 @@ async def test_submit_contact_async():
         assert 'test@example.com' in call_args['ReplyToAddresses']
 
 
+@patch.dict(os.environ, {'RECAPTCHA_SECRET_KEY': 'test_secret'})
 @pytest.mark.asyncio
 async def test_submit_contact_async_invalid_recaptcha():
     """Test async contact with invalid reCAPTCHA."""
