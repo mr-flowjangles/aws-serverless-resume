@@ -19,3 +19,18 @@ if [ $? -eq 0 ]; then
 else
     echo "Table may already exist or creation failed"
 fi
+
+echo "Creating ChatbotRAG table..."
+aws --endpoint-url=http://localstack:4566 dynamodb create-table \
+    --table-name ChatbotRAG \
+    --attribute-definitions AttributeName=id,AttributeType=S \
+    --key-schema AttributeName=id,KeyType=HASH \
+    --billing-mode PROVISIONED \
+    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
+    --region us-east-1 2>/dev/null
+
+if [ $? -eq 0 ]; then
+    echo "ChatbotRAG table created successfully"
+else
+    echo "ChatbotRAG table may already exist or creation failed"
+fi

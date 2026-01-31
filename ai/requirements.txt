@@ -1,0 +1,14 @@
+# AI/RAG Dependencies for RobbAI
+
+# OpenAI SDK for embeddings
+openai>=1.0.0
+
+# AWS SDK (already in main requirements, but listed here for clarity)
+boto3>=1.28.0
+
+# YAML parsing for config files
+pyyaml>=6.0
+
+# For similarity search (when we implement retrieval)
+numpy>=1.24.0
+scipy>=1.11.0
