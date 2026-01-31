@@ -31,12 +31,18 @@ services:
       - ./api:/app
       - ./config:/app/config
       - ./scripts:/app/scripts
+      # Personal data folder (optional, gitignored) - for loading your own resume
+      # this ensures your personal info is not checked into source control
+      - ./_scratch:/app/_scratch
+      - ./ai:/app/ai
     environment:
       - RECAPTCHA_SECRET_KEY=${MY_RECAPTCHA_SECRET_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    command: /bin/bash /app/startup.sh
     networks:
       - resume-net
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -47,13 +53,15 @@ services:
       - SERVICES=s3,dynamodb # Only the services we need
       - DEBUG=0
       - LS_LOG=warn
-      - DATA_DIR=/tmp/localstack/data
+      - DATA_DIR=/var/lib/localstack
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - PERSISTENCE=1
     ports:
       - "4566:4566" # LocalStack gateway
       - "4510-4559:4510-4559" # External services port range
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./localstack-data:/var/lib/localstack" # Persisted data
     networks:
       - resume-net
 
@@ -70,6 +78,21 @@ services:
     networks:
       - resume-net
     entrypoint: ["/scripts/init-dynamodb.sh"]
+
+  init-chatbot:
+    image: resume-api
+    depends_on:
+      - localstack
+      - init-dynamodb
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+    volumes:
+      - ./ai:/app/ai
+    networks:
+      - resume-net
+    entrypoint: ["/bin/bash", "/app/ai/scripts/init-chatbot-table.sh"]
 
 networks:
   resume-net:

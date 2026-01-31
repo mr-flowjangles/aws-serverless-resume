@@ -1,0 +1,55 @@
+# AI Feature Configuration
+# This file controls all AI-related features for the resume website
+
+# Chatbot Configuration
+chatbot:
+  enabled: true
+  name: "RobbAI"
+  pronunciation: "Robby"
+  personality: "friendly"  # Options: friendly, professional, technical
+  
+  # Response behavior
+  response_style:
+    tone: "conversational"
+    length: "concise"  # Short responses, ask follow-ups
+    suggestions: true  # Suggest related topics
+  
+  # Model configuration
+  model:
+    provider: "anthropic"  # anthropic, openai, bedrock
+    name: "claude-sonnet-4-5-20250514"
+    max_tokens: 1000
+  
+  # RAG (Retrieval Augmented Generation) settings
+  rag:
+    enabled: true
+    vector_db: "pinecone"  # Options: pinecone, pgvector, opensearch
+    embedding_model: "openai"  # Options: openai, bedrock-titan
+    top_k: 5  # Number of relevant chunks to retrieve
+    similarity_threshold: 0.7  # Minimum similarity score (0-1)
+  
+  # Contact handling
+  contact:
+    share_form: true  # Share contact form when appropriate
+    share_linkedin: true  # Share LinkedIn profile
+  
+  # Content boundaries
+  boundaries:
+    discuss_professional: true
+    discuss_hobbies: true
+    discuss_projects: true
+    discuss_politics: false
+    discuss_family_details: false  # High-level OK, detailed info no
+    discuss_illegal: false
+
+# Future features (disabled for now)
+analytics:
+  enabled: false
+  
+blog:
+  enabled: false
+
+# System settings
+system:
+  environment: "development"  # development, production
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
