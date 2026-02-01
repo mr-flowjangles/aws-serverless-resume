@@ -194,24 +194,40 @@
       }
 
       .highlights {
-        list-style: none;
-        padding-left: 0;
+        list-style: circle;
+        padding-left: 1.5rem;
       }
 
       .highlights li {
-        padding-left: 1.5rem;
         margin-bottom: 0.5rem;
-        position: relative;
         color: #475569;
         line-height: 1.5;
       }
 
-      .highlights li:before {
-        content: "▹";
-        position: absolute;
-        left: 0;
-        color: #0284c7;
-        font-weight: bold;
+      .additional-experience {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #0284c7;
+      }
+
+      .additional-experience h3 {
+        color: #0f172a;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .additional-experience ul {
+        list-style: circle;
+        padding-left: 1.5rem;
+        color: #475569;
+      }
+
+      .additional-experience li {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
       }
 
       .skills-grid {
@@ -650,8 +666,14 @@
         const response = await fetch(`${API_BASE}/resume/work-experience`);
         const data = await response.json();
 
+        // Separate main experience from additional experience
+        const mainExperience = data.items.filter(exp => !exp.is_additional);
+        const additionalExperience = data.items.filter(exp => exp.is_additional);
+
         let html = "";
-        data.items.forEach((exp) => {
+        
+        // Render main experience as cards
+        mainExperience.forEach((exp) => {
           const endDate = exp.is_current ? "present" : exp.end_date;
           html += `
                     <div class="experience-item">
@@ -673,6 +695,23 @@
                     </div>
                 `;
         });
+
+        // Render additional experience as bulleted list
+        if (additionalExperience.length > 0) {
+          html += `
+            <div class="additional-experience">
+              <h3>Additional Experience</h3>
+              <ul>
+                ${additionalExperience.map(exp => {
+                  const startYear = exp.start_date ? exp.start_date.substring(0, 4) : '';
+                  const endYear = exp.end_date ? exp.end_date.substring(0, 4) : (exp.is_current ? 'Present' : '');
+                  const yearRange = startYear && endYear ? `(${startYear} – ${endYear})` : '';
+                  return `<li>${exp.job_title}, ${exp.company_name} ${yearRange}</li>`;
+                }).join('')}
+              </ul>
+            </div>
+          `;
+        }
 
         container.innerHTML = html;
       }
