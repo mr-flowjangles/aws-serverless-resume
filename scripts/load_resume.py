@@ -28,10 +28,23 @@ def load_work_experience(df):
         if pd.notna(row['is_current']):
             is_current = str(row['is_current']).strip().upper() == 'TRUE'
         
+        # Handle is_additional
+        is_additional = False
+        if pd.notna(row['is_additional']):
+            is_additional = str(row['is_additional']).strip().upper() == 'TRUE'
+        
         # Handle end_date
         end_date = None
         if pd.notna(row['end_date']) and str(row['end_date']).strip():
             end_date = str(row['end_date']).strip()
+        
+        # If is_additional is TRUE, ignore description and accomplishments
+        if is_additional:
+            description = ''
+            accomplishments_to_store = []
+        else:
+            description = str(row['description']).strip() if pd.notna(row['description']) else ''
+            accomplishments_to_store = accomplishments
         
         item = {
             'id': f'work_{idx+1:03d}',
@@ -41,8 +54,9 @@ def load_work_experience(df):
             'start_date': str(row['start_date']).strip(),
             'end_date': end_date,
             'is_current': is_current,
-            'description': str(row['description']).strip() if pd.notna(row['description']) else '',
-            'accomplishments': accomplishments
+            'is_additional': is_additional,
+            'description': description,
+            'accomplishments': accomplishments_to_store
         }
         items.append(item)
     
