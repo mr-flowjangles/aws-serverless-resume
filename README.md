@@ -124,8 +124,9 @@ Open `scripts/resume-data-template.xlsx` in Excel or Google Sheets and fill in:
 
 - **Profile Sheet:** Name, title, contact info, summary, links
 - **Work Experience Sheet:** Job title, company, dates, description, accomplishments
+  - Set `is_additional` to `TRUE` for older jobs you want displayed as a simple list
 - **Education Sheet:** Degree, institution, dates, description
-- **Skills Sheet:** Category, skills (comma-separated)
+- **Skills Sheet:** Category, skills (pipe-separated)
 
 Save when done. This is your single source of truth for all resume data.
 
@@ -168,7 +169,7 @@ Your resume is now live locally! 🎉
 
 ---
 
-## Update Your Resume
+## Update Your Resume (Local)
 
 Made changes to `scripts/resume-data-template.xlsx`? Reload the data:
 
@@ -182,90 +183,12 @@ Refresh your browser - changes appear immediately. No restart needed.
 
 ## Deploy to AWS
 
-Ready to go live? Here's how to deploy to production.
+Ready to go live? See **[README_DEPLOY.md](README_DEPLOY.md)** for complete deployment instructions including:
 
-### Prerequisites Checklist
-
-- ✅ AWS credentials configured (`aws configure`)
-- ✅ Email verified in SES (`aws ses verify-email-identity`)
-- ✅ Domain registered (optional but recommended)
-- ✅ Terraform installed
-- ✅ Your resume data in the Excel template
-
-### Build Lambda Package
-
-The Lambda deployment package is too large (80MB+) for direct upload, so we use S3:
-
-```bash
-# Build the Lambda package (uses Docker for Lambda-compatible environment)
-./scripts/build-lambda.sh
-
-# This creates: terraform/builds/fastapi-app.zip
-```
-
-This takes a few minutes. It's compiling all Python dependencies for Lambda's environment.
-
-### Deploy Infrastructure
-
-```bash
-cd terraform
-
-# First time only: Initialize Terraform
-terraform init
-
-# See what will be created
-terraform plan
-
-# Create everything in AWS
-terraform apply
-```
-
-Type `yes` when prompted.
-
-**What gets created:**
-- S3 bucket for static files (HTML, CSS, JS)
-- CloudFront distribution (CDN)
-- DynamoDB table (resume data)
-- Lambda function (API backend)
-- API Gateway (routes requests to Lambda)
-- Route 53 records (DNS, if you have a domain)
-- ACM certificate (SSL, if you have a domain)
-- IAM roles and policies
-
-**Deployment time:** About 5-10 minutes (CloudFront takes the longest).
-
-### Upload Lambda Package to S3
-
-The Lambda package needs to be in S3 for deployment:
-
-```bash
-# From project root
-aws s3 cp terraform/builds/fastapi-app.zip s3://YOUR-BUCKET-NAME/lambda/fastapi-app.zip
-```
-
-Your bucket name is in `terraform apply` output as `s3_bucket_name`.
-
-**For future updates:**
-1. Run `./scripts/build-lambda.sh` to rebuild
-2. Upload to S3 again
-3. Run `terraform apply` to deploy
-
-### Get Your URLs
-
-After deployment completes:
-
-```bash
-terraform output
-```
-
-You'll see:
-- `website_url` - Your live site!
-- `cloudfront_domain_name` - CloudFront URL (before DNS propagates)
-- `api_gateway_url` - Direct API URL
-
-**DNS propagation:** If using a custom domain, DNS can take 5-60 minutes to propagate worldwide.
-
-**Estimated cost:** $5-15/month for a low-traffic personal site.
+- Part 1: Deploy from scratch
+- Part 2: Updates after initial deploy (frontend, Lambda, data, infrastructure)
+- Finding your resource IDs
+- Troubleshooting
 
 ---
 
@@ -291,128 +214,107 @@ Browser → CloudFront → API Gateway → Lambda (FastAPI + Mangum) → DynamoD
 ```
 
 - Same Python code, different wrapper
-- Mangum adapts FastAPI to work as a Lambda handler
-- Serverless, scales automatically, pay per request
-- Professional CDN, SSL, and DNS
+- Mangum adapts FastAPI to Lambda's event format
+- No servers to manage, auto-scales to zero
+- Pay only for actual usage
 
-**The magic:** Business logic in `handlers/` works identically in both. Only the entry point changes (`main.py` vs `lambda_handler.py`).
+### The Magic: Mangum
+
+```python
+# Local: uvicorn runs your FastAPI app directly
+# Lambda: Mangum wraps it to handle Lambda events
+
+from mangum import Mangum
+from main import app
+
+handler = Mangum(app)  # That's it!
+```
+
+Your business logic in `handlers/` never knows the difference.
 
 ---
 
 ## Project Structure
 
 ```
-.
-├── api/                          # Backend (FastAPI)
-│   ├── routers/                  # HTTP endpoints
-│   │   ├── contact.py            # POST /contact - Contact form
-│   │   ├── health.py             # GET /health - Health check
-│   │   └── resume.py             # GET /resume/* - Resume data
-│   ├── handlers/                 # Business logic
-│   │   ├── contact.py            # Email sending via SES
-│   │   ├── db.py                 # DynamoDB connection
-│   │   ├── profile.py            # Profile data
-│   │   ├── work_experience.py    # Work history
-│   │   ├── education.py          # Education history
-│   │   └── skills.py             # Skills
-│   ├── tests/                    # Pytest suite
-│   ├── main.py                   # FastAPI app (local)
-│   ├── lambda_handler.py         # Mangum wrapper (Lambda)
-│   ├── seed.py                   # Auto-seed on startup
-│   └── requirements.txt          # Python deps
-│
-├── app/                          # Frontend (Static)
-│   ├── index.html                # Single-page resume site
-│   └── assets/
-│       ├── profile.jpg           # Your photo
-│       └── resume.pdf            # Your resume PDF
-│
-├── scripts/                      # Data & Build
-│   ├── resume-data-template.xlsx # Your resume (edit this!)
-│   ├── load_resume.py            # Excel → DynamoDB
-│   ├── build-lambda.sh           # Build Lambda package
-│   └── init-dynamodb.sh          # Initialize local DB
-│
-├── terraform/                    # Infrastructure as Code
-│   ├── main.tf                   # Provider config
-│   ├── variables.tf              # Input variables
-│   ├── outputs.tf                # Output values
-│   ├── s3.tf                     # Static file bucket
-│   ├── cloudfront.tf             # CDN
-│   ├── route53.tf                # DNS
-│   ├── acm.tf                    # SSL certificate
-│   ├── dynamodb.tf               # Database
-│   ├── lambda.tf                 # API backend
-│   ├── api_gateway.tf            # API routing
-│   └── iam.tf                    # Permissions (includes SES)
-│
-├── nginx/                        # Reverse proxy (local only)
-├── docker-compose.yml            # Local services
-├── Makefile                      # Helper commands
-├── .env                          # Your config (create this!)
-└── README.md                     # This file
+aws-serverless-resume/
+├── api/                    # Backend code (runs in Lambda)
+│   ├── handlers/           # Business logic (environment-agnostic)
+│   ├── routers/            # FastAPI route definitions
+│   ├── main.py             # FastAPI app setup
+│   ├── lambda_handler.py   # Mangum wrapper for AWS Lambda
+│   └── seed.py             # Database seeding logic
+├── app/                    # Frontend (served by CloudFront)
+│   ├── index.html          # Main page
+│   └── assets/             # CSS, images, PDF resume
+├── scripts/
+│   ├── resume-data-template.xlsx  # Your resume data
+│   ├── load_resume.py      # Excel → DynamoDB loader
+│   └── build-lambda.sh     # Lambda package builder
+├── terraform/              # Infrastructure as Code
+│   ├── main.tf             # Provider config
+│   ├── lambda.tf           # Lambda function
+│   ├── api_gateway.tf      # API Gateway
+│   ├── dynamodb.tf         # Database table
+│   ├── s3.tf               # Static file bucket
+│   ├── cloudfront.tf       # CDN distribution
+│   └── ...                 # Other AWS resources
+├── tests/                  # pytest test suite
+├── docker-compose.yml      # Local development setup
+├── Makefile                # Convenience commands
+├── README.md               # This file
+└── README_DEPLOY.md        # Deployment guide
 ```
-
-### Key Patterns
-
-**Separation of Concerns:**
-- `routers/` = HTTP (request/response, validation)
-- `handlers/` = Logic (database, business rules)
-- `routers/` call `handlers/`, never the other way around
-
-**Environment Parity:**
-- Local development mirrors production architecture
-- Same handlers work in both Docker and Lambda
-- Tests verify behavior in both environments
-
-**Infrastructure as Code:**
-- Every AWS resource defined in Terraform
-- Version controlled, reproducible deployments
-- No clicking around in AWS console
 
 ---
 
-## Common Commands
+## Excel Template Fields
 
-```bash
-# Local Development
-make up           # Start everything
-make down         # Stop everything
-make logs         # View logs
-make restart      # Restart all services
+### Profile Sheet
+| Field | Description |
+|-------|-------------|
+| name | Your full name |
+| title | Job title (e.g., "Software Engineer") |
+| email | Contact email |
+| location | City, State |
+| summary | Brief professional summary |
+| professional_summary | Detailed summary (optional) |
+| linkedin | LinkedIn profile URL |
+| github | GitHub profile URL |
+| photo | Path to profile photo |
+| resume_pdf | Path to PDF resume |
 
-# Data Management  
-make reload       # Reload Excel data into database
+### Work Experience Sheet
+| Field | Description |
+|-------|-------------|
+| job_title | Position title |
+| company_name | Company name |
+| start_date | Start date (YYYY-MM format) |
+| end_date | End date or leave blank if current |
+| is_current | TRUE if current job |
+| is_additional | TRUE to display as simple list item instead of full card |
+| description | Role description |
+| accomplishments | Pipe-separated list (e.g., "Led team\|Increased sales\|Built system") |
 
-# Testing
-make test         # Run all tests
+### Education Sheet
+| Field | Description |
+|-------|-------------|
+| degree | Degree name |
+| institution | School name |
+| start_date | Start date |
+| end_date | End date |
+| description | Additional details |
 
-# Deployment
-./scripts/build-lambda.sh              # Build Lambda package
-aws s3 cp terraform/builds/...         # Upload to S3
-cd terraform && terraform apply        # Deploy infrastructure
-```
-
-**No `make` installed?**
-- `make up` → `docker compose up --build`
-- `make down` → `docker compose down`
-- `make logs` → `docker compose logs -f`
+### Skills Sheet
+| Field | Description |
+|-------|-------------|
+| category | Skill category (e.g., "Languages") |
+| skills | Pipe-separated skills (e.g., "Python\|JavaScript\|Go") |
+| sort_order | Display order (lower numbers first) |
 
 ---
 
 ## Customization
-
-### Add Your Photo
-
-1. Place image at `app/assets/profile.jpg`
-2. Update the path in Excel template Profile sheet
-3. Reload: `make reload`
-
-### Add Your Resume PDF
-
-1. Place PDF at `app/assets/resume.pdf`  
-2. Update the path in Excel template Profile sheet
-3. Upload to S3: `aws s3 cp app/assets/resume.pdf s3://YOUR-BUCKET/`
 
 ### Modify Styling
 
@@ -475,24 +377,6 @@ docker exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/res
 **Check email:**
 1. Is your email verified in SES?
 2. Are SES env vars in `.env`?
-3. Check CloudWatch logs: `aws logs tail /aws/lambda/YOUR-FUNCTION-NAME`
-
-### Lambda Package Too Large
-
-We use S3 for deployment because the package is 80MB+:
-
-```bash
-# Build package
-./scripts/build-lambda.sh
-
-# Upload to S3 (not direct to Lambda)
-aws s3 cp terraform/builds/fastapi-app.zip s3://YOUR-BUCKET/lambda/fastapi-app.zip
-
-# Deploy
-cd terraform && terraform apply
-```
-
-Make sure `terraform/lambda.tf` uses `s3_bucket` and `s3_key`, not `filename`.
 
 ### Container Won't Start
 
@@ -554,25 +438,6 @@ Now tests run automatically before every commit.
 ✅ Only the wrapper changes (`uvicorn` vs `Mangum`)  
 
 **The result:** You develop fast with full features, then deploy the same tested code to production. No surprises, no translations, no second version.
-
----
-
-## Deployment Checklist
-
-Before you deploy to production, make sure:
-
-- [ ] Email verified in SES (`aws ses get-identity-verification-attributes`)
-- [ ] reCAPTCHA keys configured (`.env` and `index.html`)
-- [ ] Resume data in Excel template is complete and accurate
-- [ ] Profile photo and resume PDF are in `app/assets/`
-- [ ] Domain name in `terraform/variables.tf` (if using custom domain)
-- [ ] AWS credentials configured (`aws configure`)
-- [ ] Lambda package built (`./scripts/build-lambda.sh`)
-- [ ] Lambda package uploaded to S3
-- [ ] Terraform initialized (`terraform init`)
-- [ ] All tests passing (`docker compose exec api pytest tests/`)
-
-Then: `terraform apply` and you're live!
 
 ---
 
