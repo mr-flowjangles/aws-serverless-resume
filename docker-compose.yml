@@ -10,6 +10,8 @@ services:
       - "8080:80"
     depends_on:
       - api
+    volumes:
+      - ./app:/usr/share/nginx/html:ro
     networks:
       - resume-net
     healthcheck:
