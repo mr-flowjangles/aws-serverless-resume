@@ -10,11 +10,16 @@ A serverless resume website that runs the **same FastAPI code** locally (Docker)
 
 Let's get the boring config stuff out of the way first. You'll need to set up a few things before running the site.
 
+I have a folder called `_scratch` I use this folder for storing my information, files, AI embeddings so they aren't loaded to github. Create your own `_scratch` as some scripts may export to `_scratch`
+
+From the root, `mkdir -p _scratch`
+
 ### 1. Google reCAPTCHA (Required for Contact Form)
 
 The contact form uses Google reCAPTCHA v2 to prevent spam. Here's how to set it up:
 
 **Get your keys:**
+
 1. Go to https://www.google.com/recaptcha/admin
 2. Register a new site
 3. Choose **reCAPTCHA v2** ("I'm not a robot" checkbox)
@@ -28,11 +33,13 @@ The contact form uses Google reCAPTCHA v2 to prevent spam. Here's how to set it 
 **Add to your project:**
 
 1. Create a `.env` file in the project root:
+
    ```bash
    cp .env.example .env
    ```
 
 2. Add your secret key:
+
    ```bash
    RECAPTCHA_SECRET_KEY=your_secret_key_here
    ```
@@ -52,6 +59,7 @@ The contact form uses Google reCAPTCHA v2 to prevent spam. Here's how to set it 
 The contact form sends emails via AWS Simple Email Service (SES). Here's the setup:
 
 **Verify your email address:**
+
 ```bash
 # This sends a verification email to you
 aws ses verify-email-identity --email-address your@email.com --region us-east-1
@@ -63,12 +71,14 @@ aws ses get-identity-verification-attributes --identities your@email.com --regio
 Check your email and click the verification link. Wait until status shows `"VerificationStatus": "Success"`.
 
 **Add to your .env file:**
+
 ```bash
 SES_FROM_EMAIL=your@email.com
 SES_TO_EMAIL=your@email.com
 ```
 
 **SES Sandbox Mode:**
+
 - New AWS accounts start in SES sandbox
 - You can only send TO verified email addresses
 - Since both sender and recipient are the same verified email, this works fine
@@ -87,8 +97,9 @@ aws configure
 ```
 
 Enter your:
+
 - AWS Access Key ID
-- AWS Secret Access Key  
+- AWS Secret Access Key
 - Default region (e.g., `us-east-1`)
 
 **Don't have AWS credentials?** You can still run locally - just skip the deployment steps.
@@ -140,14 +151,16 @@ make up
 **Don't have `make`?** Use: `docker compose up --build`
 
 Wait about 30 seconds. Watch for these lines:
+
 ```
 Database already seeded, skipping...
 Application startup complete.
 ```
 
 **Then open:**
+
 - **Your Resume:** http://localhost:8080
-- **API Docs:** http://localhost:8080/api/docs  
+- **API Docs:** http://localhost:8080/api/docs
 - **Health Check:** http://localhost:8080/api/health
 
 ### 4. Verify It Works
@@ -155,11 +168,12 @@ Application startup complete.
 **In your browser:** Navigate around - everything should load from your Excel data.
 
 **Test the API:**
+
 ```bash
 curl http://localhost:8080/api/health
 # Should return: {"status":"healthy","services":{"dynamodb":"ok"}}
 
-curl http://localhost:8080/api/resume/profile  
+curl http://localhost:8080/api/resume/profile
 # Should return your profile data
 ```
 
@@ -271,46 +285,50 @@ aws-serverless-resume/
 ## Excel Template Fields
 
 ### Profile Sheet
-| Field | Description |
-|-------|-------------|
-| name | Your full name |
-| title | Job title (e.g., "Software Engineer") |
-| email | Contact email |
-| location | City, State |
-| summary | Brief professional summary |
-| professional_summary | Detailed summary (optional) |
-| linkedin | LinkedIn profile URL |
-| github | GitHub profile URL |
-| photo | Path to profile photo |
-| resume_pdf | Path to PDF resume |
+
+| Field                | Description                           |
+| -------------------- | ------------------------------------- |
+| name                 | Your full name                        |
+| title                | Job title (e.g., "Software Engineer") |
+| email                | Contact email                         |
+| location             | City, State                           |
+| summary              | Brief professional summary            |
+| professional_summary | Detailed summary (optional)           |
+| linkedin             | LinkedIn profile URL                  |
+| github               | GitHub profile URL                    |
+| photo                | Path to profile photo                 |
+| resume_pdf           | Path to PDF resume                    |
 
 ### Work Experience Sheet
-| Field | Description |
-|-------|-------------|
-| job_title | Position title |
-| company_name | Company name |
-| start_date | Start date (YYYY-MM format) |
-| end_date | End date or leave blank if current |
-| is_current | TRUE if current job |
-| is_additional | TRUE to display as simple list item instead of full card |
-| description | Role description |
+
+| Field           | Description                                                           |
+| --------------- | --------------------------------------------------------------------- |
+| job_title       | Position title                                                        |
+| company_name    | Company name                                                          |
+| start_date      | Start date (YYYY-MM format)                                           |
+| end_date        | End date or leave blank if current                                    |
+| is_current      | TRUE if current job                                                   |
+| is_additional   | TRUE to display as simple list item instead of full card              |
+| description     | Role description                                                      |
 | accomplishments | Pipe-separated list (e.g., "Led team\|Increased sales\|Built system") |
 
 ### Education Sheet
-| Field | Description |
-|-------|-------------|
-| degree | Degree name |
-| institution | School name |
-| start_date | Start date |
-| end_date | End date |
+
+| Field       | Description        |
+| ----------- | ------------------ |
+| degree      | Degree name        |
+| institution | School name        |
+| start_date  | Start date         |
+| end_date    | End date           |
 | description | Additional details |
 
 ### Skills Sheet
-| Field | Description |
-|-------|-------------|
-| category | Skill category (e.g., "Languages") |
-| skills | Pipe-separated skills (e.g., "Python\|JavaScript\|Go") |
-| sort_order | Display order (lower numbers first) |
+
+| Field      | Description                                            |
+| ---------- | ------------------------------------------------------ |
+| category   | Skill category (e.g., "Languages")                     |
+| skills     | Pipe-separated skills (e.g., "Python\|JavaScript\|Go") |
+| sort_order | Display order (lower numbers first)                    |
 
 ---
 
@@ -323,6 +341,7 @@ Edit the `<style>` section in `app/index.html`. CSS is embedded for simplicity.
 ### Change Colors
 
 Look for color definitions in `app/index.html`:
+
 - `#0ea5e9` - Primary blue (links, accents)
 - `#0f172a` - Dark background
 - `#f0f4f8` - Light background
@@ -343,26 +362,31 @@ make up
 ### Changes Not Showing Up
 
 **For data changes:**
+
 ```bash
 make reload  # Reload Excel template
 ```
 
 **For code changes:**
+
 ```bash
 make restart  # Restart containers
 ```
 
 **For HTML/CSS changes:**
+
 - Hard refresh: `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows)
 
 ### Database Empty After Startup
 
 Check if seeding happened:
+
 ```bash
 make logs | grep seed
 ```
 
 Manually reload if needed:
+
 ```bash
 docker exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
 ```
@@ -370,11 +394,13 @@ docker exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/res
 ### Contact Form Not Working
 
 **Check reCAPTCHA:**
+
 1. Site key in `app/index.html`?
 2. Secret key in `.env`?
 3. Correct variable name: `RECAPTCHA_SECRET_KEY` (not `MY_RECAPTCHA_SECRET_KEY`)
 
 **Check email:**
+
 1. Is your email verified in SES?
 2. Are SES env vars in `.env`?
 
@@ -399,6 +425,7 @@ docker compose exec api pytest tests/ -v
 All tests should pass. If contact tests fail, make sure you've updated `tests/test_contact.py` to mock the SES client (not try to actually send emails).
 
 **Pre-commit hooks:**
+
 ```bash
 brew install pre-commit  # or apt-get, pip, etc.
 pre-commit install
@@ -425,8 +452,9 @@ Now tests run automatically before every commit.
 ## Why This Architecture?
 
 **Most resume sites have a problem:** You write one version for local development (Django, Flask, Express) and another for production (Lambda, serverless functions). This means:
+
 - Two codebases to maintain
-- Different bugs in each environment  
+- Different bugs in each environment
 - Can't easily test production code locally
 
 **This project solves that** with FastAPI + Mangum:
@@ -435,7 +463,7 @@ Now tests run automatically before every commit.
 ✅ Full FastAPI features locally (hot reload, Swagger docs, debugging)  
 ✅ Deploy to Lambda without changing application code  
 ✅ Business logic in `handlers/` is environment-agnostic  
-✅ Only the wrapper changes (`uvicorn` vs `Mangum`)  
+✅ Only the wrapper changes (`uvicorn` vs `Mangum`)
 
 **The result:** You develop fast with full features, then deploy the same tested code to production. No surprises, no translations, no second version.
 
@@ -445,16 +473,16 @@ Now tests run automatically before every commit.
 
 For a personal resume site with low traffic (<1000 visitors/month):
 
-| Service | Cost | Notes |
-|---------|------|-------|
-| Route 53 | $0.50/month | Hosted zone |
-| CloudFront | $1-2/month | CDN, first 1TB free |
-| Lambda | $0-1/month | First 1M requests free |
-| API Gateway | $0-1/month | First 1M requests free |
-| DynamoDB | $0/month | 25GB free tier |
-| SES | $0/month | 62,000 emails/month free from EC2/Lambda |
-| S3 | $0.50/month | Storage and requests |
-| ACM Certificate | FREE | SSL certificate |
+| Service         | Cost        | Notes                                    |
+| --------------- | ----------- | ---------------------------------------- |
+| Route 53        | $0.50/month | Hosted zone                              |
+| CloudFront      | $1-2/month  | CDN, first 1TB free                      |
+| Lambda          | $0-1/month  | First 1M requests free                   |
+| API Gateway     | $0-1/month  | First 1M requests free                   |
+| DynamoDB        | $0/month    | 25GB free tier                           |
+| SES             | $0/month    | 62,000 emails/month free from EC2/Lambda |
+| S3              | $0.50/month | Storage and requests                     |
+| ACM Certificate | FREE        | SSL certificate                          |
 
 **Total: ~$3-10/month** depending on traffic.
 
@@ -465,17 +493,20 @@ For a personal resume site with low traffic (<1000 visitors/month):
 ## Security Notes
 
 **Secrets Management:**
+
 - Never commit `.env` to Git (already in `.gitignore`)
 - Use environment variables for all secrets
 - AWS credentials should use IAM roles, not hardcoded keys
 
 **API Security:**
+
 - reCAPTCHA prevents spam on contact form
 - API Gateway has built-in DDoS protection
 - CloudFront provides additional security layer
 - Lambda runs in isolated execution environment
 
 **Data Privacy:**
+
 - Your resume data is in your AWS account only
 - No third-party services have access
 - DynamoDB data is encrypted at rest (AWS default)
@@ -487,6 +518,7 @@ For a personal resume site with low traffic (<1000 visitors/month):
 Want to improve this project? Great!
 
 **Development workflow:**
+
 1. Fork the repo
 2. Create a feature branch
 3. Install pre-commit hooks: `pre-commit install`
@@ -495,6 +527,7 @@ Want to improve this project? Great!
 6. Open a PR with description of changes
 
 **Code style:**
+
 - Follow existing patterns (routers call handlers)
 - Write tests for new features
 - Keep handlers environment-agnostic
@@ -555,6 +588,7 @@ This project is provided for personal and educational use. If you fork or reuse,
 ## Acknowledgments
 
 Built with:
+
 - [FastAPI](https://fastapi.tiangolo.com/) - Modern Python web framework
 - [Mangum](https://mangum.io/) - ASGI adapter for AWS Lambda
 - [Terraform](https://www.terraform.io/) - Infrastructure as Code
@@ -570,4 +604,4 @@ Inspired by the cloud resume challenge and the desire to have ONE codebase that 
 
 ---
 
-*Made with ☕ and deployed with ☁️*
+_Made with ☕ and deployed with ☁️_

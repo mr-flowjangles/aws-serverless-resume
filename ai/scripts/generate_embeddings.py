@@ -100,7 +100,7 @@ def chunk_work_experience(item):
     job_title = item.get('job_title', 'Unknown Position')
     company = item.get('company_name', 'Unknown Company')
     start_date = item.get('start_date', 'Unknown')
-    end_date = item.get('end_date', 'Present') if item.get('is_current') else item.get('end_date', 'Unknown')
+    end_date = 'Present' if item.get('is_current') or item.get('end_date') is None else item.get('end_date', 'Unknown')
     
     text_parts.append(f"Position: {job_title} at {company}")
     text_parts.append(f"Duration: {start_date} to {end_date}")

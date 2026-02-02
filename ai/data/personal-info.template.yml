@@ -1,84 +1,69 @@
-# Personal Information for RobbAI
+# Personal Information for Your AI Chatbot
 # This data is used by the chatbot to provide richer, more personal responses
 # It supplements the professional resume data
 
 # About You - Background & Personal Story
 about:
-  hometown: "TBD - Where are you originally from?"
-  current_location: "Urbandale, IA"
+  hometown: "Sometown, Some State, Some Country"
+  current_location: "Sometown, IA"
   background: |
-    TBD - Add a few sentences about your background:
-    - How you got into technology
-    - What brought you to Iowa
-    - Your career journey highlights
-    - What drives you professionally
-  
+    - Got into tech in college, it was a natural fit
+    - I got a degree in <> Systems in 2002
+
   family: |
-    TBD - High-level family info (optional):
-    - Married? Kids? Pets?
-    - Keep it general, not detailed
-  
+    - about Your family here
   fun_facts:
-    - "TBD - Add interesting facts about yourself"
-    - "TBD - Unexpected skills or experiences"
-    - "TBD - Memorable moments"
+    - If you have a fun fact about yourself, put it here
 
 # Hobbies & Interests
 hobbies:
-  guitar:
-    description: "TBD - How long have you played? What styles?"
-    details: "TBD - Favorite bands? Play in a group? Just for fun?"
-  
-  golf:
-    description: "TBD - How often do you play? Skill level?"
-    details: "TBD - Favorite courses? Best round? Play with friends?"
-  
-  hockey:
-    description: "TBD - Do you play or just watch? Favorite team?"
-    details: "TBD - Any fun stories or memories?"
-  
+  YourHobby1:
+    description: "this is your hobby"
+    details: "I mostly play for fun"
+
+  YourHobby2:
+    description: "I play golf occasionally and I"
+    details: "it's fun"
+
+  #remove or repeat above as needed
+
   other:
-    - "TBD - Any other hobbies or interests?"
-    - "TBD - What do you do for fun?"
+    - "tell us more about your other hobbies"
 
 # Professional Values & Philosophy
 values:
   work_approach: |
-    TBD - How do you approach your work?
-    Example: "I believe in digging in, learning, challenging assumptions..."
-  
+    I like to "
+
   what_drives_you: |
-    TBD - What gets you excited about technology and problem-solving?
-  
+    I love ....
+
   leadership_style: |
-    TBD - How do you lead teams? What's your management philosophy?
-  
+    I try to lead ....
+
   what_makes_you_different: |
     TBD - What unique perspective or approach do you bring?
 
 # Career Aspirations & Goals
 career:
-  current_status: "Showcasing my work, not actively job searching"
-  
+  current_status: "Talk about yourself"
+
   interested_in:
     - "Solution Architect roles"
     - "Data-focused positions"
     - "IT Director opportunities"
-  
+
   strengths:
-    - "Data analysis and architecture"
-    - "System design"
-    - "Problem-solving through different perspectives"
-  
+    - "I can lift 100 pounds"
+
   learning_goals:
-    - "TBD - What are you currently learning or want to learn?"
+    - "Im currently learning RAG (Retrieval Augmented Generation) techniques for AI, that's why I built this AI Chatbot"
 
 # Contact & Social
 contact:
-  linkedin: "https://linkedin.com/in/rob-rose-ia"
-  github: "https://github.com/your-github"  # TBD
-  email: "Use contact form on website"
-  
+  linkedin: "https://www.linkedin.com/in/<you>/"
+  github: "https://github.com/<you>/" # TBD
+
 # Personal Boundaries - What Robby Should/Shouldn't Discuss
 boundaries:
   # Hard no - Never discuss these
@@ -91,7 +76,7 @@ boundaries:
     - "Anything illegal, unethical, or harmful"
     - "Private company information or trade secrets"
     - "Detailed personal relationships or conflicts"
-  
+
   # Okay at high level - Can discuss generally, but not in detail
   high_level_only:
     - "Family status (married/kids yes/no) - keep very general"
@@ -99,7 +84,7 @@ boundaries:
     - "General career goals and interests"
     - "Location and geography - current city okay, not home address"
     - "Hobbies and interests - what you do, not private details"
-  
+
   # Encouraged - These are great topics
   encouraged_topics:
     - "Professional experience and technical skills"

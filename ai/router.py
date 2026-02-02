@@ -6,6 +6,8 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 import os
+import uuid
+from datetime import datetime
 
 router = APIRouter(prefix="/ai", tags=["AI Chatbot"])
 
@@ -27,6 +29,36 @@ class HealthResponse(BaseModel):
     status: str
     chatbot_enabled: bool
     embeddings_ready: bool
+
+
+def log_chat_interaction(question: str, response: str, sources: list[dict]):
+    """Log chat interaction to DynamoDB"""
+    try:
+        from ai.retrieval import get_dynamodb_connection
+        from decimal import Decimal
+        
+        dynamodb = get_dynamodb_connection()
+        table = dynamodb.Table('ChatbotLogs')
+        
+        # Convert float similarities to Decimal for DynamoDB
+        clean_sources = [
+            {
+                'type': s['type'],
+                'similarity': Decimal(str(s['similarity']))
+            }
+            for s in sources
+        ]
+        
+        table.put_item(Item={
+            'id': f"{datetime.utcnow().strftime('%Y%m%d%H%M%S')}_{uuid.uuid4().hex[:8]}",
+            'timestamp': datetime.utcnow().isoformat(),
+            'question': question,
+            'response': response,
+            'sources': clean_sources,
+            'source_count': len(sources)
+        })
+    except Exception as e:
+        print(f"Failed to log chat interaction: {e}")
 
 
 @router.get("/health", response_model=HealthResponse)
@@ -88,6 +120,13 @@ async def chat(request: ChatRequest):
             conversation_history=None,  # Stateless for now
             top_k=5,
             similarity_threshold=0.2
+        )
+        
+        # Log the interaction
+        log_chat_interaction(
+            question=request.message,
+            response=result["response"],
+            sources=result["sources"]
         )
         
         return ChatResponse(
