@@ -8,6 +8,7 @@ _scratch/
 scripts/~$resume-data-template.xlsx
 aws-serverless-resume.zip
 embedding_output.json
+ai/data/personal-info.yml
 
 # Python
 __pycache__/

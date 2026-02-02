@@ -12,7 +12,9 @@ from fastapi import FastAPI
 from routers.health import router as health_router
 from routers.resume import router as resume_router
 from routers.contact import router as contact_router
+from ai.router import router as ai_router
 from fastapi.middleware.cors import CORSMiddleware
+
 
 
 @asynccontextmanager
@@ -53,3 +55,4 @@ prefix = "/api" if is_lambda else ""
 app.include_router(health_router, prefix=prefix)
 app.include_router(resume_router, prefix=prefix)
 app.include_router(contact_router, prefix=prefix)
+app.include_router(ai_router, prefix=prefix)
