@@ -50,7 +50,9 @@ resource "aws_iam_role_policy" "lambda_dynamodb" {
         ]
         Resource = [
           aws_dynamodb_table.resume_data.arn,
-          "${aws_dynamodb_table.resume_data.arn}/index/*"
+          "${aws_dynamodb_table.resume_data.arn}/index/*",
+          aws_dynamodb_table.chatbot_rag.arn,
+          aws_dynamodb_table.chatbot_logs.arn
         ]
       },
       {

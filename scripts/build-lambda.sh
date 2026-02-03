@@ -7,6 +7,7 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 API_DIR="$PROJECT_ROOT/api"
+AI_DIR="$PROJECT_ROOT/ai"
 TERRAFORM_DIR="$PROJECT_ROOT/terraform"
 BUILD_DIR="$TERRAFORM_DIR/builds"
 OUTPUT_ZIP="$BUILD_DIR/fastapi-app.zip"
@@ -19,10 +20,17 @@ mkdir -p "$BUILD_DIR"
 # Remove old build if exists
 rm -f "$OUTPUT_ZIP"
 
+echo "📁 Copying AI module into build context..."
+rm -rf "$API_DIR/ai"
+cp -r "$AI_DIR" "$API_DIR/ai"
+
 # Build the container with dependencies
 echo "📦 Installing dependencies in Lambda-compatible environment..."
 cd "$API_DIR"
 docker build --platform linux/amd64 -f Dockerfile.lambda -t lambda-builder:latest .
+
+# Clean up AI module copy
+rm -rf "$API_DIR/ai"
 
 # Create a temporary container and extract the /asset directory
 echo "📤 Extracting build artifacts..."

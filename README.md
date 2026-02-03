@@ -387,9 +387,11 @@ make logs | grep seed
 
 Manually reload if needed:
 
-```bash
-docker exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
-```
+# Load from template
+docker compose exec api python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
+
+# Load your own data (place file in _scratch folder)
+docker compose exec api python /app/scripts/load_resume.py /app/_scratch/your-resume-data.xlsx
 
 ### Contact Form Not Working
 

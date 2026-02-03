@@ -9,13 +9,38 @@ import numpy as np
 from openai import OpenAI
 from decimal import Decimal
 
+# Cache embeddings in memory (survives across warm Lambda invocations)
+_embeddings_cache = None
+
+
+def get_cached_embeddings():
+    global _embeddings_cache
+    if _embeddings_cache is not None:
+        print("Using cached embeddings")
+        return _embeddings_cache
+    
+    print("Loading embeddings from DynamoDB...")
+    dynamodb = get_dynamodb_connection()
+    table = dynamodb.Table('ChatbotRAG')
+    
+    response = table.scan()
+    items = response.get('Items', [])
+    
+    while 'LastEvaluatedKey' in response:
+        response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
+        items.extend(response.get('Items', []))
+    
+    _embeddings_cache = items
+    print(f"Cached {len(items)} embeddings")
+    return items
+
 # Initialize OpenAI client
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 
 def get_dynamodb_connection():
     """Get DynamoDB connection (works with LocalStack or AWS)"""
-    endpoint_url = os.getenv('AWS_ENDPOINT_URL', 'http://localhost:4566')
+    endpoint_url = os.getenv('AWS_ENDPOINT_URL', '')
     
     if endpoint_url == "":
         # Real AWS
@@ -64,20 +89,16 @@ def retrieve_relevant_chunks(
     Returns:
         List of relevant chunks with similarity scores
     """
+    print(f"Starting retrieval for: {query}")
+    
     # Generate embedding for the query
+    print("Generating query embedding...")
     query_embedding = generate_query_embedding(query)
+    print("Query embedding generated")
     
-    # Get all embeddings from DynamoDB
-    dynamodb = get_dynamodb_connection()
-    table = dynamodb.Table('ChatbotRAG')
-    
-    response = table.scan()
-    items = response.get('Items', [])
-    
-    # Handle pagination
-    while 'LastEvaluatedKey' in response:
-        response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
-        items.extend(response.get('Items', []))
+    items = get_cached_embeddings()
+    print(f"Got {len(items)} items")
+    print("Calculating similarities...")
     
     # Calculate similarity for each chunk
     results = []
@@ -99,6 +120,8 @@ def retrieve_relevant_chunks(
                 'job_title': item.get('job_title'),
                 'category': item.get('category')
             })
+    
+    print(f"Found {len(results)} results above threshold")
     
     # Sort by similarity (highest first) and return top K
     results.sort(key=lambda x: x['similarity'], reverse=True)
