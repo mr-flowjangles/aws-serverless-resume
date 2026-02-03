@@ -102,7 +102,7 @@ Remember: Keep your response short and conversational. If you can't answer from 
     
     # Call Claude API
     response = anthropic_client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-3-haiku-20240307",
         max_tokens=1000,
         system=SYSTEM_PROMPT,
         messages=messages

@@ -5,6 +5,10 @@ FROM public.ecr.aws/lambda/python:3.12
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt -t /asset
 
+# Copy AI requirements and install
+COPY ai/requirements.txt /ai-requirements.txt
+RUN pip install --no-cache-dir -r /ai-requirements.txt -t /asset
+
 # Copy application code
 COPY . /asset/
 

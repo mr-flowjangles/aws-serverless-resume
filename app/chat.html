@@ -252,6 +252,7 @@
           <div class="welcome">
             <h2>Welcome!</h2>
             <p>I'm RobbAI, an AI assistant that can tell you about Rob Rose's professional experience, skills, and background. Ask me anything!</p>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 1rem;">Note: Responses may take a few seconds, especially on the first question. We're working on performance improvements.</p>
           </div>
         </div>
 
@@ -268,7 +269,9 @@
     </div>
 
     <script>
-      const API_BASE = "/api";
+      const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? "/api" 
+        : "https://qehzqmqmwg.execute-api.us-east-1.amazonaws.com/prod/api";
       const messagesContainer = document.getElementById("messages");
       const userInput = document.getElementById("user-input");
       const sendBtn = document.getElementById("send-btn");
