@@ -5,8 +5,10 @@ FastAPI endpoints for the chatbot functionality.
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
+from pathlib import Path
 import os
 import uuid
+import yaml
 from datetime import datetime
 
 router = APIRouter(prefix="/ai", tags=["AI Chatbot"])
@@ -29,6 +31,14 @@ class HealthResponse(BaseModel):
     status: str
     chatbot_enabled: bool
     embeddings_ready: bool
+
+
+class ChatbotConfigResponse(BaseModel):
+    """Response model for chatbot configuration"""
+    enabled: bool
+    name: str
+    pronunciation: str
+    personality: str
 
 
 def log_chat_interaction(question: str, response: str, sources: list[dict]):
@@ -155,3 +165,35 @@ async def get_suggestions():
             "Does Rob have any hobbies?"
         ]
     }
+
+
+@router.get("/chatbot/config", response_model=ChatbotConfigResponse)
+async def get_chatbot_config():
+    """
+    Return chatbot configuration from ai/config.yml
+    Used by frontend to determine if chatbot widget should be displayed
+    """
+    try:
+        # Path to config file (relative to this router file)
+        config_path = Path(__file__).parent / 'config.yml'
+        
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+        
+        chatbot_config = config.get('chatbot', {})
+        
+        return ChatbotConfigResponse(
+            enabled=chatbot_config.get('enabled', False),
+            name=chatbot_config.get('name', 'RobbAI'),
+            pronunciation=chatbot_config.get('pronunciation', 'Robby'),
+            personality=chatbot_config.get('personality', 'friendly')
+        )
+    except Exception as e:
+        # If config file doesn't exist or error reading it, return disabled
+        print(f"Error reading chatbot config: {e}")
+        return ChatbotConfigResponse(
+            enabled=False,
+            name='RobbAI',
+            pronunciation='Robby',
+            personality='friendly'
+        )

@@ -188,6 +188,12 @@
         border-color: #0284c7;
       }
 
+      .input-area input:disabled {
+        background: #f1f5f9;
+        cursor: not-allowed;
+        color: #94a3b8;
+      }
+
       .input-area button {
         padding: 1rem 2rem;
         background: #0284c7;
@@ -254,10 +260,11 @@
           <input 
             type="text" 
             id="user-input" 
-            placeholder="Type your question here..." 
+            placeholder="RobbAI is initializing..." 
             onkeypress="handleKeyPress(event)"
+            disabled
           />
-          <button id="send-btn" onclick="sendMessage()">Send</button>
+          <button id="send-btn" onclick="sendMessage()" disabled>Send</button>
         </div>
       </div>
     </div>
@@ -269,6 +276,14 @@
       
       // Pre-warm Lambda and load embedding cache
       fetch(`${API_BASE}/health`).catch(() => {});
+
+      // Keep Lambda warm with periodic pings every 3 minutes
+      // Only ping if the page is visible (user is actively viewing it)
+      setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          fetch(`${API_BASE}/health`).catch(() => {});
+        }
+      }, 180000); // 3 minutes = 180,000 milliseconds
 
       const messagesContainer = document.getElementById("messages");
       const userInput = document.getElementById("user-input");
@@ -318,6 +333,12 @@
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
           await new Promise(resolve => setTimeout(resolve, 30)); // 30ms per character
         }
+
+        // Enable input after greeting completes
+        userInput.disabled = false;
+        sendBtn.disabled = false;
+        userInput.placeholder = "Type your question here...";
+        userInput.focus();
       }
 
       async function sendMessage() {

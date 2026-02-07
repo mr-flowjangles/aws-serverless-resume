@@ -40,7 +40,7 @@ def export_embeddings():
         response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
         items.extend(response['Items'])
     
-    output_path = '/app/_scratch/embeddings-export.json'
+    output_path = '_scratch/embeddings-export.json'
     with open(output_path, 'w') as f:
         json.dump(items, f, cls=DecimalEncoder)
     
