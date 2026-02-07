@@ -248,13 +248,7 @@
       </div>
 
       <div class="chat-area">
-        <div class="messages" id="messages">
-          <div class="welcome">
-            <h2>Welcome!</h2>
-            <p>I'm RobbAI, an AI assistant that can tell you about Rob Rose's professional experience, skills, and background. Ask me anything!</p>
-            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 1rem;">Note: Responses may take a few seconds, especially on the first question. We're working on performance improvements.</p>
-          </div>
-        </div>
+        <div class="messages" id="messages"></div>
 
         <div class="input-area">
           <input 
@@ -272,11 +266,13 @@
       const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
         ? "/api" 
         : "https://qehzqmqmwg.execute-api.us-east-1.amazonaws.com/prod/api";
+      
+      // Pre-warm Lambda and load embedding cache
+      fetch(`${API_BASE}/health`).catch(() => {});
+
       const messagesContainer = document.getElementById("messages");
       const userInput = document.getElementById("user-input");
       const sendBtn = document.getElementById("send-btn");
-
-      let isFirstMessage = true;
 
       function handleKeyPress(e) {
         if (e.key === "Enter") {
@@ -290,12 +286,6 @@
       }
 
       function addMessage(content, role) {
-        // Clear welcome message on first real message
-        if (isFirstMessage && role === "user") {
-          messagesContainer.innerHTML = "";
-          isFirstMessage = false;
-        }
-
         const messageDiv = document.createElement("div");
         messageDiv.className = `message ${role}`;
 
@@ -309,6 +299,25 @@
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
         return messageDiv;
+      }
+
+      async function streamGreeting() {
+        const greeting = "Hi! I'm RobbAI, pronounced Robby, Rob Rose's AI assistant. I can answer questions about his professional experience, technical skills, projects, and even his hobbies like guitar, golf, and hockey. How can I help you today?";
+        
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "message assistant";
+        messageDiv.innerHTML = '<div class="name">RobbAI</div>';
+        
+        const contentSpan = document.createElement("span");
+        messageDiv.appendChild(contentSpan);
+        messagesContainer.appendChild(messageDiv);
+
+        // Stream character by character
+        for (let i = 0; i < greeting.length; i++) {
+          contentSpan.textContent += greeting[i];
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          await new Promise(resolve => setTimeout(resolve, 30)); // 30ms per character
+        }
       }
 
       async function sendMessage() {
@@ -353,6 +362,9 @@
         sendBtn.disabled = false;
         userInput.focus();
       }
+
+      // Start streaming greeting on page load
+      streamGreeting();
     </script>
   </body>
 </html>
