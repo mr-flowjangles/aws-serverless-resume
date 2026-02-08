@@ -1,0 +1,216 @@
+/* Architecture Section Styles */
+
+.arch-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.arch-metric {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.arch-metric-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0284c7;
+  margin-bottom: 0.5rem;
+}
+
+.arch-metric-label {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.arch-optimization {
+  background: #e8f5e9;
+  border-left: 4px solid #27ae60;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.arch-optimization h3 {
+  color: #27ae60;
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+}
+
+.arch-optimization p {
+  color: #2e7d32;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.arch-section-title {
+  color: #0f172a;
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arch-section-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 1.5rem;
+  background: #0284c7;
+  border-radius: 2px;
+}
+
+.arch-flow-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.arch-step {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.arch-step:hover {
+  border-color: #0284c7;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.15);
+}
+
+.arch-step-number {
+  position: absolute;
+  top: -12px;
+  left: 1rem;
+  background: #0284c7;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.arch-step h4 {
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  margin-top: 0.5rem;
+}
+
+.arch-step p {
+  color: #64748b;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.arch-timing {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.8125rem;
+  color: #0284c7;
+  font-weight: 600;
+}
+
+.arch-components {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.arch-column h4 {
+  color: #0f172a;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.arch-component {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.arch-component:hover {
+  border-color: #0284c7;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+}
+
+.arch-component.arch-aws {
+  border-color: #FF9900;
+}
+
+.arch-component.arch-external {
+  border-color: #e74c3c;
+}
+
+.arch-component.arch-cache {
+  border-color: #27ae60;
+}
+
+.arch-component-name {
+  font-weight: bold;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.arch-component-desc {
+  color: #64748b;
+  font-size: 0.8125rem;
+}
+
+.arch-legend {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.arch-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arch-legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid;
+  background: white;
+}
+
+.arch-legend-color.arch-aws {
+  border-color: #FF9900;
+}
+
+.arch-legend-color.arch-external {
+  border-color: #e74c3c;
+}
+
+.arch-legend-color.arch-cache {
+  border-color: #27ae60;
+}
