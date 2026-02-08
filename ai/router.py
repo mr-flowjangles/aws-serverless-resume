@@ -26,13 +26,6 @@ class ChatResponse(BaseModel):
     sources: list[dict] = []
 
 
-class HealthResponse(BaseModel):
-    """Response model for health check"""
-    status: str
-    chatbot_enabled: bool
-    embeddings_ready: bool
-
-
 class ChatbotConfigResponse(BaseModel):
     """Response model for chatbot configuration"""
     enabled: bool
@@ -69,30 +62,6 @@ def log_chat_interaction(question: str, response: str, sources: list[dict]):
         })
     except Exception as e:
         print(f"Failed to log chat interaction: {e}")
-
-
-@router.get("/health", response_model=HealthResponse)
-async def health_check():
-    """Check if the AI chatbot is ready"""
-    from ai.retrieval import get_dynamodb_connection
-    
-    chatbot_enabled = bool(os.getenv('OPENAI_API_KEY')) and bool(os.getenv('ANTHROPIC_API_KEY'))
-    embeddings_ready = False
-    
-    if chatbot_enabled:
-        try:
-            dynamodb = get_dynamodb_connection()
-            table = dynamodb.Table('ChatbotRAG')
-            response = table.scan(Limit=1)
-            embeddings_ready = bool(response.get('Items'))
-        except Exception:
-            embeddings_ready = False
-    
-    return HealthResponse(
-        status="ok" if (chatbot_enabled and embeddings_ready) else "degraded",
-        chatbot_enabled=chatbot_enabled,
-        embeddings_ready=embeddings_ready
-    )
 
 
 @router.post("/chat", response_model=ChatResponse)
