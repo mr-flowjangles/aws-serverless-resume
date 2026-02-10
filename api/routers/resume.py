@@ -1,49 +1,26 @@
 """
-FastAPI router for resume endpoints.
-Uses handler logic from handlers.
+FastAPI router for resume endpoint.
+
+Single endpoint returns all resume data in one payload.
+Data is cached at the handler level — see handlers/resume_all.py.
 """
 from fastapi import APIRouter, HTTPException
-from handlers import profile, work_experience, education, skills
+from handlers.resume_all import get_all_resume_data
 
 router = APIRouter()
 
 
-@router.get("/resume/profile")
-def get_profile():
-    """Get profile from DynamoDB."""
+@router.get("/resume")
+def get_resume():
+    """
+    Return complete resume data: profile, work experience, education, skills.
+    
+    Single DynamoDB scan on first call, cached for subsequent requests.
+    """
     try:
-        return profile.get_profile()
-    except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        return get_all_resume_data()
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error loading profile: {str(e)}")
-
-
-@router.get("/resume/work-experience")
-def get_work_experience():
-    """Get work experience items sorted by date (most recent first)."""
-    try:
-        items = work_experience.get_work_experience()
-        return {"items": items}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error loading work experience: {str(e)}")
-
-
-@router.get("/resume/education")
-def get_education():
-    """Get education items sorted by date (most recent first)."""
-    try:
-        items = education.get_education()
-        return {"items": items}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error loading education: {str(e)}")
-
-
-@router.get("/resume/skills")
-def get_skills():
-    """Get skills organized by category."""
-    try:
-        items = skills.get_skills()
-        return {"items": items}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error loading skills: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error loading resume data: {str(e)}"
+        )
