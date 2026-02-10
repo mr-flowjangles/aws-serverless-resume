@@ -10,8 +10,8 @@ import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from routers.health import router as health_router
-from routers.resume import router as resume_router
 from routers.contact import router as contact_router
+from routers.resume import router as resume_router
 from ai.router import router as ai_router
 from fastapi.middleware.cors import CORSMiddleware
 
