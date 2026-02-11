@@ -1,0 +1,11 @@
+{
+  "defaults": {
+    "runner": "htmlcs",
+    "standard": "WCAG2AA",
+    "timeout": 30000
+  },
+  "urls": [
+    "http://localhost:8080/index.html",
+    "http://localhost:8080/cat-facts.html"
+  ]
+}
