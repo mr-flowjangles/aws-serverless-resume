@@ -2,20 +2,39 @@
  * Contact Form Handling
  * Handles form submission with reCAPTCHA validation
  */
+import { API_BASE } from "/scripts/api.js";
 
-import { API_BASE } from '/scripts/api.js';
+/**
+ * Fix reCAPTCHA accessibility issues
+ */
+function fixRecaptchaAccessibility() {
+  // Add aria-label to the hidden textarea
+  const textarea = document.getElementById("g-recaptcha-response");
+  if (textarea) {
+    textarea.setAttribute("aria-label", "reCAPTCHA response");
+    textarea.setAttribute("aria-hidden", "true");
+  }
+
+  // Add title to the reCAPTCHA iframe
+  const iframe = document.querySelector("#contact-form iframe");
+  if (iframe) {
+    iframe.setAttribute("title", "reCAPTCHA verification");
+  }
+}
 
 /**
  * Initialize contact form
  */
 function initContactForm() {
   const form = document.getElementById("contact-form");
-  
   if (!form) {
     console.warn("Contact form not found");
     return;
   }
-  
+
+  // Fix accessibility after a short delay to ensure reCAPTCHA is loaded
+  setTimeout(fixRecaptchaAccessibility, 1000);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
