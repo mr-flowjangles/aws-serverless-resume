@@ -15,11 +15,13 @@ function fixRecaptchaAccessibility() {
     textarea.setAttribute("aria-hidden", "true");
   }
 
-  // Add title to the reCAPTCHA iframe
-  const iframe = document.querySelector("#contact-form iframe");
-  if (iframe) {
-    iframe.setAttribute("title", "reCAPTCHA verification");
-  }
+  // Add title to ALL reCAPTCHA iframes (there can be multiple)
+  const iframes = document.querySelectorAll("#contact-form iframe");
+  iframes.forEach((iframe, index) => {
+    if (!iframe.getAttribute("title")) {
+      iframe.setAttribute("title", "reCAPTCHA verification frame");
+    }
+  });
 }
 
 /**
@@ -32,8 +34,8 @@ function initContactForm() {
     return;
   }
 
-  // Fix accessibility after a short delay to ensure reCAPTCHA is loaded
-  setTimeout(fixRecaptchaAccessibility, 1000);
+  // Fix accessibility after reCAPTCHA loads
+  setTimeout(fixRecaptchaAccessibility, 2000);
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
