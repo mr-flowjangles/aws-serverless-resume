@@ -1,0 +1,27 @@
+meta:
+  bot_id: "your_bot_id"
+  title: "Your Knowledge Base Title"
+  version: "1"
+  date: "2026-01-01"
+
+entries:
+  # String format — content is already readable text, embedded as-is
+  - id: example_string_entry
+    format: string
+    category: "General"
+    heading: "Example Topic"
+    content: "This is a plain text entry. Write it like you're explaining something to a person. This text gets embedded directly for semantic search."
+
+  # Object format — template + items, flattened at embedding time
+  - id: example_object_entry
+    format: object
+    category: "Reference"
+    heading: "Example Structured Data"
+    template: "{name} is a {type}. Details: {description}."
+    items:
+      - name: "Item One"
+        type: "category A"
+        description: "First item details"
+      - name: "Item Two"
+        type: "category B"
+        description: "Second item details"
