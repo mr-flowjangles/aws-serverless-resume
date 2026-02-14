@@ -1,0 +1,33 @@
+bot:
+  id: "guitar"
+  enabled: true
+  name: "GuitarBot"
+  personality: "friendly"
+
+  response_style:
+    tone: "conversational"
+    length: "concise"
+    suggestions: true
+
+  model:
+    provider: "anthropic"
+    name: "claude-sonnet-4-20250514"
+    max_tokens: 1000
+
+  rag:
+    embedding_model: "openai"
+    top_k: 10
+    similarity_threshold: 0.3
+
+  boundaries:
+    discuss_guitar: true
+    discuss_music_theory: true
+    discuss_gear: false
+    discuss_unrelated: false
+
+suggestions:
+  - "How do I restring an electric guitar?"
+  - "What is standard tuning?"
+  - "Show me C major triad voicings"
+  - "What are barre chord shapes?"
+  - "Explain the I-IV-V progression"

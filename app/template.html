@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CONFIGURABLE: Page title -->
+    <title>YourBot — Your Bot Description</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bot_styles/bot-factory.css">
+</head>
+<body>
+
+    <!-- ================================================================
+         HEADER
+         - Replace image src with your logo or avatar
+         - Update title and subtitle
+         - Badge text is optional (e.g., Beta, v1, Live)
+         ================================================================ -->
+    <header class="site-header">
+        <div class="header-logo-area">
+            <img src="assets/your-logo.png" alt="Logo" class="header-image">
+        </div>
+        <div class="header-text">
+            <div class="header-title">YourBot</div>
+            <div class="header-subtitle">A short description of what your bot does</div>
+        </div>
+        <span class="header-badge">Beta</span>
+    </header>
+
+    <!-- ================================================================
+         LEFT NAV
+         - Update links to match your bot's knowledge areas
+         - href values should match section IDs in main content
+         - Emoji icons are optional, swap for whatever fits
+         ================================================================ -->
+    <nav class="site-nav">
+        <div class="nav-section-label">Topics</div>
+        <a href="#chat" class="active"><span class="nav-icon">💬</span> Chat</a>
+        <a href="#topic-1"><span class="nav-icon">📖</span> Topic 1</a>
+        <a href="#topic-2"><span class="nav-icon">🔧</span> Topic 2</a>
+        <a href="#topic-3"><span class="nav-icon">📊</span> Topic 3</a>
+
+        <div class="nav-section-label">More</div>
+        <a href="#about"><span class="nav-icon">ℹ️</span> About</a>
+
+        <div class="nav-spacer"></div>
+        <div class="nav-footer">Built with <a href="#">Bot Factory</a></div>
+    </nav>
+
+    <!-- ================================================================
+         MAIN CONTENT
+         - The chat section is the embedded chatbot
+         - Add more sections below for static content pages
+         - Each section ID should match a nav href above
+         ================================================================ -->
+    <main class="main-content">
+
+        <!-- CHAT SECTION -->
+        <section class="section" id="chat">
+            <!-- CONFIGURABLE: Section heading -->
+            <h2 class="section-title">Ask YourBot</h2>
+
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-header-dot"></div>
+                    <!-- CONFIGURABLE: Chat header name -->
+                    <span class="chat-header-title">YourBot</span>
+                    <span class="chat-header-status">Online</span>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <!-- CONFIGURABLE: Welcome message (keep text on same line as div to avoid extra whitespace) -->
+                    <div class="chat-message bot"><div class="bot-label">YourBot</div>Hi! I'm YourBot. Ask me anything about [your topic]. What would you like to know?</div>
+                </div>
+
+                <!-- CONFIGURABLE: Suggestion chips — match to your bot's knowledge -->
+                <div class="chat-suggestions" id="chatSuggestions">
+                    <span class="suggestion-chip" onclick="sendSuggestion(this)">First question?</span>
+                    <span class="suggestion-chip" onclick="sendSuggestion(this)">Second question?</span>
+                    <span class="suggestion-chip" onclick="sendSuggestion(this)">Third question?</span>
+                </div>
+
+                <div class="chat-input-area">
+                    <!-- CONFIGURABLE: Input placeholder -->
+                    <input type="text" id="chatInput" placeholder="Ask a question...">
+                    <button class="chat-send-btn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION — Customize or remove -->
+        <section class="section" id="about">
+            <h2 class="section-title">About</h2>
+            <div class="card">
+                <h3>How YourBot Works</h3>
+                <p class="card-subtitle">Built with the Bot Factory framework</p>
+                <p>YourBot uses semantic search to find relevant answers from its knowledge base, then generates natural responses using Claude. Replace this text with a description of your bot and what it knows about.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>Built with <a href="#">Bot Factory</a> — a reusable RAG chatbot framework</p>
+    </footer>
+
+    <!-- ================================================================
+         BOT CONFIG
+         - apiUrl: Your bot's API endpoint (must match bot_id in config.yml)
+         - botName: Display name used in chat labels
+         - placeholder: Input field placeholder text
+         ================================================================ -->
+    <script>
+        window.BOT_CONFIG = {
+            apiUrl: '/api/your_bot',
+            botName: 'YourBot',
+            placeholder: 'Ask a question...'
+        };
+    </script>
+    <script src="bot_scripts/chat.js"></script>
+    <script src="bot_scripts/navigation.js"></script>
+
+</body>
+</html>

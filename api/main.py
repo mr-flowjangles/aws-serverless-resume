@@ -14,6 +14,7 @@ from routers.contact import router as contact_router
 from routers.resume import router as resume_router
 from ai.router import router as ai_router
 from fastapi.middleware.cors import CORSMiddleware
+from ai.factory import factory_router
 
 
 
@@ -51,8 +52,9 @@ app.add_middleware(
 is_lambda = os.getenv('AWS_LAMBDA_FUNCTION_NAME') is not None
 prefix = "/api" if is_lambda else ""
 
-# Include routers for different API sections
+# Include routers for different API sections, chatbots, etc
 app.include_router(health_router, prefix=prefix)
 app.include_router(resume_router, prefix=prefix)
 app.include_router(contact_router, prefix=prefix)
 app.include_router(ai_router, prefix=prefix)
+app.include_router(factory_router, prefix=prefix)
