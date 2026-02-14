@@ -1,132 +1,145 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuitarBot — Your Electric Guitar Assistant</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="bot_scripts/bot-factory.css" />
-  </head>
-  <body>
-    <!-- HEADER — CONFIGURABLE: title, subtitle, image -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Shared bot factory styles -->
+    <link rel="stylesheet" href="bot_scripts/bot-factory.css">
+    <!-- Guitar-specific styles (tab rendering) -->
+    <link rel="stylesheet" href="bot_scripts/guitar/guitar.css">
+</head>
+<body>
+
+    <!-- ================================================================
+         HEADER
+         ================================================================ -->
     <header class="site-header">
-      <div class="header-logo-area">
-        <img
-          src="assets/guitarLogo.png"
-          alt="Header Image, T-Style Guitar Image"
-          class="header-image"
-        />
-      </div>
-      <div class="header-text">
-        <div class="header-title">GuitarBot</div>
-        <div class="header-subtitle">Your Guitar Learning Assistant</div>
-      </div>
-      <span class="header-badge">Beta</span>
+        <div class="header-logo-area">
+            <img src="assets/guitar/guitarLogo.png" alt="Guitar Image" class="header-image">
+        </div>
+        <div class="header-text">
+            <div class="header-title">GuitarBot</div>
+            <div class="header-subtitle">Your Electric Guitar Learning Assistant</div>
+        </div>
+        <span class="header-badge">Beta</span>
     </header>
 
-    <!-- LEFT NAV — CONFIGURABLE: links and sections -->
+    <!-- ================================================================
+         LEFT NAV
+         ================================================================ -->
     <nav class="site-nav">
-      <div class="nav-section-label">Topics</div>
-      <a href="#chat" class="active"><span class="nav-icon">🎸</span> Chat</a>
-      <a href="#restringing"><span class="nav-icon">🔧</span> Restringing</a>
-      <a href="#tuning"><span class="nav-icon">🎵</span> Tuning</a>
-      <a href="#triads"><span class="nav-icon">🎶</span> Triads</a>
-      <a href="#chords"><span class="nav-icon">🎹</span> Barre Chords</a>
-      <a href="#progressions"><span class="nav-icon">🔄</span> Progressions</a>
+        <div class="nav-section-label">Topics</div>
+        <a href="#chat" class="active">
+            <span class="nav-icon">🎸</span> Chat
+        </a>
+        <a href="#restringing">
+            <span class="nav-icon">🔧</span> Restringing
+        </a>
+        <a href="#tuning">
+            <span class="nav-icon">🎵</span> Tuning
+        </a>
+        <a href="#triads">
+            <span class="nav-icon">🎶</span> Triads
+        </a>
+        <a href="#chords">
+            <span class="nav-icon">🎹</span> Barre Chords
+        </a>
+        <a href="#progressions">
+            <span class="nav-icon">🔄</span> Progressions
+        </a>
 
-      <div class="nav-section-label">Reference</div>
-      <a href="#caged"><span class="nav-icon">📍</span> CAGED System</a>
-      <a href="#about"><span class="nav-icon">ℹ️</span> About</a>
+        <div class="nav-section-label">Reference</div>
+        <a href="#caged">
+            <span class="nav-icon">📍</span> CAGED System
+        </a>
+        <a href="#about">
+            <span class="nav-icon">ℹ️</span> About
+        </a>
 
-      <div class="nav-spacer"></div>
-      <div class="nav-footer">Built with <a href="#">Bot Factory</a></div>
+        <div class="nav-spacer"></div>
+        <div class="nav-footer">
+            Built with <a href="#">Bot Factory</a>
+        </div>
     </nav>
 
-    <!-- MAIN CONTENT — Chat embedded in body -->
+    <!-- ================================================================
+         MAIN CONTENT
+         ================================================================ -->
     <main class="main-content">
-      <section class="section" id="chat">
-        <h2 class="section-title">Ask GuitarBot</h2>
 
-        <div class="chat-container">
-          <div class="chat-header">
-            <div class="chat-header-dot"></div>
-            <span class="chat-header-title">GuitarBot</span>
-            <span class="chat-header-status">Online</span>
-          </div>
+        <section class="section" id="chat">
+            <h2 class="section-title">Ask GuitarBot</h2>
 
-          <div class="chat-messages" id="chatMessages">
-            <div class="chat-message bot">
-              <div class="bot-label">GuitarBot</div>
-              Hey! Ask me anything about electric guitar — restringing, tuning,
-              chords, theory. What do you want to learn?
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-header-dot"></div>
+                    <span class="chat-header-title">GuitarBot</span>
+                    <span class="chat-header-status">Online</span>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message bot">
+                        <div class="bot-label">GuitarBot</div>
+                        Hey! Ask me anything about electric guitar — restringing, tuning, chords, theory. What do you want to learn?
+                    </div>
+                </div>
+
+                <div class="chat-suggestions" id="chatSuggestions">
+                    <button class="suggestion-chip" onclick="sendSuggestion(this)">How do I restring my guitar?</button>
+                    <button class="suggestion-chip" onclick="sendSuggestion(this)">Show me a G major triad</button>
+                    <button class="suggestion-chip" onclick="sendSuggestion(this)">What is the CAGED system?</button>
+                    <button class="suggestion-chip" onclick="sendSuggestion(this)">How do I tune my guitar?</button>
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Ask about guitar...">
+                    <button class="chat-send-btn" onclick="sendMessage()">Send</button>
+                </div>
             </div>
-          </div>
+        </section>
 
-          <div class="chat-suggestions" id="chatSuggestions">
-            <span class="suggestion-chip" onclick="sendSuggestion(this)"
-              >How do I restring?</span
-            >
-            <span class="suggestion-chip" onclick="sendSuggestion(this)"
-              >Standard tuning?</span
-            >
-            <span class="suggestion-chip" onclick="sendSuggestion(this)"
-              >C major triads</span
-            >
-            <span class="suggestion-chip" onclick="sendSuggestion(this)"
-              >Barre chord shapes</span
-            >
-            <span class="suggestion-chip" onclick="sendSuggestion(this)"
-              >I-IV-V progression</span
-            >
-          </div>
+        <section class="section" id="about">
+            <h2 class="section-title">About GuitarBot</h2>
+            <div class="card">
+                <h3>What is this?</h3>
+                <p>GuitarBot is a RAG-powered chatbot built with the Bot Factory framework. It uses OpenAI embeddings for semantic search across 60+ guitar knowledge entries and Claude Sonnet for natural language responses. Ask it about restringing, tuning, triads, barre chords, progressions, or the CAGED system.</p>
+            </div>
+        </section>
 
-          <div class="chat-input-area">
-            <input
-              type="text"
-              id="chatInput"
-              placeholder="Ask about guitar..."
-            />
-            <button class="chat-send-btn" onclick="sendMessage()">Send</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="about">
-        <h2 class="section-title">About</h2>
-        <div class="card">
-          <h3>How GuitarBot Works</h3>
-          <p class="card-subtitle">Built with the Bot Factory framework</p>
-          <p>
-            GuitarBot uses OpenAI embeddings for semantic search and Claude for
-            response generation. Its knowledge base covers restringing, tuning,
-            triads, barre chords, CAGED, and basic theory. Built on the Bot
-            Factory — a reusable framework where spinning up a new chatbot means
-            adding a config, a prompt, and a data folder.
-          </p>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
-      <p>
-        Built with <a href="#">Bot Factory</a> — a reusable RAG chatbot
-        framework
-      </p>
+        <p>Built with <a href="#">Bot Factory</a> — a reusable RAG chatbot framework</p>
     </footer>
 
-    <!-- CONFIGURABLE: Set bot config before loading scripts -->
+    <!-- ================================================================
+         SCRIPTS
+         
+         Load order matters:
+         1. BOT_CONFIG — defines the bot identity and API endpoint
+         2. formatter.js — registers guitarFormatMessage on BOT_CONFIG
+         3. chat.js — reads BOT_CONFIG.formatMessage at render time
+         4. navigation.js — nav highlighting (independent)
+         
+         To add a new bot: skip step 2 if no custom formatting needed.
+         chat.js falls back to plain text automatically.
+         ================================================================ -->
     <script>
-      window.BOT_CONFIG = {
-        apiUrl: "/api/guitar",
-        botName: "GuitarBot",
-        placeholder: "Ask about guitar...",
-      };
+        window.BOT_CONFIG = {
+            apiUrl: '/api/guitar',
+            botName: 'GuitarBot',
+            placeholder: 'Ask about guitar...'
+        };
     </script>
+    <!-- Guitar-specific: tab line detection and monospace rendering -->
+    <script src="bot_scripts/guitar/formatter.js"></script>
+    <!-- Shared -->
     <script src="bot_scripts/chat.js"></script>
     <script src="bot_scripts/navigation.js"></script>
-  </body>
+
+</body>
 </html>

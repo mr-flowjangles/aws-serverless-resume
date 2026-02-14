@@ -10,6 +10,10 @@
  *     botName: 'GuitarBot',
  *     placeholder: 'Ask about guitar...'
  *   };
+ * 
+ * Optional: Set window.BOT_CONFIG.formatMessage to a function that
+ * takes (text, containerDiv) and handles custom rendering.
+ * If not set, messages render as plain text.
  */
 
 const chatMessages = document.getElementById('chatMessages');
@@ -17,7 +21,7 @@ const chatInput = document.getElementById('chatInput');
 const chatSuggestions = document.getElementById('chatSuggestions');
 
 const config = window.BOT_CONFIG || {
-    apiUrl: '/api/guitar',
+    apiUrl: '/api/bot',
     botName: 'Bot',
     placeholder: 'Type a message...'
 };
@@ -67,10 +71,13 @@ async function sendMessage() {
 
 
 /**
- * Check if a line looks like guitar tab
+ * Default message formatter — plain text with line breaks
  */
-function isTabLine(line) {
-    return /^[eEBGDAa]\|/.test(line.trim());
+function defaultFormatMessage(text, container) {
+    const lines = text.split('\n');
+    for (const line of lines) {
+        container.appendChild(document.createTextNode(line + '\n'));
+    }
 }
 
 
@@ -87,39 +94,9 @@ function addMessage(text, type) {
         label.textContent = config.botName;
         div.appendChild(label);
 
-        // Split text into lines, group tab lines into monospace blocks
-        const lines = text.split('\n');
-        let inTab = false;
-        let tabLines = [];
-
-        for (const line of lines) {
-            if (isTabLine(line)) {
-                if (!inTab) {
-                    inTab = true;
-                    tabLines = [];
-                }
-                tabLines.push(line);
-            } else {
-                // Flush any pending tab block
-                if (inTab) {
-                    const tabSpan = document.createElement('span');
-                    tabSpan.className = 'tab-block';
-                    tabSpan.textContent = tabLines.join('\n');
-                    div.appendChild(tabSpan);
-                    div.appendChild(document.createTextNode('\n'));
-                    inTab = false;
-                }
-                div.appendChild(document.createTextNode(line + '\n'));
-            }
-        }
-
-        // Flush final tab block if message ends with tab
-        if (inTab) {
-            const tabSpan = document.createElement('span');
-            tabSpan.className = 'tab-block';
-            tabSpan.textContent = tabLines.join('\n');
-            div.appendChild(tabSpan);
-        }
+        // Use custom formatter if registered, otherwise plain text
+        const formatter = config.formatMessage || defaultFormatMessage;
+        formatter(text, div);
     } else {
         div.textContent = text;
     }
