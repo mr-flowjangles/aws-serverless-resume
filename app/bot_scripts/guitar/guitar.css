@@ -1,0 +1,15 @@
+/* ================================================================
+   GUITAR BOT — Specific Styles
+   Tab block rendering for guitar tablature output
+   ================================================================ */
+
+.tab-block {
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  white-space: pre;
+  margin: 0;
+  padding: 0;
+  color: var(--color-primary-light);
+}

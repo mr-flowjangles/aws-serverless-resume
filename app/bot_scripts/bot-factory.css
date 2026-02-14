@@ -379,16 +379,6 @@ body::before {
   margin-bottom: 0.3rem;
 }
 
-.tab-block {
-  display: block;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.82rem;
-  line-height: 1.4;
-  white-space: pre;
-  margin: 0.4rem 0;
-  color: var(--color-primary-light);
-}
-
 .typing-indicator {
   display: flex;
   gap: 4px;

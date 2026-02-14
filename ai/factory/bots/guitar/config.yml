@@ -31,3 +31,32 @@ suggestions:
   - "Show me C major triad voicings"
   - "What are barre chord shapes?"
   - "Explain the I-IV-V progression"
+
+# ================================================================
+# FRONTEND — Used by scaffold_bot.py to generate the HTML page
+# and create the folder structure under app/
+# ================================================================
+frontend:
+  subtitle: "Your Electric Guitar Learning Assistant"
+  welcome: "Hey! Ask me anything about electric guitar — restringing, tuning, chords, theory. What do you want to learn?"
+  placeholder: "Ask about guitar..."
+  badge: "Beta"
+  nav:
+    - icon: "🎸"
+      label: "Chat"
+      section: "chat"
+    - icon: "🔧"
+      label: "Restringing"
+      section: "restringing"
+    - icon: "🎵"
+      label: "Tuning"
+      section: "tuning"
+    - icon: "🎶"
+      label: "Triads"
+      section: "triads"
+    - icon: "🎹"
+      label: "Barre Chords"
+      section: "chords"
+    - icon: "🔄"
+      label: "Progressions"
+      section: "progressions"
