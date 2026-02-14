@@ -1,5 +1,7 @@
 # AWS Serverless Resume
 
+**THIS IS STILL A WIP**
+
 A serverless resume website that runs the **same FastAPI code** locally (Docker) and in production (AWS Lambda). Update your resume via Excel, deploy with Terraform.
 
 **Live Example:** [robrose.info](https://robrose.info)
