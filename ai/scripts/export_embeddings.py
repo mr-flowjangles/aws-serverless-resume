@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 Export embeddings from LocalStack to JSON file.
-Run from project root: docker compose exec api python /app/ai/scripts/export_embeddings.py
+Run from project root: docker compose exec api python /app/ai/scripts/export_embeddings.py guitar
 """
 import boto3
 import json
 import os
+import sys
 from decimal import Decimal
 
 
@@ -16,7 +17,7 @@ class DecimalEncoder(json.JSONEncoder):
         return super().default(o)
 
 
-def export_embeddings():
+def export_embeddings(bot_id):
     endpoint_url = os.getenv('AWS_ENDPOINT_URL', 'http://localstack:4566')
     
     if endpoint_url == "":
@@ -33,14 +34,21 @@ def export_embeddings():
         print("Exporting from LocalStack...")
     
     table = dynamodb.Table('ChatbotRAG')
-    response = table.scan()
+    
+    scan_kwargs = {
+        'FilterExpression': 'bot_id = :bid',
+        'ExpressionAttributeValues': {':bid': bot_id}
+    }
+    
+    response = table.scan(**scan_kwargs)
     items = response['Items']
     
     while 'LastEvaluatedKey' in response:
-        response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
+        scan_kwargs['ExclusiveStartKey'] = response['LastEvaluatedKey']
+        response = table.scan(**scan_kwargs)
         items.extend(response['Items'])
     
-    output_path = '_scratch/embeddings-export.json'
+    output_path = f'_scratch/{bot_id}-embeddings-export.json'
     with open(output_path, 'w') as f:
         json.dump(items, f, cls=DecimalEncoder)
     
@@ -48,4 +56,7 @@ def export_embeddings():
 
 
 if __name__ == '__main__':
-    export_embeddings()
+    if len(sys.argv) < 2:
+        print("Usage: python export_embeddings.py <bot_id>")
+        sys.exit(1)
+    export_embeddings(sys.argv[1])
