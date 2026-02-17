@@ -10,3 +10,7 @@ pytest
 pytest-asyncio
 pre-commit
 mangum
+openai
+anthropic
+numpy
+pyyaml

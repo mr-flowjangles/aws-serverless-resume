@@ -18,14 +18,10 @@ User question
 
 ## Prerequisites
 
-Install the factory dependencies from the project root:
+Dependencies (PyYAML, numpy, openai, anthropic, etc.) are installed inside the Docker container automatically. You don't need to install them on your host machine.
 
-```bash
-pip install -r ai/factory/requirements.txt
-```
-
-You'll also need:
-- **Docker** — for local development (`docker compose up`)
+You'll need:
+- **Docker** — for local development (`docker compose up -d`)
 - **AWS CLI** — configured with credentials for DynamoDB and S3
 - **OpenAI API key** — set as `OPENAI_API_KEY` environment variable (for embeddings)
 - **Anthropic API key** — set as `ANTHROPIC_API_KEY` environment variable (for Claude responses)
@@ -96,22 +92,25 @@ frontend:
 
 See [Config Reference](#config-reference) for all fields.
 
-### Step 3: Write prompt.md
+### Step 3: Write prompt.yml
 
-This is the system prompt sent to Claude with every request. It defines personality, rules, and response formatting.
+This is the system prompt sent to Claude with every request. It defines personality, rules, and response formatting. The `prompt` field supports `{current_date}` as a placeholder that gets injected at runtime.
 
 ```
-ai/factory/bots/{bot_id}/prompt.md
+ai/factory/bots/{bot_id}/prompt.yml
 ```
 
 Example:
-```markdown
-You are ChefBot, a friendly cooking assistant.
+```yaml
+prompt: |
+  You are ChefBot, a friendly cooking assistant.
 
-Rules:
-- Keep responses to 2-3 sentences
-- Always mention food safety when relevant
-- If asked about something outside cooking, politely redirect
+  Today's date is {current_date}.
+
+  Rules:
+  - Keep responses to 2-3 sentences
+  - Always mention food safety when relevant
+  - If asked about something outside cooking, politely redirect
 ```
 
 ### Step 4: Add knowledge data
@@ -124,19 +123,19 @@ ai/factory/bots/{bot_id}/data/
 
 Two entry types are supported:
 
-**Text entries** — content is already readable, embedded as-is:
+**String entries** — content is already readable, embedded as-is:
 ```yaml
 - id: knife_basics
-  format: text
+  format: string
   category: "Techniques"
   heading: "Knife Skills"
   content: "The three essential cuts are dice, julienne, and chiffonade..."
 ```
 
-**Structured entries** — a template applied to each item:
+**Object entries** — a template applied to each item:
 ```yaml
 - id: cooking_temps
-  format: structured
+  format: object
   category: "Temperatures"
   heading: "Protein Cooking Temperatures"
   template: "{protein} cooked to {doneness}: internal temp {temp}°F. {notes}"
@@ -151,14 +150,14 @@ Two entry types are supported:
       notes: "Warm red center."
 ```
 
-The chunker flattens structured entries using the template, so each item becomes a standalone text chunk for embedding.
+The chunker flattens object entries using the template, so each item becomes a standalone text chunk for embedding.
 
 ### Step 5: Generate embeddings
 
-From the project root:
+Run inside the Docker container so it hits LocalStack's DynamoDB and has all dependencies available:
 
 ```bash
-python -m ai.factory.core.generate_embeddings {bot_id}
+docker compose exec api python -m ai.factory.core.generate_embeddings {bot_id}
 ```
 
 This runs the full pipeline: chunker reads your YAML data, OpenAI converts each chunk to a 1,536-dimension vector, and the vectors are stored in the ChatbotRAG DynamoDB table tagged with your bot ID.
@@ -166,10 +165,35 @@ This runs the full pipeline: chunker reads your YAML data, OpenAI converts each 
 To regenerate after data changes:
 
 ```bash
-python -m ai.factory.core.generate_embeddings {bot_id} --force
+docker compose exec api python -m ai.factory.core.generate_embeddings {bot_id} --force
 ```
 
 The `--force` flag does a kill-and-fill scoped to your bot ID. Other bots' embeddings are untouched.
+
+> **Note:** Do not run the embeddings command directly on your host machine (`python -m ai.factory...`). The dependencies (PyYAML, numpy, openai, etc.) are installed inside the container, not locally.
+
+### Step 5b: Push embeddings to prod
+
+Embeddings are generated against LocalStack locally. To push them to prod DynamoDB, use the export/import scripts in `ai/scripts/`. Both scripts take a `bot_id` argument to scope the operation — only that bot's embeddings are touched.
+
+```bash
+# Export one bot from LocalStack to _scratch/ (run inside container)
+docker compose exec api python /app/ai/scripts/export_embeddings.py guitar
+
+# Import one bot to prod DynamoDB (run from host)
+python3 ai/scripts/import_embeddings.py guitar
+```
+
+The export saves to `_scratch/{bot_id}-embeddings-export.json` (already in `.gitignore`). The import deletes existing rows for that bot in prod, then writes the new ones. Other bots are untouched.
+
+To export/import all bots at once:
+
+```bash
+docker compose exec api python /app/ai/scripts/export_embeddings.py --all
+python3 ai/scripts/import_embeddings.py --all
+```
+
+> **Note:** Make sure `_scratch/` exists before exporting (`mkdir -p _scratch`). Run the import from your host machine where your AWS credentials are configured.
 
 ### Step 6: Scaffold the frontend
 
@@ -189,27 +213,35 @@ After scaffolding, add your logo and any custom styles or formatters.
 ### Step 7: Test locally
 
 ```bash
-docker compose up
+docker compose up -d
 ```
 
 Visit `http://localhost:8080/{bot_id}.html` and start chatting.
+
+> **Tip:** If you update backend code (router, chatbot, retrieval), rebuild with `docker compose up --build -d`. Frontend file changes (HTML, JS, CSS) require a hard refresh (Ctrl+Shift+R) if cached.
 
 ### Step 8: Deploy
 
 From the project root:
 
 ```bash
-# Backend (Lambda)
+# 1. Push embeddings to prod (if data changed — see Step 5b)
+docker compose exec api python /app/ai/scripts/export_embeddings.py {bot_id}
+python3 ai/scripts/import_embeddings.py {bot_id}
+
+# 2. Backend (Lambda)
 ./build-lambda.sh
 aws s3 cp terraform/builds/fastapi-app.zip s3://aws-serverless-resume-prod/lambda/fastapi-app.zip
 aws lambda update-function-code --function-name aws-serverless-resume-api --s3-bucket aws-serverless-resume-prod --s3-key lambda/fastapi-app.zip
 
-# Frontend (S3 + CloudFront)
+# 3. Frontend (S3 + CloudFront)
 aws s3 cp app/{bot_id}.html s3://aws-serverless-resume-prod/{bot_id}.html --cache-control "no-cache"
 aws s3 cp app/bot_scripts/{bot_id}/ s3://aws-serverless-resume-prod/bot_scripts/{bot_id}/ --recursive --cache-control "no-cache"
 aws s3 cp app/assets/{bot_id}/ s3://aws-serverless-resume-prod/assets/{bot_id}/ --recursive --cache-control "no-cache"
-aws cloudfront create-invalidation --distribution-id E1G5RMKV5G4GR7 --paths "/*"
+aws cloudfront create-invalidation --distribution-id <your_id> --paths "/*"
 ```
+
+Skip step 1 if you only changed code or frontend files. Skip steps 2-3 if you only changed knowledge data.
 
 ## Project Structure
 
@@ -229,7 +261,7 @@ ai/factory/
 └── bots/                      ← one folder per bot
     └── guitar/
         ├── config.yml         ← bot configuration
-        ├── prompt.md          ← system prompt for Claude
+        ├── prompt.yml         ← system prompt for Claude
         └── data/
             └── guitar-knowledge.yml
 
