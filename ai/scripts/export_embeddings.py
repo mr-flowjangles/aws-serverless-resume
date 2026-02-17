@@ -19,7 +19,7 @@ class DecimalEncoder(json.JSONEncoder):
 
 def export_embeddings(bot_id):
     endpoint_url = os.getenv('AWS_ENDPOINT_URL', 'http://localstack:4566')
-    
+
     if endpoint_url == "":
         dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
         print("Exporting from AWS production...")
@@ -32,7 +32,7 @@ def export_embeddings(bot_id):
             aws_secret_access_key='test'
         )
         print("Exporting from LocalStack...")
-    
+
     table = dynamodb.Table('ChatbotRAG')
     
     scan_kwargs = {
@@ -42,7 +42,7 @@ def export_embeddings(bot_id):
     
     response = table.scan(**scan_kwargs)
     items = response['Items']
-    
+
     while 'LastEvaluatedKey' in response:
         scan_kwargs['ExclusiveStartKey'] = response['LastEvaluatedKey']
         response = table.scan(**scan_kwargs)
@@ -51,8 +51,8 @@ def export_embeddings(bot_id):
     output_path = f'_scratch/{bot_id}-embeddings-export.json'
     with open(output_path, 'w') as f:
         json.dump(items, f, cls=DecimalEncoder)
-    
-    print(f'Exported {len(items)} embeddings to {output_path}')
+
+    print(f'Exported {len(items)} embeddings ({label}) to {output_path}')
 
 
 if __name__ == '__main__':

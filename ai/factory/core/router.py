@@ -29,10 +29,17 @@ from typing import Optional
 # Request/Response models
 # ---------------------------------------------------------------------------
 
+class ChatMessage(BaseModel):
+    """A single message in the conversation history."""
+    role: str
+    content: str
+
+
 class ChatRequest(BaseModel):
     """Request model for chat endpoint."""
     message: str
     session_id: Optional[str] = None
+    conversation_history: list[ChatMessage] = []
 
 
 class ChatResponse(BaseModel):
@@ -135,7 +142,7 @@ def create_bot_router(bot_id: str) -> APIRouter:
             result = generate_response(
                 bot_id=bot_id,
                 user_message=request.message,
-                conversation_history=None,
+                conversation_history=[msg.model_dump() for msg in request.conversation_history],
                 top_k=rag_config.get('top_k', 5),
                 similarity_threshold=rag_config.get('similarity_threshold', 0.3)
             )
