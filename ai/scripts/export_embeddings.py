@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 """
-Export embeddings from LocalStack to JSON file, scoped by bot_id.
-
-Usage:
-    docker compose exec api python /app/ai/scripts/export_embeddings.py guitar
-    docker compose exec api python /app/ai/scripts/export_embeddings.py robbai
-    docker compose exec api python /app/ai/scripts/export_embeddings.py --all
+Export embeddings from LocalStack to JSON file.
+Run from project root: docker compose exec api python /app/ai/scripts/export_embeddings.py guitar
 """
 import boto3
 import json
@@ -21,7 +17,7 @@ class DecimalEncoder(json.JSONEncoder):
         return super().default(o)
 
 
-def export_embeddings(bot_id=None):
+def export_embeddings(bot_id):
     endpoint_url = os.getenv('AWS_ENDPOINT_URL', 'http://localstack:4566')
 
     if endpoint_url == "":
@@ -38,16 +34,12 @@ def export_embeddings(bot_id=None):
         print("Exporting from LocalStack...")
 
     table = dynamodb.Table('ChatbotRAG')
-
-    # Filter by bot_id if specified, otherwise export all
-    if bot_id:
-        scan_kwargs = {
-            'FilterExpression': 'bot_id = :bid',
-            'ExpressionAttributeValues': {':bid': bot_id}
-        }
-    else:
-        scan_kwargs = {}
-
+    
+    scan_kwargs = {
+        'FilterExpression': 'bot_id = :bid',
+        'ExpressionAttributeValues': {':bid': bot_id}
+    }
+    
     response = table.scan(**scan_kwargs)
     items = response['Items']
 
@@ -55,14 +47,8 @@ def export_embeddings(bot_id=None):
         scan_kwargs['ExclusiveStartKey'] = response['LastEvaluatedKey']
         response = table.scan(**scan_kwargs)
         items.extend(response['Items'])
-
-    if bot_id:
-        output_path = f'_scratch/{bot_id}-embeddings-export.json'
-        label = f"'{bot_id}'"
-    else:
-        output_path = '_scratch/embeddings-export.json'
-        label = "all bots"
-
+    
+    output_path = f'_scratch/{bot_id}-embeddings-export.json'
     with open(output_path, 'w') as f:
         json.dump(items, f, cls=DecimalEncoder)
 
@@ -71,13 +57,6 @@ def export_embeddings(bot_id=None):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("Usage:")
-        print("  python export_embeddings.py <bot_id>    Export one bot")
-        print("  python export_embeddings.py --all       Export all bots")
+        print("Usage: python export_embeddings.py <bot_id>")
         sys.exit(1)
-
-    arg = sys.argv[1]
-    if arg == '--all':
-        export_embeddings(bot_id=None)
-    else:
-        export_embeddings(bot_id=arg)
+    export_embeddings(sys.argv[1])
