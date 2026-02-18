@@ -18,7 +18,7 @@
   --font-display: "Instrument Serif", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
   --nav-width: 240px;
-  --header-height: 150px;
+  --header-height: 155px;
 }
 
 /* ================================================================
@@ -104,6 +104,7 @@ body::before {
 
 .header-text {
   flex: 1;
+  padding-left: 1rem;
 }
 
 .header-title {
@@ -529,9 +530,20 @@ body::before {
 @media (max-width: 768px) {
   :root {
     --nav-width: 0px;
+    --header-height: 100px;
   }
   .site-nav {
     display: none;
+  }
+  .header-text {
+    display: none;
+  }
+  .header-logo-area {
+    width: 100%;
+  }
+  .header-image {
+    width: auto;
+    height: 100px;
   }
   .main-content {
     padding: 1.5rem;
