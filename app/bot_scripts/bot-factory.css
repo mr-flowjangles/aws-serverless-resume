@@ -18,7 +18,7 @@
   --font-display: "Instrument Serif", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
   --nav-width: 240px;
-  --header-height: 100px;
+  --header-height: 150px;
 }
 
 /* ================================================================
@@ -63,7 +63,7 @@ body::before {
   border-bottom: 2px solid var(--color-primary-dark);
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 2rem 0 0;
   z-index: 100;
 }
 
@@ -94,8 +94,8 @@ body::before {
 }
 
 .header-image {
-  max-width: 200px;
-  max-height: 80px;
+  width: 240px;
+  height: 155px;
   border-radius: 0;
   border: none;
   object-fit: contain;
