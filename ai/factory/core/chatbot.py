@@ -12,8 +12,9 @@ embeddings are used.
 import os
 from datetime import datetime
 from pathlib import Path
+from pyexpat.errors import messages
 import yaml
-import anthropic
+import boto3
 from .retrieval import retrieve_relevant_chunks, format_context_for_llm
 
 # ---------------------------------------------------------------------------
@@ -23,13 +24,13 @@ _anthropic_client = None
 _system_prompts = {}
 
 
-def get_anthropic_client() -> anthropic.Anthropic:
-    """Lazy-init Anthropic client."""
-    global _anthropic_client
-    if _anthropic_client is None:
-        _anthropic_client = anthropic.Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
-    return _anthropic_client
+_bedrock_client = None
 
+def get_bedrock_client():
+    global _bedrock_client
+    if _bedrock_client is None:
+        _bedrock_client = boto3.client('bedrock-runtime')
+    return _bedrock_client
 
 def load_system_prompt(bot_id: str) -> str:
     """
@@ -100,8 +101,8 @@ def generate_response(
     for msg in conversation_history:
         messages.append({
             "role": msg["role"],
-            "content": msg["content"]
-        })
+            "content": [{"text": msg["content"]}]
+    })
 
     # Add current user message with context
     user_content = f"""## Relevant Context:
@@ -114,23 +115,22 @@ Remember: Keep your response short and conversational. Write in PLAIN TEXT ONLY 
 
     messages.append({
         "role": "user",
-        "content": user_content
+        "content": [{"text": user_content}]
     })
 
     # Load this bot's system prompt
     system_prompt = load_system_prompt(bot_id)
 
     # Call Claude
-    client = get_anthropic_client()
-    response = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=1000,
-        system=system_prompt,
-        messages=messages
-    )
+    client = get_bedrock_client()
+    response = client.converse(
+        modelId="us.anthropic.claude-sonnet-4-20250514-v1:0",
+        inferenceConfig={"maxTokens": 1000},
+        system=[{"text": system_prompt}],
+        messages=messages)
 
     return {
-        "response": response.content[0].text,
+        "response": response["output"]["message"]["content"][0]["text"],
         "sources": [
             {
                 "category": chunk["category"],
