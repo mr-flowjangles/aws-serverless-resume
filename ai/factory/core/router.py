@@ -144,7 +144,7 @@ def create_bot_router(bot_id: str) -> APIRouter:
                 user_message=request.message,
                 conversation_history=[msg.model_dump() for msg in request.conversation_history],
                 top_k=rag_config.get('top_k', 5),
-                similarity_threshold=rag_config.get('similarity_threshold', 0.3)
+                similarity_threshold=rag_config.get('similarity_threshold')
             )
 
             # Log the interaction
