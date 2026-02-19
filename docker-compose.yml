@@ -37,6 +37,7 @@ services:
       # this ensures your personal info is not checked into source control
       - ./_scratch:/app/_scratch
       - ./ai:/app/ai
+      - ~/.aws:/root/.aws:ro
     environment:
       - RECAPTCHA_SECRET_KEY=${MY_RECAPTCHA_SECRET_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}

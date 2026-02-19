@@ -7,3 +7,4 @@ anthropic>=0.25.0
 numpy>=1.24.0
 pyyaml>=6.0
 uvicorn>=0.23.0
+botocore.session>=1.28.0

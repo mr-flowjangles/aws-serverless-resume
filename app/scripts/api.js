@@ -3,10 +3,7 @@
  */
 
 // Determine API base URL based on environment
-const API_BASE =
-  window.location.hostname === "localhost" ||
-  window.location.hostname === "127.0.0.1"
-    ? "/api"  // Local Docker environment
-    : "https://qehzqmqmwg.execute-api.us-east-1.amazonaws.com/prod/api";  // Production
+// API base URL - relative path works in all environments
+const API_BASE = "/api";
 
 export { API_BASE };
