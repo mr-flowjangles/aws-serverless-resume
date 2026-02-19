@@ -59,7 +59,14 @@ async function sendMessage() {
   const typing = showTyping();
 
   try {
-    const response = await fetch(`${config.apiUrl}/chat/stream`, {
+    const isLocal =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+    const endpoint = isLocal
+      ? `${config.apiUrl}/chat/stream`
+      : `${config.apiUrl}/chat`;
+
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -68,73 +75,51 @@ async function sendMessage() {
       }),
     });
 
-    // Create bot message container (but don't remove typing yet)
-    const div = document.createElement("div");
-    div.className = "chat-message bot";
-    const label = document.createElement("div");
-    label.className = "bot-label";
-    label.textContent = config.botName;
-    div.appendChild(label);
+    typing.remove();
 
-    // Stream the response
     let fullResponse = "";
-    let firstChunk = true;
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
 
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
+    if (isLocal) {
+      // Streaming: render chunks as they arrive
+      const div = document.createElement("div");
+      div.className = "chat-message bot";
+      const label = document.createElement("div");
+      label.className = "bot-label";
+      label.textContent = config.botName;
+      div.appendChild(label);
+      chatMessages.appendChild(div);
 
-      // Remove typing indicator on first chunk
-      if (firstChunk) {
-        typing.remove();
-        chatMessages.appendChild(div);
-        firstChunk = false;
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        console.log("[STREAM] chunk:", chunk.substring(0, 20)); // STREAM_DEBUG
+        fullResponse += chunk;
+
+        while (div.childNodes.length > 1) {
+          div.removeChild(div.lastChild);
+        }
+
+        const formatter = config.formatMessage || defaultFormatMessage;
+        formatter(fullResponse, div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
       }
-
-      const chunk = decoder.decode(value, { stream: true });
-      console.log('[STREAM] chunk:', chunk.substring(0, 20));  // STREAM_DEBUG
-      fullResponse += chunk;
-
-      // Update the message content
-      while (div.childNodes.length > 1) {
-        div.removeChild(div.lastChild);
-      }
-
-      const formatter = config.formatMessage || defaultFormatMessage;
-      formatter(fullResponse, div);
-
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+    } else {
+      // Production: parse JSON response
+      const data = await response.json();
+      fullResponse = data.response;
+      addMessage(fullResponse, "bot");
     }
 
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      const chunk = decoder.decode(value, { stream: true });
-      fullResponse += chunk;
-
-      // Update the message content
-      // Remove old text nodes (keep the label)
-      while (div.childNodes.length > 1) {
-        div.removeChild(div.lastChild);
-      }
-
-      // Re-render with formatter
-      const formatter = config.formatMessage || defaultFormatMessage;
-      formatter(fullResponse, div);
-
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // Track both sides of the exchange for follow-ups
     conversationHistory.push(
       { role: "user", content: message },
       { role: "assistant", content: fullResponse },
     );
 
-    // Cap at 10 exchanges (20 messages) to keep token costs in check
     const maxMessages = 20;
     if (conversationHistory.length > maxMessages) {
       conversationHistory.splice(0, conversationHistory.length - maxMessages);
