@@ -173,6 +173,8 @@ def generate_response_stream(
     """
     Same as generate_response, but yields text chunks for streaming.
     """
+    print(f"[STREAM] Starting stream for {bot_id}: {user_message[:50]}...")  # STREAM_DEBUG
+
     if conversation_history is None:
         conversation_history = []
 
@@ -223,7 +225,9 @@ Remember: Keep your response short and conversational. Write in PLAIN TEXT ONLY 
         messages=messages
     )
 
-    # Yield text chunks as they arrive
+   # Yield text chunks as they arrive
     for event in response["stream"]:
         if "contentBlockDelta" in event:
-            yield event["contentBlockDelta"]["delta"]["text"]
+            chunk = event["contentBlockDelta"]["delta"]["text"]  # STREAM_DEBUG
+            print(f"[STREAM] chunk: {chunk[:20]}...")  # STREAM_DEBUG
+            yield chunk

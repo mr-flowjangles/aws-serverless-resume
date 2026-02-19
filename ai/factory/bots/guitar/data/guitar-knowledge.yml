@@ -2254,6 +2254,20 @@ entries:
       A|---0---|
 
       E|---x---|'
+
+- id: chord_b_major_barre
+  format: string
+  category: Chords
+  heading: B Major Barre Chord
+  content: 'B Major barre chord (A-shape at 2nd fret):
+    e|---2---|
+    B|---4---|
+    G|---4---|
+    D|---4---|
+    A|---2---|
+    E|---x---|
+    Bar your index finger across fret 2 on strings A through high E, then use your ring finger to bar the D, G, and B strings at fret 4. Do not play the low E string. This is the standard way to play B major on guitar since there is no easy open chord shape for B.'
+
 - id: chord_e_minor
   format: object
   category: Chords

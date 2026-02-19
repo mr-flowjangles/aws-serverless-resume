@@ -94,6 +94,7 @@ async function sendMessage() {
       }
 
       const chunk = decoder.decode(value, { stream: true });
+      console.log('[STREAM] chunk:', chunk.substring(0, 20));  // STREAM_DEBUG
       fullResponse += chunk;
 
       // Update the message content
