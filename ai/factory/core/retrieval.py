@@ -105,8 +105,8 @@ def cosine_similarity(vec1: list[float], vec2: list[float]) -> float:
 def retrieve_relevant_chunks(
     bot_id: str,
     query: str,
-    top_k: int = 5,
-    similarity_threshold: float = 0.3
+    top_k: int,
+    similarity_threshold: float
 ) -> list[dict]:
     """
     Retrieve the most relevant chunks for a user's query, scoped to a bot.
@@ -129,6 +129,17 @@ def retrieve_relevant_chunks(
     items = get_cached_embeddings(bot_id)
     print(f"Searching {len(items)} embeddings...")
 
+
+    all_scores = []
+    for item in items:
+        stored_embedding = [float(x) for x in item['embedding']]
+        similarity = cosine_similarity(query_embedding, stored_embedding)
+        all_scores.append((similarity, item.get('category', ''), item.get('heading', '')))
+    all_scores.sort(reverse=True)
+    for score, cat, heading in all_scores[:5]:
+        print(f"  Score: {score:.4f} | {cat}: {heading}")
+
+
     # Calculate similarity for each chunk
     results = []
     for item in items:
@@ -146,8 +157,13 @@ def retrieve_relevant_chunks(
 
     print(f"Found {len(results)} results above threshold ({similarity_threshold})")
 
+    print(f"  Above 0.6: {len([r for r in results if r['similarity'] >= 0.6])}")
+    print(f"  Above 0.55: {len([r for r in results if r['similarity'] >= 0.55])}")
+    print(f"  Above 0.5: {len([r for r in results if r['similarity'] >= 0.5])}")
+
     # Sort by similarity (highest first) and return top K
     results.sort(key=lambda x: x['similarity'], reverse=True)
+    print(f"Found {len(results)} above threshold, returning top {top_k}")
     return results[:top_k]
 
 

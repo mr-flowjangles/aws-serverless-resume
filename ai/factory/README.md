@@ -23,8 +23,17 @@ Dependencies (PyYAML, numpy, openai, anthropic, etc.) are installed inside the D
 You'll need:
 - **Docker** — for local development (`docker compose up -d`)
 - **AWS CLI** — configured with credentials for DynamoDB and S3
+
+Claude Integration (Skip if you are intending to use Bedrock)
 - **OpenAI API key** — set as `OPENAI_API_KEY` environment variable (for embeddings)
 - **Anthropic API key** — set as `ANTHROPIC_API_KEY` environment variable (for Claude responses)
+
+Bedrock
+After you make your first call to bedrock, you'll need to do the following to continue. 
+- Go to the AWS Console:
+- Bedrock → Model catalog (or Model access)
+- There should be a prompt to submit use case details.  Mine was at the top of the page.
+- Fill it out — keep it simple ("AI chatbot for personal portfolio website")
 
 ## Creating a New Bot
 

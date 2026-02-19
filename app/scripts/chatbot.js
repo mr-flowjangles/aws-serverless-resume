@@ -7,10 +7,9 @@
 (async function() {
   'use strict';
 
+
   // API base URL
-  const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? '/api'
-    : 'https://qehzqmqmwg.execute-api.us-east-1.amazonaws.com/prod/api';
+  const API_BASE = '/api';
 
   // Check if chatbot is enabled
   let config;

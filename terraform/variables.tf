@@ -21,12 +21,14 @@ variable "environment" {
   type        = string
   default     = "prod"
 }
+
 variable "recaptcha_secret_key" {
   description = "Google reCAPTCHA secret key for contact form"
   type        = string
   sensitive   = true
   default     = ""
 }
+
 variable "notification_email" {
   description = "Email address to receive contact form notifications"
   type        = string
@@ -43,4 +45,9 @@ variable "anthropic_api_key" {
   description = "Anthropic API key for chatbot"
   type        = string
   sensitive   = true
+}
+
+variable "api_gateway_id" {
+  description = "API Gateway REST API ID"
+  type        = string
 }

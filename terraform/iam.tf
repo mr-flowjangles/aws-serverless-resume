@@ -85,3 +85,25 @@ resource "aws_iam_role_policy" "lambda_ses" {
     ]
   })
 }
+
+# Policy for Bedrock model invocation
+resource "aws_iam_role_policy" "lambda_bedrock" {
+  name = "${var.project_name}-lambda-bedrock-policy"
+  role = aws_iam_role.lambda_execution.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "bedrock:InvokeModel"
+        ]
+        Resource = [
+          "arn:aws:bedrock:*::foundation-model/*",
+          "arn:aws:bedrock:*:255977230735:inference-profile/*"
+        ]
+      }
+    ]
+  })
+}

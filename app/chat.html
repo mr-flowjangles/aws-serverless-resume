@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,8 +12,9 @@
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, Cantarell, sans-serif;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
         background: #f0f4f8;
         color: #1e293b;
         height: 100vh;
@@ -242,14 +243,40 @@
       <div class="sidebar">
         <h3>Try asking</h3>
         <ul class="suggestions" id="suggestions">
-          <li><button onclick="askQuestion('What is Rob\'s current role?')">What is Rob's current role?</button></li>
-          <li><button onclick="askQuestion('What are Rob\'s technical skills?')">What are Rob's technical skills?</button></li>
-          <li><button onclick="askQuestion('Tell me about Rob\'s AWS experience')">Tell me about Rob's AWS experience</button></li>
-          <li><button onclick="askQuestion('What kind of roles is Rob interested in?')">What kind of roles is Rob interested in?</button></li>
-          <li><button onclick="askQuestion('Does Rob have any hobbies?')">Does Rob have any hobbies?</button></li>
+          <li>
+            <button onclick="askQuestion('What is Rob\'s current role?')">
+              What is Rob's current role?
+            </button>
+          </li>
+          <li>
+            <button onclick="askQuestion('What are Rob\'s technical skills?')">
+              What are Rob's technical skills?
+            </button>
+          </li>
+          <li>
+            <button
+              onclick="askQuestion('Tell me about Rob\'s AWS experience')"
+            >
+              Tell me about Rob's AWS experience
+            </button>
+          </li>
+          <li>
+            <button
+              onclick="askQuestion('What kind of roles is Rob interested in?')"
+            >
+              What kind of roles is Rob interested in?
+            </button>
+          </li>
+          <li>
+            <button onclick="askQuestion('Does Rob have any hobbies?')">
+              Does Rob have any hobbies?
+            </button>
+          </li>
         </ul>
         <div class="sidebar-note">
-          RobbAI uses AI to answer questions about Rob's professional background. Responses are generated based on his resume and profile data.
+          RobbAI uses AI to answer questions about Rob's professional
+          background. Responses are generated based on his resume and profile
+          data.
         </div>
       </div>
 
@@ -257,10 +284,10 @@
         <div class="messages" id="messages"></div>
 
         <div class="input-area">
-          <input 
-            type="text" 
-            id="user-input" 
-            placeholder="RobbAI is initializing..." 
+          <input
+            type="text"
+            id="user-input"
+            placeholder="RobbAI is initializing..."
             onkeypress="handleKeyPress(event)"
             disabled
           />
@@ -270,17 +297,15 @@
     </div>
 
     <script>
-      const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-        ? "/api" 
-        : "https://qehzqmqmwg.execute-api.us-east-1.amazonaws.com/prod/api";
-      
+      const API_BASE = "/api";
+
       // Pre-warm Lambda and load embedding cache
       fetch(`${API_BASE}/health`).catch(() => {});
 
       // Keep Lambda warm with periodic pings every 3 minutes
       // Only ping if the page is visible (user is actively viewing it)
       setInterval(() => {
-        if (document.visibilityState === 'visible') {
+        if (document.visibilityState === "visible") {
           fetch(`${API_BASE}/health`).catch(() => {});
         }
       }, 180000); // 3 minutes = 180,000 milliseconds
@@ -317,12 +342,13 @@
       }
 
       async function streamGreeting() {
-        const greeting = "Hi! I'm RobbAI, pronounced Robby, Rob Rose's AI assistant. I can answer questions about his professional experience, technical skills, projects, and even his hobbies like guitar, golf, and hockey. How can I help you today?";
-        
+        const greeting =
+          "Hi! I'm RobbAI, pronounced Robby, Rob Rose's AI assistant. I can answer questions about his professional experience, technical skills, projects, and even his hobbies like guitar, golf, and hockey. How can I help you today?";
+
         const messageDiv = document.createElement("div");
         messageDiv.className = "message assistant";
         messageDiv.innerHTML = '<div class="name">RobbAI</div>';
-        
+
         const contentSpan = document.createElement("span");
         messageDiv.appendChild(contentSpan);
         messagesContainer.appendChild(messageDiv);
@@ -331,7 +357,7 @@
         for (let i = 0; i < greeting.length; i++) {
           contentSpan.textContent += greeting[i];
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
-          await new Promise(resolve => setTimeout(resolve, 30)); // 30ms per character
+          await new Promise((resolve) => setTimeout(resolve, 30)); // 30ms per character
         }
 
         // Enable input after greeting completes
@@ -374,7 +400,10 @@
           addMessage(data.response, "assistant");
         } catch (error) {
           loadingDiv.remove();
-          addMessage("Sorry, I encountered an error. Please try again.", "assistant");
+          addMessage(
+            "Sorry, I encountered an error. Please try again.",
+            "assistant",
+          );
           console.error("Chat error:", error);
         }
 
