@@ -16,8 +16,8 @@ bot:
 
   rag:
     embedding_model: "openai"
-    top_k: 10
-    similarity_threshold: 0.3
+    top_k: 3
+    similarity_threshold: 0.5
 
   boundaries:
     discuss_guitar: true
