@@ -162,3 +162,68 @@ Remember: Keep your response short and conversational. Write in PLAIN TEXT ONLY 
             for chunk in relevant_chunks
         ]
     }
+
+def generate_response_stream(
+    bot_id: str,
+    user_message: str,
+    top_k: int,
+    similarity_threshold: float,
+    conversation_history: list[dict] = None,
+):
+    """
+    Same as generate_response, but yields text chunks for streaming.
+    """
+    if conversation_history is None:
+        conversation_history = []
+
+    # Retrieve relevant context for this bot
+    relevant_chunks = retrieve_relevant_chunks(
+        bot_id=bot_id,
+        query=user_message,
+        top_k=top_k,
+        similarity_threshold=similarity_threshold
+    )
+
+    # Format context for the prompt
+    context = format_context_for_llm(relevant_chunks)
+
+    # Build messages array
+    messages = []
+
+    # Add conversation history
+    for msg in conversation_history:
+        messages.append({
+            "role": msg["role"],
+            "content": [{"text": msg["content"]}]
+        })
+
+    # Add current user message with context
+    user_content = f"""## Relevant Context:
+{context}
+
+## User Question:
+{user_message}
+
+Remember: Keep your response short and conversational. Write in PLAIN TEXT ONLY - do not use ** or any markdown. If you can't answer from the context, say so politely."""
+
+    messages.append({
+        "role": "user",
+        "content": [{"text": user_content}]
+    })
+
+    # Load this bot's system prompt
+    system_prompt = load_system_prompt(bot_id)
+
+    # Call Claude with streaming
+    client = get_bedrock_client()
+    response = client.converse_stream(
+        modelId="us.anthropic.claude-sonnet-4-20250514-v1:0",
+        inferenceConfig={"maxTokens": 1000},
+        system=[{"text": system_prompt}],
+        messages=messages
+    )
+
+    # Yield text chunks as they arrive
+    for event in response["stream"]:
+        if "contentBlockDelta" in event:
+            yield event["contentBlockDelta"]["delta"]["text"]

@@ -1,7 +1,7 @@
 bot:
   id: "guitar"
   enabled: true
-  name: "GuitarBot"
+  name: "The Fret Detective"
   personality: "friendly"
 
   response_style:
