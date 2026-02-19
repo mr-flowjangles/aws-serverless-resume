@@ -23,6 +23,7 @@ from datetime import datetime
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
+from fastapi.responses import StreamingResponse
 
 
 # ---------------------------------------------------------------------------
@@ -162,6 +163,38 @@ def create_bot_router(bot_id: str) -> APIRouter:
 
         except Exception as e:
             print(f"Chatbot error ({bot_id}): {e}")
+            raise HTTPException(status_code=500, detail="Error processing your message")
+
+
+    @router.post("/chat/stream")
+    async def chat_stream(request: ChatRequest):
+        """Send a message and stream the response."""
+        if not os.getenv('OPENAI_API_KEY'):
+            raise HTTPException(status_code=503, detail="Missing OpenAI API key")
+
+        if not request.message.strip():
+            raise HTTPException(status_code=400, detail="Message cannot be empty")
+
+        try:
+            config = load_bot_config(bot_id)
+            rag_config = config.get('bot', {}).get('rag', {})
+
+            from .chatbot import generate_response_stream
+
+            def stream_generator():
+                for chunk in generate_response_stream(
+                    bot_id=bot_id,
+                    user_message=request.message,
+                    conversation_history=[msg.model_dump() for msg in request.conversation_history],
+                    top_k=rag_config.get('top_k', 5),
+                    similarity_threshold=rag_config.get('similarity_threshold')
+                ):
+                    yield chunk
+
+            return StreamingResponse(stream_generator(), media_type="text/plain")
+
+        except Exception as e:
+            print(f"Chatbot stream error ({bot_id}): {e}")
             raise HTTPException(status_code=500, detail="Error processing your message")
 
     @router.get("/config", response_model=BotConfigResponse)

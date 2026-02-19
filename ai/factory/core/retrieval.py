@@ -83,6 +83,7 @@ def get_openai_client() -> OpenAI:
 
 def generate_query_embedding(query: str) -> list[float]:
     """Convert a user's question to an embedding vector."""
+    print(f"[STREAM] Embedding query: {query[:50]}...")  # STREAM_DEBUG
     client = get_openai_client()
     response = client.embeddings.create(
         model="text-embedding-3-small",
@@ -154,7 +155,7 @@ def retrieve_relevant_chunks(
                 'text': item['text'],
                 'similarity': float(similarity),
             })
-
+    print(f"[STREAM] Retrieved {len(results)} chunks, top score: {results[0]['similarity'] if results else 'N/A'}")  # STREAM_DEBUG
     print(f"Found {len(results)} results above threshold ({similarity_threshold})")
 
     print(f"  Above 0.6: {len([r for r in results if r['similarity'] >= 0.6])}")
