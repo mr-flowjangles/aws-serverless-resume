@@ -22,11 +22,10 @@ resource "aws_cloudfront_distribution" "website" {
     origin_access_control_id = aws_cloudfront_origin_access_control.website.id
   }
 
-  # API Gateway origin
+  # Lambda Function URL origin (replaces API Gateway)
   origin {
-    domain_name = "${var.api_gateway_id}.execute-api.us-east-1.amazonaws.com"
-    origin_id   = "APIGateway"
-    origin_path = "/prod"
+    domain_name = replace(replace(aws_lambda_function_url.streaming.function_url, "https://", ""), "/", "")
+    origin_id   = "LambdaFunctionURL"
 
     custom_origin_config {
       http_port              = 80
@@ -36,12 +35,12 @@ resource "aws_cloudfront_distribution" "website" {
     }
   }
 
-  # Route /api/* to API Gateway — must come before default_cache_behavior
+  # Route /api/* to Lambda Function URL — must come before default_cache_behavior
   ordered_cache_behavior {
     path_pattern           = "/api/*"
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods         = ["GET", "HEAD"]
-    target_origin_id       = "APIGateway"
+    target_origin_id       = "LambdaFunctionURL"
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
 
