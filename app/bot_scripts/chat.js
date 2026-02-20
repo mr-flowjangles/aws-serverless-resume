@@ -39,9 +39,6 @@ function sendSuggestion(chip) {
 }
 
 /**
- * Send the current input as a message
- */
-/**
  * Send the current input as a message (with streaming)
  */
 async function sendMessage() {
@@ -62,9 +59,13 @@ async function sendMessage() {
     const isLocal =
       window.location.hostname === "localhost" ||
       window.location.hostname === "127.0.0.1";
+
+    // Use Lambda Function URL for streaming in production
+    const streamingBaseUrl =
+      "https://3ettzcchtayaww5ff7pxowx7ka0tapuw.lambda-url.us-east-1.on.aws";
     const endpoint = isLocal
       ? `${config.apiUrl}/chat/stream`
-      : `${config.apiUrl}/chat`;
+      : `${streamingBaseUrl}${config.apiUrl}/chat/stream`;
 
     const response = await fetch(endpoint, {
       method: "POST",
@@ -79,40 +80,32 @@ async function sendMessage() {
 
     let fullResponse = "";
 
-    if (isLocal) {
-      // Streaming: render chunks as they arrive
-      const div = document.createElement("div");
-      div.className = "chat-message bot";
-      const label = document.createElement("div");
-      label.className = "bot-label";
-      label.textContent = config.botName;
-      div.appendChild(label);
-      chatMessages.appendChild(div);
+    // Streaming: render chunks as they arrive
+    const div = document.createElement("div");
+    div.className = "chat-message bot";
+    const label = document.createElement("div");
+    label.className = "bot-label";
+    label.textContent = config.botName;
+    div.appendChild(label);
+    chatMessages.appendChild(div);
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
 
-        const chunk = decoder.decode(value, { stream: true });
-        console.log("[STREAM] chunk:", chunk.substring(0, 20)); // STREAM_DEBUG
-        fullResponse += chunk;
+      const chunk = decoder.decode(value, { stream: true });
+      fullResponse += chunk;
 
-        while (div.childNodes.length > 1) {
-          div.removeChild(div.lastChild);
-        }
-
-        const formatter = config.formatMessage || defaultFormatMessage;
-        formatter(fullResponse, div);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+      while (div.childNodes.length > 1) {
+        div.removeChild(div.lastChild);
       }
-    } else {
-      // Production: parse JSON response
-      const data = await response.json();
-      fullResponse = data.response;
-      addMessage(fullResponse, "bot");
+
+      const formatter = config.formatMessage || defaultFormatMessage;
+      formatter(fullResponse, div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     conversationHistory.push(
@@ -171,5 +164,9 @@ chatInput.addEventListener("keydown", function (e) {
   if (e.key === "Enter") sendMessage();
 });
 
-// Warm up embedding cache on page load
-fetch(`${config.apiUrl}/warmup`).catch(() => {});
+const warmupUrl =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1"
+    ? `${config.apiUrl}/warmup`
+    : `https://3ettzcchtayaww5ff7pxowx7ka0tapuw.lambda-url.us-east-1.on.aws${config.apiUrl}/warmup`;
+fetch(warmupUrl).catch(() => {});
