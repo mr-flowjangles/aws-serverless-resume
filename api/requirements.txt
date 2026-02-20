@@ -9,7 +9,7 @@ httpx
 pytest
 pytest-asyncio
 pre-commit
-mangum
+mangum>=0.17.0
 openai
 anthropic
 numpy
