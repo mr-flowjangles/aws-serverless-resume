@@ -1,0 +1,126 @@
+meta:
+  bot_id: guitar
+  title: 'Key of Db - Triad Position Clusters'
+  version: '1'
+  date: '2026-02-20'
+
+entries:
+
+- id: key_db_position_3
+  format: string
+  category: Triad Positions
+  heading: Key of Db - Triads around fret 3
+  search_terms: "Db key triads fret 3, Db Ebm Fm Gb Ab Bbm triads position 3, triads 3rd fret key of Db, Db major key position 3, D flat key triads, C# key triads"
+  content: |
+    Key of Db - Position around fret 3
+    Anchor: Fm 1st (1-1-1) on GBE
+    
+    DGB strings:
+    Db 1st (3-1-2) | Ebm root (1-0-1) | Fm root (3-1-1)
+    Gb root (4-3-2) | Ab root (6-5-4) | Bbm root (8-6-6)
+    
+    GBE strings:
+    Db 2nd (1-2-1) | Ebm 1st (3-4-2) | Fm 1st (1-1-1)
+    Gb 1st (3-2-2) | Ab 1st (5-4-4) | Bbm 1st (6-6-6)
+
+- id: key_db_position_5
+  format: string
+  category: Triad Positions
+  heading: Key of Db - Triads around fret 5
+  search_terms: "Db key triads fret 5, Db Ebm Fm Gb Ab Bbm triads position 5, triads 5th fret key of Db, Db major key position 5, D flat key triads, C# key triads"
+  content: |
+    Key of Db - Position around fret 5
+    Anchor: Ab 1st (5-4-4) on GBE
+    
+    DGB strings:
+    Db 2nd (6-6-6) | Ebm 2nd (8-8-7) | Fm root (3-1-1)
+    Gb root (4-3-2) | Ab root (6-5-4) | Bbm 2nd (3-3-2)
+    
+    GBE strings:
+    Db root (6-6-4) | Ebm root (8-7-6) | Fm 2nd (5-6-4)
+    Gb 1st (3-2-2) | Ab 1st (5-4-4) | Bbm 1st (6-6-6)
+
+- id: key_db_position_7
+  format: string
+  category: Triad Positions
+  heading: Key of Db - Triads around fret 7
+  search_terms: "Db key triads fret 7, Db Ebm Fm Gb Ab Bbm triads position 7, triads 7th fret key of Db, Db major key position 7, D flat key triads, C# key triads"
+  content: |
+    Key of Db - Position around fret 7
+    Anchor: Gb 2nd (6-7-6) on GBE
+    
+    DGB strings:
+    Db 2nd (6-6-6) | Ebm 2nd (8-8-7) | Fm 2nd (6-6-5)
+    Gb 1st (8-6-7) | Ab root (6-5-4) | Bbm root (8-6-6)
+    
+    GBE strings:
+    Db root (6-6-4) | Ebm root (8-7-6) | Fm 2nd (5-6-4)
+    Gb 2nd (6-7-6) | Ab 2nd (8-9-8) | Bbm 1st (6-6-6)
+
+- id: key_db_position_9
+  format: string
+  category: Triad Positions
+  heading: Key of Db - Triads around fret 9
+  search_terms: "Db key triads fret 9, Db Ebm Fm Gb Ab Bbm triads position 9, triads 9th fret key of Db, Db major key position 9, D flat key triads, C# key triads"
+  content: |
+    Key of Db - Position around fret 9
+    Anchor: Db root (9-9-7) on GBE
+    
+    DGB strings:
+    Db 1st (9-7-8) | Ebm 2nd (8-8-7) | Fm 1st (6-5-6)
+    Gb 1st (8-6-7) | Ab 1st (10-8-9) | Bbm root (8-6-6)
+    
+    GBE strings:
+    Db root (9-9-7) | Ebm root (8-7-6) | Fm root (10-9-8)
+    Gb 2nd (6-7-6) | Ab 2nd (8-9-8) | Bbm 2nd (10-11-9)
+
+- id: key_db_position_12
+  format: string
+  category: Triad Positions
+  heading: Key of Db - Triads around fret 12
+  search_terms: "Db key triads fret 12, Db Ebm Fm Gb Ab Bbm triads position 12, triads 12th fret key of Db, Db major key position 12, D flat key triads, C# key triads"
+  content: |
+    Key of Db - Position around fret 12
+    Anchor: Bbm root (13-12-11) on GBE
+    
+    DGB strings:
+    Db root (11-10-9) | Ebm root (13-11-11) | Fm 2nd (10-10-9)
+    Gb 2nd (11-11-11) | Ab 1st (10-8-9) | Bbm 1st (11-10-11)
+    
+    GBE strings:
+    Db 1st (10-9-9) | Ebm 1st (11-11-11) | Fm root (10-9-8)
+    Gb root (11-11-9) | Ab root (13-13-11) | Bbm root (13-12-11)
+
+- id: key_db_position_15
+  format: string
+  category: Triad Positions
+  heading: Key of Db - Triads around fret 15
+  search_terms: "Db key triads fret 15, Db Ebm Fm Gb Ab Bbm triads position 15, triads 15th fret key of Db, Db major key position 15, D flat key triads, C# key triads"
+  content: |
+    Key of Db - Position around fret 15
+    Anchor: Fm 1st (13-13-13) on GBE
+    
+    DGB strings:
+    Db root (11-10-9) | Ebm root (13-11-11) | Fm root (15-13-13)
+    Gb root (16-15-14) | Ab 2nd (13-13-13) | Bbm 2nd (15-15-14)
+    
+    GBE strings:
+    Db 1st (10-9-9) | Ebm 1st (11-11-11) | Fm 1st (13-13-13)
+    Gb 1st (15-14-14) | Ab root (13-13-11) | Bbm root (15-14-13)
+
+- id: key_db_position_17
+  format: string
+  category: Triad Positions
+  heading: Key of Db - Triads around fret 17
+  search_terms: "Db key triads fret 17, Db Ebm Fm Gb Ab Bbm triads position 17, triads 17th fret key of Db, Db major key position 17, D flat key triads, C# key triads"
+  content: |
+    Key of Db - Position around fret 17
+    Anchor: Gb root (16-15-14) on DGB
+    
+    DGB strings:
+    Db 2nd (18-18-18) | Ebm 1st (16-15-16) | Fm root (15-13-13)
+    Gb root (16-15-14) | Ab 2nd (13-13-13) | Bbm 2nd (15-15-14)
+    
+    GBE strings:
+    Db root (18-18-16) | Ebm 2nd (15-16-14) | Fm 1st (13-13-13)
+    Gb 1st (15-14-14) | Ab 1st (17-16-16) | Bbm root (15-14-13)

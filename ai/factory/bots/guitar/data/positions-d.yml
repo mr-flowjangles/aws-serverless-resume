@@ -1,0 +1,126 @@
+meta:
+  bot_id: guitar
+  title: 'Key of D - Triad Position Clusters'
+  version: '1'
+  date: '2026-02-20'
+
+entries:
+
+- id: key_d_position_3
+  format: string
+  category: Triad Positions
+  heading: Key of D - Triads around fret 3
+  search_terms: "D key triads fret 3, D Em F#m G A Bm triads position 3, triads 3rd fret key of D, D major key position 3"
+  content: |
+    Key of D - Position around fret 3
+    Anchor: G root (5-4-3) on DGB
+    
+    DGB strings:
+    D 1st (4-2-3) | Em root (2-0-0) | F#m root (4-2-2)
+    G 2nd (0-0-0) | A 2nd (2-2-2) | Bm 2nd (4-4-3)
+    
+    GBE strings:
+    D 2nd (2-3-2) | Em 1st (0-0-0) | F#m 1st (2-2-2)
+    G 1st (4-3-3) | A root (2-2-0) | Bm root (4-3-2)
+
+- id: key_d_position_5
+  format: string
+  category: Triad Positions
+  heading: Key of D - Triads around fret 5
+  search_terms: "D key triads fret 5, D Em F#m G A Bm triads position 5, triads 5th fret key of D, D major key position 5"
+  content: |
+    Key of D - Position around fret 5
+    Anchor: A 1st (6-5-5) on GBE
+    
+    DGB strings:
+    D 1st (4-2-3) | Em 1st (5-4-5) | F#m root (4-2-2)
+    G root (5-4-3) | A 2nd (2-2-2) | Bm 2nd (4-4-3)
+    
+    GBE strings:
+    D 2nd (2-3-2) | Em 2nd (4-5-3) | F#m 1st (2-2-2)
+    G 1st (4-3-3) | A 1st (6-5-5) | Bm root (4-3-2)
+
+- id: key_d_position_7
+  format: string
+  category: Triad Positions
+  heading: Key of D - Triads around fret 7
+  search_terms: "D key triads fret 7, D Em F#m G A Bm triads position 7, triads 7th fret key of D, D major key position 7"
+  content: |
+    Key of D - Position around fret 7
+    Anchor: D root (7-7-5) on GBE
+    
+    DGB strings:
+    D 2nd (7-7-7) | Em 1st (5-4-5) | F#m 2nd (6-7-5)
+    G root (5-4-3) | A root (7-6-5) | Bm root (9-7-7)
+    
+    GBE strings:
+    D root (7-7-5) | Em 2nd (4-5-3) | F#m 2nd (6-7-5)
+    G 2nd (7-8-7) | A 1st (6-5-5) | Bm 1st (7-7-7)
+
+- id: key_d_position_9
+  format: string
+  category: Triad Positions
+  heading: Key of D - Triads around fret 9
+  search_terms: "D key triads fret 9, D Em F#m G A Bm triads position 9, triads 9th fret key of D, D major key position 9"
+  content: |
+    Key of D - Position around fret 9
+    Anchor: A 2nd (9-10-9) on GBE
+    
+    DGB strings:
+    D 2nd (7-7-7) | Em 2nd (9-9-8) | F#m 1st (7-6-7)
+    G 1st (9-7-8) | A root (7-6-5) | Bm root (9-7-7)
+    
+    GBE strings:
+    D root (7-7-5) | Em root (9-8-7) | F#m 2nd (6-7-5)
+    G 2nd (7-8-7) | A 2nd (9-10-9) | Bm 1st (7-7-7)
+
+- id: key_d_position_12
+  format: string
+  category: Triad Positions
+  heading: Key of D - Triads around fret 12
+  search_terms: "D key triads fret 12, D Em F#m G A Bm triads position 12, triads 12th fret key of D, D major key position 12"
+  content: |
+    Key of D - Position around fret 12
+    Anchor: D root (12-11-10) on DGB
+    
+    DGB strings:
+    D root (12-11-10) | Em 2nd (9-9-8) | F#m 2nd (11-11-10)
+    G 1st (9-7-8) | A 1st (11-9-10) | Bm 1st (12-11-12)
+    
+    GBE strings:
+    D 1st (11-10-10) | Em root (9-8-7) | F#m root (11-10-9)
+    G root (12-12-10) | A 2nd (9-10-9) | Bm 2nd (11-12-10)
+
+- id: key_d_position_15
+  format: string
+  category: Triad Positions
+  heading: Key of D - Triads around fret 15
+  search_terms: "D key triads fret 15, D Em F#m G A Bm triads position 15, triads 15th fret key of D, D major key position 15"
+  content: |
+    Key of D - Position around fret 15
+    Anchor: G root (17-16-15) on DGB
+    
+    DGB strings:
+    D root (12-11-10) | Em root (14-12-12) | F#m root (16-14-14)
+    G 2nd (12-12-12) | A 2nd (14-14-14) | Bm 2nd (16-16-15)
+    
+    GBE strings:
+    D 1st (11-10-10) | Em 1st (12-12-12) | F#m 1st (14-14-14)
+    G 1st (16-15-15) | A root (14-14-12) | Bm root (16-15-14)
+
+- id: key_d_position_17
+  format: string
+  category: Triad Positions
+  heading: Key of D - Triads around fret 17
+  search_terms: "D key triads fret 17, D Em F#m G A Bm triads position 17, triads 17th fret key of D, D major key position 17"
+  content: |
+    Key of D - Position around fret 17
+    Anchor: A root (14-14-12) on GBE [or D 1st (16-14-15) on DGB]
+    
+    DGB strings:
+    D 1st (16-14-15) | Em 1st (17-16-17) | F#m root (16-14-14)
+    G root (17-16-15) | A 2nd (14-14-14) | Bm 2nd (16-16-15)
+    
+    GBE strings:
+    D 2nd (14-15-14) | Em 2nd (16-17-15) | F#m 1st (14-14-14)
+    G 1st (16-15-15) | A root (14-14-12) | Bm root (16-15-14)

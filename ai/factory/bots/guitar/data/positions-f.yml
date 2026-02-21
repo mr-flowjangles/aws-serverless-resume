@@ -1,0 +1,126 @@
+meta:
+  bot_id: guitar
+  title: 'Key of F - Triad Position Clusters'
+  version: '1'
+  date: '2026-02-20'
+
+entries:
+
+- id: key_f_position_3
+  format: string
+  category: Triad Positions
+  heading: Key of F - Triads around fret 3
+  search_terms: "F key triads fret 3, F Gm Am Bb C Dm triads position 3, triads 3rd fret key of F, F major key position 3"
+  content: |
+    Key of F - Position around fret 3
+    Anchor: F root (3-2-1) on DGB
+    
+    DGB strings:
+    F root (3-2-1) | Gm root (5-3-3) | Am root (7-5-5)
+    Bb 2nd (3-3-3) | C 1st (2-0-1) | Dm 1st (3-2-3)
+    
+    GBE strings:
+    F 1st (2-1-1) | Gm 1st (3-3-3) | Am 1st (5-5-5)
+    Bb root (3-3-1) | C 2nd (0-1-0) | Dm root (7-6-5)
+
+- id: key_f_position_5
+  format: string
+  category: Triad Positions
+  heading: Key of F - Triads around fret 5
+  search_terms: "F key triads fret 5, F Gm Am Bb C Dm triads position 5, triads 5th fret key of F, F major key position 5"
+  content: |
+    Key of F - Position around fret 5
+    Anchor: C root (5-5-3) on GBE
+    
+    DGB strings:
+    F root (3-2-1) | Gm root (5-3-3) | Am root (7-5-5)
+    Bb 2nd (3-3-3) | C 2nd (5-5-5) | Dm 1st (3-2-3)
+    
+    GBE strings:
+    F 2nd (5-6-5) | Gm 1st (3-3-3) | Am 1st (5-5-5)
+    Bb root (3-3-1) | C root (5-5-3) | Dm root (7-6-5)
+
+- id: key_f_position_7
+  format: string
+  category: Triad Positions
+  heading: Key of F - Triads around fret 7
+  search_terms: "F key triads fret 7, F Gm Am Bb C Dm triads position 7, triads 7th fret key of F, F major key position 7"
+  content: |
+    Key of F - Position around fret 7
+    Anchor: Dm 2nd (7-7-6) on DGB
+    
+    DGB strings:
+    F 1st (7-5-6) | Gm root (5-3-3) | Am root (7-5-5)
+    Bb root (8-7-6) | C 2nd (5-5-5) | Dm 2nd (7-7-6)
+    
+    GBE strings:
+    F 2nd (5-6-5) | Gm 2nd (7-8-6) | Am 1st (5-5-5)
+    Bb 1st (7-6-6) | C root (5-5-3) | Dm root (7-6-5)
+
+- id: key_f_position_9
+  format: string
+  category: Triad Positions
+  heading: Key of F - Triads around fret 9
+  search_terms: "F key triads fret 9, F Gm Am Bb C Dm triads position 9, triads 9th fret key of F, F major key position 9"
+  content: |
+    Key of F - Position around fret 9
+    Anchor: Am 2nd (9-10-8) on GBE
+    
+    DGB strings:
+    F 1st (7-5-6) | Gm 1st (8-7-8) | Am 1st (10-9-10)
+    Bb root (8-7-6) | C root (10-9-8) | Dm 2nd (7-7-6)
+    
+    GBE strings:
+    F root (10-10-8) | Gm 2nd (7-8-6) | Am 2nd (9-10-8)
+    Bb 1st (7-6-6) | C 1st (9-8-8) | Dm root (7-6-5)
+
+- id: key_f_position_12
+  format: string
+  category: Triad Positions
+  heading: Key of F - Triads around fret 12
+  search_terms: "F key triads fret 12, F Gm Am Bb C Dm triads position 12, triads 12th fret key of F, F major key position 12"
+  content: |
+    Key of F - Position around fret 12
+    Anchor: Gm root (12-11-10) on GBE
+    
+    DGB strings:
+    F 2nd (10-10-10) | Gm 1st (8-7-8) | Am 1st (10-9-10)
+    Bb 1st (12-10-11) | C root (10-9-8) | Dm root (12-10-10)
+    
+    GBE strings:
+    F root (10-10-8) | Gm root (12-11-10) | Am 2nd (9-10-8)
+    Bb 2nd (10-11-10) | C 1st (9-8-8) | Dm 1st (10-10-10)
+
+- id: key_f_position_15
+  format: string
+  category: Triad Positions
+  heading: Key of F - Triads around fret 15
+  search_terms: "F key triads fret 15, F Gm Am Bb C Dm triads position 15, triads 15th fret key of F, F major key position 15"
+  content: |
+    Key of F - Position around fret 15
+    Anchor: F root (15-14-13) on DGB
+    
+    DGB strings:
+    F root (15-14-13) | Gm 2nd (12-12-11) | Am 2nd (14-14-13)
+    Bb 2nd (15-15-15) | C 1st (14-12-13) | Dm root (12-10-10)
+    
+    GBE strings:
+    F 1st (14-13-13) | Gm root (12-11-10) | Am root (14-13-12)
+    Bb root (15-15-13) | C root (17-17-15) | Dm 1st (10-10-10)
+
+- id: key_f_position_17
+  format: string
+  category: Triad Positions
+  heading: Key of F - Triads around fret 17
+  search_terms: "F key triads fret 17, F Gm Am Bb C Dm triads position 17, triads 17th fret key of F, F major key position 17"
+  content: |
+    Key of F - Position around fret 17
+    Anchor: C root (17-17-15) on GBE
+    
+    DGB strings:
+    F root (15-14-13) | Gm root (17-15-15) | Am 2nd (14-14-13)
+    Bb 2nd (15-15-15) | C 2nd (17-17-17) | Dm 1st (15-14-15)
+    
+    GBE strings:
+    F 2nd (17-18-17) | Gm 1st (15-15-15) | Am 1st (17-17-17)
+    Bb root (15-15-13) | C root (17-17-15) | Dm root (19-18-17)

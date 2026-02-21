@@ -1,0 +1,126 @@
+meta:
+  bot_id: guitar
+  title: 'Key of C - Triad Position Clusters'
+  version: '1'
+  date: '2026-02-20'
+
+entries:
+
+- id: key_c_position_3
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 3
+  search_terms: "C key triads fret 3, C Dm Em F G Am triads position 3, triads 3rd fret key of C, C major key position 3"
+  content: |
+    Key of C - Position around fret 3
+    Anchor: F root (3-2-1) on DGB
+    
+    DGB strings:
+    C 1st (2-0-1) | Dm 1st (3-2-3) | Em root (2-0-0)
+    F root (3-2-1) | G 2nd (0-0-0) | Am 2nd (2-2-1)
+    
+    GBE strings:
+    C 2nd (0-1-0) | Dm 2nd (2-3-1) | Em 1st (0-0-0)
+    F 1st (2-1-1) | G 1st (4-3-3) | Am root (2-1-0)
+
+- id: key_c_position_5
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 5
+  search_terms: "C key triads fret 5, C Dm Em F G Am triads position 5, triads 5th fret key of C, C major key position 5"
+  content: |
+    Key of C - Position around fret 5
+    Anchor: C root (5-5-3) on GBE
+    
+    DGB strings:
+    C 2nd (5-5-5) | Dm 1st (3-2-3) | Em 1st (5-4-5)
+    F root (3-2-1) | G root (5-4-3) | Am root (7-5-5)
+    
+    GBE strings:
+    C root (5-5-3) | Dm root (7-6-5) | Em 2nd (4-5-3)
+    F 2nd (5-6-5) | G 1st (4-3-3) | Am 1st (5-5-5)
+
+- id: key_c_position_7
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 7
+  search_terms: "C key triads fret 7, C Dm Em F G Am triads position 7, triads 7th fret key of C, C major key position 7"
+  content: |
+    Key of C - Position around fret 7
+    Anchor: Dm 2nd (7-7-6) on DGB
+    
+    DGB strings:
+    C 2nd (5-5-5) | Dm 2nd (7-7-6) | Em 1st (5-4-5)
+    F 1st (7-5-6) | G root (5-4-3) | Am root (7-5-5)
+    
+    GBE strings:
+    C root (5-5-3) | Dm root (7-6-5) | Em root (9-8-7)
+    F 2nd (5-6-5) | G 2nd (7-8-7) | Am 1st (5-5-5)
+
+- id: key_c_position_9
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 9
+  search_terms: "C key triads fret 9, C Dm Em F G Am triads position 9, triads 9th fret key of C, C major key position 9"
+  content: |
+    Key of C - Position around fret 9
+    Anchor: Em 2nd (9-9-8) on DGB
+    
+    DGB strings:
+    C root (10-9-8) | Dm 2nd (7-7-6) | Em 2nd (9-9-8)
+    F 1st (7-5-6) | G 1st (9-7-8) | Am 1st (10-9-10)
+    
+    GBE strings:
+    C 1st (9-8-8) | Dm root (7-6-5) | Em root (9-8-7)
+    F root (10-10-8) | G 2nd (7-8-7) | Am 2nd (9-10-8)
+
+- id: key_c_position_12
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 12
+  search_terms: "C key triads fret 12, C Dm Em F G Am triads position 12, triads 12th fret key of C, C major key position 12"
+  content: |
+    Key of C - Position around fret 12
+    Anchor: G root (12-12-10) on GBE
+    
+    DGB strings:
+    C root (10-9-8) | Dm root (12-10-10) | Em 2nd (9-9-8)
+    F 2nd (10-10-10) | G 1st (9-7-8) | Am 1st (10-9-10)
+    
+    GBE strings:
+    C 1st (9-8-8) | Dm 1st (10-10-10) | Em root (9-8-7)
+    F root (10-10-8) | G root (12-12-10) | Am 2nd (9-10-8)
+
+- id: key_c_position_15
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 15
+  search_terms: "C key triads fret 15, C Dm Em F G Am triads position 15, triads 15th fret key of C, C major key position 15"
+  content: |
+    Key of C - Position around fret 15
+    Anchor: F root (15-14-13) on DGB
+    
+    DGB strings:
+    C 1st (14-12-13) | Dm root (12-10-10) | Em root (14-12-12)
+    F root (15-14-13) | G 2nd (12-12-12) | Am 2nd (14-14-13)
+    
+    GBE strings:
+    C root (17-17-15) | Dm 1st (10-10-10) | Em 1st (12-12-12)
+    F 1st (14-13-13) | G root (12-12-10) | Am root (14-13-12)
+
+- id: key_c_position_17
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 17
+  search_terms: "C key triads fret 17, C Dm Em F G Am triads position 17, triads 17th fret key of C, C major key position 17"
+  content: |
+    Key of C - Position around fret 17
+    Anchor: C root (17-17-15) on GBE
+    
+    DGB strings:
+    C 2nd (17-17-17) | Dm 1st (15-14-15) | Em 1st (17-16-17)
+    F root (15-14-13) | G root (17-16-15) | Am 2nd (14-14-13)
+    
+    GBE strings:
+    C root (17-17-15) | Dm root (19-18-17) | Em 2nd (16-17-15)
+    F 2nd (17-18-17) | G 1st (16-15-15) | Am 1st (17-17-17)

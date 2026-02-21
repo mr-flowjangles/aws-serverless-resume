@@ -1,0 +1,126 @@
+meta:
+  bot_id: guitar
+  title: 'Key of Bb - Triad Position Clusters'
+  version: '1'
+  date: '2026-02-20'
+
+entries:
+
+- id: key_bb_position_3
+  format: string
+  category: Triad Positions
+  heading: Key of Bb - Triads around fret 3
+  search_terms: "Bb key triads fret 3, Bb Cm Dm Eb F Gm triads position 3, triads 3rd fret key of Bb, Bb major key position 3, B flat key triads"
+  content: |
+    Key of Bb - Position around fret 3
+    Anchor: Bb root (3-3-1) on GBE
+    
+    DGB strings:
+    Bb 2nd (3-3-3) | Cm 2nd (5-5-4) | Dm 1st (3-2-3)
+    Eb 1st (4-3-4) | F root (3-2-1) | Gm root (5-3-3)
+    
+    GBE strings:
+    Bb root (3-3-1) | Cm root (5-4-3) | Dm 2nd (2-3-1)
+    Eb 2nd (3-4-3) | F 1st (2-1-1) | Gm 1st (3-3-3)
+
+- id: key_bb_position_5
+  format: string
+  category: Triad Positions
+  heading: Key of Bb - Triads around fret 5
+  search_terms: "Bb key triads fret 5, Bb Cm Dm Eb F Gm triads position 5, triads 5th fret key of Bb, Bb major key position 5, B flat key triads"
+  content: |
+    Key of Bb - Position around fret 5
+    Anchor: Dm root (7-6-5) on GBE
+    
+    DGB strings:
+    Bb 2nd (3-3-3) | Cm 2nd (5-5-4) | Dm 2nd (7-7-6)
+    Eb 1st (4-3-4) | F root (3-2-1) | Gm root (5-3-3)
+    
+    GBE strings:
+    Bb 1st (7-6-6) | Cm root (5-4-3) | Dm root (7-6-5)
+    Eb 2nd (3-4-3) | F 2nd (5-6-5) | Gm 1st (3-3-3)
+
+- id: key_bb_position_7
+  format: string
+  category: Triad Positions
+  heading: Key of Bb - Triads around fret 7
+  search_terms: "Bb key triads fret 7, Bb Cm Dm Eb F Gm triads position 7, triads 7th fret key of Bb, Bb major key position 7, B flat key triads"
+  content: |
+    Key of Bb - Position around fret 7
+    Anchor: Eb root (8-8-6) on GBE
+    
+    DGB strings:
+    Bb root (8-7-6) | Cm 2nd (5-5-4) | Dm 2nd (7-7-6)
+    Eb 2nd (8-8-8) | F 1st (7-5-6) | Gm 1st (8-7-8)
+    
+    GBE strings:
+    Bb 1st (7-6-6) | Cm 1st (8-8-8) | Dm root (7-6-5)
+    Eb root (8-8-6) | F 2nd (5-6-5) | Gm 2nd (7-8-6)
+
+- id: key_bb_position_9
+  format: string
+  category: Triad Positions
+  heading: Key of Bb - Triads around fret 9
+  search_terms: "Bb key triads fret 9, Bb Cm Dm Eb F Gm triads position 9, triads 9th fret key of Bb, Bb major key position 9, B flat key triads"
+  content: |
+    Key of Bb - Position around fret 9
+    Anchor: F root (10-10-8) on GBE
+    
+    DGB strings:
+    Bb root (8-7-6) | Cm root (10-8-8) | Dm 2nd (7-7-6)
+    Eb 2nd (8-8-8) | F 2nd (10-10-10) | Gm 1st (8-7-8)
+    
+    GBE strings:
+    Bb 2nd (10-11-10) | Cm 1st (8-8-8) | Dm root (7-6-5)
+    Eb root (8-8-6) | F root (10-10-8) | Gm 2nd (7-8-6)
+
+- id: key_bb_position_12
+  format: string
+  category: Triad Positions
+  heading: Key of Bb - Triads around fret 12
+  search_terms: "Bb key triads fret 12, Bb Cm Dm Eb F Gm triads position 12, triads 12th fret key of Bb, Bb major key position 12, B flat key triads"
+  content: |
+    Key of Bb - Position around fret 12
+    Anchor: Gm root (12-11-10) on GBE
+    
+    DGB strings:
+    Bb 1st (12-10-11) | Cm root (10-8-8) | Dm root (12-10-10)
+    Eb root (13-12-11) | F 2nd (10-10-10) | Gm 1st (8-7-8)
+    
+    GBE strings:
+    Bb 2nd (10-11-10) | Cm 2nd (12-13-11) | Dm 1st (10-10-10)
+    Eb 1st (12-11-11) | F root (10-10-8) | Gm root (12-11-10)
+
+- id: key_bb_position_15
+  format: string
+  category: Triad Positions
+  heading: Key of Bb - Triads around fret 15
+  search_terms: "Bb key triads fret 15, Bb Cm Dm Eb F Gm triads position 15, triads 15th fret key of Bb, Bb major key position 15, B flat key triads"
+  content: |
+    Key of Bb - Position around fret 15
+    Anchor: Bb root (15-15-13) on GBE
+    
+    DGB strings:
+    Bb 2nd (15-15-15) | Cm 2nd (17-17-16) | Dm root (12-10-10)
+    Eb root (13-12-11) | F root (15-14-13) | Gm root (17-15-15)
+    
+    GBE strings:
+    Bb root (15-15-13) | Cm root (17-16-15) | Dm 1st (10-10-10)
+    Eb 1st (12-11-11) | F 1st (14-13-13) | Gm 1st (15-15-15)
+
+- id: key_bb_position_17
+  format: string
+  category: Triad Positions
+  heading: Key of Bb - Triads around fret 17
+  search_terms: "Bb key triads fret 17, Bb Cm Dm Eb F Gm triads position 17, triads 17th fret key of Bb, Bb major key position 17, B flat key triads"
+  content: |
+    Key of Bb - Position around fret 17
+    Anchor: Cm root (17-16-15) on GBE
+    
+    DGB strings:
+    Bb 2nd (15-15-15) | Cm 2nd (17-17-16) | Dm 1st (15-14-15)
+    Eb 1st (16-15-16) | F root (15-14-13) | Gm root (17-15-15)
+    
+    GBE strings:
+    Bb 1st (19-18-18) | Cm root (17-16-15) | Dm root (19-18-17)
+    Eb 2nd (15-16-15) | F 2nd (17-18-17) | Gm 1st (15-15-15)
