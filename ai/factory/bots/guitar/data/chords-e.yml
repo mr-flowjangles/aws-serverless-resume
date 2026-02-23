@@ -1,0 +1,292 @@
+meta:
+  bot_id: guitar
+  title: E Chords and Triads
+  version: '1'
+  date: '2026-02-21'
+entries:
+- id: triad_e_maj
+  format: object
+  category: Triads
+  heading: E Major Triad Voicings
+  search_terms: E triad, E major triad, E major chord triad, E chord triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 2-1-0
+    notes: E, G#, B
+    fret_range: 0-2
+  - inversion: 1st
+    strings: DGB
+    frets: 6-4-5
+    notes: G#, B, E
+    fret_range: 4-6
+  - inversion: 2nd
+    strings: DGB
+    frets: 9-9-9
+    notes: B, E, G#
+    fret_range: 9-9
+  - inversion: root
+    strings: GBE
+    frets: 9-9-7
+    notes: E, G#, B
+    fret_range: 7-9
+  - inversion: 1st
+    strings: GBE
+    frets: 1-0-0
+    notes: G#, B, E
+    fret_range: 0-1
+  - inversion: 2nd
+    strings: GBE
+    frets: 4-5-4
+    notes: B, E, G#
+    fret_range: 4-5
+- id: triad_e_min
+  format: object
+  category: Triads
+  heading: E Minor Triad Voicings
+  search_terms: E minor triad, Em triad, E min triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 2-0-0
+    notes: E, G, B
+    fret_range: 0-2
+  - inversion: 1st
+    strings: DGB
+    frets: 5-4-5
+    notes: G, B, E
+    fret_range: 4-5
+  - inversion: 2nd
+    strings: DGB
+    frets: 9-9-8
+    notes: B, E, G
+    fret_range: 8-9
+  - inversion: root
+    strings: GBE
+    frets: 9-8-7
+    notes: E, G, B
+    fret_range: 7-9
+  - inversion: 1st
+    strings: GBE
+    frets: 0-0-0
+    notes: G, B, E
+    fret_range: 0-0
+  - inversion: 2nd
+    strings: GBE
+    frets: 4-5-3
+    notes: B, E, G
+    fret_range: 3-5
+- id: triad_e_dim
+  format: object
+  category: Triads
+  heading: E Diminished Triad Voicings
+  search_terms: E diminished triad, E dim triad, Edim triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 14-12-11
+    notes: E, G, A#
+    fret_range: 11-14
+  - inversion: 1st
+    strings: DGB
+    frets: 5-3-5
+    notes: G, A#, E
+    fret_range: 3-5
+  - inversion: 2nd
+    strings: DGB
+    frets: 8-9-8
+    notes: A#, E, G
+    fret_range: 8-9
+  - inversion: root
+    strings: GBE
+    frets: 9-8-6
+    notes: E, G, A#
+    fret_range: 6-9
+  - inversion: 1st
+    strings: GBE
+    frets: 12-11-12
+    notes: G, A#, E
+    fret_range: 11-12
+  - inversion: 2nd
+    strings: GBE
+    frets: 3-5-3
+    notes: A#, E, G
+    fret_range: 3-5
+- id: triad_e_aug
+  format: object
+  category: Triads
+  heading: E Augmented Triad Voicings
+  search_terms: E augmented triad, E aug triad, Eaug triad, E+ triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 2-1-1
+    notes: E, G#, C
+    fret_range: 1-2
+  - inversion: 1st
+    strings: DGB
+    frets: 6-5-5
+    notes: G#, C, E
+    fret_range: 5-6
+  - inversion: 2nd
+    strings: DGB
+    frets: 10-9-9
+    notes: C, E, G#
+    fret_range: 9-10
+  - inversion: root
+    strings: GBE
+    frets: 9-9-8
+    notes: E, G#, C
+    fret_range: 8-9
+  - inversion: 1st
+    strings: GBE
+    frets: 1-1-0
+    notes: G#, C, E
+    fret_range: 0-1
+  - inversion: 2nd
+    strings: GBE
+    frets: 5-5-4
+    notes: C, E, G#
+    fret_range: 4-5
+- id: chord_e_major
+  format: object
+  category: Chords
+  heading: E Major Open Chord
+  search_terms: E chord, E major, E major chord, how to play E
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: E Major open chord
+    frets: 0-2-2-1-0-0
+    notes: E, B, E, G#, B, E
+    tip: All six strings ring out. Middle finger on A string 2nd fret, ring finger on D string 2nd fret, index on G string
+      1st fret.
+    tab: 'e|---0---|
+
+      B|---0---|
+
+      G|---1---|
+
+      D|---2---|
+
+      A|---2---|
+
+      E|---0---|'
+- id: chord_e_minor
+  format: object
+  category: Chords
+  heading: E Minor Open Chord
+  search_terms: Em chord, E minor, E minor chord, how to play Em
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: E minor (Em) open chord
+    frets: 0-2-2-0-0-0
+    notes: E, B, E, G, B, E
+    tip: One of the easiest chords on guitar. Just two fingers. Middle on A string 2nd fret, ring on D string 2nd fret. All
+      six strings ring out.
+    tab: 'e|---0---|
+
+      B|---0---|
+
+      G|---0---|
+
+      D|---2---|
+
+      A|---2---|
+
+      E|---0---|'
+- id: chord_e7
+  format: object
+  category: Chords
+  heading: E7 Chord
+  search_terms: E7 chord, E dominant 7, E seven chord, how to play E7
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: E7 (E dominant 7th) open chord
+    frets: 0-2-0-1-0-0
+    notes: E, B, D, G#, B, E
+    tip: Like E major but lift your ring finger off the D string. The open D gives you the flat 7th.
+    tab: 'e|---0---|
+
+      B|---0---|
+
+      G|---1---|
+
+      D|---0---|
+
+      A|---2---|
+
+      E|---0---|'
+- id: chord_em7
+  format: object
+  category: Chords
+  heading: Em7 Chord
+  search_terms: Em7 chord, E minor 7, E minor seven chord, how to play Em7
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: Em7 (E minor 7th) open chord
+    frets: 0-2-0-0-0-0
+    notes: E, B, D, G, B, E
+    tip: Easiest 7th chord. Just one finger. Middle finger on A string 2nd fret, everything else open.
+    tab: 'e|---0---|
+
+      B|---0---|
+
+      G|---0---|
+
+      D|---0---|
+
+      A|---2---|
+
+      E|---0---|'
+- id: chord_esus4
+  format: object
+  category: Chords
+  heading: Esus4 Chord
+  search_terms: Esus4 chord, E suspended 4, E sus 4, how to play Esus4
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: Esus4 (E suspended 4th) open chord
+    frets: 0-2-2-2-0-0
+    notes: E, B, E, A, B, E
+    tip: Like E major but add your ring finger on G string 2nd fret. The A replaces the G# (3rd) with A (4th). Resolves beautifully
+      to E major.
+    tab: 'e|---0---|
+
+      B|---0---|
+
+      G|---2---|
+
+      D|---2---|
+
+      A|---2---|
+
+      E|---0---|'

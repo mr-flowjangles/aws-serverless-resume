@@ -8,6 +8,8 @@ Handles two format types:
   - "text": content is already readable text, pass through as-is
   - "structured": apply the template string to each item to produce text
 
+Supports optional 'search_terms' field to improve semantic search matching.
+
 Input:  bot_id string (resolves to bots/{bot_id}/data/ folder)
 Output: List of dicts with {id, bot_id, category, heading, text}
 """
@@ -95,12 +97,19 @@ def chunk_entry(entry: dict) -> str:
 
     # Accept aliases
     if fmt in ('text', 'string'):
-        return chunk_text_entry(entry)
+        text = chunk_text_entry(entry)
     elif fmt in ('structured', 'object'):
-        return chunk_structured_entry(entry)
+        text = chunk_structured_entry(entry)
     else:
         print(f"  Warning: unknown format '{fmt}' for entry '{entry.get('id')}', treating as text")
-        return chunk_text_entry(entry)
+        text = chunk_text_entry(entry)
+
+    # Prepend search terms if present (improves semantic search matching)
+    search_terms = entry.get('search_terms', '')
+    if search_terms:
+        text = f"Search terms: {search_terms}\n\n{text}"
+
+    return text
 
 
 def load_bot_data(bot_id: str) -> list[dict]:

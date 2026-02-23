@@ -1,0 +1,191 @@
+meta:
+  bot_id: guitar
+  title: B Chords and Triads
+  version: '1'
+  date: '2026-02-21'
+entries:
+- id: triad_b_maj
+  format: object
+  category: Triads
+  heading: B Major Triad Voicings
+  search_terms: B triad, B major triad, B major chord triad, B chord triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 9-8-7
+    notes: B, D#, F#
+    fret_range: 7-9
+  - inversion: 1st
+    strings: DGB
+    frets: 13-11-12
+    notes: D#, F#, B
+    fret_range: 11-13
+  - inversion: 2nd
+    strings: DGB
+    frets: 4-4-4
+    notes: F#, B, D#
+    fret_range: 4-4
+  - inversion: root
+    strings: GBE
+    frets: 4-4-2
+    notes: B, D#, F#
+    fret_range: 2-4
+  - inversion: 1st
+    strings: GBE
+    frets: 8-7-7
+    notes: D#, F#, B
+    fret_range: 7-8
+  - inversion: 2nd
+    strings: GBE
+    frets: 11-12-11
+    notes: F#, B, D#
+    fret_range: 11-12
+- id: triad_b_min
+  format: object
+  category: Triads
+  heading: B Minor Triad Voicings
+  search_terms: B minor triad, Bm triad, B min triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 9-7-7
+    notes: B, D, F#
+    fret_range: 7-9
+  - inversion: 1st
+    strings: DGB
+    frets: 12-11-12
+    notes: D, F#, B
+    fret_range: 11-12
+  - inversion: 2nd
+    strings: DGB
+    frets: 4-4-3
+    notes: F#, B, D
+    fret_range: 3-4
+  - inversion: root
+    strings: GBE
+    frets: 4-3-2
+    notes: B, D, F#
+    fret_range: 2-4
+  - inversion: 1st
+    strings: GBE
+    frets: 7-7-7
+    notes: D, F#, B
+    fret_range: 7-7
+  - inversion: 2nd
+    strings: GBE
+    frets: 11-12-10
+    notes: F#, B, D
+    fret_range: 10-12
+- id: triad_b_dim
+  format: object
+  category: Triads
+  heading: B Diminished Triad Voicings
+  search_terms: B diminished triad, B dim triad, Bdim triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 9-7-6
+    notes: B, D, F
+    fret_range: 6-9
+  - inversion: 1st
+    strings: DGB
+    frets: 12-10-12
+    notes: D, F, B
+    fret_range: 10-12
+  - inversion: 2nd
+    strings: DGB
+    frets: 3-4-3
+    notes: F, B, D
+    fret_range: 3-4
+  - inversion: root
+    strings: GBE
+    frets: 4-3-1
+    notes: B, D, F
+    fret_range: 1-4
+  - inversion: 1st
+    strings: GBE
+    frets: 7-6-7
+    notes: D, F, B
+    fret_range: 6-7
+  - inversion: 2nd
+    strings: GBE
+    frets: 10-12-10
+    notes: F, B, D
+    fret_range: 10-12
+- id: triad_b_aug
+  format: object
+  category: Triads
+  heading: B Augmented Triad Voicings
+  search_terms: B augmented triad, B aug triad, Baug triad, B+ triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 9-8-8
+    notes: B, D#, G
+    fret_range: 8-9
+  - inversion: 1st
+    strings: DGB
+    frets: 1-0-0
+    notes: D#, G, B
+    fret_range: 0-1
+  - inversion: 2nd
+    strings: DGB
+    frets: 5-4-4
+    notes: G, B, D#
+    fret_range: 4-5
+  - inversion: root
+    strings: GBE
+    frets: 4-4-3
+    notes: B, D#, G
+    fret_range: 3-4
+  - inversion: 1st
+    strings: GBE
+    frets: 8-8-7
+    notes: D#, G, B
+    fret_range: 7-8
+  - inversion: 2nd
+    strings: GBE
+    frets: 12-12-11
+    notes: G, B, D#
+    fret_range: 11-12
+- id: chord_b_major_barre
+  format: string
+  category: Chords
+  heading: B Major Barre Chord
+  search_terms: B chord, B major, B major chord, how to play B, B barre chord
+  content: 'B Major barre chord (A-shape at 2nd fret): e|---2---| B|---4---| G|---4---| D|---4---| A|---2---| E|---x---| Bar
+    your index finger across fret 2 on strings A through high E, then use your ring finger to bar the D, G, and B strings
+    at fret 4. Do not play the low E string. This is the standard way to play B major on guitar since there is no easy open
+    chord shape for B.'
+- id: chord_b7
+  format: object
+  category: Chords
+  heading: B7 Chord
+  search_terms: B7 chord, B dominant 7, B seven chord, how to play B7
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: B7 (B dominant 7th) open chord
+    frets: x-2-1-2-0-2
+    notes: x, B, D#, A, B, F#
+    tip: Do not play the low E string. Middle finger on A string 2nd fret, index on D string 1st fret, ring on G string 2nd
+      fret, pinky on high E string 2nd fret.
+    tab: 'e|---2---|
+
+      B|---0---|
+
+      G|---2---|
+
+      D|---1---|
+
+      A|---2---|
+
+      E|---x---|'

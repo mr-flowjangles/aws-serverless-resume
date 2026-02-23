@@ -1,0 +1,86 @@
+meta:
+  bot_id: guitar
+  title: "Guitar Scales"
+  version: "1"
+  date: "2026-02-21"
+
+entries:
+  - id: scale_minor_pentatonic
+    format: object
+    category: Scales
+    heading: Minor pentatonic scale (the first scale every guitarist should learn)
+    search_terms: "minor pentatonic, pentatonic scale, first scale, blues scale, box 1"
+    template: |
+      Minor pentatonic {position}. Key of {key}. Root: {root_location}. {tip}
+
+      Tab:
+      {tab}
+    items:
+      - position: box 1 (position 1)
+        key: A minor
+        root_location: 6th string 5th fret
+        tip: The most important scale pattern on guitar. This one box covers most blues and rock soloing. Move it to any fret to change key.
+        tab: |
+          e|---5---8---|
+          B|---5---8---|
+          G|---5---7---|
+          D|---5---7---|
+          A|---5---7---|
+          E|---5---8---|
+      - position: box 2 (position 2)
+        key: A minor
+        root_location: 4th string 7th fret
+        tip: Connects to box 1 going up the neck. Practice shifting between box 1 and box 2 for a wider range.
+        tab: |
+          e|---8---10---|
+          B|---8---10---|
+          G|---7---9----|
+          D|---7---9----|
+          A|---7---10---|
+          E|---8---10---|
+
+  - id: scale_major_pentatonic
+    format: object
+    category: Scales
+    heading: Major pentatonic scale
+    search_terms: "major pentatonic, pentatonic major, country scale, happy scale"
+    template: |
+      Major pentatonic {position}. Key of {key}. Root: {root_location}. {tip}
+
+      Tab:
+      {tab}
+    items:
+      - position: box 1 (position 1)
+        key: G major
+        root_location: 6th string 3rd fret
+        tip: Same shape as E minor pentatonic box 1 but rooted 3 frets lower. Bright, happy sound. Great for country and pop soloing.
+        tab: |
+          e|---2---3---5---|
+          B|---3---5-------|
+          G|---2---4-------|
+          D|---2---4---5---|
+          A|---2---5-------|
+          E|---2---3---5---|
+
+  - id: scale_blues_scale
+    format: object
+    category: Scales
+    heading: Blues scale (minor pentatonic with the blue note)
+    search_terms: "blues scale, blue note, blues solo, blues lick"
+    template: |
+      Blues scale {position}. Key of {key}. Root: {root_location}. {tip}
+
+      Tab:
+      {tab}
+    items:
+      - position: box 1 (position 1)
+        key: A minor blues
+        root_location: 6th string 5th fret
+        tip: "The minor pentatonic with one added note: the flat 5th (blue note) on the D string 8th fret. Notes: A, C, D, Eb, E, G. Use the blue note as a passing tone or bend into it for maximum expression."
+        tab: |
+          e|---5---8-------|
+          B|---5---8-------|
+          G|---5---7-------|
+          D|---5---7---8---|
+          A|---5---7-------|
+          E|---5---8-------|

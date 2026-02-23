@@ -1,0 +1,236 @@
+meta:
+  bot_id: guitar
+  title: C Chords and Triads
+  version: '1'
+  date: '2026-02-21'
+entries:
+- id: triad_c_maj
+  format: object
+  category: Triads
+  heading: C Major Triad Voicings
+  search_terms: C triad, C major triad, C major chord triad, C chord triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 10-9-8
+    notes: C, E, G
+    fret_range: 8-10
+  - inversion: 1st
+    strings: DGB
+    frets: 2-0-1
+    notes: E, G, C
+    fret_range: 0-2
+  - inversion: 2nd
+    strings: DGB
+    frets: 5-5-5
+    notes: G, C, E
+    fret_range: 5-5
+  - inversion: root
+    strings: GBE
+    frets: 5-5-3
+    notes: C, E, G
+    fret_range: 3-5
+  - inversion: 1st
+    strings: GBE
+    frets: 9-8-8
+    notes: E, G, C
+    fret_range: 8-9
+  - inversion: 2nd
+    strings: GBE
+    frets: 0-1-0
+    notes: G, C, E
+    fret_range: 0-1
+- id: triad_c_min
+  format: object
+  category: Triads
+  heading: C Minor Triad Voicings
+  search_terms: C minor triad, Cm triad, C min triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 10-8-8
+    notes: C, D#, G
+    fret_range: 8-10
+  - inversion: 1st
+    strings: DGB
+    frets: 1-0-1
+    notes: D#, G, C
+    fret_range: 0-1
+  - inversion: 2nd
+    strings: DGB
+    frets: 5-5-4
+    notes: G, C, D#
+    fret_range: 4-5
+  - inversion: root
+    strings: GBE
+    frets: 5-4-3
+    notes: C, D#, G
+    fret_range: 3-5
+  - inversion: 1st
+    strings: GBE
+    frets: 8-8-8
+    notes: D#, G, C
+    fret_range: 8-8
+  - inversion: 2nd
+    strings: GBE
+    frets: 12-13-11
+    notes: G, C, D#
+    fret_range: 11-13
+- id: triad_c_dim
+  format: object
+  category: Triads
+  heading: C Diminished Triad Voicings
+  search_terms: C diminished triad, C dim triad, Cdim triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 10-8-7
+    notes: C, D#, F#
+    fret_range: 7-10
+  - inversion: 1st
+    strings: DGB
+    frets: 13-11-13
+    notes: D#, F#, C
+    fret_range: 11-13
+  - inversion: 2nd
+    strings: DGB
+    frets: 4-5-4
+    notes: F#, C, D#
+    fret_range: 4-5
+  - inversion: root
+    strings: GBE
+    frets: 5-4-2
+    notes: C, D#, F#
+    fret_range: 2-5
+  - inversion: 1st
+    strings: GBE
+    frets: 8-7-8
+    notes: D#, F#, C
+    fret_range: 7-8
+  - inversion: 2nd
+    strings: GBE
+    frets: 11-13-11
+    notes: F#, C, D#
+    fret_range: 11-13
+- id: triad_c_aug
+  format: object
+  category: Triads
+  heading: C Augmented Triad Voicings
+  search_terms: C augmented triad, C aug triad, Caug triad, C+ triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 10-9-9
+    notes: C, E, G#
+    fret_range: 9-10
+  - inversion: 1st
+    strings: DGB
+    frets: 2-1-1
+    notes: E, G#, C
+    fret_range: 1-2
+  - inversion: 2nd
+    strings: DGB
+    frets: 6-5-5
+    notes: G#, C, E
+    fret_range: 5-6
+  - inversion: root
+    strings: GBE
+    frets: 5-5-4
+    notes: C, E, G#
+    fret_range: 4-5
+  - inversion: 1st
+    strings: GBE
+    frets: 9-9-8
+    notes: E, G#, C
+    fret_range: 8-9
+  - inversion: 2nd
+    strings: GBE
+    frets: 1-1-0
+    notes: G#, C, E
+    fret_range: 0-1
+- id: chord_c_major
+  format: object
+  category: Chords
+  heading: C Major Open Chord
+  search_terms: C chord, C major, C major chord, how to play C
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: C Major open chord
+    frets: x-3-2-0-1-0
+    notes: x, C, E, G, C, E
+    tip: Do not play the low E string. Ring finger on A string 3rd fret, middle finger on D string 2nd fret, index on B string
+      1st fret.
+    tab: 'e|---0---|
+
+      B|---1---|
+
+      G|---0---|
+
+      D|---2---|
+
+      A|---3---|
+
+      E|---x---|'
+- id: chord_c7
+  format: object
+  category: Chords
+  heading: C7 Chord
+  search_terms: C7 chord, C dominant 7, C seven chord, how to play C7
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: C7 (C dominant 7th) open chord
+    frets: x-3-2-3-1-0
+    notes: x, C, E, Bb, C, E
+    tip: Like C major but add your pinky on G string 3rd fret for the Bb (flat 7th).
+    tab: 'e|---0---|
+
+      B|---1---|
+
+      G|---3---|
+
+      D|---2---|
+
+      A|---3---|
+
+      E|---x---|'
+- id: chord_cmaj7
+  format: object
+  category: Chords
+  heading: Cmaj7 Chord
+  search_terms: Cmaj7 chord, C major 7, C major seven chord, how to play Cmaj7
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: Cmaj7 (C major 7th) open chord
+    frets: x-3-2-0-0-0
+    notes: x, C, E, G, B, E
+    tip: Like C major but lift your index finger off the B string. The open B is the major 7th of C.
+    tab: 'e|---0---|
+
+      B|---0---|
+
+      G|---0---|
+
+      D|---2---|
+
+      A|---3---|
+
+      E|---x---|'

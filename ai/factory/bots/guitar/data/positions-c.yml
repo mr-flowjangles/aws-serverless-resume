@@ -1,0 +1,953 @@
+meta:
+  bot_id: guitar
+  title: 'Key of C - Triad Position Clusters'
+  version: '2'
+  date: '2026-02-21'
+
+entries:
+
+- id: key_c_position_3
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 3
+  search_terms: "C key triads fret 3, C Dm Em F G Am triads position 3, triads 3th fret key of C, C major key position 3"
+  content: |
+    Key of C - Position around fret 3
+    Anchor: Dm (1st) at 3-2-3 on DGB strings
+    Target range: frets 1-5
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         DGB String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (2nd)   │  (1st)   │  (1st)   │  (root)  │  (root)  │  (2nd)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   B  5   │   B  3   │   B  5   │   B  1   │   B  3   │   B  1   │
+    │   G  5   │   G  2   │   G  4   │   G  2   │   G  4   │   G  2   │
+    │   D  5   │   D  3   │   D  5   │   D  3   │   D  5   │   D  2   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         GBE String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (root)  │  (2nd)   │  (2nd)   │  (1st)   │  (1st)   │  (1st)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   e  3   │   e  1   │   e  3   │   e  1   │   e  3   │   e  5   │
+    │   B  5   │   B  3   │   B  5   │   B  1   │   B  3   │   B  5   │
+    │   G  5   │   G  2   │   G  4   │   G  2   │   G  4   │   G  5   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+    Full tab diagrams (DGB voicings):
+
+    C (2nd inversion):
+    e|---x---|
+    B|---5---|
+    G|---5---|
+    D|---5---|
+    A|---x---|
+    E|---x---|
+
+    Dm (1st inversion):
+    e|---x---|
+    B|---3---|
+    G|---2---|
+    D|---3---|
+    A|---x---|
+    E|---x---|
+
+    Em (1st inversion):
+    e|---x---|
+    B|---5---|
+    G|---4---|
+    D|---5---|
+    A|---x---|
+    E|---x---|
+
+    F (root inversion):
+    e|---x---|
+    B|---1---|
+    G|---2---|
+    D|---3---|
+    A|---x---|
+    E|---x---|
+
+    G (root inversion):
+    e|---x---|
+    B|---3---|
+    G|---4---|
+    D|---5---|
+    A|---x---|
+    E|---x---|
+
+    Am (2nd inversion):
+    e|---x---|
+    B|---1---|
+    G|---2---|
+    D|---2---|
+    A|---x---|
+    E|---x---|
+
+
+    Full tab diagrams (GBE voicings):
+
+    C (root inversion):
+    e|---3---|
+    B|---5---|
+    G|---5---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Dm (2nd inversion):
+    e|---1---|
+    B|---3---|
+    G|---2---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Em (2nd inversion):
+    e|---3---|
+    B|---5---|
+    G|---4---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    F (1st inversion):
+    e|---1---|
+    B|---1---|
+    G|---2---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    G (1st inversion):
+    e|---3---|
+    B|---3---|
+    G|---4---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Am (1st inversion):
+    e|---5---|
+    B|---5---|
+    G|---5---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    You can choose other inversions - these are the closest to your anchor.
+- id: key_c_position_5
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 5
+  search_terms: "C key triads fret 5, C Dm Em F G Am triads position 5, triads 5th fret key of C, C major key position 5"
+  content: |
+    Key of C - Position around fret 5
+    Anchor: C (2nd) at 5-5-5 on DGB strings
+    Target range: frets 3-7
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         DGB String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (2nd)   │  (2nd)   │  (1st)   │  (1st)   │  (root)  │  (root)  │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   B  5   │   B  6   │   B  5   │   B  6   │   B  3   │   B  5   │
+    │   G  5   │   G  7   │   G  4   │   G  5   │   G  4   │   G  5   │
+    │   D  5   │   D  7   │   D  5   │   D  7   │   D  5   │   D  7   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         GBE String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (root)  │  (root)  │  (2nd)   │  (2nd)   │  (1st)   │  (1st)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   e  3   │   e  5   │   e  3   │   e  5   │   e  3   │   e  5   │
+    │   B  5   │   B  6   │   B  5   │   B  6   │   B  3   │   B  5   │
+    │   G  5   │   G  7   │   G  4   │   G  5   │   G  4   │   G  5   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+    Full tab diagrams (DGB voicings):
+
+    C (2nd inversion):
+    e|---x---|
+    B|---5---|
+    G|---5---|
+    D|---5---|
+    A|---x---|
+    E|---x---|
+
+    Dm (2nd inversion):
+    e|---x---|
+    B|---6---|
+    G|---7---|
+    D|---7---|
+    A|---x---|
+    E|---x---|
+
+    Em (1st inversion):
+    e|---x---|
+    B|---5---|
+    G|---4---|
+    D|---5---|
+    A|---x---|
+    E|---x---|
+
+    F (1st inversion):
+    e|---x---|
+    B|---6---|
+    G|---5---|
+    D|---7---|
+    A|---x---|
+    E|---x---|
+
+    G (root inversion):
+    e|---x---|
+    B|---3---|
+    G|---4---|
+    D|---5---|
+    A|---x---|
+    E|---x---|
+
+    Am (root inversion):
+    e|---x---|
+    B|---5---|
+    G|---5---|
+    D|---7---|
+    A|---x---|
+    E|---x---|
+
+
+    Full tab diagrams (GBE voicings):
+
+    C (root inversion):
+    e|---3---|
+    B|---5---|
+    G|---5---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Dm (root inversion):
+    e|---5---|
+    B|---6---|
+    G|---7---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Em (2nd inversion):
+    e|---3---|
+    B|---5---|
+    G|---4---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    F (2nd inversion):
+    e|---5---|
+    B|---6---|
+    G|---5---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    G (1st inversion):
+    e|---3---|
+    B|---3---|
+    G|---4---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Am (1st inversion):
+    e|---5---|
+    B|---5---|
+    G|---5---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    You can choose other inversions - these are the closest to your anchor.
+- id: key_c_position_7
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 7
+  search_terms: "C key triads fret 7, C Dm Em F G Am triads position 7, triads 7th fret key of C, C major key position 7"
+  content: |
+    Key of C - Position around fret 7
+    Anchor: Dm (2nd) at 7-7-6 on DGB strings
+    Target range: frets 5-9
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         DGB String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (root)  │  (2nd)   │  (2nd)   │  (1st)   │  (1st)   │  (root)  │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   B  8   │   B  6   │   B  8   │   B  6   │   B  8   │   B  5   │
+    │   G  9   │   G  7   │   G  9   │   G  5   │   G  7   │   G  5   │
+    │  D  10   │   D  7   │   D  9   │   D  7   │   D  9   │   D  7   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         GBE String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (1st)   │  (root)  │  (root)  │  (2nd)   │  (2nd)   │  (1st)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   e  8   │   e  5   │   e  7   │   e  5   │   e  7   │   e  5   │
+    │   B  8   │   B  6   │   B  8   │   B  6   │   B  8   │   B  5   │
+    │   G  9   │   G  7   │   G  9   │   G  5   │   G  7   │   G  5   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+    Full tab diagrams (DGB voicings):
+
+    C (root inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    Dm (2nd inversion):
+    e|---x---|
+    B|---6---|
+    G|---7---|
+    D|---7---|
+    A|---x---|
+    E|---x---|
+
+    Em (2nd inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    F (1st inversion):
+    e|---x---|
+    B|---6---|
+    G|---5---|
+    D|---7---|
+    A|---x---|
+    E|---x---|
+
+    G (1st inversion):
+    e|---x---|
+    B|---8---|
+    G|---7---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    Am (root inversion):
+    e|---x---|
+    B|---5---|
+    G|---5---|
+    D|---7---|
+    A|---x---|
+    E|---x---|
+
+
+    Full tab diagrams (GBE voicings):
+
+    C (1st inversion):
+    e|---8---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Dm (root inversion):
+    e|---5---|
+    B|---6---|
+    G|---7---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Em (root inversion):
+    e|---7---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    F (2nd inversion):
+    e|---5---|
+    B|---6---|
+    G|---5---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    G (2nd inversion):
+    e|---7---|
+    B|---8---|
+    G|---7---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Am (1st inversion):
+    e|---5---|
+    B|---5---|
+    G|---5---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    You can choose other inversions - these are the closest to your anchor.
+- id: key_c_position_9
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 9
+  search_terms: "C key triads fret 9, C Dm Em F G Am triads position 9, triads 9th fret key of C, C major key position 9"
+  content: |
+    Key of C - Position around fret 9
+    Anchor: C (root) at 10-9-8 on DGB strings
+    Target range: frets 7-11
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         DGB String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (root)  │  (root)  │  (2nd)   │  (2nd)   │  (1st)   │  (1st)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   B  8   │  B  10   │   B  8   │  B  10   │   B  8   │  B  10   │
+    │   G  9   │  G  10   │   G  9   │  G  10   │   G  7   │   G  9   │
+    │  D  10   │  D  12   │   D  9   │  D  10   │   D  9   │  D  10   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         GBE String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (1st)   │  (1st)   │  (root)  │  (root)  │  (2nd)   │  (2nd)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   e  8   │  e  10   │   e  7   │   e  8   │   e  7   │   e  8   │
+    │   B  8   │  B  10   │   B  8   │  B  10   │   B  8   │  B  10   │
+    │   G  9   │  G  10   │   G  9   │  G  10   │   G  7   │   G  9   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+    Full tab diagrams (DGB voicings):
+
+    C (root inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    Dm (root inversion):
+    e|---x---|
+    B|--10---|
+    G|--10---|
+    D|--12---|
+    A|---x---|
+    E|---x---|
+
+    Em (2nd inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    F (2nd inversion):
+    e|---x---|
+    B|--10---|
+    G|--10---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    G (1st inversion):
+    e|---x---|
+    B|---8---|
+    G|---7---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    Am (1st inversion):
+    e|---x---|
+    B|--10---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+
+    Full tab diagrams (GBE voicings):
+
+    C (1st inversion):
+    e|---8---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Dm (1st inversion):
+    e|--10---|
+    B|--10---|
+    G|--10---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Em (root inversion):
+    e|---7---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    F (root inversion):
+    e|---8---|
+    B|--10---|
+    G|--10---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    G (2nd inversion):
+    e|---7---|
+    B|---8---|
+    G|---7---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Am (2nd inversion):
+    e|---8---|
+    B|--10---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    You can choose other inversions - these are the closest to your anchor.
+- id: key_c_position_12
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 12
+  search_terms: "C key triads fret 12, C Dm Em F G Am triads position 12, triads 12th fret key of C, C major key position 12"
+  content: |
+    Key of C - Position around fret 12
+    Anchor: Dm (root) at 12-10-10 on DGB strings
+    Target range: frets 10-14
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         DGB String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (root)  │  (root)  │  (2nd)   │  (2nd)   │  (1st)   │  (1st)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   B  8   │  B  10   │   B  8   │  B  10   │   B  8   │  B  10   │
+    │   G  9   │  G  10   │   G  9   │  G  10   │   G  7   │   G  9   │
+    │  D  10   │  D  12   │   D  9   │  D  10   │   D  9   │  D  10   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         GBE String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (1st)   │  (1st)   │  (root)  │  (root)  │  (root)  │  (2nd)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   e  8   │  e  10   │   e  7   │   e  8   │  e  10   │   e  8   │
+    │   B  8   │  B  10   │   B  8   │  B  10   │  B  12   │  B  10   │
+    │   G  9   │  G  10   │   G  9   │  G  10   │  G  12   │   G  9   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+    Full tab diagrams (DGB voicings):
+
+    C (root inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    Dm (root inversion):
+    e|---x---|
+    B|--10---|
+    G|--10---|
+    D|--12---|
+    A|---x---|
+    E|---x---|
+
+    Em (2nd inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    F (2nd inversion):
+    e|---x---|
+    B|--10---|
+    G|--10---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    G (1st inversion):
+    e|---x---|
+    B|---8---|
+    G|---7---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    Am (1st inversion):
+    e|---x---|
+    B|--10---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+
+    Full tab diagrams (GBE voicings):
+
+    C (1st inversion):
+    e|---8---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Dm (1st inversion):
+    e|--10---|
+    B|--10---|
+    G|--10---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Em (root inversion):
+    e|---7---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    F (root inversion):
+    e|---8---|
+    B|--10---|
+    G|--10---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    G (root inversion):
+    e|--10---|
+    B|--12---|
+    G|--12---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Am (2nd inversion):
+    e|---8---|
+    B|--10---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    You can choose other inversions - these are the closest to your anchor.
+- id: key_c_position_15
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 15
+  search_terms: "C key triads fret 15, C Dm Em F G Am triads position 15, triads 15th fret key of C, C major key position 15"
+  content: |
+    Key of C - Position around fret 15
+    Anchor: Dm (root) at 12-10-10 on DGB strings
+    Target range: frets 13-17
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         DGB String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (root)  │  (root)  │  (2nd)   │  (2nd)   │  (1st)   │  (1st)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   B  8   │  B  10   │   B  8   │  B  10   │   B  8   │  B  10   │
+    │   G  9   │  G  10   │   G  9   │  G  10   │   G  7   │   G  9   │
+    │  D  10   │  D  12   │   D  9   │  D  10   │   D  9   │  D  10   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         GBE String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (1st)   │  (1st)   │  (root)  │  (root)  │  (root)  │  (2nd)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   e  8   │  e  10   │   e  7   │   e  8   │  e  10   │   e  8   │
+    │   B  8   │  B  10   │   B  8   │  B  10   │  B  12   │  B  10   │
+    │   G  9   │  G  10   │   G  9   │  G  10   │  G  12   │   G  9   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+    Full tab diagrams (DGB voicings):
+
+    C (root inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    Dm (root inversion):
+    e|---x---|
+    B|--10---|
+    G|--10---|
+    D|--12---|
+    A|---x---|
+    E|---x---|
+
+    Em (2nd inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    F (2nd inversion):
+    e|---x---|
+    B|--10---|
+    G|--10---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    G (1st inversion):
+    e|---x---|
+    B|---8---|
+    G|---7---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    Am (1st inversion):
+    e|---x---|
+    B|--10---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+
+    Full tab diagrams (GBE voicings):
+
+    C (1st inversion):
+    e|---8---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Dm (1st inversion):
+    e|--10---|
+    B|--10---|
+    G|--10---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Em (root inversion):
+    e|---7---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    F (root inversion):
+    e|---8---|
+    B|--10---|
+    G|--10---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    G (root inversion):
+    e|--10---|
+    B|--12---|
+    G|--12---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Am (2nd inversion):
+    e|---8---|
+    B|--10---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    You can choose other inversions - these are the closest to your anchor.
+- id: key_c_position_17
+  format: string
+  category: Triad Positions
+  heading: Key of C - Triads around fret 17
+  search_terms: "C key triads fret 17, C Dm Em F G Am triads position 17, triads 17th fret key of C, C major key position 17"
+  content: |
+    Key of C - Position around fret 17
+    Anchor: Dm (root) at 12-10-10 on DGB strings
+    Target range: frets 15-19
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         DGB String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (root)  │  (root)  │  (2nd)   │  (2nd)   │  (1st)   │  (1st)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   B  8   │  B  10   │   B  8   │  B  10   │   B  8   │  B  10   │
+    │   G  9   │  G  10   │   G  9   │  G  10   │   G  7   │   G  9   │
+    │  D  10   │  D  12   │   D  9   │  D  10   │   D  9   │  D  10   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+    ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+    │                         GBE String Set                          │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │    C     │    Dm    │    Em    │    F     │    G     │    Am    │
+    │  (1st)   │  (1st)   │  (root)  │  (root)  │  (root)  │  (2nd)   │
+    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+    │   e  8   │  e  10   │   e  7   │   e  8   │  e  10   │   e  8   │
+    │   B  8   │  B  10   │   B  8   │  B  10   │  B  12   │  B  10   │
+    │   G  9   │  G  10   │   G  9   │  G  10   │  G  12   │   G  9   │
+    └──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+    Full tab diagrams (DGB voicings):
+
+    C (root inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    Dm (root inversion):
+    e|---x---|
+    B|--10---|
+    G|--10---|
+    D|--12---|
+    A|---x---|
+    E|---x---|
+
+    Em (2nd inversion):
+    e|---x---|
+    B|---8---|
+    G|---9---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    F (2nd inversion):
+    e|---x---|
+    B|--10---|
+    G|--10---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+    G (1st inversion):
+    e|---x---|
+    B|---8---|
+    G|---7---|
+    D|---9---|
+    A|---x---|
+    E|---x---|
+
+    Am (1st inversion):
+    e|---x---|
+    B|--10---|
+    G|---9---|
+    D|--10---|
+    A|---x---|
+    E|---x---|
+
+
+    Full tab diagrams (GBE voicings):
+
+    C (1st inversion):
+    e|---8---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Dm (1st inversion):
+    e|--10---|
+    B|--10---|
+    G|--10---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Em (root inversion):
+    e|---7---|
+    B|---8---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    F (root inversion):
+    e|---8---|
+    B|--10---|
+    G|--10---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    G (root inversion):
+    e|--10---|
+    B|--12---|
+    G|--12---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    Am (2nd inversion):
+    e|---8---|
+    B|--10---|
+    G|---9---|
+    D|---x---|
+    A|---x---|
+    E|---x---|
+
+    You can choose other inversions - these are the closest to your anchor.

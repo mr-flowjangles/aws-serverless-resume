@@ -1,0 +1,62 @@
+meta:
+  bot_id: guitar
+  title: "Guitar Basics"
+  version: "1"
+  date: "2026-02-21"
+
+entries:
+  - id: basics_guitar_anatomy
+    format: object
+    category: Basics
+    heading: Parts of an electric guitar
+    search_terms: "guitar parts, guitar anatomy, parts of guitar, headstock, bridge, pickups"
+    template: "{part}: {description}"
+    items:
+      - part: Headstock
+        description: Top of the neck where tuning pegs (machine heads) are mounted. Turn them to tune each string.
+      - part: Nut
+        description: Small slotted piece between the headstock and first fret. Guides string spacing and sets the open string height.
+      - part: Neck and fretboard
+        description: The long piece you press strings against. Frets are the metal strips. Pressing behind a fret shortens the string and raises the pitch.
+      - part: Body
+        description: Main section of the guitar. Houses the pickups, bridge, controls, and output jack.
+      - part: Pickups
+        description: Magnetic devices under the strings that convert vibrations into electrical signal. Neck pickup is warmer, bridge pickup is brighter.
+      - part: Bridge
+        description: Anchors the strings to the body. Adjustable for intonation (tuning accuracy up the neck) and string height (action).
+      - part: Volume and tone knobs
+        description: Control output level and treble rolloff. Pickup selector switch chooses which pickup is active.
+      - part: Output jack
+        description: Where you plug in the cable to connect to an amp or audio interface.
+
+  - id: basics_string_names
+    format: string
+    category: Basics
+    heading: Guitar string names, numbers, and order
+    search_terms: "string names, string numbers, EADGBE, which string is which, string order"
+    content: |
+      Electric guitar has 6 strings. From thickest (lowest pitch) to thinnest (highest pitch): 6th string = low E, 5th = A, 4th = D, 3rd = G, 2nd = B, 1st = high E. Memory trick: Eddie Ate Dynamite Good Bye Eddie. The 6th string is closest to your face when holding the guitar. Tab and chord diagrams usually show the 1st (high E) string on top.
+
+  - id: basics_how_to_hold
+    format: string
+    category: Basics
+    heading: How to hold an electric guitar and pick
+    search_terms: "how to hold guitar, hold pick, picking hand, fretting hand, guitar posture"
+    content: |
+      Sit or stand with the guitar body resting comfortably. The neck should angle slightly upward, not pointing at the floor. Fretting hand: thumb behind the neck (not wrapped over the top for now), fingers curved, press strings with fingertips just behind the fret (not on top of it). Picking hand: hold the pick between thumb and side of index finger, with a small amount of pick tip showing. Rest your forearm on the guitar body for stability. Stay relaxed; tension causes fatigue and slows you down.
+
+  - id: basics_reading_tab
+    format: string
+    category: Basics
+    heading: How to read guitar tablature (tab)
+    search_terms: "read tab, tablature, guitar tab, how to read tablature, tab notation"
+    content: |
+      Guitar tab uses 6 horizontal lines representing the 6 strings. The top line is the 1st string (high E), bottom line is the 6th string (low E). Numbers on the lines tell you which fret to press. 0 means play the string open. x means mute or do not play that string. Read left to right. Numbers stacked vertically are played at the same time (a chord). Common tab symbols: h = hammer-on, p = pull-off, b = bend, / = slide up, \ = slide down.
+
+  - id: basics_fret_numbering
+    format: string
+    category: Basics
+    heading: How frets and fret numbering work
+    search_terms: "fret numbers, which fret, fret numbering, how frets work"
+    content: |
+      Frets are the metal strips embedded across the fretboard. The first fret is closest to the headstock. Each fret raises the pitch by one half step (one semitone). Fret 12 is one octave above the open string (marked with double dots on most guitars). When someone says "play the 3rd fret," press the string in the space between the 2nd and 3rd fret wire, close to the 3rd fret wire for a clean sound.

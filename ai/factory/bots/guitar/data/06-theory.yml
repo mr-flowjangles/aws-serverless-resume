@@ -1,0 +1,220 @@
+meta:
+  bot_id: guitar
+  title: Music Theory for Guitar
+  version: '1'
+  date: '2026-02-21'
+entries:
+- id: major_key_player_chart
+  format: object
+  category: Theory
+  heading: Major key chord chart with I-IV-V and capo positions
+  search_terms: key chart, I IV V, capo chart, what key, chord progression key
+  template: 'Key of {key}: I={I}, IV={IV}, V={V}. {capo_tip}'
+  items:
+  - key: C
+    I: C
+    IV: F
+    V: G
+    capo_tip: No capo needed. Use open C, F, G shapes.
+  - key: D
+    I: D
+    IV: G
+    V: A
+    capo_tip: No capo needed. Use open D, G, A shapes.
+  - key: E
+    I: E
+    IV: A
+    V: B
+    capo_tip: No capo needed. Use open E, A shapes. B needs a barre.
+  - key: F
+    I: F
+    IV: Bb
+    V: C
+    capo_tip: Capo 1, play E shapes. Or capo 3, play D shapes.
+  - key: G
+    I: G
+    IV: C
+    V: D
+    capo_tip: No capo needed. Use open G, C, D shapes.
+  - key: A
+    I: A
+    IV: D
+    V: E
+    capo_tip: No capo needed. Or capo 2, play G shapes.
+  - key: Bb
+    I: Bb
+    IV: Eb
+    V: F
+    capo_tip: Capo 3, play G shapes. Or capo 1, play A shapes.
+  - key: B
+    I: B
+    IV: E
+    V: F#
+    capo_tip: Capo 4, play G shapes. Or capo 2, play A shapes.
+  - key: Ab
+    I: Ab
+    IV: Db
+    V: Eb
+    capo_tip: Capo 4, play E shapes. Or capo 1, play G shapes.
+  - key: Db
+    I: Db
+    IV: Gb
+    V: Ab
+    capo_tip: Capo 4, play A shapes. Or capo 1, play C shapes.
+  - key: Eb
+    I: Eb
+    IV: Ab
+    V: Bb
+    capo_tip: Capo 3, play C shapes. Or capo 1, play D shapes.
+  - key: Gb
+    I: Gb
+    IV: Cb
+    V: Db
+    capo_tip: Capo 2, play E shapes.
+- id: major_key_chord_chart_triads
+  format: object
+  category: Theory
+  heading: Major key chord chart showing all seven chords in each key
+  search_terms: diatonic chords, chords in key, ii iii IV V vi vii, key signature chords
+  template: 'Key of {key}: I={I}, ii={ii}, iii={iii}, IV={IV}, V={V}, vi={vi}, vii°={vii_dim}.'
+  items:
+  - key: C
+    I: C
+    ii: Dm
+    iii: Em
+    IV: F
+    V: G
+    vi: Am
+    vii_dim: Bdim
+  - key: G
+    I: G
+    ii: Am
+    iii: Bm
+    IV: C
+    V: D
+    vi: Em
+    vii_dim: F#dim
+  - key: D
+    I: D
+    ii: Em
+    iii: F#m
+    IV: G
+    V: A
+    vi: Bm
+    vii_dim: C#dim
+  - key: A
+    I: A
+    ii: Bm
+    iii: C#m
+    IV: D
+    V: E
+    vi: F#m
+    vii_dim: G#dim
+  - key: E
+    I: E
+    ii: F#m
+    iii: G#m
+    IV: A
+    V: B
+    vi: C#m
+    vii_dim: D#dim
+  - key: B
+    I: B
+    ii: C#m
+    iii: D#m
+    IV: E
+    V: F#
+    vi: G#m
+    vii_dim: A#dim
+  - key: F
+    I: F
+    ii: Gm
+    iii: Am
+    IV: Bb
+    V: C
+    vi: Dm
+    vii_dim: Edim
+  - key: Bb
+    I: Bb
+    ii: Cm
+    iii: Dm
+    IV: Eb
+    V: F
+    vi: Gm
+    vii_dim: Adim
+  - key: Eb
+    I: Eb
+    ii: Fm
+    iii: Gm
+    IV: Ab
+    V: Bb
+    vi: Cm
+    vii_dim: Ddim
+  - key: Ab
+    I: Ab
+    ii: Bbm
+    iii: Cm
+    IV: Db
+    V: Eb
+    vi: Fm
+    vii_dim: Gdim
+- id: theory_chord_formulas
+  format: object
+  category: Theory
+  heading: Chord formulas (triads and 7th chords)
+  search_terms: chord formula, how to build chord, chord intervals, chord construction
+  template: '{quality} chord formula: {formula}. Example: {example}.'
+  items:
+  - quality: Major triad
+    formula: 1 - 3 - 5
+    example: G major = G, B, D
+  - quality: Minor triad
+    formula: 1 - b3 - 5
+    example: A minor = A, C, E
+  - quality: Diminished triad
+    formula: 1 - b3 - b5
+    example: B dim = B, D, F
+  - quality: Augmented triad
+    formula: '1 - 3 - #5'
+    example: C aug = C, E, G#
+  - quality: Major 7th (maj7)
+    formula: 1 - 3 - 5 - 7
+    example: Cmaj7 = C, E, G, B
+  - quality: Dominant 7th (7)
+    formula: 1 - 3 - 5 - b7
+    example: A7 = A, C#, E, G
+  - quality: Minor 7th (m7)
+    formula: 1 - b3 - 5 - b7
+    example: Em7 = E, G, B, D
+- id: theory_progression_templates
+  format: object
+  category: Theory
+  heading: Common chord progressions and song frameworks
+  search_terms: chord progression, I IV V, 12 bar blues, pop progression, song chords
+  template: '{name} progression: {roman}. Example in {example_key}: {example_chords}. {notes}'
+  items:
+  - name: I - IV - V
+    roman: I, IV, V
+    example_key: G
+    example_chords: G, C, D
+    notes: 'Classic rock, country, bluesy pop. Add 7ths for a blues flavor. In A: A, D, E.'
+  - name: I - V - vi - IV
+    roman: I, V, vi, IV
+    example_key: G
+    example_chords: G, D, Em, C
+    notes: 'Huge pop progression. In C: C, G, Am, F. Works with many strumming patterns.'
+  - name: 12-bar blues
+    roman: I7 (4 bars), IV7 (2 bars), I7 (2 bars), V7 (1 bar), IV7 (1 bar), I7 (2 bars with turnaround)
+    example_key: A
+    example_chords: A7, D7, A7, E7, D7, A7
+    notes: The foundation of blues guitar. Swap in a quick-change (IV7 in bar 2) for extra movement.
+  - name: vi - IV - I - V
+    roman: vi, IV, I, V
+    example_key: C
+    example_chords: Am, F, C, G
+    notes: Emotional/dramatic feel. Same chords as I-V-vi-IV but starting on the minor chord.
+  - name: I - vi - IV - V
+    roman: I, vi, IV, V
+    example_key: C
+    example_chords: C, Am, F, G
+    notes: 50s doo-wop progression. Classic oldies sound. Works great with fingerpicking.
