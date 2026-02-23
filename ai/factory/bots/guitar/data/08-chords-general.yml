@@ -1,0 +1,41 @@
+meta:
+  bot_id: guitar
+  title: General Chord Information
+  version: '1'
+  date: '2026-02-21'
+entries:
+- id: chord_overview
+  format: string
+  category: Chords
+  heading: Guitar Chord Types Overview
+  search_terms: chord types, types of chords, chord overview, what chords to learn
+  content: 'Common guitar chord types include open major chords (C, G, D, E, A), open minor chords (Am, Em, Dm), dominant
+    7th chords (A7, B7, C7, D7, E7, G7), minor 7th chords (Am7, Em7, Dm7), major 7th chords (Cmaj7, Fmaj7, Gmaj7, Dmaj7),
+    suspended chords (Asus2, Asus4, Dsus2, Dsus4, Esus4), power chords (E5 and A5 shapes), and barre chords (F major barre).
+    Open chords use open strings and are played in the first few frets. 7th chords add a 4th note for a richer sound. Suspended
+    chords replace the 3rd with the 2nd or 4th for tension. Power chords use only root, 5th, and octave and are moveable anywhere
+    on the neck.
+
+    '
+- id: chord_power_e_shape
+  format: object
+  category: Chords
+  heading: Power Chord with Root on Low E String
+  search_terms: power chord, E5, rock chord, punk chord, power chord E string
+  template: '{name}. Shape: {shape}. {tip}'
+  items:
+  - name: Power chord with root on low E string (E5 shape)
+    shape: Index on low E (root), ring finger two frets up on A (5th), pinky two frets up on D (octave)
+    tip: Moveable shape. G5 is frets 3-5-5-x-x-x. A5 is frets 5-7-7-x-x-x. B5 is frets 7-9-9-x-x-x. Mute all other strings.
+      The foundation of rock and punk.
+- id: chord_power_a_shape
+  format: object
+  category: Chords
+  heading: Power Chord with Root on A String
+  search_terms: power chord, A5, power chord A string
+  template: '{name}. Shape: {shape}. {tip}'
+  items:
+  - name: Power chord with root on A string (A5 shape)
+    shape: Index on A string (root), ring finger two frets up on D (5th), pinky two frets up on G (octave)
+    tip: Moveable shape. C5 is frets x-3-5-5-x-x. D5 is frets x-5-7-7-x-x. E5 is frets x-7-9-9-x-x. Mute low E and top two
+      strings.

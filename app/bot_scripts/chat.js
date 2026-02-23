@@ -16,6 +16,10 @@
  * If not set, messages render as plain text.
  */
 
+function defaultFormatMessage(text, container) {
+  container.textContent = text;
+}
+
 const chatMessages = document.getElementById("chatMessages");
 const chatInput = document.getElementById("chatInput");
 const chatSuggestions = document.getElementById("chatSuggestions");
@@ -87,6 +91,10 @@ async function sendMessage() {
     label.className = "bot-label";
     label.textContent = config.botName;
     div.appendChild(label);
+
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "bot-content";
+    div.appendChild(contentDiv);
     chatMessages.appendChild(div);
 
     const reader = response.body.getReader();
@@ -99,12 +107,8 @@ async function sendMessage() {
       const chunk = decoder.decode(value, { stream: true });
       fullResponse += chunk;
 
-      while (div.childNodes.length > 1) {
-        div.removeChild(div.lastChild);
-      }
-
       const formatter = config.formatMessage || defaultFormatMessage;
-      formatter(fullResponse, div);
+      formatter(fullResponse, contentDiv);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
@@ -136,9 +140,13 @@ function addMessage(text, type) {
     label.textContent = config.botName;
     div.appendChild(label);
 
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "bot-content";
+    div.appendChild(contentDiv);
+
     // Use custom formatter if registered, otherwise plain text
     const formatter = config.formatMessage || defaultFormatMessage;
-    formatter(text, div);
+    formatter(text, contentDiv);
   } else {
     div.textContent = text;
   }

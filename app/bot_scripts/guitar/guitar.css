@@ -1,15 +1,154 @@
-/* ================================================================
-   GUITAR BOT — Specific Styles
-   Tab block rendering for guitar tablature output
-   ================================================================ */
+/* Guitar Bot Custom Styles */
 
-.tab-block {
+/* Triad Position Container */
+.triad-position {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.position-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.position-anchor {
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.position-range {
+  color: #777;
+  font-size: 0.9em;
+  margin-bottom: 16px;
+}
+
+.position-note {
+  color: #666;
+  font-style: italic;
+  margin-top: 16px;
+  font-size: 0.9em;
+}
+
+/* Section Headers */
+.tab-section-header {
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px 6px 0 0;
+  font-weight: 600;
+  font-size: 0.95em;
+  margin-top: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* Tab Table */
+.tab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  background: #fafafa;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.tab-table th {
+  background: #f1f5f9;
+  padding: 10px 8px;
+  text-align: center;
+  border-bottom: 2px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+}
+
+.tab-table th:last-child {
+  border-right: none;
+}
+
+.tab-table td {
+  padding: 6px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+.tab-table td:last-child {
+  border-right: none;
+}
+
+.tab-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tab-table tbody tr:hover {
+  background: #f1f5f9;
+}
+
+/* Chord Name in Header */
+.chord-name {
   display: block;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.82rem;
-  line-height: 1.2;
-  white-space: pre;
-  margin: 0;
-  padding: 0;
-  color: var(--color-primary-light);
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #1a365d;
+}
+
+.chord-inv {
+  display: block;
+  font-size: 0.8em;
+  color: #718096;
+  font-weight: normal;
+}
+
+/* String and Fret Display */
+.string-name {
+  display: inline-block;
+  width: 16px;
+  color: #a0aec0;
+  font-size: 0.85em;
+  text-align: right;
+  margin-right: 4px;
+}
+
+.fret-num {
+  display: inline-block;
+  min-width: 20px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Preformatted Tab (fallback) */
+.tab-pre {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .tab-table {
+    font-size: 0.85em;
+  }
+  
+  .tab-table th,
+  .tab-table td {
+    padding: 6px 4px;
+  }
+  
+  .chord-name {
+    font-size: 1em;
+  }
+  
+  .fret-num {
+    font-size: 1em;
+  }
 }

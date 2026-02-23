@@ -1,0 +1,26 @@
+meta:
+  bot_id: guitar
+  title: "Guitar Practice Tips"
+  version: "1"
+  date: "2026-02-21"
+
+entries:
+  - id: practice_tips
+    format: object
+    category: Practice
+    heading: Guitar practice tips and routine advice
+    search_terms: "practice tips, how to practice, practice routine, get better at guitar"
+    template: "{tip_title}: {advice}"
+    items:
+      - tip_title: Use a metronome
+        advice: Practice with a metronome or drum track. Start slower than you think you need to. Speed comes from accuracy, not force.
+      - tip_title: Short daily sessions beat long weekly ones
+        advice: 15-20 minutes every day is far more effective than a 2-hour session once a week. Consistency builds muscle memory.
+      - tip_title: Practice what you cannot do
+        advice: It is tempting to play what you already know, but growth comes from working on the hard stuff. Spend at least half your time on challenges.
+      - tip_title: Learn songs you love
+        advice: Theory and exercises matter, but learning real songs keeps you motivated and teaches you how techniques are actually used in music.
+      - tip_title: Record yourself
+        advice: Use your phone to record yourself playing. You will hear issues you miss while focused on fretting. Great for tracking improvement over time.
+      - tip_title: Warm up first
+        advice: Start with chromatic exercises or easy chord changes for a few minutes before diving into difficult material. Cold fingers make more mistakes.

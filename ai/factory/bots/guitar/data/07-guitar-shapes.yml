@@ -1,0 +1,93 @@
+meta:
+  bot_id: guitar
+  title: Guitar Shapes and Patterns
+  version: '1'
+  date: '2026-02-21'
+entries:
+- id: guitar_barre_chord_templates
+  format: object
+  category: Guitar Shapes
+  heading: Barre chord templates (movable shapes)
+  search_terms: barre chord, bar chord, movable chord, E shape barre, A shape barre
+  template: '{name}. Root string: {root_string}. Shape (low to high): {shape}. Examples: {examples}. {tip}'
+  items:
+  - name: E-shape major barre
+    root_string: 6th (low E)
+    shape: R, R+2, R+2, R+1, R, R
+    examples: F at fret 1, G at fret 3, A at fret 5, Bb at fret 6, B at fret 7
+    tip: Find the root on the 6th string. Index barres all strings at that fret. Most common barre shape.
+  - name: E-shape minor barre
+    root_string: 6th (low E)
+    shape: R, R+2, R+2, R, R, R
+    examples: F#m at fret 2, Gm at fret 3, Am at fret 5, Bm at fret 7
+    tip: Same as E-shape major but lift the middle finger off the G string. Flat 3rd makes it minor.
+  - name: A-shape major barre
+    root_string: 5th (A)
+    shape: X, R, R+2, R+2, R+2, R
+    examples: Bb at fret 1, C at fret 3, D at fret 5, E at fret 7
+    tip: Find the root on the 5th string. Mute the 6th string. Ring finger or pinky barres the D/G/B strings.
+  - name: A-shape minor barre
+    root_string: 5th (A)
+    shape: X, R, R+2, R+2, R+1, R
+    examples: Bbm at fret 1, Cm at fret 3, Dm at fret 5, Em at fret 7
+    tip: Find the minor root on the 5th string. Mute the 6th string. Like A-shape major but one fret lower on B string.
+  - name: E-shape dominant 7th barre
+    root_string: 6th (low E)
+    shape: R, R+2, R, R+1, R, R
+    examples: G7 at fret 3, A7 at fret 5, B7 at fret 7
+    tip: Like E-shape major barre but lift the pinky off the D string. Open D string equivalent gives the flat 7th.
+  - name: E-shape minor 7th barre
+    root_string: 6th (low E)
+    shape: R, R+2, R, R, R, R
+    examples: Gm7 at fret 3, Am7 at fret 5, Bm7 at fret 7
+    tip: Like E-shape minor barre but lift the finger off the D string. Simplest barre 7th shape.
+- id: guitar_caged_quick_map
+  format: object
+  category: Guitar Shapes
+  heading: CAGED system quick map (where chord shapes live on the neck)
+  search_terms: CAGED system, CAGED, chord shapes neck, fretboard navigation
+  template: '{shape_name} shape. Root on: {root_strings}. Common use: {common_use}. {notes}'
+  items:
+  - shape_name: E-shape (CAGED)
+    root_strings: 6th and 1st strings
+    common_use: Movable barre chords (major and minor)
+    notes: Most common barre shape. Foundation of rock and pop guitar. Learn this one first.
+  - shape_name: A-shape (CAGED)
+    root_strings: 5th string
+    common_use: Movable barre chords (major and minor)
+    notes: Second most common barre shape. Mute the 6th string. Learn this right after E-shape.
+  - shape_name: D-shape (CAGED)
+    root_strings: 4th string
+    common_use: Triads and partial chords
+    notes: Great for triad voicings on the top 3-4 strings. Connects E-shape and A-shape positions.
+  - shape_name: C-shape (CAGED)
+    root_strings: 5th string
+    common_use: Partial chords and CAGED connections
+    notes: Less common as a full barre. Useful for connecting positions and understanding the neck layout.
+  - shape_name: G-shape (CAGED)
+    root_strings: 6th and 3rd strings
+    common_use: Partial chords and CAGED connections
+    notes: Hardest full barre shape. Most useful as partial voicings. Low priority for beginners.
+- id: guitar_octave_shapes
+  format: object
+  category: Guitar Shapes
+  heading: Octave shapes (find the same note on different strings)
+  search_terms: octave shape, find note, same note different string, octave pattern
+  template: 'Octave from {from_string} to {to_string}: move {move}. Example: {example}.'
+  items:
+  - from_string: 6th string (low E)
+    to_string: 4th string (D)
+    move: 2 strings up, 2 frets up
+    example: G on 6th string 3rd fret → G on 4th string 5th fret
+  - from_string: 5th string (A)
+    to_string: 3rd string (G)
+    move: 2 strings up, 2 frets up
+    example: C on 5th string 3rd fret → C on 3rd string 5th fret
+  - from_string: 4th string (D)
+    to_string: 2nd string (B)
+    move: 2 strings up, 3 frets up (extra fret because of B string tuning)
+    example: D on 4th string open → D on 2nd string 3rd fret
+  - from_string: 3rd string (G)
+    to_string: 1st string (high E)
+    move: 2 strings up, 3 frets up (extra fret because of B string tuning)
+    example: A on 3rd string 2nd fret → A on 1st string 5th fret

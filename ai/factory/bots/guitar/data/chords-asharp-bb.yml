@@ -1,0 +1,154 @@
+meta:
+  bot_id: guitar
+  title: A#/Bb Chords and Triads
+  version: '1'
+  date: '2026-02-21'
+entries:
+- id: triad_asharp_maj
+  format: object
+  category: Triads
+  heading: A#/Bb Major Triad Voicings
+  search_terms: A# triad, Bb triad, A sharp triad, B flat triad, A# major triad, Bb major triad
+  template: 'A#/Bb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 8-7-6
+    notes: A#, D, F
+    fret_range: 6-8
+  - inversion: 1st
+    strings: DGB
+    frets: 12-10-11
+    notes: D, F, A#
+    fret_range: 10-12
+  - inversion: 2nd
+    strings: DGB
+    frets: 3-3-3
+    notes: F, A#, D
+    fret_range: 3-3
+  - inversion: root
+    strings: GBE
+    frets: 3-3-1
+    notes: A#, D, F
+    fret_range: 1-3
+  - inversion: 1st
+    strings: GBE
+    frets: 7-6-6
+    notes: D, F, A#
+    fret_range: 6-7
+  - inversion: 2nd
+    strings: GBE
+    frets: 10-11-10
+    notes: F, A#, D
+    fret_range: 10-11
+- id: triad_asharp_min
+  format: object
+  category: Triads
+  heading: A#/Bb Minor Triad Voicings
+  search_terms: A# minor triad, Bb minor triad, A#m triad, Bbm triad
+  template: 'A#/Bb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 8-6-6
+    notes: A#, C#, F
+    fret_range: 6-8
+  - inversion: 1st
+    strings: DGB
+    frets: 11-10-11
+    notes: C#, F, A#
+    fret_range: 10-11
+  - inversion: 2nd
+    strings: DGB
+    frets: 3-3-2
+    notes: F, A#, C#
+    fret_range: 2-3
+  - inversion: root
+    strings: GBE
+    frets: 3-2-1
+    notes: A#, C#, F
+    fret_range: 1-3
+  - inversion: 1st
+    strings: GBE
+    frets: 6-6-6
+    notes: C#, F, A#
+    fret_range: 6-6
+  - inversion: 2nd
+    strings: GBE
+    frets: 10-11-9
+    notes: F, A#, C#
+    fret_range: 9-11
+- id: triad_asharp_dim
+  format: object
+  category: Triads
+  heading: A#/Bb Diminished Triad Voicings
+  search_terms: A# diminished triad, Bb diminished triad, A#dim triad, Bbdim triad
+  template: 'A#/Bb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 8-6-5
+    notes: A#, C#, E
+    fret_range: 5-8
+  - inversion: 1st
+    strings: DGB
+    frets: 11-9-11
+    notes: C#, E, A#
+    fret_range: 9-11
+  - inversion: 2nd
+    strings: DGB
+    frets: 2-3-2
+    notes: E, A#, C#
+    fret_range: 2-3
+  - inversion: root
+    strings: GBE
+    frets: 3-2-0
+    notes: A#, C#, E
+    fret_range: 0-3
+  - inversion: 1st
+    strings: GBE
+    frets: 6-5-6
+    notes: C#, E, A#
+    fret_range: 5-6
+  - inversion: 2nd
+    strings: GBE
+    frets: 9-11-9
+    notes: E, A#, C#
+    fret_range: 9-11
+- id: triad_asharp_aug
+  format: object
+  category: Triads
+  heading: A#/Bb Augmented Triad Voicings
+  search_terms: A# augmented triad, Bb augmented triad, A#aug triad, Bbaug triad
+  template: 'A#/Bb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 8-7-7
+    notes: A#, D, F#
+    fret_range: 7-8
+  - inversion: 1st
+    strings: DGB
+    frets: 12-11-11
+    notes: D, F#, A#
+    fret_range: 11-12
+  - inversion: 2nd
+    strings: DGB
+    frets: 4-3-3
+    notes: F#, A#, D
+    fret_range: 3-4
+  - inversion: root
+    strings: GBE
+    frets: 3-3-2
+    notes: A#, D, F#
+    fret_range: 2-3
+  - inversion: 1st
+    strings: GBE
+    frets: 7-7-6
+    notes: D, F#, A#
+    fret_range: 6-7
+  - inversion: 2nd
+    strings: GBE
+    frets: 11-11-10
+    notes: F#, A#, D
+    fret_range: 10-11

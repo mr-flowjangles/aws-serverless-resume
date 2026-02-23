@@ -1,0 +1,3271 @@
+meta:
+  bot_id: guitar
+  title: "Electric Guitar: Restringing, Tuning, Triads, Chords, Theory, and Shapes"
+  version: "5"
+  date: "2026-02-20"
+entries:
+  - id: restring_overview
+    format: string
+    category: Restringing
+    heading: How to Restring an Electric Guitar
+    search_terms: "restring guitar, change strings, new strings, replace strings, how to restring"
+    content: |
+      What you need: new strings (correct gauge), string winder (optional), wire cutters, tuner, clean cloth. For floating
+      tremolo bridges, consider a small block/wedge to keep the bridge stable while strings are off.
+
+      Before you start: work on a stable surface; support the neck. If changing string gauge, expect to re-check neck relief
+      and intonation afterward.
+
+      Step-by-step:
+
+      1) Loosen the old strings: detune each string until slack. Cut only if needed; keep the cut end pointed away from you.
+
+      2) Remove old strings: pull the ball end from the bridge (or trem block) and unwind from the tuner post.
+
+      3) Clean while strings are off: wipe the fretboard and frets; remove grime.
+
+      4) Install the new string at the bridge: insert ball end into bridge/tremolo block and pull until seated.
+
+      5) Measure slack at the tuner: pull taut, then back off slightly so you have ~2–3 wraps on wound strings and ~3–5 wraps
+      on plain strings.
+
+      6) Lock into the tuner post: thread through the post hole, bend back on itself, and wind so wraps go downward (toward
+      the headstock face).
+
+      7) Wind to pitch gradually: bring close to pitch, but don't fully crank one string to pitch while others are slack (especially
+      trem guitars).
+
+      8) Repeat for all strings: install low E to high E (or vice versa); keep winding direction consistent and wraps downward.
+
+      9) Stretch and re-tune: gently stretch each string along its length, then re-tune; repeat until stable.
+  - id: restring_mistakes
+    format: string
+    category: Restringing
+    heading: Common mistakes to avoid when restringing
+    search_terms: "restring mistakes, string problems, tuning drift, string slipping"
+    content:
+      Too many wraps (tuning drift), wraps crossing (slip), cutting strings too short (not enough wraps), and not stretching
+      strings (constant de-tuning).
+  - id: tuning_standard
+    format: string
+    category: Tuning
+    heading: How to Tune an Electric Guitar (Standard Tuning)
+    search_terms: "tune guitar, standard tuning, tuning, how to tune, EADGBE"
+    content:
+      "Standard tuning from low to high: E A D G B E. Tune each open string with a tuner, then double-check with simple
+      chords (G, C, D, E). Approach pitch from below for stability."
+  - id: tuning_reference_pitches
+    format: string
+    category: Tuning
+    heading: Reference pitches for standard tuning
+    search_terms: "reference pitch, 440 Hz, string frequencies, concert pitch"
+    content:
+      "Concert pitch commonly uses A4 = 440 Hz. Approximate open-string fundamental frequencies: E2 82.41 Hz, A2 110.00
+      Hz, D3 146.83 Hz, G3 196.00 Hz, B3 246.94 Hz, E4 329.63 Hz."
+  - id: tuning_checklist
+    format: string
+    category: Tuning
+    heading: Quick tuning checklist
+    search_terms: "tuning checklist, tuning steps, quick tune"
+    content: 1) Tune each open string. 2) Stretch strings lightly. 3) Re-tune. 4) Check again after 5–10 minutes of playing.
+  - id: triad_c_maj
+    format: object
+    category: Triads
+    heading: C Major Triad Voicings
+    search_terms: "C triad, C major triad, C major chord triad, C chord triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 10-9-8
+        notes: C, E, G
+        fret_range: 8-10
+      - inversion: 1st
+        strings: DGB
+        frets: 2-0-1
+        notes: E, G, C
+        fret_range: 0-2
+      - inversion: 2nd
+        strings: DGB
+        frets: 5-5-5
+        notes: G, C, E
+        fret_range: 5-5
+      - inversion: root
+        strings: GBE
+        frets: 5-5-3
+        notes: C, E, G
+        fret_range: 3-5
+      - inversion: 1st
+        strings: GBE
+        frets: 9-8-8
+        notes: E, G, C
+        fret_range: 8-9
+      - inversion: 2nd
+        strings: GBE
+        frets: 0-1-0
+        notes: G, C, E
+        fret_range: 0-1
+  - id: triad_c_min
+    format: object
+    category: Triads
+    heading: C Minor Triad Voicings
+    search_terms: "C minor triad, Cm triad, C min triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 10-8-8
+        notes: C, D#, G
+        fret_range: 8-10
+      - inversion: 1st
+        strings: DGB
+        frets: 1-0-1
+        notes: D#, G, C
+        fret_range: 0-1
+      - inversion: 2nd
+        strings: DGB
+        frets: 5-5-4
+        notes: G, C, D#
+        fret_range: 4-5
+      - inversion: root
+        strings: GBE
+        frets: 5-4-3
+        notes: C, D#, G
+        fret_range: 3-5
+      - inversion: 1st
+        strings: GBE
+        frets: 8-8-8
+        notes: D#, G, C
+        fret_range: 8-8
+      - inversion: 2nd
+        strings: GBE
+        frets: 12-13-11
+        notes: G, C, D#
+        fret_range: 11-13
+  - id: triad_c_dim
+    format: object
+    category: Triads
+    heading: C Diminished Triad Voicings
+    search_terms: "C diminished triad, C dim triad, Cdim triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 10-8-7
+        notes: C, D#, F#
+        fret_range: 7-10
+      - inversion: 1st
+        strings: DGB
+        frets: 13-11-13
+        notes: D#, F#, C
+        fret_range: 11-13
+      - inversion: 2nd
+        strings: DGB
+        frets: 4-5-4
+        notes: F#, C, D#
+        fret_range: 4-5
+      - inversion: root
+        strings: GBE
+        frets: 5-4-2
+        notes: C, D#, F#
+        fret_range: 2-5
+      - inversion: 1st
+        strings: GBE
+        frets: 8-7-8
+        notes: D#, F#, C
+        fret_range: 7-8
+      - inversion: 2nd
+        strings: GBE
+        frets: 11-13-11
+        notes: F#, C, D#
+        fret_range: 11-13
+  - id: triad_c_aug
+    format: object
+    category: Triads
+    heading: C Augmented Triad Voicings
+    search_terms: "C augmented triad, C aug triad, Caug triad, C+ triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 10-9-9
+        notes: C, E, G#
+        fret_range: 9-10
+      - inversion: 1st
+        strings: DGB
+        frets: 2-1-1
+        notes: E, G#, C
+        fret_range: 1-2
+      - inversion: 2nd
+        strings: DGB
+        frets: 6-5-5
+        notes: G#, C, E
+        fret_range: 5-6
+      - inversion: root
+        strings: GBE
+        frets: 5-5-4
+        notes: C, E, G#
+        fret_range: 4-5
+      - inversion: 1st
+        strings: GBE
+        frets: 9-9-8
+        notes: E, G#, C
+        fret_range: 8-9
+      - inversion: 2nd
+        strings: GBE
+        frets: 1-1-0
+        notes: G#, C, E
+        fret_range: 0-1
+  - id: triad_csharp_maj
+    format: object
+    category: Triads
+    heading: C#/Db Major Triad Voicings
+    search_terms: "C# triad, Db triad, C sharp triad, D flat triad, C# major triad, Db major triad"
+    template: "C#/Db triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 11-10-9
+        notes: C#, F, G#
+        fret_range: 9-11
+      - inversion: 1st
+        strings: DGB
+        frets: 3-1-2
+        notes: F, G#, C#
+        fret_range: 1-3
+      - inversion: 2nd
+        strings: DGB
+        frets: 6-6-6
+        notes: G#, C#, F
+        fret_range: 6-6
+      - inversion: root
+        strings: GBE
+        frets: 6-6-4
+        notes: C#, F, G#
+        fret_range: 4-6
+      - inversion: 1st
+        strings: GBE
+        frets: 10-9-9
+        notes: F, G#, C#
+        fret_range: 9-10
+      - inversion: 2nd
+        strings: GBE
+        frets: 1-2-1
+        notes: G#, C#, F
+        fret_range: 1-2
+  - id: triad_csharp_min
+    format: object
+    category: Triads
+    heading: C#/Db Minor Triad Voicings
+    search_terms: "C# minor triad, Db minor triad, C#m triad, Dbm triad"
+    template: "C#/Db triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 11-9-9
+        notes: C#, E, G#
+        fret_range: 9-11
+      - inversion: 1st
+        strings: DGB
+        frets: 2-1-2
+        notes: E, G#, C#
+        fret_range: 1-2
+      - inversion: 2nd
+        strings: DGB
+        frets: 6-6-5
+        notes: G#, C#, E
+        fret_range: 5-6
+      - inversion: root
+        strings: GBE
+        frets: 6-5-4
+        notes: C#, E, G#
+        fret_range: 4-6
+      - inversion: 1st
+        strings: GBE
+        frets: 9-9-9
+        notes: E, G#, C#
+        fret_range: 9-9
+      - inversion: 2nd
+        strings: GBE
+        frets: 1-2-0
+        notes: G#, C#, E
+        fret_range: 0-2
+  - id: triad_csharp_dim
+    format: object
+    category: Triads
+    heading: C#/Db Diminished Triad Voicings
+    search_terms: "C# diminished triad, Db diminished triad, C#dim triad, Dbdim triad"
+    template: "C#/Db triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 11-9-8
+        notes: C#, E, G
+        fret_range: 8-11
+      - inversion: 1st
+        strings: DGB
+        frets: 2-0-2
+        notes: E, G, C#
+        fret_range: 0-2
+      - inversion: 2nd
+        strings: DGB
+        frets: 5-6-5
+        notes: G, C#, E
+        fret_range: 5-6
+      - inversion: root
+        strings: GBE
+        frets: 6-5-3
+        notes: C#, E, G
+        fret_range: 3-6
+      - inversion: 1st
+        strings: GBE
+        frets: 9-8-9
+        notes: E, G, C#
+        fret_range: 8-9
+      - inversion: 2nd
+        strings: GBE
+        frets: 0-2-0
+        notes: G, C#, E
+        fret_range: 0-2
+  - id: triad_csharp_aug
+    format: object
+    category: Triads
+    heading: C#/Db Augmented Triad Voicings
+    search_terms: "C# augmented triad, Db augmented triad, C#aug triad, Dbaug triad"
+    template: "C#/Db triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 11-10-10
+        notes: C#, F, A
+        fret_range: 10-11
+      - inversion: 1st
+        strings: DGB
+        frets: 3-2-2
+        notes: F, A, C#
+        fret_range: 2-3
+      - inversion: 2nd
+        strings: DGB
+        frets: 7-6-6
+        notes: A, C#, F
+        fret_range: 6-7
+      - inversion: root
+        strings: GBE
+        frets: 6-6-5
+        notes: C#, F, A
+        fret_range: 5-6
+      - inversion: 1st
+        strings: GBE
+        frets: 10-10-9
+        notes: F, A, C#
+        fret_range: 9-10
+      - inversion: 2nd
+        strings: GBE
+        frets: 2-2-1
+        notes: A, C#, F
+        fret_range: 1-2
+  - id: triad_d_maj
+    format: object
+    category: Triads
+    heading: D Major Triad Voicings
+    search_terms: "D triad, D major triad, D major chord triad, D chord triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 12-11-10
+        notes: D, F#, A
+        fret_range: 10-12
+      - inversion: 1st
+        strings: DGB
+        frets: 4-2-3
+        notes: F#, A, D
+        fret_range: 2-4
+      - inversion: 2nd
+        strings: DGB
+        frets: 7-7-7
+        notes: A, D, F#
+        fret_range: 7-7
+      - inversion: root
+        strings: GBE
+        frets: 7-7-5
+        notes: D, F#, A
+        fret_range: 5-7
+      - inversion: 1st
+        strings: GBE
+        frets: 11-10-10
+        notes: F#, A, D
+        fret_range: 10-11
+      - inversion: 2nd
+        strings: GBE
+        frets: 2-3-2
+        notes: A, D, F#
+        fret_range: 2-3
+  - id: triad_d_min
+    format: object
+    category: Triads
+    heading: D Minor Triad Voicings
+    search_terms: "D minor triad, Dm triad, D min triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 12-10-10
+        notes: D, F, A
+        fret_range: 10-12
+      - inversion: 1st
+        strings: DGB
+        frets: 3-2-3
+        notes: F, A, D
+        fret_range: 2-3
+      - inversion: 2nd
+        strings: DGB
+        frets: 7-7-6
+        notes: A, D, F
+        fret_range: 6-7
+      - inversion: root
+        strings: GBE
+        frets: 7-6-5
+        notes: D, F, A
+        fret_range: 5-7
+      - inversion: 1st
+        strings: GBE
+        frets: 10-10-10
+        notes: F, A, D
+        fret_range: 10-10
+      - inversion: 2nd
+        strings: GBE
+        frets: 2-3-1
+        notes: A, D, F
+        fret_range: 1-3
+  - id: triad_d_dim
+    format: object
+    category: Triads
+    heading: D Diminished Triad Voicings
+    search_terms: "D diminished triad, D dim triad, Ddim triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 12-10-9
+        notes: D, F, G#
+        fret_range: 9-12
+      - inversion: 1st
+        strings: DGB
+        frets: 3-1-3
+        notes: F, G#, D
+        fret_range: 1-3
+      - inversion: 2nd
+        strings: DGB
+        frets: 6-7-6
+        notes: G#, D, F
+        fret_range: 6-7
+      - inversion: root
+        strings: GBE
+        frets: 7-6-4
+        notes: D, F, G#
+        fret_range: 4-7
+      - inversion: 1st
+        strings: GBE
+        frets: 10-9-10
+        notes: F, G#, D
+        fret_range: 9-10
+      - inversion: 2nd
+        strings: GBE
+        frets: 1-3-1
+        notes: G#, D, F
+        fret_range: 1-3
+  - id: triad_d_aug
+    format: object
+    category: Triads
+    heading: D Augmented Triad Voicings
+    search_terms: "D augmented triad, D aug triad, Daug triad, D+ triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 12-11-11
+        notes: D, F#, A#
+        fret_range: 11-12
+      - inversion: 1st
+        strings: DGB
+        frets: 4-3-3
+        notes: F#, A#, D
+        fret_range: 3-4
+      - inversion: 2nd
+        strings: DGB
+        frets: 8-7-7
+        notes: A#, D, F#
+        fret_range: 7-8
+      - inversion: root
+        strings: GBE
+        frets: 7-7-6
+        notes: D, F#, A#
+        fret_range: 6-7
+      - inversion: 1st
+        strings: GBE
+        frets: 11-11-10
+        notes: F#, A#, D
+        fret_range: 10-11
+      - inversion: 2nd
+        strings: GBE
+        frets: 3-3-2
+        notes: A#, D, F#
+        fret_range: 2-3
+  - id: triad_dsharp_maj
+    format: object
+    category: Triads
+    heading: D#/Eb Major Triad Voicings
+    search_terms: "D# triad, Eb triad, D sharp triad, E flat triad, D# major triad, Eb major triad"
+    template: "D#/Eb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 13-12-11
+        notes: D#, G, A#
+        fret_range: 11-13
+      - inversion: 1st
+        strings: DGB
+        frets: 5-3-4
+        notes: G, A#, D#
+        fret_range: 3-5
+      - inversion: 2nd
+        strings: DGB
+        frets: 8-8-8
+        notes: A#, D#, G
+        fret_range: 8-8
+      - inversion: root
+        strings: GBE
+        frets: 8-8-6
+        notes: D#, G, A#
+        fret_range: 6-8
+      - inversion: 1st
+        strings: GBE
+        frets: 12-11-11
+        notes: G, A#, D#
+        fret_range: 11-12
+      - inversion: 2nd
+        strings: GBE
+        frets: 3-4-3
+        notes: A#, D#, G
+        fret_range: 3-4
+  - id: triad_dsharp_min
+    format: object
+    category: Triads
+    heading: D#/Eb Minor Triad Voicings
+    search_terms: "D# minor triad, Eb minor triad, D#m triad, Ebm triad"
+    template: "D#/Eb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 13-11-11
+        notes: D#, F#, A#
+        fret_range: 11-13
+      - inversion: 1st
+        strings: DGB
+        frets: 4-3-4
+        notes: F#, A#, D#
+        fret_range: 3-4
+      - inversion: 2nd
+        strings: DGB
+        frets: 8-8-7
+        notes: A#, D#, F#
+        fret_range: 7-8
+      - inversion: root
+        strings: GBE
+        frets: 8-7-6
+        notes: D#, F#, A#
+        fret_range: 6-8
+      - inversion: 1st
+        strings: GBE
+        frets: 11-11-11
+        notes: F#, A#, D#
+        fret_range: 11-11
+      - inversion: 2nd
+        strings: GBE
+        frets: 3-4-2
+        notes: A#, D#, F#
+        fret_range: 2-4
+  - id: triad_dsharp_dim
+    format: object
+    category: Triads
+    heading: D#/Eb Diminished Triad Voicings
+    search_terms: "D# diminished triad, Eb diminished triad, D#dim triad, Ebdim triad"
+    template: "D#/Eb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 13-11-10
+        notes: D#, F#, A
+        fret_range: 10-13
+      - inversion: 1st
+        strings: DGB
+        frets: 4-2-4
+        notes: F#, A, D#
+        fret_range: 2-4
+      - inversion: 2nd
+        strings: DGB
+        frets: 7-8-7
+        notes: A, D#, F#
+        fret_range: 7-8
+      - inversion: root
+        strings: GBE
+        frets: 8-7-5
+        notes: D#, F#, A
+        fret_range: 5-8
+      - inversion: 1st
+        strings: GBE
+        frets: 11-10-11
+        notes: F#, A, D#
+        fret_range: 10-11
+      - inversion: 2nd
+        strings: GBE
+        frets: 2-4-2
+        notes: A, D#, F#
+        fret_range: 2-4
+  - id: triad_dsharp_aug
+    format: object
+    category: Triads
+    heading: D#/Eb Augmented Triad Voicings
+    search_terms: "D# augmented triad, Eb augmented triad, D#aug triad, Ebaug triad"
+    template: "D#/Eb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 1-0-0
+        notes: D#, G, B
+        fret_range: 0-1
+      - inversion: 1st
+        strings: DGB
+        frets: 5-4-4
+        notes: G, B, D#
+        fret_range: 4-5
+      - inversion: 2nd
+        strings: DGB
+        frets: 9-8-8
+        notes: B, D#, G
+        fret_range: 8-9
+      - inversion: root
+        strings: GBE
+        frets: 8-8-7
+        notes: D#, G, B
+        fret_range: 7-8
+      - inversion: 1st
+        strings: GBE
+        frets: 12-12-11
+        notes: G, B, D#
+        fret_range: 11-12
+      - inversion: 2nd
+        strings: GBE
+        frets: 4-4-3
+        notes: B, D#, G
+        fret_range: 3-4
+  - id: triad_e_maj
+    format: object
+    category: Triads
+    heading: E Major Triad Voicings
+    search_terms: "E triad, E major triad, E major chord triad, E chord triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 2-1-0
+        notes: E, G#, B
+        fret_range: 0-2
+      - inversion: 1st
+        strings: DGB
+        frets: 6-4-5
+        notes: G#, B, E
+        fret_range: 4-6
+      - inversion: 2nd
+        strings: DGB
+        frets: 9-9-9
+        notes: B, E, G#
+        fret_range: 9-9
+      - inversion: root
+        strings: GBE
+        frets: 9-9-7
+        notes: E, G#, B
+        fret_range: 7-9
+      - inversion: 1st
+        strings: GBE
+        frets: 1-0-0
+        notes: G#, B, E
+        fret_range: 0-1
+      - inversion: 2nd
+        strings: GBE
+        frets: 4-5-4
+        notes: B, E, G#
+        fret_range: 4-5
+  - id: triad_e_min
+    format: object
+    category: Triads
+    heading: E Minor Triad Voicings
+    search_terms: "E minor triad, Em triad, E min triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 2-0-0
+        notes: E, G, B
+        fret_range: 0-2
+      - inversion: 1st
+        strings: DGB
+        frets: 5-4-5
+        notes: G, B, E
+        fret_range: 4-5
+      - inversion: 2nd
+        strings: DGB
+        frets: 9-9-8
+        notes: B, E, G
+        fret_range: 8-9
+      - inversion: root
+        strings: GBE
+        frets: 9-8-7
+        notes: E, G, B
+        fret_range: 7-9
+      - inversion: 1st
+        strings: GBE
+        frets: 0-0-0
+        notes: G, B, E
+        fret_range: 0-0
+      - inversion: 2nd
+        strings: GBE
+        frets: 4-5-3
+        notes: B, E, G
+        fret_range: 3-5
+  - id: triad_e_dim
+    format: object
+    category: Triads
+    heading: E Diminished Triad Voicings
+    search_terms: "E diminished triad, E dim triad, Edim triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 14-12-11
+        notes: E, G, A#
+        fret_range: 11-14
+      - inversion: 1st
+        strings: DGB
+        frets: 5-3-5
+        notes: G, A#, E
+        fret_range: 3-5
+      - inversion: 2nd
+        strings: DGB
+        frets: 8-9-8
+        notes: A#, E, G
+        fret_range: 8-9
+      - inversion: root
+        strings: GBE
+        frets: 9-8-6
+        notes: E, G, A#
+        fret_range: 6-9
+      - inversion: 1st
+        strings: GBE
+        frets: 12-11-12
+        notes: G, A#, E
+        fret_range: 11-12
+      - inversion: 2nd
+        strings: GBE
+        frets: 3-5-3
+        notes: A#, E, G
+        fret_range: 3-5
+  - id: triad_e_aug
+    format: object
+    category: Triads
+    heading: E Augmented Triad Voicings
+    search_terms: "E augmented triad, E aug triad, Eaug triad, E+ triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 2-1-1
+        notes: E, G#, C
+        fret_range: 1-2
+      - inversion: 1st
+        strings: DGB
+        frets: 6-5-5
+        notes: G#, C, E
+        fret_range: 5-6
+      - inversion: 2nd
+        strings: DGB
+        frets: 10-9-9
+        notes: C, E, G#
+        fret_range: 9-10
+      - inversion: root
+        strings: GBE
+        frets: 9-9-8
+        notes: E, G#, C
+        fret_range: 8-9
+      - inversion: 1st
+        strings: GBE
+        frets: 1-1-0
+        notes: G#, C, E
+        fret_range: 0-1
+      - inversion: 2nd
+        strings: GBE
+        frets: 5-5-4
+        notes: C, E, G#
+        fret_range: 4-5
+  - id: triad_f_maj
+    format: object
+    category: Triads
+    heading: F Major Triad Voicings
+    search_terms: "F triad, F major triad, F major chord triad, F chord triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 3-2-1
+        notes: F, A, C
+        fret_range: 1-3
+      - inversion: 1st
+        strings: DGB
+        frets: 7-5-6
+        notes: A, C, F
+        fret_range: 5-7
+      - inversion: 2nd
+        strings: DGB
+        frets: 10-10-10
+        notes: C, F, A
+        fret_range: 10-10
+      - inversion: root
+        strings: GBE
+        frets: 10-10-8
+        notes: F, A, C
+        fret_range: 8-10
+      - inversion: 1st
+        strings: GBE
+        frets: 2-1-1
+        notes: A, C, F
+        fret_range: 1-2
+      - inversion: 2nd
+        strings: GBE
+        frets: 5-6-5
+        notes: C, F, A
+        fret_range: 5-6
+  - id: triad_f_min
+    format: object
+    category: Triads
+    heading: F Minor Triad Voicings
+    search_terms: "F minor triad, Fm triad, F min triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 3-1-1
+        notes: F, G#, C
+        fret_range: 1-3
+      - inversion: 1st
+        strings: DGB
+        frets: 6-5-6
+        notes: G#, C, F
+        fret_range: 5-6
+      - inversion: 2nd
+        strings: DGB
+        frets: 10-10-9
+        notes: C, F, G#
+        fret_range: 9-10
+      - inversion: root
+        strings: GBE
+        frets: 10-9-8
+        notes: F, G#, C
+        fret_range: 8-10
+      - inversion: 1st
+        strings: GBE
+        frets: 1-1-1
+        notes: G#, C, F
+        fret_range: 1-1
+      - inversion: 2nd
+        strings: GBE
+        frets: 5-6-4
+        notes: C, F, G#
+        fret_range: 4-6
+  - id: triad_f_dim
+    format: object
+    category: Triads
+    heading: F Diminished Triad Voicings
+    search_terms: "F diminished triad, F dim triad, Fdim triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 3-1-0
+        notes: F, G#, B
+        fret_range: 0-3
+      - inversion: 1st
+        strings: DGB
+        frets: 6-4-6
+        notes: G#, B, F
+        fret_range: 4-6
+      - inversion: 2nd
+        strings: DGB
+        frets: 9-10-9
+        notes: B, F, G#
+        fret_range: 9-10
+      - inversion: root
+        strings: GBE
+        frets: 10-9-7
+        notes: F, G#, B
+        fret_range: 7-10
+      - inversion: 1st
+        strings: GBE
+        frets: 1-0-1
+        notes: G#, B, F
+        fret_range: 0-1
+      - inversion: 2nd
+        strings: GBE
+        frets: 4-6-4
+        notes: B, F, G#
+        fret_range: 4-6
+  - id: triad_f_aug
+    format: object
+    category: Triads
+    heading: F Augmented Triad Voicings
+    search_terms: "F augmented triad, F aug triad, Faug triad, F+ triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 3-2-2
+        notes: F, A, C#
+        fret_range: 2-3
+      - inversion: 1st
+        strings: DGB
+        frets: 7-6-6
+        notes: A, C#, F
+        fret_range: 6-7
+      - inversion: 2nd
+        strings: DGB
+        frets: 11-10-10
+        notes: C#, F, A
+        fret_range: 10-11
+      - inversion: root
+        strings: GBE
+        frets: 10-10-9
+        notes: F, A, C#
+        fret_range: 9-10
+      - inversion: 1st
+        strings: GBE
+        frets: 2-2-1
+        notes: A, C#, F
+        fret_range: 1-2
+      - inversion: 2nd
+        strings: GBE
+        frets: 6-6-5
+        notes: C#, F, A
+        fret_range: 5-6
+  - id: triad_fsharp_maj
+    format: object
+    category: Triads
+    heading: F#/Gb Major Triad Voicings
+    search_terms: "F# triad, Gb triad, F sharp triad, G flat triad, F# major triad, Gb major triad"
+    template: "F#/Gb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 4-3-2
+        notes: F#, A#, C#
+        fret_range: 2-4
+      - inversion: 1st
+        strings: DGB
+        frets: 8-6-7
+        notes: A#, C#, F#
+        fret_range: 6-8
+      - inversion: 2nd
+        strings: DGB
+        frets: 11-11-11
+        notes: C#, F#, A#
+        fret_range: 11-11
+      - inversion: root
+        strings: GBE
+        frets: 11-11-9
+        notes: F#, A#, C#
+        fret_range: 9-11
+      - inversion: 1st
+        strings: GBE
+        frets: 3-2-2
+        notes: A#, C#, F#
+        fret_range: 2-3
+      - inversion: 2nd
+        strings: GBE
+        frets: 6-7-6
+        notes: C#, F#, A#
+        fret_range: 6-7
+  - id: triad_fsharp_min
+    format: object
+    category: Triads
+    heading: F#/Gb Minor Triad Voicings
+    search_terms: "F# minor triad, Gb minor triad, F#m triad, Gbm triad"
+    template: "F#/Gb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 4-2-2
+        notes: F#, A, C#
+        fret_range: 2-4
+      - inversion: 1st
+        strings: DGB
+        frets: 7-6-7
+        notes: A, C#, F#
+        fret_range: 6-7
+      - inversion: 2nd
+        strings: DGB
+        frets: 11-11-10
+        notes: C#, F#, A
+        fret_range: 10-11
+      - inversion: root
+        strings: GBE
+        frets: 11-10-9
+        notes: F#, A, C#
+        fret_range: 9-11
+      - inversion: 1st
+        strings: GBE
+        frets: 2-2-2
+        notes: A, C#, F#
+        fret_range: 2-2
+      - inversion: 2nd
+        strings: GBE
+        frets: 6-7-5
+        notes: C#, F#, A
+        fret_range: 5-7
+  - id: triad_fsharp_dim
+    format: object
+    category: Triads
+    heading: F#/Gb Diminished Triad Voicings
+    search_terms: "F# diminished triad, Gb diminished triad, F#dim triad, Gbdim triad"
+    template: "F#/Gb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 4-2-1
+        notes: F#, A, C
+        fret_range: 1-4
+      - inversion: 1st
+        strings: DGB
+        frets: 7-5-7
+        notes: A, C, F#
+        fret_range: 5-7
+      - inversion: 2nd
+        strings: DGB
+        frets: 10-11-10
+        notes: C, F#, A
+        fret_range: 10-11
+      - inversion: root
+        strings: GBE
+        frets: 11-10-8
+        notes: F#, A, C
+        fret_range: 8-11
+      - inversion: 1st
+        strings: GBE
+        frets: 2-1-2
+        notes: A, C, F#
+        fret_range: 1-2
+      - inversion: 2nd
+        strings: GBE
+        frets: 5-7-5
+        notes: C, F#, A
+        fret_range: 5-7
+  - id: triad_fsharp_aug
+    format: object
+    category: Triads
+    heading: F#/Gb Augmented Triad Voicings
+    search_terms: "F# augmented triad, Gb augmented triad, F#aug triad, Gbaug triad"
+    template: "F#/Gb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 4-3-3
+        notes: F#, A#, D
+        fret_range: 3-4
+      - inversion: 1st
+        strings: DGB
+        frets: 8-7-7
+        notes: A#, D, F#
+        fret_range: 7-8
+      - inversion: 2nd
+        strings: DGB
+        frets: 12-11-11
+        notes: D, F#, A#
+        fret_range: 11-12
+      - inversion: root
+        strings: GBE
+        frets: 11-11-10
+        notes: F#, A#, D
+        fret_range: 10-11
+      - inversion: 1st
+        strings: GBE
+        frets: 3-3-2
+        notes: A#, D, F#
+        fret_range: 2-3
+      - inversion: 2nd
+        strings: GBE
+        frets: 7-7-6
+        notes: D, F#, A#
+        fret_range: 6-7
+  - id: triad_g_maj
+    format: object
+    category: Triads
+    heading: G Major Triad Voicings
+    search_terms: "G triad, G major triad, G major chord triad, G chord triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 5-4-3
+        notes: G, B, D
+        fret_range: 3-5
+      - inversion: 1st
+        strings: DGB
+        frets: 9-7-8
+        notes: B, D, G
+        fret_range: 7-9
+      - inversion: 2nd
+        strings: DGB
+        frets: 0-0-0
+        notes: D, G, B
+        fret_range: 0-0
+      - inversion: root
+        strings: GBE
+        frets: 12-12-10
+        notes: G, B, D
+        fret_range: 10-12
+      - inversion: 1st
+        strings: GBE
+        frets: 4-3-3
+        notes: B, D, G
+        fret_range: 3-4
+      - inversion: 2nd
+        strings: GBE
+        frets: 7-8-7
+        notes: D, G, B
+        fret_range: 7-8
+  - id: triad_g_min
+    format: object
+    category: Triads
+    heading: G Minor Triad Voicings
+    search_terms: "G minor triad, Gm triad, G min triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 5-3-3
+        notes: G, A#, D
+        fret_range: 3-5
+      - inversion: 1st
+        strings: DGB
+        frets: 8-7-8
+        notes: A#, D, G
+        fret_range: 7-8
+      - inversion: 2nd
+        strings: DGB
+        frets: 12-12-11
+        notes: D, G, A#
+        fret_range: 11-12
+      - inversion: root
+        strings: GBE
+        frets: 12-11-10
+        notes: G, A#, D
+        fret_range: 10-12
+      - inversion: 1st
+        strings: GBE
+        frets: 3-3-3
+        notes: A#, D, G
+        fret_range: 3-3
+      - inversion: 2nd
+        strings: GBE
+        frets: 7-8-6
+        notes: D, G, A#
+        fret_range: 6-8
+  - id: triad_g_dim
+    format: object
+    category: Triads
+    heading: G Diminished Triad Voicings
+    search_terms: "G diminished triad, G dim triad, Gdim triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 5-3-2
+        notes: G, A#, C#
+        fret_range: 2-5
+      - inversion: 1st
+        strings: DGB
+        frets: 8-6-8
+        notes: A#, C#, G
+        fret_range: 6-8
+      - inversion: 2nd
+        strings: DGB
+        frets: 11-12-11
+        notes: C#, G, A#
+        fret_range: 11-12
+      - inversion: root
+        strings: GBE
+        frets: 12-11-9
+        notes: G, A#, C#
+        fret_range: 9-12
+      - inversion: 1st
+        strings: GBE
+        frets: 3-2-3
+        notes: A#, C#, G
+        fret_range: 2-3
+      - inversion: 2nd
+        strings: GBE
+        frets: 6-8-6
+        notes: C#, G, A#
+        fret_range: 6-8
+  - id: triad_g_aug
+    format: object
+    category: Triads
+    heading: G Augmented Triad Voicings
+    search_terms: "G augmented triad, G aug triad, Gaug triad, G+ triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 5-4-4
+        notes: G, B, D#
+        fret_range: 4-5
+      - inversion: 1st
+        strings: DGB
+        frets: 9-8-8
+        notes: B, D#, G
+        fret_range: 8-9
+      - inversion: 2nd
+        strings: DGB
+        frets: 1-0-0
+        notes: D#, G, B
+        fret_range: 0-1
+      - inversion: root
+        strings: GBE
+        frets: 12-12-11
+        notes: G, B, D#
+        fret_range: 11-12
+      - inversion: 1st
+        strings: GBE
+        frets: 4-4-3
+        notes: B, D#, G
+        fret_range: 3-4
+      - inversion: 2nd
+        strings: GBE
+        frets: 8-8-7
+        notes: D#, G, B
+        fret_range: 7-8
+  - id: triad_gsharp_maj
+    format: object
+    category: Triads
+    heading: G#/Ab Major Triad Voicings
+    search_terms: "G# triad, Ab triad, G sharp triad, A flat triad, G# major triad, Ab major triad"
+    template: "G#/Ab triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 6-5-4
+        notes: G#, C, D#
+        fret_range: 4-6
+      - inversion: 1st
+        strings: DGB
+        frets: 10-8-9
+        notes: C, D#, G#
+        fret_range: 8-10
+      - inversion: 2nd
+        strings: DGB
+        frets: 1-1-1
+        notes: D#, G#, C
+        fret_range: 1-1
+      - inversion: root
+        strings: GBE
+        frets: 13-13-11
+        notes: G#, C, D#
+        fret_range: 11-13
+      - inversion: 1st
+        strings: GBE
+        frets: 5-4-4
+        notes: C, D#, G#
+        fret_range: 4-5
+      - inversion: 2nd
+        strings: GBE
+        frets: 8-9-8
+        notes: D#, G#, C
+        fret_range: 8-9
+  - id: triad_gsharp_min
+    format: object
+    category: Triads
+    heading: G#/Ab Minor Triad Voicings
+    search_terms: "G# minor triad, Ab minor triad, G#m triad, Abm triad"
+    template: "G#/Ab triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 6-4-4
+        notes: G#, B, D#
+        fret_range: 4-6
+      - inversion: 1st
+        strings: DGB
+        frets: 9-8-9
+        notes: B, D#, G#
+        fret_range: 8-9
+      - inversion: 2nd
+        strings: DGB
+        frets: 1-1-0
+        notes: D#, G#, B
+        fret_range: 0-1
+      - inversion: root
+        strings: GBE
+        frets: 13-12-11
+        notes: G#, B, D#
+        fret_range: 11-13
+      - inversion: 1st
+        strings: GBE
+        frets: 4-4-4
+        notes: B, D#, G#
+        fret_range: 4-4
+      - inversion: 2nd
+        strings: GBE
+        frets: 8-9-7
+        notes: D#, G#, B
+        fret_range: 7-9
+  - id: triad_gsharp_dim
+    format: object
+    category: Triads
+    heading: G#/Ab Diminished Triad Voicings
+    search_terms: "G# diminished triad, Ab diminished triad, G#dim triad, Abdim triad"
+    template: "G#/Ab triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 6-4-3
+        notes: G#, B, D
+        fret_range: 3-6
+      - inversion: 1st
+        strings: DGB
+        frets: 9-7-9
+        notes: B, D, G#
+        fret_range: 7-9
+      - inversion: 2nd
+        strings: DGB
+        frets: 0-1-0
+        notes: D, G#, B
+        fret_range: 0-1
+      - inversion: root
+        strings: GBE
+        frets: 13-12-10
+        notes: G#, B, D
+        fret_range: 10-13
+      - inversion: 1st
+        strings: GBE
+        frets: 4-3-4
+        notes: B, D, G#
+        fret_range: 3-4
+      - inversion: 2nd
+        strings: GBE
+        frets: 7-9-7
+        notes: D, G#, B
+        fret_range: 7-9
+  - id: triad_gsharp_aug
+    format: object
+    category: Triads
+    heading: G#/Ab Augmented Triad Voicings
+    search_terms: "G# augmented triad, Ab augmented triad, G#aug triad, Abaug triad"
+    template: "G#/Ab triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 6-5-5
+        notes: G#, C, E
+        fret_range: 5-6
+      - inversion: 1st
+        strings: DGB
+        frets: 10-9-9
+        notes: C, E, G#
+        fret_range: 9-10
+      - inversion: 2nd
+        strings: DGB
+        frets: 2-1-1
+        notes: E, G#, C
+        fret_range: 1-2
+      - inversion: root
+        strings: GBE
+        frets: 1-1-0
+        notes: G#, C, E
+        fret_range: 0-1
+      - inversion: 1st
+        strings: GBE
+        frets: 5-5-4
+        notes: C, E, G#
+        fret_range: 4-5
+      - inversion: 2nd
+        strings: GBE
+        frets: 9-9-8
+        notes: E, G#, C
+        fret_range: 8-9
+  - id: triad_a_maj
+    format: object
+    category: Triads
+    heading: A Major Triad Voicings
+    search_terms: "A triad, A major triad, A major chord triad, A chord triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 7-6-5
+        notes: A, C#, E
+        fret_range: 5-7
+      - inversion: 1st
+        strings: DGB
+        frets: 11-9-10
+        notes: C#, E, A
+        fret_range: 9-11
+      - inversion: 2nd
+        strings: DGB
+        frets: 2-2-2
+        notes: E, A, C#
+        fret_range: 2-2
+      - inversion: root
+        strings: GBE
+        frets: 2-2-0
+        notes: A, C#, E
+        fret_range: 0-2
+      - inversion: 1st
+        strings: GBE
+        frets: 6-5-5
+        notes: C#, E, A
+        fret_range: 5-6
+      - inversion: 2nd
+        strings: GBE
+        frets: 9-10-9
+        notes: E, A, C#
+        fret_range: 9-10
+  - id: triad_a_min
+    format: object
+    category: Triads
+    heading: A Minor Triad Voicings
+    search_terms: "A minor triad, Am triad, A min triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 7-5-5
+        notes: A, C, E
+        fret_range: 5-7
+      - inversion: 1st
+        strings: DGB
+        frets: 10-9-10
+        notes: C, E, A
+        fret_range: 9-10
+      - inversion: 2nd
+        strings: DGB
+        frets: 2-2-1
+        notes: E, A, C
+        fret_range: 1-2
+      - inversion: root
+        strings: GBE
+        frets: 2-1-0
+        notes: A, C, E
+        fret_range: 0-2
+      - inversion: 1st
+        strings: GBE
+        frets: 5-5-5
+        notes: C, E, A
+        fret_range: 5-5
+      - inversion: 2nd
+        strings: GBE
+        frets: 9-10-8
+        notes: E, A, C
+        fret_range: 8-10
+  - id: triad_a_dim
+    format: object
+    category: Triads
+    heading: A Diminished Triad Voicings
+    search_terms: "A diminished triad, A dim triad, Adim triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 7-5-4
+        notes: A, C, D#
+        fret_range: 4-7
+      - inversion: 1st
+        strings: DGB
+        frets: 10-8-10
+        notes: C, D#, A
+        fret_range: 8-10
+      - inversion: 2nd
+        strings: DGB
+        frets: 1-2-1
+        notes: D#, A, C
+        fret_range: 1-2
+      - inversion: root
+        strings: GBE
+        frets: 14-13-11
+        notes: A, C, D#
+        fret_range: 11-14
+      - inversion: 1st
+        strings: GBE
+        frets: 5-4-5
+        notes: C, D#, A
+        fret_range: 4-5
+      - inversion: 2nd
+        strings: GBE
+        frets: 8-10-8
+        notes: D#, A, C
+        fret_range: 8-10
+  - id: triad_a_aug
+    format: object
+    category: Triads
+    heading: A Augmented Triad Voicings
+    search_terms: "A augmented triad, A aug triad, Aaug triad, A+ triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 7-6-6
+        notes: A, C#, F
+        fret_range: 6-7
+      - inversion: 1st
+        strings: DGB
+        frets: 11-10-10
+        notes: C#, F, A
+        fret_range: 10-11
+      - inversion: 2nd
+        strings: DGB
+        frets: 3-2-2
+        notes: F, A, C#
+        fret_range: 2-3
+      - inversion: root
+        strings: GBE
+        frets: 2-2-1
+        notes: A, C#, F
+        fret_range: 1-2
+      - inversion: 1st
+        strings: GBE
+        frets: 6-6-5
+        notes: C#, F, A
+        fret_range: 5-6
+      - inversion: 2nd
+        strings: GBE
+        frets: 10-10-9
+        notes: F, A, C#
+        fret_range: 9-10
+  - id: triad_asharp_maj
+    format: object
+    category: Triads
+    heading: A#/Bb Major Triad Voicings
+    search_terms: "A# triad, Bb triad, A sharp triad, B flat triad, A# major triad, Bb major triad"
+    template: "A#/Bb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 8-7-6
+        notes: A#, D, F
+        fret_range: 6-8
+      - inversion: 1st
+        strings: DGB
+        frets: 12-10-11
+        notes: D, F, A#
+        fret_range: 10-12
+      - inversion: 2nd
+        strings: DGB
+        frets: 3-3-3
+        notes: F, A#, D
+        fret_range: 3-3
+      - inversion: root
+        strings: GBE
+        frets: 3-3-1
+        notes: A#, D, F
+        fret_range: 1-3
+      - inversion: 1st
+        strings: GBE
+        frets: 7-6-6
+        notes: D, F, A#
+        fret_range: 6-7
+      - inversion: 2nd
+        strings: GBE
+        frets: 10-11-10
+        notes: F, A#, D
+        fret_range: 10-11
+  - id: triad_asharp_min
+    format: object
+    category: Triads
+    heading: A#/Bb Minor Triad Voicings
+    search_terms: "A# minor triad, Bb minor triad, A#m triad, Bbm triad"
+    template: "A#/Bb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 8-6-6
+        notes: A#, C#, F
+        fret_range: 6-8
+      - inversion: 1st
+        strings: DGB
+        frets: 11-10-11
+        notes: C#, F, A#
+        fret_range: 10-11
+      - inversion: 2nd
+        strings: DGB
+        frets: 3-3-2
+        notes: F, A#, C#
+        fret_range: 2-3
+      - inversion: root
+        strings: GBE
+        frets: 3-2-1
+        notes: A#, C#, F
+        fret_range: 1-3
+      - inversion: 1st
+        strings: GBE
+        frets: 6-6-6
+        notes: C#, F, A#
+        fret_range: 6-6
+      - inversion: 2nd
+        strings: GBE
+        frets: 10-11-9
+        notes: F, A#, C#
+        fret_range: 9-11
+  - id: triad_asharp_dim
+    format: object
+    category: Triads
+    heading: A#/Bb Diminished Triad Voicings
+    search_terms: "A# diminished triad, Bb diminished triad, A#dim triad, Bbdim triad"
+    template: "A#/Bb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 8-6-5
+        notes: A#, C#, E
+        fret_range: 5-8
+      - inversion: 1st
+        strings: DGB
+        frets: 11-9-11
+        notes: C#, E, A#
+        fret_range: 9-11
+      - inversion: 2nd
+        strings: DGB
+        frets: 2-3-2
+        notes: E, A#, C#
+        fret_range: 2-3
+      - inversion: root
+        strings: GBE
+        frets: 3-2-0
+        notes: A#, C#, E
+        fret_range: 0-3
+      - inversion: 1st
+        strings: GBE
+        frets: 6-5-6
+        notes: C#, E, A#
+        fret_range: 5-6
+      - inversion: 2nd
+        strings: GBE
+        frets: 9-11-9
+        notes: E, A#, C#
+        fret_range: 9-11
+  - id: triad_asharp_aug
+    format: object
+    category: Triads
+    heading: A#/Bb Augmented Triad Voicings
+    search_terms: "A# augmented triad, Bb augmented triad, A#aug triad, Bbaug triad"
+    template: "A#/Bb triad. {inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 8-7-7
+        notes: A#, D, F#
+        fret_range: 7-8
+      - inversion: 1st
+        strings: DGB
+        frets: 12-11-11
+        notes: D, F#, A#
+        fret_range: 11-12
+      - inversion: 2nd
+        strings: DGB
+        frets: 4-3-3
+        notes: F#, A#, D
+        fret_range: 3-4
+      - inversion: root
+        strings: GBE
+        frets: 3-3-2
+        notes: A#, D, F#
+        fret_range: 2-3
+      - inversion: 1st
+        strings: GBE
+        frets: 7-7-6
+        notes: D, F#, A#
+        fret_range: 6-7
+      - inversion: 2nd
+        strings: GBE
+        frets: 11-11-10
+        notes: F#, A#, D
+        fret_range: 10-11
+  - id: triad_b_maj
+    format: object
+    category: Triads
+    heading: B Major Triad Voicings
+    search_terms: "B triad, B major triad, B major chord triad, B chord triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 9-8-7
+        notes: B, D#, F#
+        fret_range: 7-9
+      - inversion: 1st
+        strings: DGB
+        frets: 13-11-12
+        notes: D#, F#, B
+        fret_range: 11-13
+      - inversion: 2nd
+        strings: DGB
+        frets: 4-4-4
+        notes: F#, B, D#
+        fret_range: 4-4
+      - inversion: root
+        strings: GBE
+        frets: 4-4-2
+        notes: B, D#, F#
+        fret_range: 2-4
+      - inversion: 1st
+        strings: GBE
+        frets: 8-7-7
+        notes: D#, F#, B
+        fret_range: 7-8
+      - inversion: 2nd
+        strings: GBE
+        frets: 11-12-11
+        notes: F#, B, D#
+        fret_range: 11-12
+  - id: triad_b_min
+    format: object
+    category: Triads
+    heading: B Minor Triad Voicings
+    search_terms: "B minor triad, Bm triad, B min triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 9-7-7
+        notes: B, D, F#
+        fret_range: 7-9
+      - inversion: 1st
+        strings: DGB
+        frets: 12-11-12
+        notes: D, F#, B
+        fret_range: 11-12
+      - inversion: 2nd
+        strings: DGB
+        frets: 4-4-3
+        notes: F#, B, D
+        fret_range: 3-4
+      - inversion: root
+        strings: GBE
+        frets: 4-3-2
+        notes: B, D, F#
+        fret_range: 2-4
+      - inversion: 1st
+        strings: GBE
+        frets: 7-7-7
+        notes: D, F#, B
+        fret_range: 7-7
+      - inversion: 2nd
+        strings: GBE
+        frets: 11-12-10
+        notes: F#, B, D
+        fret_range: 10-12
+  - id: triad_b_dim
+    format: object
+    category: Triads
+    heading: B Diminished Triad Voicings
+    search_terms: "B diminished triad, B dim triad, Bdim triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 9-7-6
+        notes: B, D, F
+        fret_range: 6-9
+      - inversion: 1st
+        strings: DGB
+        frets: 12-10-12
+        notes: D, F, B
+        fret_range: 10-12
+      - inversion: 2nd
+        strings: DGB
+        frets: 3-4-3
+        notes: F, B, D
+        fret_range: 3-4
+      - inversion: root
+        strings: GBE
+        frets: 4-3-1
+        notes: B, D, F
+        fret_range: 1-4
+      - inversion: 1st
+        strings: GBE
+        frets: 7-6-7
+        notes: D, F, B
+        fret_range: 6-7
+      - inversion: 2nd
+        strings: GBE
+        frets: 10-12-10
+        notes: F, B, D
+        fret_range: 10-12
+  - id: triad_b_aug
+    format: object
+    category: Triads
+    heading: B Augmented Triad Voicings
+    search_terms: "B augmented triad, B aug triad, Baug triad, B+ triad"
+    template: "{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}."
+    items:
+      - inversion: root
+        strings: DGB
+        frets: 9-8-8
+        notes: B, D#, G
+        fret_range: 8-9
+      - inversion: 1st
+        strings: DGB
+        frets: 1-0-0
+        notes: D#, G, B
+        fret_range: 0-1
+      - inversion: 2nd
+        strings: DGB
+        frets: 5-4-4
+        notes: G, B, D#
+        fret_range: 4-5
+      - inversion: root
+        strings: GBE
+        frets: 4-4-3
+        notes: B, D#, G
+        fret_range: 3-4
+      - inversion: 1st
+        strings: GBE
+        frets: 8-8-7
+        notes: D#, G, B
+        fret_range: 7-8
+      - inversion: 2nd
+        strings: GBE
+        frets: 12-12-11
+        notes: G, B, D#
+        fret_range: 11-12
+  - id: major_key_player_chart
+    format: object
+    category: Theory
+    heading: Major key chord chart with I-IV-V and capo positions
+    search_terms: "key chart, I IV V, capo chart, what key, chord progression key"
+    template: "Key of {key}: I={I}, IV={IV}, V={V}. {capo_tip}"
+    items:
+      - key: C
+        I: C
+        IV: F
+        V: G
+        capo_tip: No capo needed. Use open C, F, G shapes.
+      - key: D
+        I: D
+        IV: G
+        V: A
+        capo_tip: No capo needed. Use open D, G, A shapes.
+      - key: E
+        I: E
+        IV: A
+        V: B
+        capo_tip: No capo needed. Use open E, A shapes. B needs a barre.
+      - key: F
+        I: F
+        IV: Bb
+        V: C
+        capo_tip: Capo 1, play E shapes. Or capo 3, play D shapes.
+      - key: G
+        I: G
+        IV: C
+        V: D
+        capo_tip: No capo needed. Use open G, C, D shapes.
+      - key: A
+        I: A
+        IV: D
+        V: E
+        capo_tip: No capo needed. Or capo 2, play G shapes.
+      - key: Bb
+        I: Bb
+        IV: Eb
+        V: F
+        capo_tip: Capo 3, play G shapes. Or capo 1, play A shapes.
+      - key: B
+        I: B
+        IV: E
+        V: F#
+        capo_tip: Capo 4, play G shapes. Or capo 2, play A shapes.
+      - key: Ab
+        I: Ab
+        IV: Db
+        V: Eb
+        capo_tip: Capo 4, play E shapes. Or capo 1, play G shapes.
+      - key: Db
+        I: Db
+        IV: Gb
+        V: Ab
+        capo_tip: Capo 4, play A shapes. Or capo 1, play C shapes.
+      - key: Eb
+        I: Eb
+        IV: Ab
+        V: Bb
+        capo_tip: Capo 3, play C shapes. Or capo 1, play D shapes.
+      - key: Gb
+        I: Gb
+        IV: Cb
+        V: Db
+        capo_tip: Capo 2, play E shapes.
+  - id: major_key_chord_chart_triads
+    format: object
+    category: Theory
+    heading: Major key chord chart showing all seven chords in each key
+    search_terms: "diatonic chords, chords in key, ii iii IV V vi vii, key signature chords"
+    template: "Key of {key}: I={I}, ii={ii}, iii={iii}, IV={IV}, V={V}, vi={vi}, vii°={vii_dim}."
+    items:
+      - key: C
+        I: C
+        ii: Dm
+        iii: Em
+        IV: F
+        V: G
+        vi: Am
+        vii_dim: Bdim
+      - key: G
+        I: G
+        ii: Am
+        iii: Bm
+        IV: C
+        V: D
+        vi: Em
+        vii_dim: F#dim
+      - key: D
+        I: D
+        ii: Em
+        iii: F#m
+        IV: G
+        V: A
+        vi: Bm
+        vii_dim: C#dim
+      - key: A
+        I: A
+        ii: Bm
+        iii: C#m
+        IV: D
+        V: E
+        vi: F#m
+        vii_dim: G#dim
+      - key: E
+        I: E
+        ii: F#m
+        iii: G#m
+        IV: A
+        V: B
+        vi: C#m
+        vii_dim: D#dim
+      - key: B
+        I: B
+        ii: C#m
+        iii: D#m
+        IV: E
+        V: F#
+        vi: G#m
+        vii_dim: A#dim
+      - key: F
+        I: F
+        ii: Gm
+        iii: Am
+        IV: Bb
+        V: C
+        vi: Dm
+        vii_dim: Edim
+      - key: Bb
+        I: Bb
+        ii: Cm
+        iii: Dm
+        IV: Eb
+        V: F
+        vi: Gm
+        vii_dim: Adim
+      - key: Eb
+        I: Eb
+        ii: Fm
+        iii: Gm
+        IV: Ab
+        V: Bb
+        vi: Cm
+        vii_dim: Ddim
+      - key: Ab
+        I: Ab
+        ii: Bbm
+        iii: Cm
+        IV: Db
+        V: Eb
+        vi: Fm
+        vii_dim: Gdim
+  - id: theory_chord_formulas
+    format: object
+    category: Theory
+    heading: Chord formulas (triads and 7th chords)
+    search_terms: "chord formula, how to build chord, chord intervals, chord construction"
+    template: "{quality} chord formula: {formula}. Example: {example}."
+    items:
+      - quality: Major triad
+        formula: 1 - 3 - 5
+        example: G major = G, B, D
+      - quality: Minor triad
+        formula: 1 - b3 - 5
+        example: A minor = A, C, E
+      - quality: Diminished triad
+        formula: 1 - b3 - b5
+        example: B dim = B, D, F
+      - quality: Augmented triad
+        formula: "1 - 3 - #5"
+        example: C aug = C, E, G#
+      - quality: Major 7th (maj7)
+        formula: 1 - 3 - 5 - 7
+        example: Cmaj7 = C, E, G, B
+      - quality: Dominant 7th (7)
+        formula: 1 - 3 - 5 - b7
+        example: A7 = A, C#, E, G
+      - quality: Minor 7th (m7)
+        formula: 1 - b3 - 5 - b7
+        example: Em7 = E, G, B, D
+  - id: guitar_barre_chord_templates
+    format: object
+    category: Guitar Shapes
+    heading: Barre chord templates (movable shapes)
+    search_terms: "barre chord, bar chord, movable chord, E shape barre, A shape barre"
+    template: "{name}. Root string: {root_string}. Shape (low to high): {shape}. Examples: {examples}. {tip}"
+    items:
+      - name: E-shape major barre
+        root_string: 6th (low E)
+        shape: R, R+2, R+2, R+1, R, R
+        examples: F at fret 1, G at fret 3, A at fret 5, Bb at fret 6, B at fret 7
+        tip: Find the root on the 6th string. Index barres all strings at that fret. Most common barre shape.
+      - name: E-shape minor barre
+        root_string: 6th (low E)
+        shape: R, R+2, R+2, R, R, R
+        examples: F#m at fret 2, Gm at fret 3, Am at fret 5, Bm at fret 7
+        tip: Same as E-shape major but lift the middle finger off the G string. Flat 3rd makes it minor.
+      - name: A-shape major barre
+        root_string: 5th (A)
+        shape: X, R, R+2, R+2, R+2, R
+        examples: Bb at fret 1, C at fret 3, D at fret 5, E at fret 7
+        tip: Find the root on the 5th string. Mute the 6th string. Ring finger or pinky barres the D/G/B strings.
+      - name: A-shape minor barre
+        root_string: 5th (A)
+        shape: X, R, R+2, R+2, R+1, R
+        examples: Bbm at fret 1, Cm at fret 3, Dm at fret 5, Em at fret 7
+        tip: Find the minor root on the 5th string. Mute the 6th string. Like A-shape major but one fret lower on B string.
+      - name: E-shape dominant 7th barre
+        root_string: 6th (low E)
+        shape: R, R+2, R, R+1, R, R
+        examples: G7 at fret 3, A7 at fret 5, B7 at fret 7
+        tip: Like E-shape major barre but lift the pinky off the D string. Open D string equivalent gives the flat 7th.
+      - name: E-shape minor 7th barre
+        root_string: 6th (low E)
+        shape: R, R+2, R, R, R, R
+        examples: Gm7 at fret 3, Am7 at fret 5, Bm7 at fret 7
+        tip: Like E-shape minor barre but lift the finger off the D string. Simplest barre 7th shape.
+  - id: guitar_caged_quick_map
+    format: object
+    category: Guitar Shapes
+    heading: CAGED system quick map (where chord shapes live on the neck)
+    search_terms: "CAGED system, CAGED, chord shapes neck, fretboard navigation"
+    template: "{shape_name} shape. Root on: {root_strings}. Common use: {common_use}. {notes}"
+    items:
+      - shape_name: E-shape (CAGED)
+        root_strings: 6th and 1st strings
+        common_use: Movable barre chords (major and minor)
+        notes: Most common barre shape. Foundation of rock and pop guitar. Learn this one first.
+      - shape_name: A-shape (CAGED)
+        root_strings: 5th string
+        common_use: Movable barre chords (major and minor)
+        notes: Second most common barre shape. Mute the 6th string. Learn this right after E-shape.
+      - shape_name: D-shape (CAGED)
+        root_strings: 4th string
+        common_use: Triads and partial chords
+        notes: Great for triad voicings on the top 3-4 strings. Connects E-shape and A-shape positions.
+      - shape_name: C-shape (CAGED)
+        root_strings: 5th string
+        common_use: Partial chords and CAGED connections
+        notes: Less common as a full barre. Useful for connecting positions and understanding the neck layout.
+      - shape_name: G-shape (CAGED)
+        root_strings: 6th and 3rd strings
+        common_use: Partial chords and CAGED connections
+        notes: Hardest full barre shape. Most useful as partial voicings. Low priority for beginners.
+  - id: theory_progression_templates
+    format: object
+    category: Theory
+    heading: Common chord progressions and song frameworks
+    search_terms: "chord progression, I IV V, 12 bar blues, pop progression, song chords"
+    template: "{name} progression: {roman}. Example in {example_key}: {example_chords}. {notes}"
+    items:
+      - name: I - IV - V
+        roman: I, IV, V
+        example_key: G
+        example_chords: G, C, D
+        notes: "Classic rock, country, bluesy pop. Add 7ths for a blues flavor. In A: A, D, E."
+      - name: I - V - vi - IV
+        roman: I, V, vi, IV
+        example_key: G
+        example_chords: G, D, Em, C
+        notes: "Huge pop progression. In C: C, G, Am, F. Works with many strumming patterns."
+      - name: 12-bar blues
+        roman: I7 (4 bars), IV7 (2 bars), I7 (2 bars), V7 (1 bar), IV7 (1 bar), I7 (2 bars with turnaround)
+        example_key: A
+        example_chords: A7, D7, A7, E7, D7, A7
+        notes: The foundation of blues guitar. Swap in a quick-change (IV7 in bar 2) for extra movement.
+      - name: vi - IV - I - V
+        roman: vi, IV, I, V
+        example_key: C
+        example_chords: Am, F, C, G
+        notes: Emotional/dramatic feel. Same chords as I-V-vi-IV but starting on the minor chord.
+      - name: I - vi - IV - V
+        roman: I, vi, IV, V
+        example_key: C
+        example_chords: C, Am, F, G
+        notes: 50s doo-wop progression. Classic oldies sound. Works great with fingerpicking.
+  - id: guitar_octave_shapes
+    format: object
+    category: Guitar Shapes
+    heading: Octave shapes (find the same note on different strings)
+    search_terms: "octave shape, find note, same note different string, octave pattern"
+    template: "Octave from {from_string} to {to_string}: move {move}. Example: {example}."
+    items:
+      - from_string: 6th string (low E)
+        to_string: 4th string (D)
+        move: 2 strings up, 2 frets up
+        example: G on 6th string 3rd fret → G on 4th string 5th fret
+      - from_string: 5th string (A)
+        to_string: 3rd string (G)
+        move: 2 strings up, 2 frets up
+        example: C on 5th string 3rd fret → C on 3rd string 5th fret
+      - from_string: 4th string (D)
+        to_string: 2nd string (B)
+        move: 2 strings up, 3 frets up (extra fret because of B string tuning)
+        example: D on 4th string open → D on 2nd string 3rd fret
+      - from_string: 3rd string (G)
+        to_string: 1st string (high E)
+        move: 2 strings up, 3 frets up (extra fret because of B string tuning)
+        example: A on 3rd string 2nd fret → A on 1st string 5th fret
+  - id: chord_overview
+    format: string
+    category: Chords
+    heading: Guitar Chord Types Overview
+    search_terms: "chord types, types of chords, chord overview, what chords to learn"
+    content:
+      "Common guitar chord types include open major chords (C, G, D, E, A), open minor chords (Am, Em, Dm), dominant
+      7th chords (A7, B7, C7, D7, E7, G7), minor 7th chords (Am7, Em7, Dm7), major 7th chords (Cmaj7, Fmaj7, Gmaj7, Dmaj7),
+      suspended chords (Asus2, Asus4, Dsus2, Dsus4, Esus4), power chords (E5 and A5 shapes), and barre chords (F major barre).
+      Open chords use open strings and are played in the first few frets. 7th chords add a 4th note for a richer sound. Suspended
+      chords replace the 3rd with the 2nd or 4th for tension. Power chords use only root, 5th, and octave and are moveable anywhere
+      on the neck.
+
+      "
+  - id: chord_c_major
+    format: object
+    category: Chords
+    heading: C Major Open Chord
+    search_terms: "C chord, C major, C major chord, how to play C"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: C Major open chord
+        frets: x-3-2-0-1-0
+        notes: x, C, E, G, C, E
+        tip:
+          Do not play the low E string. Ring finger on A string 3rd fret, middle finger on D string 2nd fret, index on B string
+          1st fret.
+        tab: "e|---0---|
+
+          B|---1---|
+
+          G|---0---|
+
+          D|---2---|
+
+          A|---3---|
+
+          E|---x---|"
+  - id: chord_g_major
+    format: object
+    category: Chords
+    heading: G Major Open Chord
+    search_terms: "G chord, G major, G major chord, how to play G"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: G Major open chord
+        frets: 3-2-0-0-0-3
+        notes: G, B, D, G, B, G
+        tip:
+          Middle finger on A string 2nd fret, index finger on low E string 3rd fret, pinky on high E string 3rd fret. All six
+          strings ring out.
+        tab: "e|---3---|
+
+          B|---0---|
+
+          G|---0---|
+
+          D|---0---|
+
+          A|---2---|
+
+          E|---3---|"
+  - id: chord_d_major
+    format: object
+    category: Chords
+    heading: D Major Open Chord
+    search_terms: "D chord, D major, D major chord, how to play D"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: D Major open chord
+        frets: x-x-0-2-3-2
+        notes: x, x, D, A, D, F#
+        tip:
+          Only play the top four strings. Index on G string 2nd fret, ring finger on B string 3rd fret, middle finger on high
+          E string 2nd fret.
+        tab: "e|---2---|
+
+          B|---3---|
+
+          G|---2---|
+
+          D|---0---|
+
+          A|---x---|
+
+          E|---x---|"
+  - id: chord_e_major
+    format: object
+    category: Chords
+    heading: E Major Open Chord
+    search_terms: "E chord, E major, E major chord, how to play E"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: E Major open chord
+        frets: 0-2-2-1-0-0
+        notes: E, B, E, G#, B, E
+        tip:
+          All six strings ring out. Middle finger on A string 2nd fret, ring finger on D string 2nd fret, index on G string
+          1st fret.
+        tab: "e|---0---|
+
+          B|---0---|
+
+          G|---1---|
+
+          D|---2---|
+
+          A|---2---|
+
+          E|---0---|"
+  - id: chord_a_major
+    format: object
+    category: Chords
+    heading: A Major Open Chord
+    search_terms: "A chord, A major, A major chord, how to play A"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: A Major open chord
+        frets: x-0-2-2-2-0
+        notes: x, A, E, A, C#, E
+        tip: Do not play the low E string. Index, middle, and ring fingers line up on the 2nd fret across D, G, and B strings.
+        tab: "e|---0---|
+
+          B|---2---|
+
+          G|---2---|
+
+          D|---2---|
+
+          A|---0---|
+
+          E|---x---|"
+  - id: chord_a_minor
+    format: object
+    category: Chords
+    heading: A Minor Open Chord
+    search_terms: "Am chord, A minor, A minor chord, how to play Am"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: A minor (Am) open chord
+        frets: x-0-2-2-1-0
+        notes: x, A, E, A, C, E
+        tip:
+          Same shape as E major shifted down one string set. Do not play the low E string. Index on B string 1st fret, middle
+          on D string 2nd fret, ring on G string 2nd fret.
+        tab: "e|---0---|
+
+          B|---1---|
+
+          G|---2---|
+
+          D|---2---|
+
+          A|---0---|
+
+          E|---x---|"
+
+  - id: chord_b_major_barre
+    format: string
+    category: Chords
+    heading: B Major Barre Chord
+    search_terms: "B chord, B major, B major chord, how to play B, B barre chord"
+    content: "B Major barre chord (A-shape at 2nd fret):
+      e|---2---|
+      B|---4---|
+      G|---4---|
+      D|---4---|
+      A|---2---|
+      E|---x---|
+      Bar your index finger across fret 2 on strings A through high E, then use your ring finger to bar the D, G, and B strings at fret 4. Do not play the low E string. This is the standard way to play B major on guitar since there is no easy open chord shape for B."
+
+  - id: chord_e_minor
+    format: object
+    category: Chords
+    heading: E Minor Open Chord
+    search_terms: "Em chord, E minor, E minor chord, how to play Em"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: E minor (Em) open chord
+        frets: 0-2-2-0-0-0
+        notes: E, B, E, G, B, E
+        tip:
+          One of the easiest chords on guitar. Just two fingers. Middle on A string 2nd fret, ring on D string 2nd fret. All
+          six strings ring out.
+        tab: "e|---0---|
+
+          B|---0---|
+
+          G|---0---|
+
+          D|---2---|
+
+          A|---2---|
+
+          E|---0---|"
+  - id: chord_d_minor
+    format: object
+    category: Chords
+    heading: D Minor Open Chord
+    search_terms: "Dm chord, D minor, D minor chord, how to play Dm"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: D minor (Dm) open chord
+        frets: x-x-0-2-3-1
+        notes: x, x, D, A, D, F
+        tip:
+          Only play the top four strings. Index on high E string 1st fret, middle on G string 2nd fret, ring on B string 3rd
+          fret.
+        tab: "e|---1---|
+
+          B|---3---|
+
+          G|---2---|
+
+          D|---0---|
+
+          A|---x---|
+
+          E|---x---|"
+  - id: chord_a7
+    format: object
+    category: Chords
+    heading: A7 Chord
+    search_terms: "A7 chord, A dominant 7, A seven chord, how to play A7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: A7 (A dominant 7th) open chord
+        frets: x-0-2-0-2-0
+        notes: x, A, E, G, C#, E
+        tip: Like A major but lift your middle finger off the G string. The open G gives you the flat 7th.
+        tab: "e|---0---|
+
+          B|---2---|
+
+          G|---0---|
+
+          D|---2---|
+
+          A|---0---|
+
+          E|---x---|"
+  - id: chord_b7
+    format: object
+    category: Chords
+    heading: B7 Chord
+    search_terms: "B7 chord, B dominant 7, B seven chord, how to play B7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: B7 (B dominant 7th) open chord
+        frets: x-2-1-2-0-2
+        notes: x, B, D#, A, B, F#
+        tip:
+          Do not play the low E string. Middle finger on A string 2nd fret, index on D string 1st fret, ring on G string 2nd
+          fret, pinky on high E string 2nd fret.
+        tab: "e|---2---|
+
+          B|---0---|
+
+          G|---2---|
+
+          D|---1---|
+
+          A|---2---|
+
+          E|---x---|"
+  - id: chord_c7
+    format: object
+    category: Chords
+    heading: C7 Chord
+    search_terms: "C7 chord, C dominant 7, C seven chord, how to play C7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: C7 (C dominant 7th) open chord
+        frets: x-3-2-3-1-0
+        notes: x, C, E, Bb, C, E
+        tip: Like C major but add your pinky on G string 3rd fret for the Bb (flat 7th).
+        tab: "e|---0---|
+
+          B|---1---|
+
+          G|---3---|
+
+          D|---2---|
+
+          A|---3---|
+
+          E|---x---|"
+  - id: chord_d7
+    format: object
+    category: Chords
+    heading: D7 Chord
+    search_terms: "D7 chord, D dominant 7, D seven chord, how to play D7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: D7 (D dominant 7th) open chord
+        frets: x-x-0-2-1-2
+        notes: x, x, D, A, C, F#
+        tip:
+          Only play the top four strings. Middle finger on G string 2nd fret, index on B string 1st fret, ring on high E string
+          2nd fret.
+        tab: "e|---2---|
+
+          B|---1---|
+
+          G|---2---|
+
+          D|---0---|
+
+          A|---x---|
+
+          E|---x---|"
+  - id: chord_e7
+    format: object
+    category: Chords
+    heading: E7 Chord
+    search_terms: "E7 chord, E dominant 7, E seven chord, how to play E7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: E7 (E dominant 7th) open chord
+        frets: 0-2-0-1-0-0
+        notes: E, B, D, G#, B, E
+        tip: Like E major but lift your ring finger off the D string. The open D gives you the flat 7th.
+        tab: "e|---0---|
+
+          B|---0---|
+
+          G|---1---|
+
+          D|---0---|
+
+          A|---2---|
+
+          E|---0---|"
+  - id: chord_g7
+    format: object
+    category: Chords
+    heading: G7 Chord
+    search_terms: "G7 chord, G dominant 7, G seven chord, how to play G7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: G7 (G dominant 7th) open chord
+        frets: 3-2-0-0-0-1
+        notes: G, B, D, G, B, F
+        tip: Like G major but index finger on high E string 1st fret for the F (flat 7th) instead of pinky on 3rd fret.
+        tab: "e|---1---|
+
+          B|---0---|
+
+          G|---0---|
+
+          D|---0---|
+
+          A|---2---|
+
+          E|---3---|"
+  - id: chord_am7
+    format: object
+    category: Chords
+    heading: Am7 Chord
+    search_terms: "Am7 chord, A minor 7, A minor seven chord, how to play Am7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Am7 (A minor 7th) open chord
+        frets: x-0-2-0-1-0
+        notes: x, A, E, G, C, E
+        tip: Like Am but lift your ring finger off the G string. The open G gives you the minor 7th.
+        tab: "e|---0---|
+
+          B|---1---|
+
+          G|---0---|
+
+          D|---2---|
+
+          A|---0---|
+
+          E|---x---|"
+  - id: chord_em7
+    format: object
+    category: Chords
+    heading: Em7 Chord
+    search_terms: "Em7 chord, E minor 7, E minor seven chord, how to play Em7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Em7 (E minor 7th) open chord
+        frets: 0-2-0-0-0-0
+        notes: E, B, D, G, B, E
+        tip: Easiest 7th chord. Just one finger. Middle finger on A string 2nd fret, everything else open.
+        tab: "e|---0---|
+
+          B|---0---|
+
+          G|---0---|
+
+          D|---0---|
+
+          A|---2---|
+
+          E|---0---|"
+  - id: chord_dm7
+    format: object
+    category: Chords
+    heading: Dm7 Chord
+    search_terms: "Dm7 chord, D minor 7, D minor seven chord, how to play Dm7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Dm7 (D minor 7th) open chord
+        frets: x-x-0-2-1-1
+        notes: x, x, D, A, C, F
+        tip: Only play the top four strings. Middle finger on G string 2nd fret, index barres B and high E strings at 1st fret.
+        tab: "e|---1---|
+
+          B|---1---|
+
+          G|---2---|
+
+          D|---0---|
+
+          A|---x---|
+
+          E|---x---|"
+  - id: chord_cmaj7
+    format: object
+    category: Chords
+    heading: Cmaj7 Chord
+    search_terms: "Cmaj7 chord, C major 7, C major seven chord, how to play Cmaj7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Cmaj7 (C major 7th) open chord
+        frets: x-3-2-0-0-0
+        notes: x, C, E, G, B, E
+        tip: Like C major but lift your index finger off the B string. The open B is the major 7th of C.
+        tab: "e|---0---|
+
+          B|---0---|
+
+          G|---0---|
+
+          D|---2---|
+
+          A|---3---|
+
+          E|---x---|"
+  - id: chord_fmaj7
+    format: object
+    category: Chords
+    heading: Fmaj7 Chord
+    search_terms: "Fmaj7 chord, F major 7, F major seven chord, how to play Fmaj7, easy F chord"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Fmaj7 (F major 7th) open chord
+        frets: x-x-3-2-1-0
+        notes: x, x, F, A, C, E
+        tip:
+          A beginner-friendly way to play an F chord without a barre. Ring finger on D string 3rd fret, middle on G string
+          2nd fret, index on B string 1st fret.
+        tab: "e|---0---|
+
+          B|---1---|
+
+          G|---2---|
+
+          D|---3---|
+
+          A|---x---|
+
+          E|---x---|"
+  - id: chord_gmaj7
+    format: object
+    category: Chords
+    heading: Gmaj7 Chord
+    search_terms: "Gmaj7 chord, G major 7, G major seven chord, how to play Gmaj7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Gmaj7 (G major 7th) open chord
+        frets: 3-2-0-0-0-2
+        notes: G, B, D, G, B, F#
+        tip:
+          Like G major but middle finger on high E string 2nd fret instead of pinky on 3rd fret. The F# is the major 7th of
+          G.
+        tab: "e|---2---|
+
+          B|---0---|
+
+          G|---0---|
+
+          D|---0---|
+
+          A|---2---|
+
+          E|---3---|"
+  - id: chord_dmaj7
+    format: object
+    category: Chords
+    heading: Dmaj7 Chord
+    search_terms: "Dmaj7 chord, D major 7, D major seven chord, how to play Dmaj7"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Dmaj7 (D major 7th) open chord
+        frets: x-x-0-2-2-2
+        notes: x, x, D, A, C#, F#
+        tip:
+          Only play the top four strings. Index, middle, and ring fingers across G, B, and high E strings at 2nd fret. Open
+          D string is the root.
+        tab: "e|---2---|
+
+          B|---2---|
+
+          G|---2---|
+
+          D|---0---|
+
+          A|---x---|
+
+          E|---x---|"
+  - id: chord_power_e_shape
+    format: object
+    category: Chords
+    heading: Power Chord with Root on Low E String
+    search_terms: "power chord, E5, rock chord, punk chord, power chord E string"
+    template: "{name}. Shape: {shape}. {tip}"
+    items:
+      - name: Power chord with root on low E string (E5 shape)
+        shape: Index on low E (root), ring finger two frets up on A (5th), pinky two frets up on D (octave)
+        tip:
+          Moveable shape. G5 is frets 3-5-5-x-x-x. A5 is frets 5-7-7-x-x-x. B5 is frets 7-9-9-x-x-x. Mute all other strings.
+          The foundation of rock and punk.
+  - id: chord_power_a_shape
+    format: object
+    category: Chords
+    heading: Power Chord with Root on A String
+    search_terms: "power chord, A5, power chord A string"
+    template: "{name}. Shape: {shape}. {tip}"
+    items:
+      - name: Power chord with root on A string (A5 shape)
+        shape: Index on A string (root), ring finger two frets up on D (5th), pinky two frets up on G (octave)
+        tip:
+          Moveable shape. C5 is frets x-3-5-5-x-x. D5 is frets x-5-7-7-x-x. E5 is frets x-7-9-9-x-x. Mute low E and top two
+          strings.
+  - id: chord_asus2
+    format: object
+    category: Chords
+    heading: Asus2 Chord
+    search_terms: "Asus2 chord, A suspended 2, A sus 2, how to play Asus2"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Asus2 (A suspended 2nd) open chord
+        frets: x-0-2-2-0-0
+        notes: x, A, E, A, B, E
+        tip:
+          Like A major but lift your index finger off the B string. The open B replaces the C# (3rd) with B (2nd), creating
+          an open dreamy sound.
+        tab: "e|---0---|
+
+          B|---0---|
+
+          G|---2---|
+
+          D|---2---|
+
+          A|---0---|
+
+          E|---x---|"
+  - id: chord_asus4
+    format: object
+    category: Chords
+    heading: Asus4 Chord
+    search_terms: "Asus4 chord, A suspended 4, A sus 4, how to play Asus4"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Asus4 (A suspended 4th) open chord
+        frets: x-0-2-2-3-0
+        notes: x, A, E, A, D, E
+        tip:
+          Like A major but add your pinky on B string 3rd fret. The D replaces the C# (3rd) with D (4th). Wants to resolve
+          back to A major.
+        tab: "e|---0---|
+
+          B|---3---|
+
+          G|---2---|
+
+          D|---2---|
+
+          A|---0---|
+
+          E|---x---|"
+  - id: chord_dsus2
+    format: object
+    category: Chords
+    heading: Dsus2 Chord
+    search_terms: "Dsus2 chord, D suspended 2, D sus 2, how to play Dsus2"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Dsus2 (D suspended 2nd) open chord
+        frets: x-x-0-2-3-0
+        notes: x, x, D, A, D, E
+        tip: Like D major but lift your finger off the high E string. The open E replaces the F# (3rd) with E (2nd).
+        tab: "e|---0---|
+
+          B|---3---|
+
+          G|---2---|
+
+          D|---0---|
+
+          A|---x---|
+
+          E|---x---|"
+  - id: chord_dsus4
+    format: object
+    category: Chords
+    heading: Dsus4 Chord
+    search_terms: "Dsus4 chord, D suspended 4, D sus 4, how to play Dsus4"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Dsus4 (D suspended 4th) open chord
+        frets: x-x-0-2-3-3
+        notes: x, x, D, A, D, G
+        tip:
+          Like D major but add your pinky on high E string 3rd fret. The G replaces the F# (3rd) with G (4th). Classic rock
+          sound.
+        tab: "e|---3---|
+
+          B|---3---|
+
+          G|---2---|
+
+          D|---0---|
+
+          A|---x---|
+
+          E|---x---|"
+  - id: chord_esus4
+    format: object
+    category: Chords
+    heading: Esus4 Chord
+    search_terms: "Esus4 chord, E suspended 4, E sus 4, how to play Esus4"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: Esus4 (E suspended 4th) open chord
+        frets: 0-2-2-2-0-0
+        notes: E, B, E, A, B, E
+        tip:
+          Like E major but add your ring finger on G string 2nd fret. The A replaces the G# (3rd) with A (4th). Resolves beautifully
+          to E major.
+        tab: "e|---0---|
+
+          B|---0---|
+
+          G|---2---|
+
+          D|---2---|
+
+          A|---2---|
+
+          E|---0---|"
+  - id: chord_f_major_barre
+    format: object
+    category: Chords
+    heading: F Major Barre Chord
+    search_terms: "F chord, F major, F barre chord, how to play F, F major barre"
+    template: "{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - name: F Major barre chord (full barre)
+        frets: 1-3-3-2-1-1
+        notes: F, C, F, A, C, F
+        tip:
+          Index finger barres all strings at 1st fret. Ring and pinky on A and D strings 3rd fret, middle on G string 2nd fret.
+          This is the E-shape barre chord at the 1st fret. Hardest beginner chord and takes practice.
+        tab: "e|---1---|
+
+          B|---1---|
+
+          G|---2---|
+
+          D|---3---|
+
+          A|---3---|
+
+          E|---1---|"
+  - id: basics_guitar_anatomy
+    format: object
+    category: Basics
+    heading: Parts of an electric guitar
+    search_terms: "guitar parts, guitar anatomy, parts of guitar, headstock, bridge, pickups"
+    template: "{part}: {description}"
+    items:
+      - part: Headstock
+        description: Top of the neck where tuning pegs (machine heads) are mounted. Turn them to tune each string.
+      - part: Nut
+        description:
+          Small slotted piece between the headstock and first fret. Guides string spacing and sets the open string
+          height.
+      - part: Neck and fretboard
+        description:
+          The long piece you press strings against. Frets are the metal strips. Pressing behind a fret shortens the
+          string and raises the pitch.
+      - part: Body
+        description: Main section of the guitar. Houses the pickups, bridge, controls, and output jack.
+      - part: Pickups
+        description:
+          Magnetic devices under the strings that convert vibrations into electrical signal. Neck pickup is warmer,
+          bridge pickup is brighter.
+      - part: Bridge
+        description:
+          Anchors the strings to the body. Adjustable for intonation (tuning accuracy up the neck) and string height
+          (action).
+      - part: Volume and tone knobs
+        description: Control output level and treble rolloff. Pickup selector switch chooses which pickup is active.
+      - part: Output jack
+        description: Where you plug in the cable to connect to an amp or audio interface.
+  - id: basics_string_names
+    format: string
+    category: Basics
+    heading: Guitar string names, numbers, and order
+    search_terms: "string names, string numbers, EADGBE, which string is which, string order"
+    content:
+      "Electric guitar has 6 strings. From thickest (lowest pitch) to thinnest (highest pitch): 6th string = low E, 5th
+      = A, 4th = D, 3rd = G, 2nd = B, 1st = high E. Memory trick: Eddie Ate Dynamite Good Bye Eddie. The 6th string is closest
+      to your face when holding the guitar. Tab and chord diagrams usually show the 1st (high E) string on top."
+  - id: basics_how_to_hold
+    format: string
+    category: Basics
+    heading: How to hold an electric guitar and pick
+    search_terms: "how to hold guitar, hold pick, picking hand, fretting hand, guitar posture"
+    content:
+      "Sit or stand with the guitar body resting comfortably. The neck should angle slightly upward, not pointing at
+      the floor. Fretting hand: thumb behind the neck (not wrapped over the top for now), fingers curved, press strings with
+      fingertips just behind the fret (not on top of it). Picking hand: hold the pick between thumb and side of index finger,
+      with a small amount of pick tip showing. Rest your forearm on the guitar body for stability. Stay relaxed; tension causes
+      fatigue and slows you down."
+  - id: basics_reading_tab
+    format: string
+    category: Basics
+    heading: How to read guitar tablature (tab)
+    search_terms: "read tab, tablature, guitar tab, how to read tablature, tab notation"
+    content:
+      'Guitar tab uses 6 horizontal lines representing the 6 strings. The top line is the 1st string (high E), bottom
+      line is the 6th string (low E). Numbers on the lines tell you which fret to press. 0 means play the string open. x means
+      mute or do not play that string. Read left to right. Numbers stacked vertically are played at the same time (a chord).
+      Common tab symbols: h = hammer-on, p = pull-off, b = bend, / = slide up, \ = slide down.'
+  - id: basics_fret_numbering
+    format: string
+    category: Basics
+    heading: How frets and fret numbering work
+    search_terms: "fret numbers, which fret, fret numbering, how frets work"
+    content:
+      Frets are the metal strips embedded across the fretboard. The first fret is closest to the headstock. Each fret
+      raises the pitch by one half step (one semitone). Fret 12 is one octave above the open string (marked with double dots
+      on most guitars). When someone says "play the 3rd fret," press the string in the space between the 2nd and 3rd fret wire,
+      close to the 3rd fret wire for a clean sound.
+  - id: technique_strumming_patterns
+    format: object
+    category: Techniques
+    heading: Basic strumming patterns for beginners
+    search_terms: "strumming pattern, strum pattern, how to strum, beginner strumming"
+    template: "{name}: {pattern}. {description}"
+    items:
+      - name: All downstrokes
+        pattern: D D D D
+        description: Simplest pattern. One down strum per beat. Good for punk rock and building rhythm.
+      - name: Down-up basic
+        pattern: D DU DU D
+        description: Standard beginner pattern. Down on beats 1-2-3-4, add upstrokes between beats 2-3 and 3-4.
+      - name: Folk/pop strum
+        pattern: D DU UDU
+        description: Versatile pattern for acoustic and pop songs. Accent the down on beat 1 and the up on the "and" of beat 2.
+      - name: Muted 16th feel
+        pattern: D x U x D x U x
+        description:
+          Keep your hand moving in constant down-up motion. Use x to mute by relaxing fretting hand pressure. Creates
+          a funky rhythmic feel.
+  - id: technique_palm_muting
+    format: string
+    category: Techniques
+    heading: Palm muting technique
+    search_terms: "palm mute, palm muting, muted strumming, chunky sound, P.M."
+    content:
+      Palm muting creates a chunky, percussive sound. Rest the fleshy edge of your picking hand lightly on the strings
+      right where they meet the bridge. Too far forward and you completely deaden the strings; too far back and you get no muting.
+      The sweet spot is right at the bridge saddles. Palm muting is essential for power chord riffs and metal rhythm guitar.
+      In tab it is written as P.M. with dashes showing how long to mute.
+  - id: technique_hammer_on_pull_off
+    format: string
+    category: Techniques
+    heading: Hammer-ons and pull-offs (legato technique)
+    search_terms: "hammer on, pull off, legato, hammer-on, pull-off, slur"
+    content:
+      "A hammer-on means picking a note then slamming another finger down onto a higher fret without picking again. The
+      force of the finger hitting the fretboard keeps the string ringing. A pull-off is the reverse: start with both fingers
+      down, pick the higher note, then pull the higher finger off (slightly sideways to pluck the string) to sound the lower
+      note. These are the foundation of legato playing and make fast runs smoother. In tab: h = hammer-on, p = pull-off. Example:
+      5h7 means pick fret 5 then hammer onto fret 7."
+  - id: technique_bending
+    format: string
+    category: Techniques
+    heading: String bending and vibrato
+    search_terms: "bend, string bend, bending, vibrato, bend technique"
+    content:
+      Bending pushes a string sideways (toward the ceiling on the higher strings, toward the floor on the low strings)
+      to raise its pitch. A half-step bend raises the pitch one fret. A full bend raises it two frets. Use your ring finger
+      backed up by the middle and index fingers for strength. Push from the wrist, not just the fingers. Vibrato is a rapid,
+      controlled series of small bends that add expression and sustain to a note. Practice bending to a target pitch by fretting
+      the target note first, listening, then bending up to match it.
+  - id: technique_alternate_picking
+    format: string
+    category: Techniques
+    heading: Alternate picking
+    search_terms: "alternate picking, picking technique, down up picking, fast picking"
+    content:
+      Alternate picking means strictly alternating between downstrokes and upstrokes with the pick, regardless of string
+      changes. Down-up-down-up, never two downs or two ups in a row. This is the most efficient way to pick single notes at
+      speed. Start slow with a metronome. Practice on a single string first, then add string crossing. Keep your picking motion
+      small and relaxed. Economy of motion is the key to speed.
+  - id: technique_slides
+    format: string
+    category: Techniques
+    heading: Sliding between notes
+    search_terms: "slide, sliding, slide technique, legato slide"
+    content:
+      'A slide means picking a note and then moving your fretting finger up or down the fretboard to a different fret
+      while maintaining pressure so the string keeps ringing. Slides connect notes smoothly. In tab: / means slide up, \ means
+      slide down. Example: 5/7 means pick fret 5 then slide up to fret 7. Slides can also be used as an approach into a note
+      from a few frets below or above for a soulful effect.'
+  - id: scale_minor_pentatonic
+    format: object
+    category: Scales
+    heading: Minor pentatonic scale (the first scale every guitarist should learn)
+    search_terms: "minor pentatonic, pentatonic scale, first scale, blues scale, box 1"
+    template:
+      "Minor pentatonic {position}. Key of {key}. Root: {root_location}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - position: box 1 (position 1)
+        key: A minor
+        root_location: 6th string 5th fret
+        tip:
+          The most important scale pattern on guitar. This one box covers most blues and rock soloing. Move it to any fret
+          to change key.
+        tab: "e|---5---8---|
+
+          B|---5---8---|
+
+          G|---5---7---|
+
+          D|---5---7---|
+
+          A|---5---7---|
+
+          E|---5---8---|"
+      - position: box 2 (position 2)
+        key: A minor
+        root_location: 4th string 7th fret
+        tip: Connects to box 1 going up the neck. Practice shifting between box 1 and box 2 for a wider range.
+        tab: "e|---8---10---|
+
+          B|---8---10---|
+
+          G|---7---9----|
+
+          D|---7---9----|
+
+          A|---7---10---|
+
+          E|---8---10---|"
+  - id: scale_major_pentatonic
+    format: object
+    category: Scales
+    heading: Major pentatonic scale
+    search_terms: "major pentatonic, pentatonic major, country scale, happy scale"
+    template:
+      "Major pentatonic {position}. Key of {key}. Root: {root_location}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - position: box 1 (position 1)
+        key: G major
+        root_location: 6th string 3rd fret
+        tip: Same shape as E minor pentatonic box 1 but rooted 3 frets lower. Bright, happy sound. Great for country and pop soloing.
+        tab: "e|---2---3---5---|
+
+          B|---3---5-------|
+
+          G|---2---4-------|
+
+          D|---2---4---5---|
+
+          A|---2---5-------|
+
+          E|---2---3---5---|"
+  - id: scale_blues_scale
+    format: object
+    category: Scales
+    heading: Blues scale (minor pentatonic with the blue note)
+    search_terms: "blues scale, blue note, blues solo, blues lick"
+    template:
+      "Blues scale {position}. Key of {key}. Root: {root_location}. {tip}
+
+
+      Tab:
+
+      {tab}"
+    items:
+      - position: box 1 (position 1)
+        key: A minor blues
+        root_location: 6th string 5th fret
+        tip:
+          "The minor pentatonic with one added note: the flat 5th (blue note) on the D string 8th fret. Notes: A, C, D, Eb,
+          E, G. Use the blue note as a passing tone or bend into it for maximum expression."
+        tab: "e|---5---8-------|
+
+          B|---5---8-------|
+
+          G|---5---7-------|
+
+          D|---5---7---8---|
+
+          A|---5---7-------|
+
+          E|---5---8-------|"
+  - id: practice_tips
+    format: object
+    category: Practice
+    heading: Guitar practice tips and routine advice
+    search_terms: "practice tips, how to practice, practice routine, get better at guitar"
+    template: "{tip_title}: {advice}"
+    items:
+      - tip_title: Use a metronome
+        advice:
+          Practice with a metronome or drum track. Start slower than you think you need to. Speed comes from accuracy, not
+          force.
+      - tip_title: Short daily sessions beat long weekly ones
+        advice: 15-20 minutes every day is far more effective than a 2-hour session once a week. Consistency builds muscle memory.
+      - tip_title: Practice what you cannot do
+        advice:
+          It is tempting to play what you already know, but growth comes from working on the hard stuff. Spend at least
+          half your time on challenges.
+      - tip_title: Learn songs you love
+        advice:
+          Theory and exercises matter, but learning real songs keeps you motivated and teaches you how techniques are actually
+          used in music.
+      - tip_title: Record yourself
+        advice:
+          Use your phone to record yourself playing. You will hear issues you miss while focused on fretting. Great for
+          tracking improvement over time.
+      - tip_title: Warm up first
+        advice:
+          Start with chromatic exercises or easy chord changes for a few minutes before diving into difficult material.
+          Cold fingers make more mistakes.
+  - id: gear_string_gauges
+    format: object
+    category: Gear
+    heading: Electric guitar string gauge guide
+    search_terms: "string gauge, string thickness, 9s, 10s, light strings, heavy strings"
+    template: "{gauge_name} ({range}): {description}"
+    items:
+      - gauge_name: Extra light
+        range: .008-.038
+        description: Very easy to bend and fret. Can sound thin. Good for beginners or players who bend a lot.
+      - gauge_name: Light (most common)
+        range: .009-.042
+        description: The standard for most electric players. Good balance of playability and tone. Sometimes called "nines."
+      - gauge_name: Medium
+        range: .010-.046
+        description:
+          Fuller tone and more volume. Slightly harder to bend. Popular for blues and classic rock. Sometimes called
+          "tens."
+      - gauge_name: Heavy
+        range: .011-.050 or higher
+        description: Thick, powerful tone. Hard to bend. Common for jazz, drop tunings, and heavy rhythm playing.
+  - id: gear_picks
+    format: string
+    category: Gear
+    heading: Guitar pick thickness guide
+    search_terms: "pick thickness, pick gauge, thin pick, thick pick, plectrum"
+    content:
+      "Picks come in thin (under 0.60mm), medium (0.60-0.80mm), and heavy (0.80mm and above). Thin picks flex more and
+      are good for strumming but lack control for single notes. Medium picks are the most versatile starting point. Heavy picks
+      give better control for lead playing and precise picking but can feel stiff for strumming. Material matters too: nylon
+      is flexible and grippy, tortex (Dunlop) is stiff with good grip, celluloid is traditional and smooth. Start with a medium
+      pick and experiment from there."

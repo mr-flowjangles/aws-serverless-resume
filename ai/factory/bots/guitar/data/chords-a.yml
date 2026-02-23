@@ -1,0 +1,319 @@
+meta:
+  bot_id: guitar
+  title: A Chords and Triads
+  version: '1'
+  date: '2026-02-21'
+entries:
+- id: triad_a_maj
+  format: object
+  category: Triads
+  heading: A Major Triad Voicings
+  search_terms: A triad, A major triad, A major chord triad, A chord triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 7-6-5
+    notes: A, C#, E
+    fret_range: 5-7
+  - inversion: 1st
+    strings: DGB
+    frets: 11-9-10
+    notes: C#, E, A
+    fret_range: 9-11
+  - inversion: 2nd
+    strings: DGB
+    frets: 2-2-2
+    notes: E, A, C#
+    fret_range: 2-2
+  - inversion: root
+    strings: GBE
+    frets: 2-2-0
+    notes: A, C#, E
+    fret_range: 0-2
+  - inversion: 1st
+    strings: GBE
+    frets: 6-5-5
+    notes: C#, E, A
+    fret_range: 5-6
+  - inversion: 2nd
+    strings: GBE
+    frets: 9-10-9
+    notes: E, A, C#
+    fret_range: 9-10
+- id: triad_a_min
+  format: object
+  category: Triads
+  heading: A Minor Triad Voicings
+  search_terms: A minor triad, Am triad, A min triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 7-5-5
+    notes: A, C, E
+    fret_range: 5-7
+  - inversion: 1st
+    strings: DGB
+    frets: 10-9-10
+    notes: C, E, A
+    fret_range: 9-10
+  - inversion: 2nd
+    strings: DGB
+    frets: 2-2-1
+    notes: E, A, C
+    fret_range: 1-2
+  - inversion: root
+    strings: GBE
+    frets: 2-1-0
+    notes: A, C, E
+    fret_range: 0-2
+  - inversion: 1st
+    strings: GBE
+    frets: 5-5-5
+    notes: C, E, A
+    fret_range: 5-5
+  - inversion: 2nd
+    strings: GBE
+    frets: 9-10-8
+    notes: E, A, C
+    fret_range: 8-10
+- id: triad_a_dim
+  format: object
+  category: Triads
+  heading: A Diminished Triad Voicings
+  search_terms: A diminished triad, A dim triad, Adim triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 7-5-4
+    notes: A, C, D#
+    fret_range: 4-7
+  - inversion: 1st
+    strings: DGB
+    frets: 10-8-10
+    notes: C, D#, A
+    fret_range: 8-10
+  - inversion: 2nd
+    strings: DGB
+    frets: 1-2-1
+    notes: D#, A, C
+    fret_range: 1-2
+  - inversion: root
+    strings: GBE
+    frets: 14-13-11
+    notes: A, C, D#
+    fret_range: 11-14
+  - inversion: 1st
+    strings: GBE
+    frets: 5-4-5
+    notes: C, D#, A
+    fret_range: 4-5
+  - inversion: 2nd
+    strings: GBE
+    frets: 8-10-8
+    notes: D#, A, C
+    fret_range: 8-10
+- id: triad_a_aug
+  format: object
+  category: Triads
+  heading: A Augmented Triad Voicings
+  search_terms: A augmented triad, A aug triad, Aaug triad, A+ triad
+  template: '{inversion} inversion on {strings} strings. Frets: {frets}. Notes: {notes}. Fret range: {fret_range}.'
+  items:
+  - inversion: root
+    strings: DGB
+    frets: 7-6-6
+    notes: A, C#, F
+    fret_range: 6-7
+  - inversion: 1st
+    strings: DGB
+    frets: 11-10-10
+    notes: C#, F, A
+    fret_range: 10-11
+  - inversion: 2nd
+    strings: DGB
+    frets: 3-2-2
+    notes: F, A, C#
+    fret_range: 2-3
+  - inversion: root
+    strings: GBE
+    frets: 2-2-1
+    notes: A, C#, F
+    fret_range: 1-2
+  - inversion: 1st
+    strings: GBE
+    frets: 6-6-5
+    notes: C#, F, A
+    fret_range: 5-6
+  - inversion: 2nd
+    strings: GBE
+    frets: 10-10-9
+    notes: F, A, C#
+    fret_range: 9-10
+- id: chord_a_major
+  format: object
+  category: Chords
+  heading: A Major Open Chord
+  search_terms: A chord, A major, A major chord, how to play A
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: A Major open chord
+    frets: x-0-2-2-2-0
+    notes: x, A, E, A, C#, E
+    tip: Do not play the low E string. Index, middle, and ring fingers line up on the 2nd fret across D, G, and B strings.
+    tab: 'e|---0---|
+
+      B|---2---|
+
+      G|---2---|
+
+      D|---2---|
+
+      A|---0---|
+
+      E|---x---|'
+- id: chord_a_minor
+  format: object
+  category: Chords
+  heading: A Minor Open Chord
+  search_terms: Am chord, A minor, A minor chord, how to play Am
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: A minor (Am) open chord
+    frets: x-0-2-2-1-0
+    notes: x, A, E, A, C, E
+    tip: Same shape as E major shifted down one string set. Do not play the low E string. Index on B string 1st fret, middle
+      on D string 2nd fret, ring on G string 2nd fret.
+    tab: 'e|---0---|
+
+      B|---1---|
+
+      G|---2---|
+
+      D|---2---|
+
+      A|---0---|
+
+      E|---x---|'
+- id: chord_a7
+  format: object
+  category: Chords
+  heading: A7 Chord
+  search_terms: A7 chord, A dominant 7, A seven chord, how to play A7
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: A7 (A dominant 7th) open chord
+    frets: x-0-2-0-2-0
+    notes: x, A, E, G, C#, E
+    tip: Like A major but lift your middle finger off the G string. The open G gives you the flat 7th.
+    tab: 'e|---0---|
+
+      B|---2---|
+
+      G|---0---|
+
+      D|---2---|
+
+      A|---0---|
+
+      E|---x---|'
+- id: chord_am7
+  format: object
+  category: Chords
+  heading: Am7 Chord
+  search_terms: Am7 chord, A minor 7, A minor seven chord, how to play Am7
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: Am7 (A minor 7th) open chord
+    frets: x-0-2-0-1-0
+    notes: x, A, E, G, C, E
+    tip: Like Am but lift your ring finger off the G string. The open G gives you the minor 7th.
+    tab: 'e|---0---|
+
+      B|---1---|
+
+      G|---0---|
+
+      D|---2---|
+
+      A|---0---|
+
+      E|---x---|'
+- id: chord_asus2
+  format: object
+  category: Chords
+  heading: Asus2 Chord
+  search_terms: Asus2 chord, A suspended 2, A sus 2, how to play Asus2
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: Asus2 (A suspended 2nd) open chord
+    frets: x-0-2-2-0-0
+    notes: x, A, E, A, B, E
+    tip: Like A major but lift your index finger off the B string. The open B replaces the C# (3rd) with B (2nd), creating
+      an open dreamy sound.
+    tab: 'e|---0---|
+
+      B|---0---|
+
+      G|---2---|
+
+      D|---2---|
+
+      A|---0---|
+
+      E|---x---|'
+- id: chord_asus4
+  format: object
+  category: Chords
+  heading: Asus4 Chord
+  search_terms: Asus4 chord, A suspended 4, A sus 4, how to play Asus4
+  template: '{name}. Frets (EADGBE): {frets}. Notes: {notes}. {tip}
+
+
+    Tab:
+
+    {tab}'
+  items:
+  - name: Asus4 (A suspended 4th) open chord
+    frets: x-0-2-2-3-0
+    notes: x, A, E, A, D, E
+    tip: Like A major but add your pinky on B string 3rd fret. The D replaces the C# (3rd) with D (4th). Wants to resolve
+      back to A major.
+    tab: 'e|---0---|
+
+      B|---3---|
+
+      G|---2---|
+
+      D|---2---|
+
+      A|---0---|
+
+      E|---x---|'
