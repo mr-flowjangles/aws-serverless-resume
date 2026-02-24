@@ -8,6 +8,7 @@
  */
 
 import { API_BASE } from "/scripts/api.js";
+import { PROJECTS_CONFIG } from "/scripts/projects.config.js";
 
 // ---------------------------------------------------------------------------
 // Module-level cache — stores the Promise, not the result
@@ -198,67 +199,53 @@ async function loadHeaderData() {
 }
 
 // ---------------------------------------------------------------------------
-// Projects — fetched from GitHub API, filtered by whitelist
+// Projects — GitHub API, driven by projects.config.js
 // ---------------------------------------------------------------------------
-
-const GITHUB_USERNAME = "mr-flowjangles";
-
-const ALLOWED_REPOS = [
-  "the-fret-detective",
-  "bot-factory-ui",
-];
 
 async function loadProjects(container) {
   container.innerHTML = `<div class="loading">Loading projects...</div>`;
 
   try {
+    const { github_username, repos } = PROJECTS_CONFIG;
+
     const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`
+      `https://api.github.com/users/${github_username}/repos?per_page=100`
     );
     if (!response.ok) throw new Error("Failed to load GitHub repos");
 
-    const repos = await response.json();
+    const githubRepos = await response.json();
 
-    const filtered = ALLOWED_REPOS.map((name) =>
-      repos.find((r) => r.name === name)
-    ).filter(Boolean);
+    const cards = repos
+      .map((config) => {
+        const repo = githubRepos.find((r) => r.name === config.name);
+        if (!repo) return "";
 
-    if (filtered.length === 0) {
-      container.innerHTML = `<p>No projects found.</p>`;
-      return;
-    }
-
-    const cards = filtered
-      .map((repo) => {
-        const imageUrl = `https://opengraph.github.com/repo/${GITHUB_USERNAME}/${repo.name}`;
-        const description = repo.description || "No description provided.";
+        const updated = new Date(repo.updated_at).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+        });
         const stars = repo.stargazers_count;
         const language = repo.language || "";
 
         return `
-        <div class="project-card">
-          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
-            <img
-              class="project-image"
-              src="${imageUrl}"
-              alt="${repo.name} preview"
-              loading="lazy"
-            />
-          </a>
-          <div class="project-info">
-            <h3>
-              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
-                ${repo.name}
-              </a>
-            </h3>
-            <p class="description">${description}</p>
-            <div class="project-meta">
-              ${language ? `<span class="skill-tag">${language}</span>` : ""}
-              ${stars > 0 ? `<span class="skill-tag">⭐ ${stars}</span>` : ""}
+          <div class="project-card">
+            <div class="project-card-header" style="background-color: ${config.color};">
+              <span class="project-card-title">${config.label}</span>
+              ${language ? `<span class="project-card-lang">${language}</span>` : ""}
+            </div>
+            <div class="project-card-body">
+              <p class="project-card-desc">${config.description}</p>
+              <div class="project-card-meta">
+                ${stars > 0 ? `<span>⭐ ${stars}</span>` : ""}
+                <span>Updated ${updated}</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              ${config.url ? `<a class="project-card-btn primary" href="${config.url}" target="_blank" rel="noopener noreferrer">Visit Site</a>` : ""}
+              <a class="project-card-btn" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
             </div>
           </div>
-        </div>
-      `;
+        `;
       })
       .join("");
 
