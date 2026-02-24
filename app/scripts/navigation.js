@@ -9,6 +9,7 @@ import {
   loadSkills,
   loadEducation,
   loadHeaderData,
+  loadProjects,
 } from "/scripts/loaders.js";
 import { loadArchitecture } from "/scripts/architecture.js";
 
@@ -61,6 +62,9 @@ async function loadSectionData(section) {
       case "education":
         await loadEducation(container);
         break;
+      case "projects":
+        await loadProjects(container);
+        break;
       case "architecture":
         await loadArchitecture();
         break;
@@ -102,6 +106,7 @@ function initPage() {
     loadSectionData("experience");
     loadSectionData("skills");
     loadSectionData("education");
+    loadSectionData("projects");
     loadSectionData("architecture");
 
     // Collapse all sections except About Me after loading

@@ -197,10 +197,82 @@ async function loadHeaderData() {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Projects — fetched from GitHub API, filtered by whitelist
+// ---------------------------------------------------------------------------
+
+const GITHUB_USERNAME = "mr-flowjangles";
+
+const ALLOWED_REPOS = [
+  "the-fret-detective",
+  "bot-factory-ui",
+];
+
+async function loadProjects(container) {
+  container.innerHTML = `<div class="loading">Loading projects...</div>`;
+
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`
+    );
+    if (!response.ok) throw new Error("Failed to load GitHub repos");
+
+    const repos = await response.json();
+
+    const filtered = ALLOWED_REPOS.map((name) =>
+      repos.find((r) => r.name === name)
+    ).filter(Boolean);
+
+    if (filtered.length === 0) {
+      container.innerHTML = `<p>No projects found.</p>`;
+      return;
+    }
+
+    const cards = filtered
+      .map((repo) => {
+        const imageUrl = `https://opengraph.github.com/repo/${GITHUB_USERNAME}/${repo.name}`;
+        const description = repo.description || "No description provided.";
+        const stars = repo.stargazers_count;
+        const language = repo.language || "";
+
+        return `
+        <div class="project-card">
+          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+            <img
+              class="project-image"
+              src="${imageUrl}"
+              alt="${repo.name} preview"
+              loading="lazy"
+            />
+          </a>
+          <div class="project-info">
+            <h3>
+              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+                ${repo.name}
+              </a>
+            </h3>
+            <p class="description">${description}</p>
+            <div class="project-meta">
+              ${language ? `<span class="skill-tag">${language}</span>` : ""}
+              ${stars > 0 ? `<span class="skill-tag">⭐ ${stars}</span>` : ""}
+            </div>
+          </div>
+        </div>
+      `;
+      })
+      .join("");
+
+    container.innerHTML = `<div class="projects-grid">${cards}</div>`;
+  } catch (error) {
+    container.innerHTML = `<div class="error">Error loading projects: ${error.message}</div>`;
+  }
+}
+
 export {
   loadProfile,
   loadExperience,
   loadSkills,
   loadEducation,
   loadHeaderData,
+  loadProjects,
 };
