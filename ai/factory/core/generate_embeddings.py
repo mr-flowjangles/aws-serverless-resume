@@ -1,16 +1,16 @@
 """
 Embedding Generator (Universal)
 
-Reads a bot's data via the chunker, generates OpenAI embeddings,
-and stores them in the ChatbotRAG DynamoDB table with a bot_id field.
+Reads a bot's data via the chunker, generates embeddings via AWS Bedrock
+(Amazon Titan Text Embeddings V2), and stores them in the ChatbotRAG
+DynamoDB table with a bot_id field.
 
 Uses kill-and-fill scoped to the bot_id — only deletes and rewrites
-embeddings for the specified bot. Other bots (including RobbAI's
-legacy embeddings) are untouched.
+embeddings for the specified bot. Other bots are untouched.
 
 Behavior:
   - First run:      No embeddings found → generates automatically
-  - Already exist:  Prompts "Regenerate? (y/n)" before spending OpenAI credits
+  - Already exist:  Prompts "Regenerate? (y/n)" before proceeding
   - --force flag:   Skips the prompt, regenerates without asking
 
 Usage:
@@ -19,10 +19,14 @@ Usage:
 """
 import os
 import sys
+import json
 import boto3
-from openai import OpenAI
 from decimal import Decimal
 from .chunker import load_bot_data
+
+
+BEDROCK_MODEL_ID = "amazon.titan-embed-text-v2:0"
+EMBEDDING_DIMENSIONS = 1024
 
 
 # ---------------------------------------------------------------------------
@@ -45,31 +49,31 @@ def get_dynamodb_connection():
         )
 
 
-def get_openai_client():
-    """Initialize OpenAI client."""
-    api_key = os.getenv('OPENAI_API_KEY')
-    if not api_key:
-        print("Error: OPENAI_API_KEY environment variable not set")
-        sys.exit(1)
-    return OpenAI(api_key=api_key)
+def get_bedrock_client():
+    """Initialize Bedrock runtime client. Always calls real AWS."""
+    return boto3.client('bedrock-runtime', region_name='us-east-1')
 
 
 # ---------------------------------------------------------------------------
 # Embedding generation
 # ---------------------------------------------------------------------------
 
-def generate_embedding(client: OpenAI, text: str) -> list[float]:
-    """Generate a single embedding vector via OpenAI."""
-    response = client.embeddings.create(
-        model="text-embedding-3-small",
-        input=text
+def generate_embedding(client, text: str) -> list[float]:
+    """Generate a single embedding vector via Bedrock Titan V2."""
+    response = client.invoke_model(
+        modelId=BEDROCK_MODEL_ID,
+        body=json.dumps({
+            "inputText": text,
+            "dimensions": EMBEDDING_DIMENSIONS,
+            "normalize": True
+        })
     )
-    return response.data[0].embedding
+    return json.loads(response['body'].read())['embedding']
 
 
-def generate_all_embeddings(client: OpenAI, chunks: list[dict]) -> list[dict]:
+def generate_all_embeddings(client, chunks: list[dict]) -> list[dict]:
     """Generate embeddings for all chunks. Adds 'embedding' key to each chunk."""
-    print(f"\nGenerating embeddings with OpenAI ({len(chunks)} chunks)...")
+    print(f"\nGenerating embeddings with Bedrock Titan V2 ({len(chunks)} chunks)...")
 
     for idx, chunk in enumerate(chunks, 1):
         print(f"  [{idx}/{len(chunks)}] {chunk['category']}: {chunk['id']}")
@@ -102,7 +106,6 @@ def clear_bot_embeddings(table, bot_id: str):
         response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
         items.extend(response.get('Items', []))
 
-    # Only delete items that belong to this bot
     bot_items = [item for item in items if item.get('bot_id') == bot_id]
 
     if not bot_items:
@@ -157,7 +160,7 @@ def bot_embeddings_exist(table, bot_id: str) -> bool:
 
 def generate_bot_embeddings(bot_id: str, force: bool = False):
     """
-    Full pipeline: chunker → OpenAI → DynamoDB for a given bot.
+    Full pipeline: chunker → Bedrock Titan V2 → DynamoDB for a given bot.
 
     Args:
         bot_id: The bot folder name (e.g., 'guitar')
@@ -166,6 +169,7 @@ def generate_bot_embeddings(bot_id: str, force: bool = False):
     print("\n" + "=" * 60)
     print(f"  Bot Factory — Embedding Generator")
     print(f"  Bot: {bot_id}")
+    print(f"  Model: {BEDROCK_MODEL_ID} ({EMBEDDING_DIMENSIONS}d)")
     print("=" * 60 + "\n")
 
     # Step 1: Connect to DynamoDB
@@ -188,9 +192,9 @@ def generate_bot_embeddings(bot_id: str, force: bool = False):
         print(f"No data found for bot '{bot_id}'. Check bots/{bot_id}/data/")
         sys.exit(1)
 
-    # Step 4: Generate embeddings via OpenAI
-    openai_client = get_openai_client()
-    chunks = generate_all_embeddings(openai_client, chunks)
+    # Step 4: Generate embeddings via Bedrock
+    bedrock_client = get_bedrock_client()
+    chunks = generate_all_embeddings(bedrock_client, chunks)
 
     # Step 5: Clear old embeddings for this bot (kill-and-fill, scoped)
     clear_bot_embeddings(table, bot_id)
@@ -206,6 +210,8 @@ def generate_bot_embeddings(bot_id: str, force: bool = False):
     print(f"  Embeddings generation complete!")
     print("=" * 60)
     print(f"\n  Bot: {bot_id}")
+    print(f"  Model: {BEDROCK_MODEL_ID}")
+    print(f"  Dimensions: {EMBEDDING_DIMENSIONS}")
     print(f"  Total embeddings: {len(chunks)}")
     for cat, count in cats.most_common():
         print(f"    {cat}: {count}")

@@ -10,6 +10,8 @@ call Claude. Only difference: bot_id drives which prompt and
 embeddings are used.
 """
 import os
+import time
+import logging
 from datetime import datetime
 from pathlib import Path
 from pyexpat.errors import messages
@@ -18,6 +20,8 @@ import boto3
 import botocore.session
 import configparser
 from .retrieval import retrieve_relevant_chunks, format_context_for_llm
+
+logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
 # Cached resources — persist across warm Lambda invocations
@@ -31,10 +35,9 @@ _bedrock_client = None
 def get_bedrock_client():
     global _bedrock_client
     if _bedrock_client is None:
-        print(">>> Initializing Bedrock client")
-        
+        t_start = time.time()
+        logger.info("[chatbot] Initializing Bedrock client...")
         try:
-            # Local dev: read real AWS creds from mounted file
             config = configparser.ConfigParser()
             config.read('/root/.aws/credentials')
             _bedrock_client = boto3.client(
@@ -44,14 +47,13 @@ def get_bedrock_client():
                 aws_access_key_id=config.get('default', 'aws_access_key_id'),
                 aws_secret_access_key=config.get('default', 'aws_secret_access_key')
             )
-            print(">>> Using credentials file")
+            logger.info(f"[chatbot] Bedrock init via credentials file — {time.time() - t_start:.3f}s")
         except Exception:
-            # Lambda: IAM role provides credentials automatically
             _bedrock_client = boto3.client(
                 'bedrock-runtime',
                 region_name='us-east-1'
             )
-            print(">>> Using IAM role credentials")
+            logger.info(f"[chatbot] Bedrock init via IAM role — {time.time() - t_start:.3f}s")
     return _bedrock_client
 
 def load_system_prompt(bot_id: str) -> str:
@@ -173,12 +175,11 @@ def generate_response_stream(
     """
     Same as generate_response, but yields text chunks for streaming.
     """
-    print(f"[STREAM] Starting stream for {bot_id}: {user_message[:50]}...")  # STREAM_DEBUG
+    logger.info(f"[chatbot:{bot_id}] stream start query='{user_message[:60]}'")
 
     if conversation_history is None:
         conversation_history = []
 
-    # Retrieve relevant context for this bot
     relevant_chunks = retrieve_relevant_chunks(
         bot_id=bot_id,
         query=user_message,
@@ -186,20 +187,15 @@ def generate_response_stream(
         similarity_threshold=similarity_threshold
     )
 
-    # Format context for the prompt
     context = format_context_for_llm(relevant_chunks)
 
-    # Build messages array
     messages = []
-
-    # Add conversation history
     for msg in conversation_history:
         messages.append({
             "role": msg["role"],
             "content": [{"text": msg["content"]}]
         })
 
-    # Add current user message with context
     user_content = f"""## Relevant Context:
 {context}
 
@@ -213,10 +209,8 @@ Remember: Keep your response short and conversational. Write in PLAIN TEXT ONLY 
         "content": [{"text": user_content}]
     })
 
-    # Load this bot's system prompt
     system_prompt = load_system_prompt(bot_id)
 
-    # Call Claude with streaming
     client = get_bedrock_client()
     response = client.converse_stream(
         modelId="us.anthropic.claude-sonnet-4-20250514-v1:0",
@@ -225,9 +219,6 @@ Remember: Keep your response short and conversational. Write in PLAIN TEXT ONLY 
         messages=messages
     )
 
-   # Yield text chunks as they arrive
     for event in response["stream"]:
         if "contentBlockDelta" in event:
-            chunk = event["contentBlockDelta"]["delta"]["text"]  # STREAM_DEBUG
-            print(f"[STREAM] chunk: {chunk[:20]}...")  # STREAM_DEBUG
-            yield chunk
+            yield event["contentBlockDelta"]["delta"]["text"]

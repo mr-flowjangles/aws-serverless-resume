@@ -9,9 +9,16 @@ Same math as ai/retrieval.py — cosine similarity, top-K, threshold.
 Only difference: everything is filtered by bot_id.
 """
 import os
+import json
+import time
+import logging
 import boto3
 import numpy as np
-from openai import OpenAI
+
+logger = logging.getLogger(__name__)
+
+BEDROCK_MODEL_ID = "amazon.titan-embed-text-v2:0"
+EMBEDDING_DIMENSIONS = 1024
 
 # ---------------------------------------------------------------------------
 # Per-bot embedding cache — keyed by bot_id
@@ -44,52 +51,65 @@ def get_cached_embeddings(bot_id: str) -> list[dict]:
     global _embeddings_cache
 
     if bot_id in _embeddings_cache:
-        print(f"Using cached embeddings for '{bot_id}'")
+        logger.info(f"[retrieval:{bot_id}] cache HIT — {len(_embeddings_cache[bot_id])} items")
         return _embeddings_cache[bot_id]
 
-    print(f"Loading embeddings for '{bot_id}' from DynamoDB...")
+    logger.info(f"[retrieval:{bot_id}] cache MISS — scanning DynamoDB...")
+    t_start = time.time()
+
     dynamodb = get_dynamodb_connection()
     table = dynamodb.Table('ChatbotRAG')
 
     response = table.scan()
     items = response.get('Items', [])
+    pages = 1
 
     while 'LastEvaluatedKey' in response:
         response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
         items.extend(response.get('Items', []))
+        pages += 1
+
+    t_scan = time.time() - t_start
+    logger.info(f"[retrieval:{bot_id}] DynamoDB scan complete — {len(items)} total items, {pages} page(s), {t_scan:.3f}s")
 
     # Filter to this bot only
     bot_items = [item for item in items if item.get('bot_id') == bot_id]
 
     _embeddings_cache[bot_id] = bot_items
-    print(f"Cached {len(bot_items)} embeddings for '{bot_id}'")
+    logger.info(f"[retrieval:{bot_id}] cached {len(bot_items)} embeddings (filtered from {len(items)} total)")
     return bot_items
 
 
 # ---------------------------------------------------------------------------
-# OpenAI query embedding
+# Bedrock query embedding
 # ---------------------------------------------------------------------------
 
-_openai_client = None
+_bedrock_client = None
 
 
-def get_openai_client() -> OpenAI:
-    """Lazy-init OpenAI client."""
-    global _openai_client
-    if _openai_client is None:
-        _openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-    return _openai_client
+def get_bedrock_client():
+    """Lazy-init Bedrock runtime client."""
+    global _bedrock_client
+    if _bedrock_client is None:
+        _bedrock_client = boto3.client('bedrock-runtime', region_name='us-east-1')
+    return _bedrock_client
 
 
 def generate_query_embedding(query: str) -> list[float]:
-    """Convert a user's question to an embedding vector."""
-    print(f"[STREAM] Embedding query: {query[:50]}...")  # STREAM_DEBUG
-    client = get_openai_client()
-    response = client.embeddings.create(
-        model="text-embedding-3-small",
-        input=query
+    """Convert a user's question to an embedding vector via Bedrock Titan V2."""
+    t_start = time.time()
+    client = get_bedrock_client()
+    response = client.invoke_model(
+        modelId=BEDROCK_MODEL_ID,
+        body=json.dumps({
+            "inputText": query,
+            "dimensions": EMBEDDING_DIMENSIONS,
+            "normalize": True
+        })
     )
-    return response.data[0].embedding
+    embedding = json.loads(response['body'].read())['embedding']
+    logger.info(f"[retrieval] Bedrock embedding={time.time() - t_start:.3f}s")
+    return embedding
 
 
 # ---------------------------------------------------------------------------
@@ -111,26 +131,16 @@ def retrieve_relevant_chunks(
 ) -> list[dict]:
     """
     Retrieve the most relevant chunks for a user's query, scoped to a bot.
-
-    Args:
-        bot_id: Which bot's embeddings to search
-        query: The user's question
-        top_k: Number of top results to return
-        similarity_threshold: Minimum similarity score (0-1)
-
-    Returns:
-        List of relevant chunks with similarity scores
     """
-    print(f"Retrieval for '{bot_id}': {query}")
+    logger.info(f"[retrieval:{bot_id}] query='{query[:60]}'")
 
     # Convert question to embedding
     query_embedding = generate_query_embedding(query)
 
     # Get this bot's cached embeddings
     items = get_cached_embeddings(bot_id)
-    print(f"Searching {len(items)} embeddings...")
 
-
+    # Log top scores for debugging
     all_scores = []
     for item in items:
         stored_embedding = [float(x) for x in item['embedding']]
@@ -138,8 +148,7 @@ def retrieve_relevant_chunks(
         all_scores.append((similarity, item.get('category', ''), item.get('heading', '')))
     all_scores.sort(reverse=True)
     for score, cat, heading in all_scores[:5]:
-        print(f"  Score: {score:.4f} | {cat}: {heading}")
-
+        logger.debug(f"[retrieval:{bot_id}] top_score={score:.4f} | {cat}: {heading}")
 
     # Calculate similarity for each chunk
     results = []
@@ -155,28 +164,21 @@ def retrieve_relevant_chunks(
                 'text': item['text'],
                 'similarity': float(similarity),
             })
-    print(f"[STREAM] Retrieved {len(results)} chunks, top score: {results[0]['similarity'] if results else 'N/A'}")  # STREAM_DEBUG
-    print(f"Found {len(results)} results above threshold ({similarity_threshold})")
 
-    print(f"  Above 0.6: {len([r for r in results if r['similarity'] >= 0.6])}")
-    print(f"  Above 0.55: {len([r for r in results if r['similarity'] >= 0.55])}")
-    print(f"  Above 0.5: {len([r for r in results if r['similarity'] >= 0.5])}")
-
-    # Sort by similarity (highest first) and return top K
     results.sort(key=lambda x: x['similarity'], reverse=True)
-    print(f"Found {len(results)} above threshold, returning top {top_k}")
+
+    logger.info(
+        f"[retrieval:{bot_id}] found={len(results)} above threshold={similarity_threshold} "
+        f"top_score={results[0]['similarity']:.4f if results else 'N/A'} "
+        f"returning top_{top_k}"
+    )
+
     return results[:top_k]
 
 
 def format_context_for_llm(chunks: list[dict]) -> str:
     """
     Format retrieved chunks into context string for Claude.
-
-    Args:
-        chunks: List of retrieved chunks with similarity scores
-
-    Returns:
-        Formatted string to include in the LLM prompt
     """
     if not chunks:
         return "No relevant information found."

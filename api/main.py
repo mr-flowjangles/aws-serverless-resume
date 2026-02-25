@@ -15,7 +15,12 @@ from routers.resume import router as resume_router
 from ai.router import router as ai_router
 from fastapi.middleware.cors import CORSMiddleware
 from ai.factory import factory_router
+import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s — %(message)s"
+)
 
 
 @asynccontextmanager
