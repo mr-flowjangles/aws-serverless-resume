@@ -17,6 +17,8 @@ Or let the factory auto-discover bots:
 """
 import os
 import uuid
+import time
+import logging
 import yaml
 from pathlib import Path
 from datetime import datetime
@@ -24,6 +26,8 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from fastapi.responses import StreamingResponse
+
+logger = logging.getLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
@@ -229,12 +233,44 @@ def create_bot_router(bot_id: str) -> APIRouter:
     @router.get("/warmup")
     async def warmup():
         """Preload embedding cache so first question is fast."""
+        t_start = time.time()
+        logger.info(f"[warmup:{bot_id}] START")
+
         try:
-            from .retrieval import get_cached_embeddings
+            from .retrieval import get_cached_embeddings, _embeddings_cache
+
+            cache_hit = bot_id in _embeddings_cache
+            logger.info(f"[warmup:{bot_id}] cache_hit={cache_hit}")
+
+            t_cache = time.time()
             embeddings = get_cached_embeddings(bot_id)
-            return {"status": "warm", "embeddings": len(embeddings)}
+            t_cache_done = time.time()
+
+            logger.info(
+                f"[warmup:{bot_id}] cache_load={t_cache_done - t_cache:.3f}s "
+                f"items={len(embeddings)} "
+                f"was_cached={cache_hit}"
+            )
+
+            # Also pre-init the Bedrock client so it's ready for the first chat
+            from .chatbot import get_bedrock_client
+            t_bedrock = time.time()
+            get_bedrock_client()
+            t_bedrock_done = time.time()
+            logger.info(f"[warmup:{bot_id}] bedrock_init={t_bedrock_done - t_bedrock:.3f}s")
+
+            t_total = time.time() - t_start
+            logger.info(f"[warmup:{bot_id}] DONE total={t_total:.3f}s")
+
+            return {
+                "status": "warm",
+                "embeddings": len(embeddings),
+                "was_cached": cache_hit,
+                "duration_ms": round(t_total * 1000)
+            }
         except Exception as e:
-            print(f"Warmup error ({bot_id}): {e}")
-            return {"status": "error"}
+            t_total = time.time() - t_start
+            logger.error(f"[warmup:{bot_id}] ERROR after {t_total:.3f}s: {e}", exc_info=True)
+            return {"status": "error", "detail": str(e)}
 
     return router

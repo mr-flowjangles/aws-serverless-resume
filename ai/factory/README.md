@@ -4,39 +4,35 @@ A reusable RAG chatbot framework. Write a config, run one command, get a working
 
 ## How It Works
 
-Each bot is a folder under `bots/` containing three things: a config file, a system prompt, and knowledge data. The factory's core modules handle everything else — chunking data into text, generating OpenAI embeddings, storing them in DynamoDB, retrieving relevant context via cosine similarity, and generating Claude responses.
+Each bot is a folder under `bots/` containing three things: a config file, a system prompt, and knowledge data. The factory's core modules handle everything else — chunking data into text, generating embeddings via AWS Bedrock, storing them in DynamoDB, retrieving relevant context via cosine similarity, and generating Claude responses via Bedrock.
 
 The backend auto-discovers any bot with `enabled: true` in its config and registers API endpoints automatically. No code changes needed.
 
 ```
 User question
-  → OpenAI embedding (convert question to vector)
+  → Bedrock Titan V2 embedding (convert question to vector)
   → DynamoDB cosine search (find relevant knowledge)
-  → Claude Sonnet (generate response with context)
+  → Bedrock Claude Sonnet (generate response with context)
   → User gets answer
 ```
 
+For a detailed trace of every file and function called during a chat request, see [CHAT_FLOW.md](CHAT_FLOW.md).
+
 ## Prerequisites
 
-Dependencies (PyYAML, numpy, openai, anthropic, etc.) are installed inside the Docker container automatically. You don't need to install them on your host machine.
+Dependencies (PyYAML, numpy, boto3, etc.) are installed inside the Docker container automatically. You don't need to install them on your host machine.
 
 You'll need:
 
 - **Docker** — for local development (`docker compose up -d`)
-- **AWS CLI** — configured with credentials for DynamoDB and S3
+- **AWS CLI** — configured with credentials for DynamoDB, S3, and Bedrock
 
-Claude Integration (Skip if you are intending to use Bedrock)
+**AWS Bedrock access** — after your first call to Bedrock you may be prompted to request model access:
 
-- **OpenAI API key** — set as `OPENAI_API_KEY` environment variable (for embeddings)
-- **Anthropic API key** — set as `ANTHROPIC_API_KEY` environment variable (for Claude responses)
-
-Bedrock
-After you make your first call to bedrock, you'll need to do the following to continue.
-
-- Go to the AWS Console:
-- Bedrock → Model catalog (or Model access)
-- There should be a prompt to submit use case details. Mine was at the top of the page.
-- Fill it out — keep it simple ("AI chatbot for personal portfolio website")
+- Go to the AWS Console → Bedrock → Model catalog (or Model access)
+- There should be a prompt to submit use case details at the top of the page
+- Fill it out simply ("AI chatbot for personal portfolio website")
+- You need access to both `amazon.titan-embed-text-v2:0` (embeddings) and `claude-sonnet-4` (responses)
 
 ## Creating a New Bot
 
@@ -71,12 +67,11 @@ bot:
     suggestions: true
 
   model:
-    provider: "anthropic"
-    name: "claude-sonnet-4-20250514"
+    provider: "bedrock"
+    name: "us.anthropic.claude-sonnet-4-20250514-v1:0"
     max_tokens: 1000
 
   rag:
-    embedding_model: "openai"
     top_k: 5
     similarity_threshold: 0.3
 
@@ -129,10 +124,10 @@ prompt: |
 
 ### Step 4: Add knowledge data
 
-Create YAML files in the `data/` folder using the universal data format.
+Create YAML files in the `data/` folder using the universal data format, then upload them to S3. The embedding pipeline reads from S3, not the local filesystem.
 
 ```
-ai/factory/bots/{bot_id}/data/
+s3://bot-factory-data/bots/{bot_id}/data/
 ```
 
 Two entry types are supported:
@@ -168,15 +163,25 @@ Two entry types are supported:
 
 The chunker flattens object entries using the template, so each item becomes a standalone text chunk for embedding.
 
+**Upload your data files to S3:**
+
+```bash
+# Local (LocalStack)
+aws --endpoint-url=http://localhost:4566 s3 sync bots/{bot_id}/data/ s3://bot-factory-data/bots/{bot_id}/data/
+
+# Production
+aws s3 sync bots/{bot_id}/data/ s3://bot-factory-data/bots/{bot_id}/data/
+```
+
 ### Step 5: Generate embeddings
 
-Run inside the Docker container so it hits LocalStack's DynamoDB and has all dependencies available:
+Run inside the Docker container so it hits LocalStack's DynamoDB and Bedrock:
 
 ```bash
 docker compose exec api python -m ai.factory.core.generate_embeddings {bot_id}
 ```
 
-This runs the full pipeline: chunker reads your YAML data, OpenAI converts each chunk to a 1,536-dimension vector, and the vectors are stored in the ChatbotRAG DynamoDB table tagged with your bot ID.
+This runs the full pipeline: the chunker reads your YAML files from S3, Bedrock Titan V2 converts each chunk to a 1024-dimension vector, and the vectors are stored in the `ChatbotRAG` DynamoDB table tagged with your bot ID.
 
 To regenerate after data changes:
 
@@ -186,11 +191,11 @@ docker compose exec api python -m ai.factory.core.generate_embeddings {bot_id} -
 
 The `--force` flag does a kill-and-fill scoped to your bot ID. Other bots' embeddings are untouched.
 
-> **Note:** Do not run the embeddings command directly on your host machine (`python -m ai.factory...`). The dependencies (PyYAML, numpy, openai, etc.) are installed inside the container, not locally.
+> **Note:** Do not run the embeddings command directly on your host machine. The dependencies and AWS connections are configured inside the container.
 
 ### Step 5b: Push embeddings to prod
 
-Embeddings are generated against LocalStack locally. To push them to prod DynamoDB, use the export/import scripts in `ai/scripts/`. Both scripts take a `bot_id` argument to scope the operation — only that bot's embeddings are touched.
+Embeddings are generated against LocalStack locally. To push them to prod DynamoDB, use the export/import scripts in `ai/scripts/`. Both scripts take a `bot_id` argument to scope the operation.
 
 ```bash
 # Export one bot from LocalStack to _scratch/ (run inside container)
@@ -239,8 +244,6 @@ Visit `http://localhost:8080/{bot_id}.html` and start chatting.
 
 ### Step 8: Deploy
 
-From the project root:
-
 ```bash
 # 1. Push embeddings to prod (if data changed — see Step 5b)
 docker compose exec api python /app/ai/scripts/export_embeddings.py {bot_id}
@@ -265,21 +268,22 @@ Skip step 1 if you only changed code or frontend files. Skip steps 2-3 if you on
 ```
 ai/factory/
 ├── README.md                  ← you are here
+├── CHAT_FLOW.md               ← full trace of the chat request pipeline
 ├── __init__.py                ← register_bots() auto-discovery
 ├── scaffold_bot.py            ← frontend scaffolder
 │
 ├── core/                      ← shared engine (never edit per-bot)
-│   ├── chunker.py             ← YAML → text chunks
-│   ├── generate_embeddings.py ← chunks → OpenAI → DynamoDB
-│   ├── retrieval.py           ← question → cosine search → matches
-│   ├── chatbot.py             ← matches + question → Claude → response
+│   ├── chunker.py             ← S3 YAML → text chunks
+│   ├── generate_embeddings.py ← chunks → Bedrock Titan V2 → DynamoDB
+│   ├── retrieval.py           ← question → Bedrock embedding → cosine search
+│   ├── chatbot.py             ← context + question → Bedrock Claude → response
 │   └── router.py              ← creates FastAPI endpoints per bot
 │
 └── bots/                      ← one folder per bot
     └── guitar/
         ├── config.yml         ← bot configuration
         ├── prompt.yml         ← system prompt for Claude
-        └── data/
+        └── data/              ← source files (sync to S3 before embedding)
             └── guitar-knowledge.yml
 
 app/                           ← frontend (generated by scaffold_bot.py)
@@ -317,17 +321,16 @@ app/                           ← frontend (generated by scaffold_bot.py)
 
 ### bot.model
 
-| Field        | Type    | Description                                  |
-| ------------ | ------- | -------------------------------------------- |
-| `provider`   | string  | `"anthropic"`                                |
-| `name`       | string  | Model ID, e.g., `"claude-sonnet-4-20250514"` |
-| `max_tokens` | integer | Max response length.                         |
+| Field        | Type    | Description                                                         |
+| ------------ | ------- | ------------------------------------------------------------------- |
+| `provider`   | string  | `"bedrock"`                                                         |
+| `name`       | string  | Bedrock model ID, e.g., `"us.anthropic.claude-sonnet-4-20250514-v1:0"` |
+| `max_tokens` | integer | Max response length.                                                |
 
 ### bot.rag
 
 | Field                  | Type    | Description                                                             |
 | ---------------------- | ------- | ----------------------------------------------------------------------- |
-| `embedding_model`      | string  | `"openai"` (uses text-embedding-3-small)                                |
 | `top_k`                | integer | Number of chunks to retrieve. Use 10+ if data has many similar entries. |
 | `similarity_threshold` | float   | Minimum cosine similarity (0.0–1.0).                                    |
 
@@ -380,11 +383,13 @@ If no formatter is registered, `chat.js` uses its default plain text renderer.
 
 The factory uses auto-discovery in `__init__.py`. At startup, it scans every folder in `bots/`, reads each `config.yml`, and registers API routes for any bot with `enabled: true`. Adding a new bot never requires editing `main.py`.
 
-Each bot gets three endpoints:
+Each bot gets these endpoints:
 
 - `POST /api/{bot_id}/chat` — send a message, get a response
-- `GET /api/{bot_id}/config` — frontend configuration
-- `GET /api/{bot_id}/warmup` — pre-load embedding cache
+- `POST /api/{bot_id}/chat/stream` — send a message, get a streamed response
+- `GET  /api/{bot_id}/config` — frontend configuration
+- `GET  /api/{bot_id}/suggestions` — starter questions
+- `GET  /api/{bot_id}/warmup` — pre-load embedding cache
 
 ## Existing Bots
 
@@ -396,6 +401,8 @@ Each bot gets three endpoints:
 ## Embedding Notes
 
 All bot embeddings share one DynamoDB table (`ChatbotRAG`), partitioned by bot ID. Each record's primary key is `{bot_id}_{entry_id}` and includes a `bot_id` field for filtering.
+
+Embeddings are generated using **Bedrock Titan Text Embeddings V2** (`amazon.titan-embed-text-v2:0`) at 1024 dimensions. Knowledge data files live in S3 (`s3://bot-factory-data/bots/{bot_id}/data/`) — the chunker reads from S3 at embedding time, keeping data files out of the Lambda package.
 
 The kill-and-fill approach on `--force` only deletes rows matching the target bot ID. Running embeddings for one bot never affects another.
 

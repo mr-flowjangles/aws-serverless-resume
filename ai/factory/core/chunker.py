@@ -10,39 +10,70 @@ Handles two format types:
 
 Supports optional 'search_terms' field to improve semantic search matching.
 
-Input:  bot_id string (resolves to bots/{bot_id}/data/ folder)
+Input:  bot_id string (resolves to s3://bot-factory-data/bots/{bot_id}/data/)
 Output: List of dicts with {id, bot_id, category, heading, text}
 """
+import os
 import yaml
-from pathlib import Path
+import boto3
 
 
-def get_bot_data_path(bot_id: str) -> Path:
-    """Resolve the data folder path for a given bot."""
-    return Path(__file__).parent.parent / 'bots' / bot_id / 'data'
+S3_BUCKET = os.getenv('BOT_DATA_BUCKET', 'bot-factory-data')
+S3_PREFIX = 'bots'
 
 
-def load_yaml_files(data_path: Path) -> list[dict]:
+# ---------------------------------------------------------------------------
+# S3 connection
+# ---------------------------------------------------------------------------
+
+def get_s3_client():
+    """Get S3 client (works with LocalStack or AWS)."""
+    endpoint_url = os.getenv('AWS_ENDPOINT_URL', '')
+
+    if endpoint_url == '':
+        return boto3.client('s3', region_name='us-east-1')
+    else:
+        return boto3.client(
+            's3',
+            endpoint_url=endpoint_url,
+            region_name=os.getenv('AWS_REGION', 'us-east-1'),
+            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID', 'test'),
+            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY', 'test')
+        )
+
+
+# ---------------------------------------------------------------------------
+# S3 file loading
+# ---------------------------------------------------------------------------
+
+def load_yaml_files(bot_id: str) -> list[dict]:
     """
-    Load all .yml files from a bot's data folder.
+    Load all .yml files from S3 for a bot's data folder.
+    s3://bot-factory-data/bots/{bot_id}/data/*.yml
     Returns the combined list of entries from all files.
     """
+    s3 = get_s3_client()
+    prefix = f"{S3_PREFIX}/{bot_id}/data/"
     all_entries = []
 
-    if not data_path.exists():
-        print(f"  Warning: data folder not found at {data_path}")
+    response = s3.list_objects_v2(Bucket=S3_BUCKET, Prefix=prefix)
+    objects = response.get('Contents', [])
+
+    yml_keys = sorted(
+        obj['Key'] for obj in objects
+        if obj['Key'].endswith('.yml') or obj['Key'].endswith('.yaml')
+    )
+
+    if not yml_keys:
+        print(f"  Warning: no .yml files found at s3://{S3_BUCKET}/{prefix}")
         return all_entries
 
-    yml_files = sorted(data_path.glob('*.yml'))
+    for key in yml_keys:
+        filename = key.split('/')[-1]
+        print(f"  Reading s3://{S3_BUCKET}/{key}...")
 
-    if not yml_files:
-        print(f"  Warning: no .yml files found in {data_path}")
-        return all_entries
-
-    for yml_file in yml_files:
-        print(f"  Reading {yml_file.name}...")
-        with open(yml_file, 'r') as f:
-            data = yaml.safe_load(f)
+        obj = s3.get_object(Bucket=S3_BUCKET, Key=key)
+        data = yaml.safe_load(obj['Body'].read().decode('utf-8'))
 
         entries = data.get('entries', [])
         all_entries.extend(entries)
@@ -50,6 +81,10 @@ def load_yaml_files(data_path: Path) -> list[dict]:
 
     return all_entries
 
+
+# ---------------------------------------------------------------------------
+# Chunking logic (unchanged)
+# ---------------------------------------------------------------------------
 
 def chunk_text_entry(entry: dict) -> str:
     """
@@ -77,7 +112,6 @@ def chunk_structured_entry(entry: dict) -> str:
         print(f"  Warning: structured entry '{entry.get('id')}' missing template or items")
         return heading
 
-    # Apply template to each item
     parts = [heading] if heading else []
 
     for item in items:
@@ -95,7 +129,6 @@ def chunk_entry(entry: dict) -> str:
     """Route an entry to the correct chunker based on its format."""
     fmt = entry.get('format', 'text')
 
-    # Accept aliases
     if fmt in ('text', 'string'):
         text = chunk_text_entry(entry)
     elif fmt in ('structured', 'object'):
@@ -104,7 +137,6 @@ def chunk_entry(entry: dict) -> str:
         print(f"  Warning: unknown format '{fmt}' for entry '{entry.get('id')}', treating as text")
         text = chunk_text_entry(entry)
 
-    # Prepend search terms if present (improves semantic search matching)
     search_terms = entry.get('search_terms', '')
     if search_terms:
         text = f"Search terms: {search_terms}\n\n{text}"
@@ -120,9 +152,9 @@ def load_bot_data(bot_id: str) -> list[dict]:
         {id, bot_id, category, heading, text}
     """
     print(f"Loading data for bot: {bot_id}")
+    print(f"  Source: s3://{S3_BUCKET}/{S3_PREFIX}/{bot_id}/data/")
 
-    data_path = get_bot_data_path(bot_id)
-    entries = load_yaml_files(data_path)
+    entries = load_yaml_files(bot_id)
 
     if not entries:
         print(f"  No entries found for bot '{bot_id}'")
