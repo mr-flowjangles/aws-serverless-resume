@@ -34,19 +34,6 @@ variable "notification_email" {
   type        = string
   default     = ""
 }
-
-variable "openai_api_key" {
-  description = "OpenAI API key for embeddings"
-  type        = string
-  sensitive   = true
-}
-
-variable "anthropic_api_key" {
-  description = "Anthropic API key for chatbot"
-  type        = string
-  sensitive   = true
-}
-
 variable "api_gateway_id" {
   description = "API Gateway REST API ID"
   type        = string

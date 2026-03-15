@@ -36,11 +36,9 @@ services:
       # Personal data folder (optional, gitignored) - for loading your own resume
       # this ensures your personal info is not checked into source control
       - ./_scratch:/app/_scratch
-      - ./ai:/app/ai
       - ~/.aws:/root/.aws:ro
     environment:
       - RECAPTCHA_SECRET_KEY=${MY_RECAPTCHA_SECRET_KEY}
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
     command: /bin/bash /app/startup.sh
     networks:
       - resume-net
@@ -81,21 +79,6 @@ services:
     networks:
       - resume-net
     entrypoint: ["/scripts/init-dynamodb.sh"]
-
-  init-chatbot:
-    image: resume-api
-    depends_on:
-      - localstack
-      - init-dynamodb
-    environment:
-      - AWS_ACCESS_KEY_ID=test
-      - AWS_SECRET_ACCESS_KEY=test
-      - AWS_DEFAULT_REGION=us-east-1
-    volumes:
-      - ./ai:/app/ai
-    networks:
-      - resume-net
-    entrypoint: ["/bin/bash", "/app/ai/scripts/init-chatbot-table.sh"]
 
 networks:
   resume-net:

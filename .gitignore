@@ -25,6 +25,7 @@ build/
 dist/
 *.egg-info/
 .pytest_cache/
+.venv/
 
 # Docker
 localstack-data/

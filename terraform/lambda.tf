@@ -23,8 +23,6 @@ resource "aws_lambda_function" "fastapi_app" {
       RECAPTCHA_SECRET_KEY    = var.recaptcha_secret_key
       SES_FROM_EMAIL          = "robmrose@me.com"
       SES_TO_EMAIL            = "robmrose@me.com"
-      OPENAI_API_KEY          = var.openai_api_key
-      ANTHROPIC_API_KEY       = var.anthropic_api_key
       AWS_LWA_PORT            = "8080"
       AWS_LAMBDA_EXEC_WRAPPER = "/opt/bootstrap"
       AWS_LWA_INVOKE_MODE = "response_stream"

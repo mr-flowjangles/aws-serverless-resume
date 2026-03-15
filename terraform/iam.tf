@@ -50,9 +50,7 @@ resource "aws_iam_role_policy" "lambda_dynamodb" {
         ]
         Resource = [
           aws_dynamodb_table.resume_data.arn,
-          "${aws_dynamodb_table.resume_data.arn}/index/*",
-          aws_dynamodb_table.chatbot_rag.arn,
-          aws_dynamodb_table.chatbot_logs.arn
+          "${aws_dynamodb_table.resume_data.arn}/index/*"
         ]
       },
       {
@@ -81,29 +79,6 @@ resource "aws_iam_role_policy" "lambda_ses" {
           "ses:SendRawEmail"
         ]
         Resource = "*"
-      }
-    ]
-  })
-}
-
-# Policy for Bedrock model invocation
-resource "aws_iam_role_policy" "lambda_bedrock" {
-  name = "${var.project_name}-lambda-bedrock-policy"
-  role = aws_iam_role.lambda_execution.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "bedrock:InvokeModel",
-  "bedrock:InvokeModelWithResponseStream"
-        ]
-        Resource = [
-          "arn:aws:bedrock:*::foundation-model/*",
-          "arn:aws:bedrock:*:255977230735:inference-profile/*"
-        ]
       }
     ]
   })
