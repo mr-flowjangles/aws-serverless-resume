@@ -1,5 +1,5 @@
 /**
- * RobbAI Architecture Display
+ * Architecture Display
  * Loads and displays the interactive architecture visualization
  */
 
@@ -12,16 +12,16 @@ async function loadArchitecture() {
   }
   
   container.innerHTML = `
-    <!-- SECTION 1: WEBSITE INFRASTRUCTURE -->
+    <!-- SECTION 1: RESUME SITE -->
     <div style="background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%); padding: 2rem; border-radius: 12px; margin-bottom: 3rem; border-left: 6px solid #0284c7;">
       <h3 style="color: #0f172a; font-size: 1.75rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-        <span style="font-size: 2rem;">🌐</span> Website Infrastructure
+        <span style="font-size: 2rem;">🌐</span> Resume Site
       </h3>
       <p style="color: #475569; margin-bottom: 2rem; line-height: 1.6;">
-        Serverless AWS architecture powering the resume website with unified FastAPI codebase for local and production.
+        This site doesn't need this much infrastructure — but it's a useful sandbox for learning serverless AWS patterns end to end. One FastAPI codebase runs locally via Docker and in production via Lambda, fully deployed with Terraform.
       </p>
 
-      <!-- Site Components -->
+      <!-- Core Components -->
       <h4 class="arch-section-title" style="font-size: 1.25rem;">Core Components</h4>
       <div class="arch-components">
         <div class="arch-column">
@@ -49,10 +49,14 @@ async function loadArchitecture() {
         </div>
 
         <div class="arch-column">
-          <h4>Data Storage</h4>
+          <h4>Data &amp; Email</h4>
           <div class="arch-component arch-aws">
             <div class="arch-component-name">DynamoDB</div>
             <div class="arch-component-desc">Resume content</div>
+          </div>
+          <div class="arch-component arch-aws">
+            <div class="arch-component-name">SES</div>
+            <div class="arch-component-desc">Contact form delivery</div>
           </div>
         </div>
       </div>
@@ -78,7 +82,80 @@ async function loadArchitecture() {
       </div>
     </div>
 
-  <!-- Legend -->
+    <!-- SECTION 2: BOT FACTORY -->
+    <div style="background: linear-gradient(135deg, #f8fafc 0%, #fce7f3 100%); padding: 2rem; border-radius: 12px; margin-bottom: 3rem; border-left: 6px solid #9333ea;">
+      <h3 style="color: #0f172a; font-size: 1.75rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+        <span style="font-size: 2rem;">🤖</span> Bot Factory
+      </h3>
+      <p style="color: #475569; margin-bottom: 2rem; line-height: 1.6;">
+        A reusable RAG chatbot platform extracted from this project into its own repo. Define a bot with YAML config, a system prompt, and knowledge base files — Bot Factory handles embeddings, retrieval, and response generation.
+      </p>
+
+      <!-- Bot Factory Components -->
+      <h4 class="arch-section-title" style="font-size: 1.25rem;">Core Components</h4>
+      <div class="arch-components">
+        <div class="arch-column">
+          <h4>AI Services</h4>
+          <div class="arch-component arch-external">
+            <div class="arch-component-name">Claude</div>
+            <div class="arch-component-desc">Response generation via Bedrock</div>
+          </div>
+          <div class="arch-component arch-external">
+            <div class="arch-component-name">Embeddings</div>
+            <div class="arch-component-desc">Semantic search vectors</div>
+          </div>
+        </div>
+
+        <div class="arch-column">
+          <h4>Infrastructure</h4>
+          <div class="arch-component arch-aws">
+            <div class="arch-component-name">Lambda</div>
+            <div class="arch-component-desc">Buffered + SSE streaming handlers</div>
+          </div>
+          <div class="arch-component arch-aws">
+            <div class="arch-component-name">S3</div>
+            <div class="arch-component-desc">Bot configs &amp; knowledge data</div>
+          </div>
+        </div>
+
+        <div class="arch-column">
+          <h4>Data Layer</h4>
+          <div class="arch-component arch-aws">
+            <div class="arch-component-name">DynamoDB</div>
+            <div class="arch-component-desc">Embeddings, logs, chat history, API keys</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot Definition -->
+      <h4 class="arch-section-title" style="font-size: 1.25rem;">Bot Definition</h4>
+      <div class="arch-flow-steps">
+        <div class="arch-step">
+          <div class="arch-step-number">📋</div>
+          <h4>config.yml</h4>
+          <p>Bot identity, model settings, RAG tuning, frontend config</p>
+        </div>
+        <div class="arch-step">
+          <div class="arch-step-number">💬</div>
+          <h4>prompt.yml</h4>
+          <p>System prompt defining personality, tone, and response rules</p>
+        </div>
+        <div class="arch-step">
+          <div class="arch-step-number">📚</div>
+          <h4>data/*.yml</h4>
+          <p>Knowledge base files — text or structured entries with search terms</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Development Process -->
+    <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #64748b;">
+      <p style="color: #475569; margin: 0; line-height: 1.6;">
+        Both projects are built with <strong style="color: #0f172a;">Claude</strong> as a development partner — architecture decisions, code reviews, debugging, and refactoring. Less "AI wrote my code" and more "I have a really good sounding board."
+      </p>
+    </div>
+
+    <!-- Legend -->
     <div class="arch-legend">
       <div class="arch-legend-item">
         <div class="arch-legend-color arch-aws"></div>

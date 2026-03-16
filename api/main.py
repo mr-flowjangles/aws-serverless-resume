@@ -44,8 +44,7 @@ app = FastAPI(
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
-allow_origins=["https://robrose.info", "https://www.robrose.info", "http://localhost:8080", 
-               "https://thefretdetective.com", "https://www.thefretdetective.com"],
+allow_origins=["https://robrose.info", "https://www.robrose.info", "http://localhost:8080"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -56,7 +55,7 @@ allow_origins=["https://robrose.info", "https://www.robrose.info", "http://local
 is_lambda = os.getenv('AWS_LAMBDA_FUNCTION_NAME') is not None
 prefix = "/api" if is_lambda else ""
 
-# Include routers for different API sections, chatbots, etc
+# Include routers
 app.include_router(health_router, prefix=prefix)
 app.include_router(resume_router, prefix=prefix)
 app.include_router(contact_router, prefix=prefix)

@@ -14,19 +14,33 @@ export const PROJECTS_CONFIG = {
 
   repos: [
     {
-      name: "the-fret-detective",
-      label: "The Fret Detective",
-      description: "AI Guitar Teacher, forked from bot-factory-ui.",
-      // color: "#0284c7",
+      name: "aws-serverless-resume",
+      label: "Serverless Resume",
+      description:
+        "This site. Serverless resume running FastAPI on Lambda, deployed with Terraform.",
       color: "#0f172a",
-      url: "https://thefretdetective.com",
+    },
+    {
+      name: "bot-factory",
+      label: "Bot Factory",
+      description:
+        "Reusable RAG chatbot platform. Define bots with YAML, deploy to serverless AWS.",
+      color: "#0f172a",
     },
     {
       name: "bot-factory-ui",
       label: "Bot Factory UI",
       description:
-        "Forkable web package to integrate with a RAG chatbot. bot-factory coming soon.",
+        "Forkable frontend package for integrating with a Bot Factory RAG chatbot.",
       color: "#0f172a",
+    },
+    {
+      name: "the-fret-detective",
+      label: "The Fret Detective",
+      description:
+        "AI guitar teacher built on Bot Factory. Learn chords, scales, and theory through conversation.",
+      color: "#0f172a",
+      url: "https://thefretdetective.com",
     },
   ],
 };
