@@ -17,14 +17,14 @@ export const PROJECTS_CONFIG = {
       name: "aws-serverless-resume",
       label: "Serverless Resume",
       description:
-        "This site. Serverless resume running FastAPI on Lambda, deployed with Terraform.",
+        "This site — with RobbAI chat widget powered by Bot Factory. Serverless resume running FastAPI on Lambda, deployed with Terraform.",
       color: "#0f172a",
     },
     {
       name: "bot-factory",
       label: "Bot Factory",
       description:
-        "Reusable RAG chatbot platform. Define bots with YAML, deploy to serverless AWS.",
+        "Powers the RobbAI chat on this site and The Fret Detective. Reusable RAG chatbot platform — define bots with YAML, deploy to serverless AWS.",
       color: "#0f172a",
     },
     {

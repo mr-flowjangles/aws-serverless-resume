@@ -40,6 +40,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/main.css" />
     <link rel="stylesheet" href="/assets/architecture.css" />
+    <link rel="stylesheet" href="/assets/chat-widget.css" />
     <link rel="stylesheet" href="/assets/mobile.css" />
 
     <!-- External Scripts -->
@@ -70,7 +71,12 @@
       <nav>
         <ul>
           <li>
-            <a href="#about" class="nav-link active" data-section="about"
+            <a href="#welcome" class="nav-link active" data-section="welcome"
+              >Welcome</a
+            >
+          </li>
+          <li>
+            <a href="#about" class="nav-link" data-section="about"
               >About Me</a
             >
           </li>
@@ -106,8 +112,61 @@
       </nav>
 
       <main>
+        <!-- Welcome Section -->
+        <section id="welcome" class="content-section active">
+          <h2>Welcome</h2>
+          <div style="max-width: 720px;">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #334155; margin-bottom: 1.5rem;">
+              Hey, I'm Rob. This is my resume site, but it's also a learning sandbox. Every piece of it — the serverless backend, the infrastructure-as-code, the AI chatbot in the corner — exists because I wanted to understand how it works by building it myself.
+            </p>
+
+            <h3 style="color: #0f172a; margin-bottom: 1rem;">Why This Site Exists</h3>
+            <p style="line-height: 1.8; color: #475569; margin-bottom: 2rem;">
+              I learn by building. A static resume page would have taken an afternoon, but it wouldn't have taught me anything. So I kept adding layers — a real API, a real database, real infrastructure — until the resume site became more interesting than the resume itself.
+            </p>
+
+            <h3 style="color: #0f172a; margin-bottom: 1rem;">How It Evolved</h3>
+            <div style="border-left: 3px solid #0ea5e9; padding-left: 1.5rem; margin-bottom: 2rem;">
+              <div style="margin-bottom: 1.5rem;">
+                <p style="font-weight: 600; color: #0f172a; margin-bottom: 0.25rem;">
+                  The Resume Site
+                  <a href="https://github.com/mr-flowjangles/aws-serverless-resume" target="_blank" style="color: #0ea5e9; font-weight: normal; font-size: 0.9rem; margin-left: 0.5rem;">GitHub</a>
+                </p>
+                <p style="color: #64748b; line-height: 1.6;">Started as a <a href="https://github.com/mr-flowjangles/aws-serverless-resume" target="_blank" style="color: #0ea5e9;">serverless portfolio</a> — FastAPI on Lambda, DynamoDB, Terraform, the works. One codebase that runs the same locally and in production.</p>
+              </div>
+              <div style="margin-bottom: 1.5rem;">
+                <p style="font-weight: 600; color: #0f172a; margin-bottom: 0.25rem;">RobbAI — The Chat Widget</p>
+                <p style="color: #64748b; line-height: 1.6;">Added an AI assistant to the resume. "What does Rob do?" felt more interesting than a bullet list. That experiment turned into something bigger.</p>
+              </div>
+              <div style="margin-bottom: 1.5rem;">
+                <p style="font-weight: 600; color: #0f172a; margin-bottom: 0.25rem;">
+                  Bot Factory — The Platform
+                  <a href="https://github.com/mr-flowjangles/bot-factory" target="_blank" style="color: #0ea5e9; font-weight: normal; font-size: 0.9rem; margin-left: 0.5rem;">GitHub</a>
+                </p>
+                <p style="color: #64748b; line-height: 1.6;">The chatbot code was reusable, so I extracted it into <a href="https://github.com/mr-flowjangles/bot-factory" target="_blank" style="color: #0ea5e9;">Bot Factory</a> — a platform where you define a bot with YAML and deploy it to serverless AWS. RobbAI is one bot running on it.</p>
+              </div>
+              <div style="margin-bottom: 1.5rem;">
+                <p style="font-weight: 600; color: #0f172a; margin-bottom: 0.25rem;">
+                  The Fret Detective — First Real Product
+                  <a href="https://thefretdetective.com" target="_blank" style="color: #0ea5e9; font-weight: normal; font-size: 0.9rem; margin-left: 0.5rem;">thefretdetective.com</a>
+                </p>
+                <p style="color: #64748b; line-height: 1.6;">An AI guitar teacher built on Bot Factory. Proof the platform works for more than just my resume — <a href="https://thefretdetective.com" target="_blank" style="color: #0ea5e9;">thefretdetective.com</a>.</p>
+              </div>
+            </div>
+
+            <h3 style="color: #0f172a; margin-bottom: 1rem;">Built with Claude</h3>
+            <p style="line-height: 1.8; color: #475569; margin-bottom: 2rem;">
+              Every project here was built with Claude as a development partner. Not "AI wrote my code" — more like having a senior engineer available 24/7 for architecture discussions, code reviews, and debugging sessions. It's changed how I work.
+            </p>
+
+            <p style="line-height: 1.8; color: #64748b; font-style: italic;">
+              Try the chat bubble in the bottom right — that's RobbAI. Ask it anything about my work.
+            </p>
+          </div>
+        </section>
+
         <!-- About Section -->
-        <section id="about" class="content-section active">
+        <section id="about" class="content-section">
           <h2>About Me</h2>
           <div class="loading">Loading profile...</div>
         </section>
@@ -199,5 +258,6 @@
     <!-- Application Scripts (ES6 Modules) -->
     <script type="module" src="/scripts/navigation.js"></script>
     <script type="module" src="/scripts/contact.js"></script>
+    <script src="/scripts/chat-widget.js"></script>
   </body>
 </html>
