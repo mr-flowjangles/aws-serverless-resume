@@ -63,8 +63,7 @@ AWS_ENDPOINT_URL="" AWS_REGION="us-east-1" python3 scripts/load_resume.py path/t
 ### Step 4: Deploy Frontend
 
 ```bash
-aws s3 cp app/index.html s3://YOUR_BUCKET_NAME/index.html
-aws s3 cp app/assets/mobile.css s3://YOUR_BUCKET_NAME/assets/mobile.css
+aws s3 sync app/ s3://YOUR_BUCKET_NAME/ --exclude "*.xlsx"
 aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
 ```
 
@@ -155,7 +154,7 @@ aws lambda update-function-code \
 AWS_ENDPOINT_URL="" AWS_REGION="us-east-1" python3 scripts/load_resume.py path/to/your-resume-data.xlsx
 
 # 4. Frontend
-aws s3 cp app/index.html s3://YOUR_BUCKET_NAME/index.html
+aws s3 sync app/ s3://YOUR_BUCKET_NAME/ --exclude "*.xlsx"
 aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
 ```
 
@@ -222,7 +221,7 @@ python3 --version  # Should be 3.10+
 ```
 
 ### Lambda Package Too Large
-The package is 80MB+ so we use S3 (not direct upload):
+The package uses S3 upload (not direct). With slim dependencies (`requirements-lambda.txt`) it's ~23MB:
 ```bash
 ./scripts/build-lambda.sh
 aws s3 cp terraform/builds/fastapi-app.zip s3://YOUR_BUCKET/lambda/fastapi-app.zip
