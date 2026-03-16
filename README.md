@@ -12,7 +12,7 @@ A serverless resume website that runs the **same FastAPI code** locally (Docker)
 
 Let's get the boring config stuff out of the way first. You'll need to set up a few things before running the site.
 
-I have a folder called `_scratch` I use this folder for storing my information, files, AI embeddings so they aren't loaded to github. Create your own `_scratch` as some scripts may export to `_scratch`
+I have a folder called `_scratch` I use this folder for storing my information and files so they aren't loaded to github. Create your own `_scratch` as some scripts may export to `_scratch`
 
 From the root, `mkdir -p _scratch`
 
@@ -275,7 +275,6 @@ aws-serverless-resume/
 │   ├── s3.tf               # Static file bucket
 │   ├── cloudfront.tf       # CDN distribution
 │   └── ...                 # Other AWS resources
-├── tests/                  # pytest test suite
 ├── docker-compose.yml      # Local development setup
 ├── Makefile                # Convenience commands
 ├── README.md               # This file
@@ -366,13 +365,13 @@ make up
 **For data changes:**
 
 ```bash
-make reload  # Reload Excel template
+docker compose exec api python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
 ```
 
 **For code changes:**
 
 ```bash
-make restart  # Restart containers
+make down && make up  # Restart containers
 ```
 
 **For HTML/CSS changes:**
@@ -575,8 +574,6 @@ Some ideas for extending this project:
 - [ ] Add multi-language support
 - [ ] Integrate with LinkedIn API for auto-sync
 - [ ] Add dark mode toggle
-- [ ] Create a chatbot that answers questions about your resume (using Claude API)
-
 Fork it and make it your own!
 
 ---
