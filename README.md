@@ -1,216 +1,43 @@
 # AWS Serverless Resume
 
-**THIS IS STILL A WIP**
+A serverless resume website that runs the **same FastAPI code** locally (Docker) and in production (AWS Lambda). Includes a floating AI chat widget powered by [Bot Factory](https://github.com/mr-flowjangles/bot-factory). Update your resume via Excel, deploy with Terraform.
 
-A serverless resume website that runs the **same FastAPI code** locally (Docker) and in production (AWS Lambda). Update your resume via Excel, deploy with Terraform.
-
-**Live Example:** [robrose.info](https://robrose.info)
-
----
-
-## Before You Start: Configuration
-
-Let's get the boring config stuff out of the way first. You'll need to set up a few things before running the site.
-
-I have a folder called `_scratch` I use this folder for storing my information and files so they aren't loaded to github. Create your own `_scratch` as some scripts may export to `_scratch`
-
-From the root, `mkdir -p _scratch`
-
-### 1. Google reCAPTCHA (Required for Contact Form)
-
-The contact form uses Google reCAPTCHA v2 to prevent spam. Here's how to set it up:
-
-**Get your keys:**
-
-1. Go to https://www.google.com/recaptcha/admin
-2. Register a new site
-3. Choose **reCAPTCHA v2** ("I'm not a robot" checkbox)
-4. Add domains:
-   - For local development: `localhost`
-   - For production: `yourdomain.com`
-5. You'll get two keys:
-   - **Site Key** (goes in your HTML)
-   - **Secret Key** (goes in your .env file)
-
-**Add to your project:**
-
-1. Create a `.env` file in the project root:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-2. Add your secret key:
-
-   ```bash
-   RECAPTCHA_SECRET_KEY=your_secret_key_here
-   ```
-
-3. Update `app/index.html` - find the contact form and replace:
-   ```html
-   <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY_HERE"></div>
-   ```
-   With your actual site key.
-
-**Skip this?** You can run the site without it, but the contact form won't work.
-
----
-
-### 2. AWS SES (Required for Email Delivery)
-
-The contact form sends emails via AWS Simple Email Service (SES). Here's the setup:
-
-**Verify your email address:**
-
-```bash
-# This sends a verification email to you
-aws ses verify-email-identity --email-address your@email.com --region us-east-1
-
-# Check verification status
-aws ses get-identity-verification-attributes --identities your@email.com --region us-east-1
-```
-
-Check your email and click the verification link. Wait until status shows `"VerificationStatus": "Success"`.
-
-**Add to your .env file:**
-
-```bash
-SES_FROM_EMAIL=your@email.com
-SES_TO_EMAIL=your@email.com
-```
-
-**SES Sandbox Mode:**
-
-- New AWS accounts start in SES sandbox
-- You can only send TO verified email addresses
-- Since both sender and recipient are the same verified email, this works fine
-- To send to any email address, request production access in the AWS console
-
-**Important:** Make sure your Lambda has SES permissions (already configured in `terraform/iam.tf`).
-
----
-
-### 3. AWS Credentials (Required for Deployment)
-
-You'll need AWS credentials configured on your machine:
-
-```bash
-aws configure
-```
-
-Enter your:
-
-- AWS Access Key ID
-- AWS Secret Access Key
-- Default region (e.g., `us-east-1`)
-
-**Don't have AWS credentials?** You can still run locally - just skip the deployment steps.
-
----
-
-### 4. Domain Name (Optional but Recommended)
-
-If you want a custom domain like `yourname.com`:
-
-1. Register domain in Route 53 (or transfer existing domain)
-2. Update `terraform/variables.tf` with your domain
-3. Terraform will handle SSL certificates and DNS automatically
-
-**Don't have a domain?** You'll get CloudFront and API Gateway URLs instead (still works perfectly).
+**Live:** [robrose.info](https://robrose.info)
 
 ---
 
 ## Quick Start
 
-Now that config is done, let's get your resume site running!
-
-### 1. Clone and Enter
+### 1. Clone and Configure
 
 ```bash
-git clone https://github.com/yourusername/aws-serverless-resume.git
+git clone https://github.com/mr-flowjangles/aws-serverless-resume.git
 cd aws-serverless-resume
+cp .env.example .env
+mkdir -p _scratch
 ```
+
+Edit `.env` with your reCAPTCHA secret key and SES email addresses. See [Configuration](#configuration) below for details.
 
 ### 2. Add Your Resume Data
 
-Open `scripts/resume-data-template.xlsx` in Excel or Google Sheets and fill in:
+Open `scripts/resume-data-template.xlsx` in Excel or Google Sheets and fill in your profile, work experience, education, and skills.
 
-- **Profile Sheet:** Name, title, contact info, summary, links
-- **Work Experience Sheet:** Job title, company, dates, description, accomplishments
-  - Set `is_additional` to `TRUE` for older jobs you want displayed as a simple list
-- **Education Sheet:** Degree, institution, dates, description
-- **Skills Sheet:** Category, skills (pipe-separated)
-
-Save when done. This is your single source of truth for all resume data.
-
-### 3. Run It Locally
+### 3. Run Locally
 
 ```bash
-# Start everything (builds containers, starts services, seeds database)
 make up
 ```
 
-**Don't have `make`?** Use: `docker compose up --build`
+Open http://localhost:8080. API docs at http://localhost:8080/api/docs.
 
-Wait about 30 seconds. Watch for these lines:
+### 4. Deploy to AWS
 
-```
-Database already seeded, skipping...
-Application startup complete.
-```
-
-**Then open:**
-
-- **Your Resume:** http://localhost:8080
-- **API Docs:** http://localhost:8080/api/docs
-- **Health Check:** http://localhost:8080/api/health
-
-### 4. Verify It Works
-
-**In your browser:** Navigate around - everything should load from your Excel data.
-
-**Test the API:**
-
-```bash
-curl http://localhost:8080/api/health
-# Should return: {"status":"healthy","services":{"dynamodb":"ok"}}
-
-curl http://localhost:8080/api/resume/profile
-# Should return your profile data
-```
-
-**Test the contact form:** Fill it out and submit. If reCAPTCHA is configured, you'll see a success message.
-
-Your resume is now live locally! 🎉
-
----
-
-## Update Your Resume (Local)
-
-Made changes to `scripts/resume-data-template.xlsx`? Reload the data:
-
-```bash
-docker exec -it resume-api-1 python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
-```
-
-Refresh your browser - changes appear immediately. No restart needed.
-
----
-
-## Deploy to AWS
-
-Ready to go live? See **[README_DEPLOY.md](README_DEPLOY.md)** for complete deployment instructions including:
-
-- Part 1: Deploy from scratch
-- Part 2: Updates after initial deploy (frontend, Lambda, data, infrastructure)
-- Finding your resource IDs
-- Troubleshooting
+See **[README_DEPLOY.md](README_DEPLOY.md)** for complete deployment instructions.
 
 ---
 
 ## How It Works
-
-This project's secret sauce: **same code runs everywhere**.
 
 ### Local Development (Docker)
 
@@ -218,35 +45,14 @@ This project's secret sauce: **same code runs everywhere**.
 Browser → Nginx → FastAPI (uvicorn) → LocalStack DynamoDB
 ```
 
-- Full FastAPI development server with hot reload
-- Interactive API docs at `/api/docs`
-- LocalStack simulates AWS services locally
-- Fast, free, no internet required
-
 ### Production (AWS)
 
 ```
-Browser → CloudFront → API Gateway → Lambda (FastAPI + Mangum) → DynamoDB
+Browser → CloudFront → Lambda Function URL (FastAPI + Mangum) → DynamoDB
+       → Chat Widget → Bot Factory Lambda (SSE streaming) → Bedrock Claude
 ```
 
-- Same Python code, different wrapper
-- Mangum adapts FastAPI to Lambda's event format
-- No servers to manage, auto-scales to zero
-- Pay only for actual usage
-
-### The Magic: Mangum
-
-```python
-# Local: uvicorn runs your FastAPI app directly
-# Lambda: Mangum wraps it to handle Lambda events
-
-from mangum import Mangum
-from main import app
-
-handler = Mangum(app)  # That's it!
-```
-
-Your business logic in `handlers/` never knows the difference.
+Same Python code, different wrapper. Mangum adapts FastAPI to Lambda's event format. The RobbAI chat widget connects client-side directly to Bot Factory's streaming endpoint.
 
 ---
 
@@ -254,327 +60,125 @@ Your business logic in `handlers/` never knows the difference.
 
 ```
 aws-serverless-resume/
-├── api/                    # Backend code (runs in Lambda)
-│   ├── handlers/           # Business logic (environment-agnostic)
-│   ├── routers/            # FastAPI route definitions
-│   ├── main.py             # FastAPI app setup
-│   ├── lambda_handler.py   # Mangum wrapper for AWS Lambda
-│   └── seed.py             # Database seeding logic
-├── app/                    # Frontend (served by CloudFront)
-│   ├── index.html          # Main page
-│   └── assets/             # CSS, images, PDF resume
+├── api/                        # Backend (runs in Lambda)
+│   ├── handlers/               # Business logic (environment-agnostic)
+│   │   ├── contact.py          # Contact form + reCAPTCHA + SES
+│   │   ├── db.py               # DynamoDB connection
+│   │   ├── health.py           # Health check
+│   │   └── resume_all.py       # Resume data (cached)
+│   ├── routers/                # FastAPI route definitions
+│   ├── tests/                  # pytest suite
+│   ├── main.py                 # FastAPI app setup
+│   ├── lambda_handler.py       # Mangum wrapper (Lambda entry point)
+│   ├── seed.py                 # Auto-seeds DynamoDB locally
+│   ├── requirements.txt        # Full dependencies (local dev)
+│   ├── requirements-lambda.txt # Slim dependencies (Lambda only)
+│   ├── Dockerfile              # Local dev container
+│   └── Dockerfile.lambda       # Lambda build container
+├── app/                        # Frontend (served by CloudFront)
+│   ├── index.html              # Single-page app (Welcome, About, Projects, etc.)
+│   ├── scripts/
+│   │   ├── api.js              # API client
+│   │   ├── navigation.js       # Tab navigation and section loading
+│   │   ├── architecture.js     # Architecture diagrams
+│   │   ├── projects.config.js  # Project card definitions
+│   │   ├── loaders.js          # Section data loaders
+│   │   ├── contact.js          # Contact form handler
+│   │   └── chat-widget.js      # RobbAI floating chat (connects to Bot Factory)
+│   └── assets/
+│       ├── main.css            # Core styles
+│       ├── mobile.css          # Mobile responsive styles
+│       ├── architecture.css    # Architecture section styles
+│       └── chat-widget.css     # Chat widget styles
 ├── scripts/
-│   ├── resume-data-template.xlsx  # Your resume data
-│   ├── load_resume.py      # Excel → DynamoDB loader
-│   └── build-lambda.sh     # Lambda package builder
-├── terraform/              # Infrastructure as Code
-│   ├── main.tf             # Provider config
-│   ├── lambda.tf           # Lambda function
-│   ├── api_gateway.tf      # API Gateway
-│   ├── dynamodb.tf         # Database table
-│   ├── s3.tf               # Static file bucket
-│   ├── cloudfront.tf       # CDN distribution
-│   └── ...                 # Other AWS resources
-├── docker-compose.yml      # Local development setup
-├── Makefile                # Convenience commands
-├── README.md               # This file
-└── README_DEPLOY.md        # Deployment guide
+│   ├── resume-data-template.xlsx  # Resume data (single source of truth)
+│   ├── load_resume.py          # Excel → DynamoDB loader
+│   ├── build-lambda.sh         # Lambda package builder
+│   └── init-dynamodb.sh        # LocalStack table setup
+├── terraform/                  # Infrastructure as Code
+├── docker-compose.yml          # Local development setup
+├── Makefile                    # Convenience commands
+└── README_DEPLOY.md            # Deployment guide
 ```
 
 ---
 
-## Excel Template Fields
+## Configuration
 
-### Profile Sheet
+### Google reCAPTCHA (Required for Contact Form)
 
-| Field                | Description                           |
-| -------------------- | ------------------------------------- |
-| name                 | Your full name                        |
-| title                | Job title (e.g., "Software Engineer") |
-| email                | Contact email                         |
-| location             | City, State                           |
-| summary              | Brief professional summary            |
-| professional_summary | Detailed summary (optional)           |
-| linkedin             | LinkedIn profile URL                  |
-| github               | GitHub profile URL                    |
-| photo                | Path to profile photo                 |
-| resume_pdf           | Path to PDF resume                    |
+1. Get keys at https://www.google.com/recaptcha/admin (v2, "I'm not a robot")
+2. Add domains: `localhost` (dev) and your production domain
+3. Put the secret key in `.env` as `RECAPTCHA_SECRET_KEY`
+4. Put the site key in `app/index.html` in the `data-sitekey` attribute
 
-### Work Experience Sheet
+### AWS SES (Required for Email Delivery)
 
-| Field           | Description                                                           |
-| --------------- | --------------------------------------------------------------------- |
-| job_title       | Position title                                                        |
-| company_name    | Company name                                                          |
-| start_date      | Start date (YYYY-MM format)                                           |
-| end_date        | End date or leave blank if current                                    |
-| is_current      | TRUE if current job                                                   |
-| is_additional   | TRUE to display as simple list item instead of full card              |
-| description     | Role description                                                      |
-| accomplishments | Pipe-separated list (e.g., "Led team\|Increased sales\|Built system") |
+```bash
+aws ses verify-email-identity --email-address your@email.com --region us-east-1
+```
 
-### Education Sheet
+Add to `.env`:
+```bash
+SES_FROM_EMAIL=your@email.com
+SES_TO_EMAIL=your@email.com
+```
 
-| Field       | Description        |
-| ----------- | ------------------ |
-| degree      | Degree name        |
-| institution | School name        |
-| start_date  | Start date         |
-| end_date    | End date           |
-| description | Additional details |
+### AWS Credentials
 
-### Skills Sheet
+```bash
+aws configure
+```
 
-| Field      | Description                                            |
-| ---------- | ------------------------------------------------------ |
-| category   | Skill category (e.g., "Languages")                     |
-| skills     | Pipe-separated skills (e.g., "Python\|JavaScript\|Go") |
-| sort_order | Display order (lower numbers first)                    |
+### Domain Name (Optional)
+
+Register in Route 53 and update `terraform/variables.tf`. Terraform handles SSL and DNS.
 
 ---
 
-## Customization
-
-### Modify Styling
-
-Edit the `<style>` section in `app/index.html`. CSS is embedded for simplicity.
-
-### Change Colors
-
-Look for color definitions in `app/index.html`:
-
-- `#0ea5e9` - Primary blue (links, accents)
-- `#0f172a` - Dark background
-- `#f0f4f8` - Light background
-
----
-
-## Troubleshooting
-
-### Port 8080 Already in Use
+## Update Resume Data
 
 ```bash
-make down
-# Find what's using port 8080
-lsof -ti:8080 | xargs kill -9
-make up
-```
-
-### Changes Not Showing Up
-
-**For data changes:**
-
-```bash
-docker compose exec api python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
-```
-
-**For code changes:**
-
-```bash
-make down && make up  # Restart containers
-```
-
-**For HTML/CSS changes:**
-
-- Hard refresh: `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows)
-
-### Database Empty After Startup
-
-Check if seeding happened:
-
-```bash
-make logs | grep seed
-```
-
-Manually reload if needed:
-
-# Load from template
+# Local
 docker compose exec api python /app/scripts/load_resume.py /app/scripts/resume-data-template.xlsx
 
-# Load your own data (place file in _scratch folder)
-docker compose exec api python /app/scripts/load_resume.py /app/_scratch/your-resume-data.xlsx
-
-### Contact Form Not Working
-
-**Check reCAPTCHA:**
-
-1. Site key in `app/index.html`?
-2. Secret key in `.env`?
-3. Correct variable name: `RECAPTCHA_SECRET_KEY` (not `MY_RECAPTCHA_SECRET_KEY`)
-
-**Check email:**
-
-1. Is your email verified in SES?
-2. Are SES env vars in `.env`?
-
-### Container Won't Start
-
-```bash
-make down
-docker system prune -a  # Clean everything
-make up
+# Production
+AWS_ENDPOINT_URL="" AWS_REGION="us-east-1" python3 scripts/load_resume.py path/to/your-resume-data.xlsx
 ```
-
----
-
-## Running Tests
-
-Run the full test suite:
-
-```bash
-docker compose exec api pytest tests/ -v
-```
-
-All tests should pass. If contact tests fail, make sure you've updated `tests/test_contact.py` to mock the SES client (not try to actually send emails).
-
-**Pre-commit hooks:**
-
-```bash
-brew install pre-commit  # or apt-get, pip, etc.
-pre-commit install
-```
-
-Now tests run automatically before every commit.
 
 ---
 
 ## Tech Stack
 
-**Backend:** Python 3.12, FastAPI, Mangum, boto3  
-**Database:** DynamoDB (LocalStack locally, AWS in production)  
-**Frontend:** HTML, CSS, vanilla JavaScript (no framework needed)  
-**Email:** AWS SES  
-**Security:** Google reCAPTCHA v2  
-**Local Dev:** Docker, Docker Compose, Nginx, LocalStack  
-**AWS:** Lambda, API Gateway, S3, CloudFront, Route 53, ACM, DynamoDB, SES  
-**Infrastructure:** Terraform (100% IaC)  
+**Backend:** Python 3.12, FastAPI, Mangum, boto3
+**Database:** DynamoDB (LocalStack locally, AWS in production)
+**Frontend:** HTML, CSS, vanilla JavaScript
+**AI Chat:** RobbAI widget powered by [Bot Factory](https://github.com/mr-flowjangles/bot-factory) (SSE streaming)
+**Email:** AWS SES
+**Security:** Google reCAPTCHA v2
+**Local Dev:** Docker, Docker Compose, Nginx, LocalStack
+**AWS:** Lambda (Function URL + streaming), API Gateway, S3, CloudFront, Route 53, ACM, DynamoDB, SES
+**Infrastructure:** Terraform (100% IaC)
 **Testing:** pytest, pre-commit hooks
 
 ---
 
-## Why This Architecture?
+## Running Tests
 
-**Most resume sites have a problem:** You write one version for local development (Django, Flask, Express) and another for production (Lambda, serverless functions). This means:
+```bash
+docker compose exec api pytest tests/ -v
+```
 
-- Two codebases to maintain
-- Different bugs in each environment
-- Can't easily test production code locally
-
-**This project solves that** with FastAPI + Mangum:
-
-✅ Write once, run everywhere  
-✅ Full FastAPI features locally (hot reload, Swagger docs, debugging)  
-✅ Deploy to Lambda without changing application code  
-✅ Business logic in `handlers/` is environment-agnostic  
-✅ Only the wrapper changes (`uvicorn` vs `Mangum`)
-
-**The result:** You develop fast with full features, then deploy the same tested code to production. No surprises, no translations, no second version.
+Pre-commit hooks run tests automatically before every commit:
+```bash
+pre-commit install
+```
 
 ---
 
-## Cost Breakdown (Estimated)
+## Cost Breakdown
 
-For a personal resume site with low traffic (<1000 visitors/month):
-
-| Service         | Cost        | Notes                                    |
-| --------------- | ----------- | ---------------------------------------- |
-| Route 53        | $0.50/month | Hosted zone                              |
-| CloudFront      | $1-2/month  | CDN, first 1TB free                      |
-| Lambda          | $0-1/month  | First 1M requests free                   |
-| API Gateway     | $0-1/month  | First 1M requests free                   |
-| DynamoDB        | $0/month    | 25GB free tier                           |
-| SES             | $0/month    | 62,000 emails/month free from EC2/Lambda |
-| S3              | $0.50/month | Storage and requests                     |
-| ACM Certificate | FREE        | SSL certificate                          |
-
-**Total: ~$3-10/month** depending on traffic.
-
-**High traffic?** Costs scale proportionally but AWS free tier is generous. A site with 10,000 visitors/month might be $20-30/month.
-
----
-
-## Security Notes
-
-**Secrets Management:**
-
-- Never commit `.env` to Git (already in `.gitignore`)
-- Use environment variables for all secrets
-- AWS credentials should use IAM roles, not hardcoded keys
-
-**API Security:**
-
-- reCAPTCHA prevents spam on contact form
-- API Gateway has built-in DDoS protection
-- CloudFront provides additional security layer
-- Lambda runs in isolated execution environment
-
-**Data Privacy:**
-
-- Your resume data is in your AWS account only
-- No third-party services have access
-- DynamoDB data is encrypted at rest (AWS default)
-
----
-
-## For Contributors
-
-Want to improve this project? Great!
-
-**Development workflow:**
-
-1. Fork the repo
-2. Create a feature branch
-3. Install pre-commit hooks: `pre-commit install`
-4. Make changes and test locally
-5. Tests run automatically on commit
-6. Open a PR with description of changes
-
-**Code style:**
-
-- Follow existing patterns (routers call handlers)
-- Write tests for new features
-- Keep handlers environment-agnostic
-- Document any new configuration
-
----
-
-## FAQ
-
-**Q: Can I use this without AWS?**  
-A: Yes! It runs great locally with Docker. You just won't have the production deployment.
-
-**Q: Can I use my own domain?**  
-A: Yes! Register it in Route 53 and update `terraform/variables.tf`. Terraform handles SSL and DNS automatically.
-
-**Q: Does this work with GitHub Pages?**  
-A: The frontend could, but you'd lose the API (contact form, dynamic data). The Lambda + API Gateway setup is what makes it powerful.
-
-**Q: Can I add a blog?**  
-A: Absolutely! Add a new handler in `handlers/blog.py`, a router in `routers/blog.py`, and update `index.html`. Store posts in DynamoDB or add a new table.
-
-**Q: How do I add multiple pages?**  
-A: The current design is single-page for simplicity. You can add more HTML files in `app/` and route to them, or build a proper React/Vue frontend.
-
-**Q: Can I use PostgreSQL instead of DynamoDB?**  
-A: You'd need to replace the handlers and add RDS to your Terraform. The architecture supports it, but you lose some serverless benefits.
-
-**Q: Why not use Next.js or another framework?**  
-A: This is intentionally simple - no build process for frontend, no framework lock-in. You get a working resume site with minimal complexity. But you could absolutely replace the frontend!
-
----
-
-## What's Next?
-
-Some ideas for extending this project:
-
-- [ ] Add a blog with posts stored in DynamoDB
-- [ ] Integrate Google Analytics
-- [ ] Add a projects section with screenshots
-- [ ] Build an admin panel for editing without Excel
-- [ ] Add multi-language support
-- [ ] Integrate with LinkedIn API for auto-sync
-- [ ] Add dark mode toggle
-Fork it and make it your own!
+For a personal resume site (<1,000 visitors/month): **~$3-10/month**. Route 53 ($0.50), CloudFront ($1-2), Lambda/API Gateway/DynamoDB/SES (free tier), S3 ($0.50), ACM (free).
 
 ---
 
@@ -586,23 +190,4 @@ This project is provided for personal and educational use. If you fork or reuse,
 
 ---
 
-## Acknowledgments
-
-Built with:
-
-- [FastAPI](https://fastapi.tiangolo.com/) - Modern Python web framework
-- [Mangum](https://mangum.io/) - ASGI adapter for AWS Lambda
-- [Terraform](https://www.terraform.io/) - Infrastructure as Code
-- [LocalStack](https://localstack.cloud/) - Local AWS testing
-
-Inspired by the cloud resume challenge and the desire to have ONE codebase that works everywhere.
-
----
-
-**Questions?** Open an issue on GitHub.  
-**Want to use this?** Fork it, star it, and make it yours!  
-**Found a bug?** PRs welcome!
-
----
-
-_Made with ☕ and deployed with ☁️_
+Built with [FastAPI](https://fastapi.tiangolo.com/), [Mangum](https://mangum.io/), [Terraform](https://www.terraform.io/), [LocalStack](https://localstack.cloud/), and [Claude](https://claude.ai) as a development partner.
