@@ -50,6 +50,8 @@ async function loadSectionData(section) {
     const h2Text = h2 ? h2.textContent : "";
 
     switch (section) {
+      case "welcome":
+        break;
       case "about":
         await loadProfile(container);
         break;
@@ -102,6 +104,7 @@ function initPage() {
 
   if (isMobile) {
     // Load all sections for mobile vertical scroll
+    loadSectionData("welcome");
     loadSectionData("about");
     loadSectionData("experience");
     loadSectionData("skills");
@@ -109,10 +112,10 @@ function initPage() {
     loadSectionData("projects");
     loadSectionData("architecture");
 
-    // Collapse all sections except About Me after loading
+    // Collapse all sections except Welcome after loading
     setTimeout(() => {
       document.querySelectorAll(".content-section").forEach((section) => {
-        if (section.id !== "about") {
+        if (section.id !== "welcome") {
           section.classList.add("collapsed");
         }
       });
@@ -125,8 +128,8 @@ function initPage() {
       }
     });
   } else {
-    // Desktop - load only about section
-    loadSectionData("about");
+    // Desktop - load welcome section by default
+    loadSectionData("welcome");
   }
 
   // Load header data

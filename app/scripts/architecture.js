@@ -18,7 +18,7 @@ async function loadArchitecture() {
         <span style="font-size: 2rem;">🌐</span> Resume Site
       </h3>
       <p style="color: #475569; margin-bottom: 2rem; line-height: 1.6;">
-        This site doesn't need this much infrastructure — but it's a useful sandbox for learning serverless AWS patterns end to end. One FastAPI codebase runs locally via Docker and in production via Lambda, fully deployed with Terraform.
+        This site doesn't need this much infrastructure — but it's a useful sandbox for learning serverless AWS patterns end to end. One FastAPI codebase runs locally via Docker and in production via Lambda, fully deployed with Terraform. Includes a floating RobbAI chat widget powered by Bot Factory.
       </p>
 
       <!-- Core Components -->
@@ -110,7 +110,7 @@ async function loadArchitecture() {
           <h4>Infrastructure</h4>
           <div class="arch-component arch-aws">
             <div class="arch-component-name">Lambda</div>
-            <div class="arch-component-desc">Buffered + SSE streaming handlers</div>
+            <div class="arch-component-desc">SSE streaming via Function URL</div>
           </div>
           <div class="arch-component arch-aws">
             <div class="arch-component-name">S3</div>
@@ -144,6 +144,35 @@ async function loadArchitecture() {
           <div class="arch-step-number">📚</div>
           <h4>data/*.yml</h4>
           <p>Knowledge base files — text or structured entries with search terms</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: ROBBAI CHAT WIDGET -->
+    <div style="background: linear-gradient(135deg, #f8fafc 0%, #dcfce7 100%); padding: 2rem; border-radius: 12px; margin-bottom: 3rem; border-left: 6px solid #16a34a;">
+      <h3 style="color: #0f172a; font-size: 1.75rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+        <span style="font-size: 2rem;">💬</span> RobbAI — Chat Widget
+      </h3>
+      <p style="color: #475569; margin-bottom: 2rem; line-height: 1.6;">
+        The floating chat bubble on this site connects directly to Bot Factory's streaming Lambda. No proxy — the browser talks straight to the Function URL over SSE.
+      </p>
+
+      <h4 class="arch-section-title" style="font-size: 1.25rem;">How It Works</h4>
+      <div class="arch-flow-steps">
+        <div class="arch-step">
+          <div class="arch-step-number">1</div>
+          <h4>Chat Widget</h4>
+          <p>Self-contained JS/CSS on this site. Sends messages with bot_id and API key to Bot Factory Lambda.</p>
+        </div>
+        <div class="arch-step">
+          <div class="arch-step-number">2</div>
+          <h4>RAG Retrieval</h4>
+          <p>Bot Factory embeds the query, searches DynamoDB for relevant knowledge chunks via cosine similarity.</p>
+        </div>
+        <div class="arch-step">
+          <div class="arch-step-number">3</div>
+          <h4>Claude via Bedrock</h4>
+          <p>Retrieved context + system prompt sent to Claude. Response streams back token-by-token over SSE.</p>
         </div>
       </div>
     </div>
