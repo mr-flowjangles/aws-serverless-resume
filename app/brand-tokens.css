@@ -1,0 +1,273 @@
+/* ============================================================
+   BELLESE BRAND TOKENS
+   Source: Bellese Brand Guidelines, 2023-04-10
+   ============================================================ */
+
+/* ---------- FONTS ----------
+   Primary:   Nunito Sans (display, headings, UI titles)
+   Secondary: Open Sans   (body copy, long-form, signatures)
+   Files live in /fonts/ and are extracted from the brand docx.
+*/
+
+/* Italic variants aren't shipped; browsers will synthesize italics from the
+   upright weights when needed. */
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/NunitoSans-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/NunitoSansSemiBold-regular.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/NunitoSans-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/NunitoSansBlack-bold.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/OpenSans-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/OpenSansSemiBold-regular.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/OpenSans-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ============================================================
+     COLOR — PRIMARY
+     ============================================================ */
+
+  /* Medium Magenta — encourages, uplifts. Brand signature. */
+  --bl-magenta:        #702082;  /* PMS 2603 C  /  RGB 112,32,130 */
+  --bl-magenta-shade:  #5A1868;  /* darker      — for hover, emphasis */
+  --bl-magenta-tint-1: #A979B4;  /* tint        — accents, illustrations */
+  --bl-magenta-tint-2: #C6A6CD;  /* tint        — surfaces, dividers */
+  --bl-magenta-tint-3: #E2D2E6;  /* tint        — wash backgrounds */
+
+  /* Prussian Blue — stabilizes, calms. Headlines, structural. */
+  --bl-prussian:        #002D72;  /* PMS 288 C  /  RGB 0,45,115 */
+  --bl-prussian-shade:  #00245B;  /* darker     — pressed, emphasis */
+  --bl-prussian-tint-1: #6681AA;  /* tint       — captions, secondary */
+  --bl-prussian-tint-2: #99ABC7;  /* tint       — borders, dividers */
+  --bl-prussian-tint-3: #CCD5E3;  /* tint       — wash backgrounds */
+
+  /* Medium Dark Cyan Blue — neutralizing slate. */
+  --bl-slate:        #3B4860;  /* PMS 2379 C  /  RGB 59,72,96 */
+  --bl-slate-shade:  #181D26;  /* near-black  — body text option */
+  --bl-slate-tint-1: #4E596C;  /* slightly lighter slate */
+  --bl-slate-tint-2: #C4C8CF;  /* tint        — strokes, hairlines */
+
+  /* Gray Chateau — neutralizing gray. */
+  --bl-gray:        #97999B;  /* PMS Cool Gray 7 C  /  RGB 151,154,156 */
+  --bl-gray-tint:   #F5F5F5;  /* surface — page background, cards */
+
+  /* True black & white — used for body and inversions. */
+  --bl-black:       #000000;
+  --bl-white:       #FFFFFF;
+
+  /* ============================================================
+     COLOR — SECONDARY (accent only, ~10% of composition)
+     ============================================================ */
+
+  /* Autumn Maple — adds warmth. Use for highlights, callouts. */
+  --bl-maple:        #CB6015;  /* PMS 159 C  /  RGB 204,96,20 */
+  --bl-maple-tint-1: #DB905B;
+  --bl-maple-tint-2: #EABFA1;
+
+  /* Cyan — adds freshness. Use for highlights, success-y states. */
+  --bl-cyan:        #64CCC9;  /* PMS 325 C  /  RGB 100,204,201 */
+  --bl-cyan-tint-1: #A2E0DF;
+  --bl-cyan-tint-2: #D1F0EF;
+
+  /* ============================================================
+     SEMANTIC ALIASES — use these in product UI
+     ============================================================ */
+  --bl-bg:           var(--bl-white);
+  --bl-bg-muted:     var(--bl-gray-tint);     /* #F5F5F5 page background */
+  --bl-surface:      var(--bl-white);
+  --bl-surface-alt:  #FAFAFA;
+  --bl-border:       var(--bl-slate-tint-2);  /* #C4C8CF hairline */
+  --bl-border-strong:var(--bl-gray);
+  --bl-text:         var(--bl-slate-shade);   /* #181D26 body */
+  --bl-text-muted:   var(--bl-slate);         /* #3B4860 secondary */
+  --bl-text-subtle:  var(--bl-gray);          /* #97999B captions */
+  --bl-link:         var(--bl-prussian);
+  --bl-link-hover:   var(--bl-magenta);
+  --bl-focus:        var(--bl-magenta);
+
+  /* Brand accents in product UI */
+  --bl-primary:      var(--bl-magenta);
+  --bl-primary-hover:var(--bl-magenta-shade);
+  --bl-secondary:    var(--bl-prussian);
+  --bl-secondary-hover: var(--bl-prussian-shade);
+
+  /* Status (derived from secondary palette where possible) */
+  --bl-success:      #2A8F6B;  /* deeper than cyan for AA contrast on white */
+  --bl-warning:      var(--bl-maple);
+  --bl-danger:       #B3261E;
+  --bl-info:         var(--bl-prussian);
+
+  /* ============================================================
+     TYPE
+     ============================================================ */
+  --bl-font-display: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bl-font-body:    "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Sizes from brand book — pt values as px (1pt ≈ 1.333px in screen contexts;
+     brand book uses pt for print parity. We expose both: -pt for print echo,
+     -px for screen. For UI design, prefer the px-aligned step scale below. */
+  --bl-fs-title:     36px;  /* 36pt — Document title,    Nunito Sans */
+  --bl-fs-subtitle:  16px;  /* 16pt — Document subtitle, Nunito Sans */
+  --bl-fs-h1:        28px;  /* 28pt — Header One,        Nunito Sans 700+ */
+  --bl-fs-h2:        20px;  /* 20pt — Header Two,        Nunito Sans 600 */
+  --bl-fs-h3:        16px;  /* 16pt — Header Three,      Nunito Sans 600 */
+  --bl-fs-h4:        14px;  /* 14pt — Header Four,       Open Sans 700 */
+  --bl-fs-h5:        12px;  /* 12pt — Header Five,       Open Sans 700 */
+  --bl-fs-body:      11px;  /* 11pt — Paragraph,         Open Sans 400 */
+
+  /* Practical screen scale — used by the UI kit. Maps roughly to brand book
+     but tuned for screens (min readable body at 16, etc). */
+  --bl-text-xs:   12px;
+  --bl-text-sm:   14px;
+  --bl-text-md:   16px;  /* default body */
+  --bl-text-lg:   18px;
+  --bl-text-xl:   20px;
+  --bl-text-2xl:  24px;
+  --bl-text-3xl:  32px;
+  --bl-text-4xl:  40px;
+  --bl-text-5xl:  56px;
+
+  /* Line heights */
+  --bl-lh-tight:    1.15;
+  --bl-lh-snug:     1.3;
+  --bl-lh-normal:   1.5;
+  --bl-lh-relaxed:  1.65;
+
+  /* Weights */
+  --bl-fw-regular:  400;
+  --bl-fw-semibold: 600;
+  --bl-fw-bold:     700;
+  --bl-fw-black:    900;
+
+  /* Letter spacing — wordmark is ALL CAPS, slightly tracked.
+     Use for eyebrows / labels / wordmarks. */
+  --bl-tracking-wide:   0.06em;
+  --bl-tracking-wider:  0.12em;
+  --bl-tracking-tight:  -0.01em;
+
+  /* ============================================================
+     SPACE (4px base grid)
+     ============================================================ */
+  --bl-space-0:   0;
+  --bl-space-1:   4px;
+  --bl-space-2:   8px;
+  --bl-space-3:   12px;
+  --bl-space-4:   16px;
+  --bl-space-5:   20px;
+  --bl-space-6:   24px;
+  --bl-space-8:   32px;
+  --bl-space-10:  40px;
+  --bl-space-12:  48px;
+  --bl-space-16:  64px;
+  --bl-space-20:  80px;
+  --bl-space-24:  96px;
+
+  /* ============================================================
+     RADIUS
+     ============================================================ */
+  --bl-radius-xs:  2px;
+  --bl-radius-sm:  4px;
+  --bl-radius-md:  8px;
+  --bl-radius-lg:  12px;
+  --bl-radius-xl:  16px;
+  --bl-radius-pill: 999px;
+
+  /* ============================================================
+     ELEVATION
+     ============================================================ */
+  --bl-shadow-xs:  0 1px 2px rgba(24, 29, 38, 0.06);
+  --bl-shadow-sm:  0 1px 2px rgba(24, 29, 38, 0.08), 0 1px 3px rgba(24, 29, 38, 0.04);
+  --bl-shadow-md:  0 4px 8px rgba(24, 29, 38, 0.06), 0 2px 4px rgba(24, 29, 38, 0.04);
+  --bl-shadow-lg:  0 12px 24px rgba(24, 29, 38, 0.08), 0 4px 8px rgba(24, 29, 38, 0.04);
+  --bl-shadow-xl:  0 24px 48px rgba(24, 29, 38, 0.10), 0 8px 16px rgba(24, 29, 38, 0.06);
+  --bl-focus-ring: 0 0 0 3px rgba(112, 32, 130, 0.32);  /* magenta @ 32% */
+
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  --bl-duration-fast:    120ms;
+  --bl-duration-base:    200ms;
+  --bl-duration-slow:    320ms;
+  --bl-ease-standard:    cubic-bezier(0.2, 0, 0, 1);
+  --bl-ease-emphasized:  cubic-bezier(0.3, 0, 0, 1);
+}
+
+/* ============================================================
+   BASE — applies brand defaults to common elements
+   ============================================================ */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  font-family: var(--bl-font-body);
+  font-size: var(--bl-text-md);
+  line-height: var(--bl-lh-normal);
+  color: var(--bl-text);
+  background: var(--bl-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--bl-font-display);
+  color: var(--bl-prussian);
+  margin: 0;
+  letter-spacing: var(--bl-tracking-tight);
+  text-wrap: balance;
+}
+h1 { font-size: var(--bl-text-4xl); font-weight: var(--bl-fw-black);    line-height: var(--bl-lh-tight); }
+h2 { font-size: var(--bl-text-3xl); font-weight: var(--bl-fw-bold);     line-height: var(--bl-lh-tight); }
+h3 { font-size: var(--bl-text-2xl); font-weight: var(--bl-fw-bold);     line-height: var(--bl-lh-snug); }
+h4 { font-size: var(--bl-text-xl);  font-weight: var(--bl-fw-semibold); line-height: var(--bl-lh-snug); }
+h5 { font-size: var(--bl-text-lg);  font-weight: var(--bl-fw-semibold); line-height: var(--bl-lh-snug); }
+h6 { font-size: var(--bl-text-md);  font-weight: var(--bl-fw-bold);
+     letter-spacing: var(--bl-tracking-wider); text-transform: uppercase;
+     color: var(--bl-text-muted); }
+
+p { margin: 0 0 1em; max-width: 70ch; text-wrap: pretty; }
+a { color: var(--bl-link); text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); text-underline-offset: 2px; }
+a:hover { color: var(--bl-link-hover); }
+
+::selection { background: var(--bl-magenta-tint-2); color: var(--bl-prussian-shade); }

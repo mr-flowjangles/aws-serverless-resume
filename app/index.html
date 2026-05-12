@@ -1,263 +1,715 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rob Rose - Engineering Manager & Solution Architect</title>
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<html lang="en" data-palette="solarflare">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rob Rose — Engineering Leader | Strategy, Delivery & Team Development</title>
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
-    <!-- Open Graph / LinkedIn Preview -->
-    <meta
-      property="og:title"
-      content="Rob Rose - Engineering Manager & Solution Architect"
-    />
-    <meta
-      property="og:description"
-      content="20+ years experience in healthcare modernization, financial services, and cloud architecture. Serverless AWS expert."
-    />
-    <meta
-      property="og:image"
-      content="https://robrose.info/assets/profile.png"
-    />
-    <meta property="og:url" content="https://robrose.info" />
-    <meta property="og:type" content="website" />
+<!-- Open Graph / LinkedIn Preview -->
+<meta property="og:title" content="Rob Rose — Engineering Leader">
+<meta property="og:description" content="20+ years building, scaling, and leading high-performing engineering organizations across healthcare modernization, financial services, and cloud architecture.">
+<meta property="og:image" content="https://robrose.info/assets/profile.png">
+<meta property="og:url" content="https://robrose.info">
+<meta property="og:type" content="website">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta
-      name="twitter:title"
-      content="Rob Rose - Engineering Manager & Solution Architect"
-    />
-    <meta
-      name="twitter:description"
-      content="20+ years experience in healthcare modernization, financial services, and cloud architecture."
-    />
-    <meta
-      name="twitter:image"
-      content="https://robrose.info/assets/profile.png"
-    />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rob Rose — Engineering Leader">
+<meta name="twitter:description" content="20+ years in healthcare modernization, financial services, and cloud architecture.">
+<meta name="twitter:image" content="https://robrose.info/assets/profile.png">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/assets/main.css" />
-    <link rel="stylesheet" href="/assets/architecture.css" />
-    <link rel="stylesheet" href="/assets/chat-widget.css" />
-    <link rel="stylesheet" href="/assets/mobile.css" />
+<link rel="stylesheet" href="/brand-tokens.css">
+<link rel="stylesheet" href="/styles.css">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
 
-    <!-- External Scripts -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  </head>
-  <body>
-    <header>
-      <div class="header-left">
-        <img
-          src="/assets/profile.png"
-          alt="Profile"
-          class="header-image"
-          id="header-photo"
-        />
-        <div class="header-text">
-          <h1 id="header-name">Loading...</h1>
-          <p id="header-title">Loading...</p>
+<!-- =================================================================== -->
+<!-- TOP BAR                                                              -->
+<!-- =================================================================== -->
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="#top" class="mark"><span class="dot"></span>Rob&nbsp;Rose</a>
+    <nav class="topnav">
+      <a href="#journey">Journey</a>
+      <a href="#ai-journey">AI Journey</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#contact" class="cta">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- =============================================================== -->
+  <!-- HERO                                                             -->
+  <!-- =============================================================== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-kicker">
+          <span>Engineering Leader &middot; Strategy, Delivery &amp; Team Development</span>
         </div>
+
+        <h1>
+          I build things<br>
+          to <span class="accent">understand</span> them.
+        </h1>
+
+        <p class="hero-lede">
+          20+ years building, scaling, and leading high-performing engineering
+          organizations across healthcare modernization, financial services, and
+          cloud architecture. This site started as a serverless resume and turned
+          into a learning lab — every layer is something I wanted to take apart
+          and rebuild.
+        </p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/assets/resume.pdf" target="_blank" rel="noopener" aria-label="Download resume PDF">
+            <svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+            Resume (PDF)
+          </a>
+          <a class="btn btn-accent" id="hero-chat-cta" href="#" aria-label="Chat with RobbAI">
+            <svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Talk to RobbAI
+            <span class="arrow">→</span>
+          </a>
+          <a class="btn" href="https://linkedin.com/in/robmrose" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg class="ic-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.36-1.85c3.6 0 4.27 2.37 4.27 5.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.99 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="https://github.com/mr-flowjangles" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg class="ic-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.81 5.63-5.48 5.92.42.36.83 1.1.83 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3"/></svg>
+            GitHub
+          </a>
+        </div>
+
+        <dl class="hero-meta">
+          <div><dt>Experience</dt><dd>20+ years</dd></div>
+          <div><dt>Currently</dt><dd>Engineering Manager · Bellese</dd></div>
+          <div><dt>Cloud</dt><dd>AWS Serverless</dd></div>
+          <div><dt>Domain</dt><dd>Healthcare · FinServ</dd></div>
+        </dl>
       </div>
-      <div class="header-links">
-        <a href="#" id="pdf-link" target="_blank">Resume (PDF)</a>
-        <a href="#" id="linkedin-link" target="_blank">LinkedIn</a>
-        <a href="#" id="github-link" target="_blank">GitHub</a>
+
+      <div class="portrait" aria-hidden="true">
+        <div class="portrait-frame"></div>
+        <div class="portrait-img">
+          <img src="/assets/profile.png" alt="">
+        </div>
+        <div class="portrait-badge">Built with Claude</div>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <div class="container">
-      <nav>
-        <ul>
-          <li>
-            <a href="#welcome" class="nav-link active" data-section="welcome"
-              >Welcome</a
-            >
-          </li>
-          <li>
-            <a href="#about" class="nav-link" data-section="about"
-              >About Me</a
-            >
-          </li>
-          <li>
-            <a href="#experience" class="nav-link" data-section="experience"
-              >Experience</a
-            >
-          </li>
-          <li>
-            <a href="#skills" class="nav-link" data-section="skills">Skills</a>
-          </li>
-          <li>
-            <a href="#education" class="nav-link" data-section="education"
-              >Education</a
-            >
-          </li>
-          <li>
-            <a href="#projects" class="nav-link" data-section="projects"
-              >Projects</a
-            >
-          </li>
-          <li>
-            <a href="#architecture" class="nav-link" data-section="architecture"
-              >Architecture</a
-            >
-          </li>
-          <li>
-            <a href="#contact" class="nav-link" data-section="contact"
-              >Contact</a
-            >
-          </li>
-        </ul>
-      </nav>
+  <!-- =============================================================== -->
+  <!-- SKIM BAR                                                         -->
+  <!-- =============================================================== -->
+  <div class="skim" aria-hidden="true">
+    <div class="skim-track">
+      <span>
+        AWS Lambda <i class="sep"></i>
+        API Gateway <i class="sep"></i>
+        DynamoDB <i class="sep"></i>
+        Terraform <i class="sep"></i>
+        FastAPI <i class="sep"></i>
+        Healthcare Modernization <i class="sep"></i>
+        Financial Services <i class="sep"></i>
+        Serverless Architecture <i class="sep"></i>
+        Team Leadership <i class="sep"></i>
+        Python · SQL · FastAPI <i class="sep"></i>
+      </span>
+      <span>
+        AWS Lambda <i class="sep"></i>
+        API Gateway <i class="sep"></i>
+        DynamoDB <i class="sep"></i>
+        Terraform <i class="sep"></i>
+        FastAPI <i class="sep"></i>
+        Healthcare Modernization <i class="sep"></i>
+        Financial Services <i class="sep"></i>
+        Serverless Architecture <i class="sep"></i>
+        Team Leadership <i class="sep"></i>
+        Python · SQL · FastAPI <i class="sep"></i>
+      </span>
+    </div>
+  </div>
 
-      <main>
-        <!-- Welcome Section -->
-        <section id="welcome" class="content-section active">
-          <h2>Welcome</h2>
-          <div style="max-width: 720px;">
-            <p style="font-size: 1.1rem; line-height: 1.8; color: #334155; margin-bottom: 1.5rem;">
-              Hey, I'm Rob. This is my resume site, but it's also a learning sandbox. Every piece of it — the serverless backend, the infrastructure-as-code, the AI chatbot in the corner — exists because I wanted to understand how it works by building it myself.
-            </p>
+  <!-- =============================================================== -->
+  <!-- JOURNEY                                                          -->
+  <!-- =============================================================== -->
+  <section class="block first" id="journey">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">The Journey</span>
+        <h2 class="section-title">A static page would have taken<br>an afternoon. So I kept going.</h2>
+        <p class="section-lede">
+          Each layer of this site exists because I wanted to understand
+          something. Here's how a resume page became a serverless platform.
+        </p>
+      </div>
 
-            <h3 style="color: #0f172a; margin-bottom: 1rem;">Why This Site Exists</h3>
-            <p style="line-height: 1.8; color: #475569; margin-bottom: 2rem;">
-              I learn by building. A static resume page would have taken an afternoon, but it wouldn't have taught me anything. So I kept adding layers — a real API, a real database, real infrastructure — until the resume site became more interesting than the resume itself.
-            </p>
+      <div class="chapters">
 
-            <h3 style="color: #0f172a; margin-bottom: 1rem;">How It Evolved</h3>
-            <div style="border-left: 3px solid #0ea5e9; padding-left: 1.5rem; margin-bottom: 2rem;">
-              <div style="margin-bottom: 1.5rem;">
-                <p style="font-weight: 600; color: #0f172a; margin-bottom: 0.25rem;">
-                  The Resume Site
-                  <a href="https://github.com/mr-flowjangles/aws-serverless-resume" target="_blank" style="color: #0ea5e9; font-weight: normal; font-size: 0.9rem; margin-left: 0.5rem;">GitHub</a>
+        <!-- chapter 01 -->
+        <article class="chapter reveal">
+          <div class="chapter-dot"><span class="chapter-num">01</span></div>
+          <div class="chapter-body">
+            <div>
+              <h3 class="chapter-heading">The Resume Site</h3>
+              <div class="chapter-subtitle">Serverless from the ground up</div>
+              <div class="chapter-text">
+                <p>
+                  Started as a serverless portfolio — FastAPI on Lambda,
+                  DynamoDB, Terraform, the works. One codebase that runs the
+                  same locally and in production.
                 </p>
-                <p style="color: #64748b; line-height: 1.6;">Started as a <a href="https://github.com/mr-flowjangles/aws-serverless-resume" target="_blank" style="color: #0ea5e9;">serverless portfolio</a> — FastAPI on Lambda, DynamoDB, Terraform, the works. One codebase that runs the same locally and in production.</p>
-              </div>
-              <div style="margin-bottom: 1.5rem;">
-                <p style="font-weight: 600; color: #0f172a; margin-bottom: 0.25rem;">RobbAI — The Chat Widget</p>
-                <p style="color: #64748b; line-height: 1.6;">Added an AI assistant to the resume. "What does Rob do?" felt more interesting than a bullet list. That experiment turned into something bigger.</p>
-              </div>
-              <div style="margin-bottom: 1.5rem;">
-                <p style="font-weight: 600; color: #0f172a; margin-bottom: 0.25rem;">
-                  Bot Factory — The Platform
-                  <a href="https://github.com/mr-flowjangles/bot-factory" target="_blank" style="color: #0ea5e9; font-weight: normal; font-size: 0.9rem; margin-left: 0.5rem;">GitHub</a>
+                <p>
+                  Could have been a static page. Wasn't the point.
                 </p>
-                <p style="color: #64748b; line-height: 1.6;">The chatbot code was reusable, so I extracted it into <a href="https://github.com/mr-flowjangles/bot-factory" target="_blank" style="color: #0ea5e9;">Bot Factory</a> — a platform where you define a bot with YAML and deploy it to serverless AWS. RobbAI is one bot running on it.</p>
               </div>
-              <div style="margin-bottom: 1.5rem;">
-                <p style="font-weight: 600; color: #0f172a; margin-bottom: 0.25rem;">
-                  The Fret Detective — First Real Product
-                  <a href="https://thefretdetective.com" target="_blank" style="color: #0ea5e9; font-weight: normal; font-size: 0.9rem; margin-left: 0.5rem;">thefretdetective.com</a>
-                </p>
-                <p style="color: #64748b; line-height: 1.6;">An AI guitar teacher built on Bot Factory. Proof the platform works for more than just my resume — <a href="https://thefretdetective.com" target="_blank" style="color: #0ea5e9;">thefretdetective.com</a>.</p>
+              <div class="chapter-links">
+                <a class="tag-link" href="https://github.com/mr-flowjangles/aws-serverless-resume" target="_blank" rel="noopener">
+                  <svg class="ic-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.81 5.63-5.48 5.92.42.36.83 1.1.83 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3"/></svg>
+                  aws-serverless-resume
+                </a>
               </div>
             </div>
-
-            <h3 style="color: #0f172a; margin-bottom: 1rem;">Built with Claude</h3>
-            <p style="line-height: 1.8; color: #475569; margin-bottom: 2rem;">
-              Every project here was built with Claude as a development partner. Not "AI wrote my code" — more like having a senior engineer available 24/7 for architecture discussions, code reviews, and debugging sessions. It's changed how I work.
-            </p>
-
-            <p style="line-height: 1.8; color: #64748b; font-style: italic;">
-              Try the chat bubble in the bottom right — that's RobbAI. Ask it anything about my work.
-            </p>
-          </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="content-section">
-          <h2>About Me</h2>
-          <div class="loading">Loading profile...</div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="content-section">
-          <h2>Experience</h2>
-          <div class="loading">Loading experience...</div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="content-section">
-          <h2>Skills</h2>
-          <div class="loading">Loading skills...</div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="content-section">
-          <h2>Education</h2>
-          <div class="loading">Loading education...</div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="content-section">
-          <h2>Projects</h2>
-          <div class="loading">Loading projects...</div>
-        </section>
-
-        <!-- Architecture Section -->
-        <section id="architecture" class="content-section">
-          <h2>System Architecture</h2>
-
-          <div
-            id="architecture-content"
-            style="
-              background: white;
-              padding: 2rem;
-              border-radius: 8px;
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            "
-          >
-            <div class="loading">Loading architecture...</div>
-          </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="content-section">
-          <h2>Contact</h2>
-          <div class="contact-form">
-            <form id="contact-form">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required />
+            <div class="chapter-visual" aria-hidden="true">
+              <span class="label">robrose.info</span>
+              <div class="mini-browser">
+                <div class="bar"><i></i><i></i><i></i></div>
+                <div class="body">
+                  <div class="h"></div>
+                  <div class="h alt"></div>
+                  <div class="line"></div>
+                  <div class="line short"></div>
+                  <div class="line"></div>
+                  <div class="line shorter"></div>
+                  <div class="line short"></div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required />
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-              </div>
-              <div
-                class="g-recaptcha"
-                data-sitekey="6LdFbkgsAAAAAIGnih96mwniw6bnH-unwaFTkYgR"
-              ></div>
-              <button type="submit">Send Message</button>
-            </form>
+            </div>
           </div>
-        </section>
-      </main>
+        </article>
+
+        <!-- chapter 02 -->
+        <article class="chapter reveal">
+          <div class="chapter-dot"><span class="chapter-num">02</span></div>
+          <div class="chapter-body">
+            <div>
+              <h3 class="chapter-heading">RobbAI</h3>
+              <div class="chapter-subtitle">The chat widget</div>
+              <div class="chapter-text">
+                <p>
+                  Added an AI assistant to the resume. "What does Rob do?"
+                  felt more interesting than a bullet list. That experiment
+                  turned into something bigger.
+                </p>
+                <p>
+                  Try the chat bubble in the bottom right — that's RobbAI.
+                </p>
+              </div>
+              <div class="chapter-links">
+                <button class="tag-link" type="button" data-open-chat>
+                  <svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  Open RobbAI →
+                </button>
+              </div>
+            </div>
+            <div class="chapter-visual" aria-hidden="true">
+              <span class="label">RobbAI</span>
+              <div class="chat-vis">
+                <div class="bubble user">What does Rob actually do?</div>
+                <div class="bubble bot">He's an Engineering Leader — 20+ years across healthcare modernization, financial services, and serverless architecture.</div>
+                <div class="bubble user">Cool. Tell me about the architecture.</div>
+                <div class="bubble bot typing">Typing…</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- chapter 03 -->
+        <article class="chapter reveal">
+          <div class="chapter-dot"><span class="chapter-num">03</span></div>
+          <div class="chapter-body">
+            <div>
+              <h3 class="chapter-heading">Bot Factory</h3>
+              <div class="chapter-subtitle">A platform falls out of the experiment</div>
+              <div class="chapter-text">
+                <p>
+                  The chatbot code was reusable, so I extracted it into Bot
+                  Factory — a platform where you define a bot with YAML and
+                  deploy it to serverless AWS.
+                </p>
+                <p>
+                  RobbAI is one bot running on it. Anyone else's bot can be too.
+                </p>
+              </div>
+              <div class="chapter-links">
+                <a class="tag-link" href="https://github.com/mr-flowjangles/bot-factory" target="_blank" rel="noopener">
+                  <svg class="ic-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.81 5.63-5.48 5.92.42.36.83 1.1.83 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3"/></svg>
+                  bot-factory
+                </a>
+              </div>
+            </div>
+            <div class="chapter-visual" aria-hidden="true">
+              <span class="label">bot.yaml</span>
+              <pre class="yaml-vis">
+<span class="c"># Define a bot. Deploy to AWS.</span>
+<span class="k">name</span>: <span class="s">robbai</span>
+<span class="k">persona</span>: <span class="s">"Friendly engineer"</span>
+<span class="k">context</span>:
+  - <span class="k">source</span>: <span class="s">resume.json</span>
+  - <span class="k">source</span>: <span class="s">projects.md</span>
+<span class="k">deploy</span>:
+  <span class="k">runtime</span>: <span class="v">lambda</span>
+  <span class="k">region</span>:  <span class="v">us-east-1</span></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- chapter 04 -->
+        <article class="chapter reveal">
+          <div class="chapter-dot"><span class="chapter-num">04</span></div>
+          <div class="chapter-body">
+            <div>
+              <h3 class="chapter-heading">The Fret Detective</h3>
+              <div class="chapter-subtitle">First real product on the platform</div>
+              <div class="chapter-text">
+                <p>
+                  An AI guitar teacher built on Bot Factory. Proof the
+                  platform works for more than just my resume.
+                </p>
+                <p>
+                  Same infrastructure, different domain. That's the point of a
+                  platform — and the point of building this way.
+                </p>
+              </div>
+              <div class="chapter-links">
+                <a class="tag-link" href="https://thefretdetective.com" target="_blank" rel="noopener">
+                  <svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  thefretdetective.com
+                </a>
+              </div>
+            </div>
+            <div class="chapter-visual" aria-hidden="true">
+              <span class="label">fretboard · G major</span>
+              <div class="fret-vis">
+                <div class="fret-marker" style="left: 18%;"></div>
+                <div class="fret-marker" style="left: 36%;"></div>
+                <div class="fret-marker" style="left: 54%;"></div>
+                <div class="fret-marker" style="left: 72%;"></div>
+                <div class="fret-marker" style="left: 90%;"></div>
+                <div class="fret-string"><span class="note" style="left:90%;">3</span></div>
+                <div class="fret-string"><span class="note" style="left:18%;">2</span></div>
+                <div class="fret-string"><span class="note" style="left:5%;">0</span></div>
+                <div class="fret-string"><span class="note" style="left:5%;">0</span></div>
+                <div class="fret-string"><span class="note mute" style="left:18%;">3</span></div>
+                <div class="fret-string"><span class="note" style="left:90%;">3</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
+  </section>
 
-    <footer>
-      <p>
-        Built with AWS (Lambda, API Gateway, DynamoDB, S3, CloudFront) •
-        Deployed via Terraform
-      </p>
-      <p>
-        Built with Claude as a development partner •
-        <a
-          href="https://github.com/mr-flowjangles/aws-serverless-resume"
-          target="_blank"
-          >View source on GitHub</a
-        >
-      </p>
-    </footer>
+  <!-- =============================================================== -->
+  <!-- AI JOURNEY                                                       -->
+  <!-- =============================================================== -->
+  <section class="block" id="ai-journey">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">The AI Journey</span>
+        <h2 class="section-title">How I learned<br>to build this way.</h2>
+        <p class="section-lede">
+          What started as curiosity turned into a different way of working.
+          Here's how, and what I'd pass along to another senior engineer.
+        </p>
+      </div>
 
-    <!-- Application Scripts (ES6 Modules) -->
-    <script type="module" src="/scripts/navigation.js"></script>
-    <script type="module" src="/scripts/contact.js"></script>
-    <script src="/scripts/chat-widget.js"></script>
-  </body>
+      <div class="ai-grid reveal">
+
+        <div class="ai-stages">
+          <span class="ai-col-title">How I got here</span>
+
+          <div class="ai-stage">
+            <span class="label">Curious</span>
+            <div class="body">
+              Played with it on my own time before any of it was for work.
+              I wanted to see what was actually there, not what someone
+              else's demo showed me.
+            </div>
+          </div>
+
+          <div class="ai-stage">
+            <span class="label">User</span>
+            <div class="body">
+              Started bringing it into specific work problems — the ones
+              where the answer was already clear but the path was tedious.
+              Low-stakes places to learn the shape of the tool.
+            </div>
+          </div>
+
+          <div class="ai-stage">
+            <span class="label">Builder</span>
+            <div class="body">
+              Stopped just using it and started building with it. RobbAI
+              began as a feature on this site. It turned into Bot Factory,
+              which turned into The Fret Detective. Each one taught me more
+              than the last.
+            </div>
+          </div>
+
+          <div class="ai-stage">
+            <span class="label">Daily collaborator</span>
+            <div class="body">
+              Claude Code and agent loops changed everything. Once the loop
+              tightened — write, test, fix, repeat — it stopped feeling
+              like a tool I reached for and started feeling like a teammate
+              I worked with.
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-lessons">
+          <span class="ai-col-title">What stuck</span>
+
+          <div class="ai-lesson">
+            <h4>Vibe design first, then plan.</h4>
+            <p>
+              Once the shape of the work is right, let AI do the doing —
+              but in small steps, with check-ins between. Then one more
+              checkpoint than you think you need.
+            </p>
+          </div>
+
+          <div class="ai-lesson">
+            <h4>The agent loop is the unlock.</h4>
+            <p>
+              Chat is useful. Agents tighten the loop. That's when AI moved
+              from neat toy to "this changes how I work" — and where the
+              ceiling of what I could build went up.
+            </p>
+          </div>
+
+          <div class="ai-lesson">
+            <h4>Verify everything.</h4>
+            <p>
+              Confident-but-wrong is the real failure mode. The trust comes
+              from the feedback loop, not from the model. If I can't see
+              the output failing, I'm not actually evaluating it.
+            </p>
+          </div>
+
+          <div class="ai-lesson">
+            <h4>It doesn't replace understanding.</h4>
+            <p>
+              I still have to know the system. AI accelerates the building;
+              the judgment about <em>what</em> to build, and <em>why</em>,
+              stays mine.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================== -->
+  <!-- EXPERIENCE                                                       -->
+  <!-- =============================================================== -->
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Experience</span>
+        <h2 class="section-title">Two decades of building<br>in regulated industries.</h2>
+        <p class="section-lede">
+          Healthcare, financial services, and the AWS work that ties them
+          together.
+        </p>
+      </div>
+
+      <div class="exp-list reveal" id="exp-list">
+        <div class="loading">Loading experience…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================== -->
+  <!-- SKILLS                                                           -->
+  <!-- =============================================================== -->
+  <section class="block" id="skills">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Skills</span>
+        <h2 class="section-title">What I reach for.</h2>
+        <p class="section-lede">
+          The stack I keep coming back to, grouped by purpose.
+        </p>
+      </div>
+
+      <div class="skills-grid reveal" id="skills-grid">
+        <div class="loading">Loading skills…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================== -->
+  <!-- ARCHITECTURE                                                     -->
+  <!-- =============================================================== -->
+  <section class="block" id="architecture">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">System Architecture</span>
+        <h2 class="section-title">This site, drawn honestly.</h2>
+        <p class="section-lede">
+          A request from your browser to the byte stream coming back —
+          every box is a real piece running in AWS.
+        </p>
+      </div>
+
+      <div class="blueprint reveal">
+        <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="System architecture diagram">
+          <defs>
+            <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L9,3 z" fill="#64CCC9"/>
+            </marker>
+            <pattern id="dotgrid" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.06)"/>
+            </pattern>
+          </defs>
+
+          <!-- subtle dot grid -->
+          <rect x="0" y="0" width="1200" height="460" fill="url(#dotgrid)"/>
+
+          <!-- swimlanes -->
+          <g font-family="Nunito Sans" font-size="11" font-weight="700" fill="#64CCC9" letter-spacing="2" opacity="0.7">
+            <text x="20" y="40">CLIENT</text>
+            <text x="20" y="170">EDGE</text>
+            <text x="20" y="290">COMPUTE</text>
+            <text x="20" y="420">DATA &amp; AI</text>
+          </g>
+
+          <!-- horizontal swim lane lines -->
+          <g stroke="rgba(255,255,255,0.10)" stroke-dasharray="2 6">
+            <line x1="120" y1="40"  x2="1180" y2="40"/>
+            <line x1="120" y1="170" x2="1180" y2="170"/>
+            <line x1="120" y1="290" x2="1180" y2="290"/>
+            <line x1="120" y1="420" x2="1180" y2="420"/>
+          </g>
+
+          <!-- browser -->
+          <g transform="translate(180,10)">
+            <rect width="170" height="70" rx="6" fill="none" stroke="#fff" stroke-width="1.4"/>
+            <rect width="170" height="16" fill="rgba(255,255,255,0.08)"/>
+            <circle cx="8" cy="8" r="2.5" fill="#E27268"/>
+            <circle cx="16" cy="8" r="2.5" fill="#E9C246"/>
+            <circle cx="24" cy="8" r="2.5" fill="#5BB87A"/>
+            <text x="85" y="44" text-anchor="middle" font-family="Nunito Sans" font-size="14" font-weight="700" fill="#fff">robrose.info</text>
+            <text x="85" y="62" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF">Visitor browser</text>
+          </g>
+
+          <!-- chat widget -->
+          <g transform="translate(720,15)">
+            <rect width="140" height="60" rx="14" fill="none" stroke="#702082" stroke-width="1.6"/>
+            <circle cx="20" cy="30" r="10" fill="#702082"/>
+            <text x="20" y="34" text-anchor="middle" font-family="Nunito Sans" font-size="11" font-weight="900" fill="#fff">R</text>
+            <text x="80" y="27" font-family="Nunito Sans" font-size="13" font-weight="700" fill="#fff">RobbAI</text>
+            <text x="80" y="44" font-family="Open Sans" font-size="10" fill="#C6A6CD">embedded</text>
+          </g>
+
+          <!-- cloudfront -->
+          <g transform="translate(180,140)">
+            <rect width="170" height="64" rx="6" fill="none" stroke="#fff" stroke-width="1.4"/>
+            <text x="85" y="28" text-anchor="middle" font-family="Nunito Sans" font-size="13" font-weight="700" fill="#fff">CloudFront</text>
+            <text x="85" y="46" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF">CDN · TLS · cache</text>
+          </g>
+
+          <!-- api gateway -->
+          <g transform="translate(490,140)">
+            <rect width="170" height="64" rx="6" fill="none" stroke="#fff" stroke-width="1.4"/>
+            <text x="85" y="28" text-anchor="middle" font-family="Nunito Sans" font-size="13" font-weight="700" fill="#fff">API Gateway</text>
+            <text x="85" y="46" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF">REST · auth · throttle</text>
+          </g>
+
+          <!-- s3 static (stacked under cloudfront) -->
+          <g transform="translate(180,220)">
+            <rect width="170" height="54" rx="6" fill="none" stroke="#fff" stroke-width="1.4"/>
+            <text x="85" y="23" text-anchor="middle" font-family="Nunito Sans" font-size="13" font-weight="700" fill="#fff">S3</text>
+            <text x="85" y="41" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF">static assets</text>
+          </g>
+
+          <!-- lambda 1 -->
+          <g transform="translate(420,260)">
+            <rect width="160" height="64" rx="6" fill="none" stroke="#fff" stroke-width="1.4"/>
+            <text x="80" y="28" text-anchor="middle" font-family="Nunito Sans" font-size="13" font-weight="700" fill="#fff">Lambda · FastAPI</text>
+            <text x="80" y="46" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF">contact API</text>
+          </g>
+
+          <!-- lambda 2 -->
+          <g transform="translate(640,260)">
+            <rect width="160" height="64" rx="6" fill="none" stroke="#702082" stroke-width="1.6"/>
+            <text x="80" y="28" text-anchor="middle" font-family="Nunito Sans" font-size="13" font-weight="700" fill="#fff">Lambda · RobbAI</text>
+            <text x="80" y="46" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#C6A6CD">bot-factory</text>
+          </g>
+
+          <!-- dynamo -->
+          <g transform="translate(420,390)">
+            <rect width="160" height="60" rx="6" fill="none" stroke="#fff" stroke-width="1.4"/>
+            <text x="80" y="26" text-anchor="middle" font-family="Nunito Sans" font-size="13" font-weight="700" fill="#fff">DynamoDB</text>
+            <text x="80" y="44" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF">resume + sessions</text>
+          </g>
+
+          <!-- llm -->
+          <g transform="translate(640,390)">
+            <rect width="160" height="60" rx="6" fill="none" stroke="#CB6015" stroke-width="1.6" stroke-dasharray="4 3"/>
+            <text x="80" y="26" text-anchor="middle" font-family="Nunito Sans" font-size="13" font-weight="700" fill="#fff">Amazon Bedrock</text>
+            <text x="80" y="44" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#EABFA1">Claude via Bedrock</text>
+          </g>
+
+          <!-- terraform note -->
+          <g transform="translate(900,260)">
+            <rect width="180" height="190" rx="6" fill="rgba(100,204,201,0.06)" stroke="#64CCC9" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="90" y="28" text-anchor="middle" font-family="Nunito Sans" font-size="12" font-weight="800" fill="#64CCC9" letter-spacing="1.5">TERRAFORM</text>
+            <text x="90" y="60" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#fff">All boxes on the left</text>
+            <text x="90" y="78" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#fff">are declared as code.</text>
+            <text x="90" y="110" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF">One module per env.</text>
+            <text x="90" y="128" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF">Stage = prod, locally.</text>
+            <text x="90" y="160" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF" font-style="italic">"It runs the same</text>
+            <text x="90" y="176" text-anchor="middle" font-family="Open Sans" font-size="11" fill="#A2E0DF" font-style="italic">locally and in prod."</text>
+          </g>
+
+          <!-- arrows -->
+          <g fill="none" stroke="#64CCC9" stroke-width="1.4" marker-end="url(#arr)">
+            <path d="M265 80 L265 140"/>
+            <path d="M265 204 L265 218"/>
+            <path d="M350 195 Q420 230 490 172" />
+            <path d="M540 204 L500 260"/>
+            <path d="M790 75 Q700 110 660 140"/>
+            <path d="M600 204 L720 260"/>
+            <path d="M500 324 L500 390"/>
+            <path d="M700 324 Q620 360 580 390"/>
+            <path d="M720 324 L720 390"/>
+          </g>
+
+          <!-- annotation arrows / labels -->
+          <g font-family="Open Sans" font-size="10" fill="#A2E0DF">
+            <text x="278" y="115">HTTPS</text>
+            <text x="278" y="215">origin</text>
+            <text x="585" y="115">/chat</text>
+          </g>
+        </svg>
+
+        <div class="legend">
+          <div class="legend-item"><span class="k">Frontend</span><span class="v">Static HTML, served from S3 via CloudFront</span></div>
+          <div class="legend-item"><span class="k">API</span><span class="v">FastAPI on Lambda behind API Gateway</span></div>
+          <div class="legend-item"><span class="k">State</span><span class="v">DynamoDB for resume content &amp; chat sessions</span></div>
+          <div class="legend-item"><span class="k">IaC</span><span class="v">Terraform — every box, every env</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================== -->
+  <!-- EDUCATION + CONTACT                                              -->
+  <!-- =============================================================== -->
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Education &amp; Contact</span>
+      </div>
+
+      <div class="edu-contact">
+        <div>
+          <h2 class="section-title" style="font-size: clamp(28px, 3.4vw, 40px);">Education</h2>
+          <div class="edu-list reveal" id="edu-list">
+            <div class="loading">Loading education…</div>
+          </div>
+        </div>
+
+        <form class="contact-card reveal" id="contact-form">
+          <span class="eyebrow">Get in touch</span>
+          <h3>Hiring, collaborating, or just curious — say hi.</h3>
+          <p>Easiest is the chat. If you'd rather email, this form runs through the FastAPI Lambda behind the rest of the site.</p>
+
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" type="text" required placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" required placeholder="you@company.com">
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" required placeholder="What's on your mind?"></textarea>
+          </div>
+
+          <div class="g-recaptcha" data-sitekey="6LdFbkgsAAAAAIGnih96mwniw6bnH-unwaFTkYgR" data-theme="dark"></div>
+          <div id="cf-status" class="cf-status" aria-live="polite"></div>
+
+          <div class="contact-actions">
+            <button type="submit" class="btn btn-cyan">Send message</button>
+            <button type="button" class="btn btn-ghost-light" data-open-chat>Or ask RobbAI →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div>© 2026 Rob Rose. Built with AWS &middot; Terraform &middot; Claude.</div>
+    <div>
+      <a href="https://github.com/mr-flowjangles/aws-serverless-resume" target="_blank" rel="noopener">View source</a>
+    </div>
+  </div>
+</footer>
+
+<!-- =================================================================== -->
+<!-- ROBBAI CHAT                                                          -->
+<!-- =================================================================== -->
+<button class="chat-launch" type="button" id="chat-launch" aria-label="Open RobbAI chat">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span class="badge">1</span>
+</button>
+
+<div class="chat-panel" id="chat-panel" role="dialog" aria-label="RobbAI chat" aria-modal="false">
+  <div class="chat-header">
+    <div class="av">R</div>
+    <div>
+      <div class="title">RobbAI</div>
+      <div class="sub">Online</div>
+    </div>
+    <button class="close" id="chat-close" aria-label="Close chat">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="chat-body" id="chat-body">
+    <div class="msg bot">
+      Hey, I'm RobbAI. I can answer questions about Rob's work — experience, projects, the architecture of this site, whatever. What do you want to know?
+    </div>
+    <div class="chat-suggestions" id="chat-suggestions">
+      <button type="button">What does Rob do?</button>
+      <button type="button">Tell me about Bot Factory</button>
+      <button type="button">Is Rob open to new roles?</button>
+    </div>
+  </div>
+  <div class="chat-input">
+    <textarea id="chat-text" rows="1" placeholder="Ask me anything about Rob…"></textarea>
+    <button type="button" id="chat-send" aria-label="Send">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="/script.js"></script>
+</body>
 </html>
