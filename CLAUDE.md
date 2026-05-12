@@ -4,9 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Serverless resume website running the **same FastAPI codebase** locally (Docker + Nginx + LocalStack) and in production (AWS Lambda via Mangum + API Gateway + CloudFront + DynamoDB). Resume data is sourced from an Excel template and loaded into DynamoDB.
+Serverless resume website running the **same FastAPI codebase** locally (Docker + Nginx + LocalStack) and in production (AWS Lambda via Mangum + API Gateway + CloudFront + DynamoDB).
 
 The AI chatbot module (`ai/`) has been extracted to a separate bot-factory repository.
+
+### Frontend / Backend split
+
+The frontend in `app/` is a single-page site (`index.html` + `styles.css` + `brand-tokens.css` + `script.js` + `fonts/`). Editorial content (hero copy, Journey chapters, Architecture SVG, contact form) is hardcoded. The **Experience, Skills, and Education** sections are loaded at runtime from `/api/resume` by `script.js` — yes, this is overkill for a resume site, and that is intentional. The Architecture section explains why.
+
+API endpoints in use:
+- `/api/resume` — full resume payload (profile + work_experience + education + skills); consumed by `script.js` on page load
+- `/api/contact` — contact-form submissions via SES (with reCAPTCHA)
+- `/api/health` — DynamoDB connectivity check
 
 ## Common Commands
 
@@ -54,7 +63,7 @@ The core design principle: one FastAPI app, two runtimes.
 - **Handlers** (`api/handlers/`): Environment-agnostic business logic with no FastAPI imports — testable independently and callable from either runtime
 
 ### Data Flow
-Excel template (`scripts/resume-data-template.xlsx`) → `scripts/load_resume.py` → DynamoDB `ResumeData` table (partitioned by `type`: profile, work_experience, education, skills) → `handlers/resume_all.py` (module-level cache for Lambda warm starts)
+Excel template (`scripts/resume-data-template.xlsx`) → `scripts/load_resume.py` → DynamoDB `ResumeData` table (partitioned by `type`: profile, work_experience, education, skills) → `handlers/resume_all.py` (module-level cache for Lambda warm starts) → `/api/resume` → `script.js` renders into the page's `#exp-list`, `#skills-grid`, `#edu-list` containers. The chat widget posts directly to a separate bot-factory Lambda Function URL (apiKey hardcoded in `app/script.js`).
 
 ### DynamoDB Tables
 - **ResumeData**: Resume content (TypeIndex GSI for querying by type)
